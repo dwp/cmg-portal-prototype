@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Start page example
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a href="start.html" class="govuk-back-link">Back</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Signing in to your employer online account
+    </h1>
+    <p>If you deduct child maintenance from your employee’s earnings, you can manage your payments online.<br /><br />
+      Sign in to your employer account to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        view the amounts you are due to deduct for specific employees
+      </li>
+      <li>
+        complete an online schedule that details your actual deductions and the total payment - we recommend this for
+        smaller companies with up to 10 DEOs
+      </li>
+      <li>
+        upload a report produces by your payroll software
+      </li>
+      <li>
+        view schedules and payments that you have made previously
+      </li>
+      <li>
+        send and receive secure messages between your company and us
+      </li>
+      <li>
+        keep a record of all communications between your company and us
+      </li>
+      <li>
+        tell us about changes in your company’s addresses and contact details
+      </li>
+    </ul>
+    <p>You will need your Employer Reference Number(s) and PAYE number(s).</p>
+    <button class="govuk-button" data-module="govuk-button">
+      Sign in
+    </button>
+  </div>
+
+</div>
+{% endblock %}

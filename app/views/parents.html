@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Start page example
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a href="start.html" class="govuk-back-link">Back</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Sign in to your parent or guardian online account
+    </h1>
+
+
+
+    <div class="govuk-form-group">
+      <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="account-number">
+          12 digit customer reference number
+        </label>
+      </h3>
+      <div id="account-number-hint" class="govuk-hint">
+        This begins with '121'. Find this on letters we sent you about your case.
+      </div>
+      <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text"
+        spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+    </div>
+
+    <div class="govuk-form-group">
+      <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="account-number">
+          National Insurance number
+        </label>
+      </h3>
+      <div id="account-number-hint" class="govuk-hint">
+        It's on your National Insurance card, benefit letter, payslip or P60. For example, 'QQ 12 34 56 C'.</div>
+      <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text"
+        spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+    </div>
+
+    <div class="govuk-form-group">
+      <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="account-number">
+          7 digit PIN
+        </label>
+      </h3>
+      <div id="account-number-hint" class="govuk-hint">
+        You chose this number when your case was opened.
+      </div>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-quarter">
+          <label class="govuk-label" for="width-2">
+            2nd digit
+          </label>
+          <input class="govuk-input govuk-input--width-3" id="width-2" name="width-2" type="text">
+        </div>
+
+        <div class="govuk-grid-column-one-quarter">
+          <label class="govuk-label" for="width-2">
+            3rd digit
+          </label>
+          <input class="govuk-input govuk-input--width-3" id="width-2" name="width-2" type="text">
+        </div>
+      </div>
+      <div class="govuk-!-margin-bottom-6"></div>
+      <button class="govuk-button" data-module="govuk-button">
+        Sign in
+      </button>
+
+      <p class="govuk-!-margin-bottom-0">
+        <a href="#">Forgotten or need to reset your PIN?</a>
+      </p>
+      <p><a href="parents_help.html">Signing in for the first time?</a></p>
+
+      <p>Are you an employer? <a href="#">Employer sign in</a></p>
+
+
+
+    </div>
+
+    <div>
+
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <div class="grey-box">
+      <h3 class="govuk-heading-m">Register to manage your case online</h3>
+      <p>If you have a child maintenance case, you can <a href="#">manage your case online</a></p>
+      <p>If you do not have a child maintenance case, find more information abotut the Child Maintenance Service and <a
+          href="#">making a child maintenance arrangement</a>.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

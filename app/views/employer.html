@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Start page example
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a href="start.html" class="govuk-back-link">Back</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Sign in to your employer account
+    </h1>
+
+    <div class="govuk-form-group">
+      <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="account-number">
+          12 digit employer reference number
+        </label>
+      </h3>
+      <div id="account-number-hint" class="govuk-hint">
+        This is the 12 digit number you can find at the top of your letters.
+      </div>
+      <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text"
+        spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+    </div>
+
+    <div class="govuk-form-group">
+      <h3 class="govuk-label-wrapper"><label class="govuk-label govuk-label--m" for="account-number">
+          PAYE number
+        </label>
+      </h3>
+      <div id="account-number-hint" class="govuk-hint">
+        You can find it on your P30BC payslip booklet. e.g. 123/XY12345.</div>
+      <input class="govuk-input govuk-input--width-10" id="account-number" name="account-number" type="text"
+        spellcheck="false" aria-describedby="account-number-hint" pattern="[0-9]*" inputmode="numeric">
+    </div>
+
+    <div class="govuk-!-margin-bottom-6"></div>
+    <button class="govuk-button" data-module="govuk-button">
+      Sign in
+    </button>
+
+    <p><a href="employer_help.html">Signing in for the first time?</a></p>
+
+    <p>Are you a parent or guardian? <a href="parents.html">Parent or guardian sign in</a></p>
+
+    <div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

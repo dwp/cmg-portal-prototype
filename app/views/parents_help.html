@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Start page example
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+{{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a href="start.html" class="govuk-back-link">Back</a>
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Signing in to your parent or guardian online account
+    </h1>
+    <p>If you already have a case with the Child Maintenance Service, you can manage it online.<br /><br />
+      To sign into your Child Maintenance account, you will need your:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        12 digit customer reference number (this begins with '121'. Find this on letters we sent you about your case)
+      </li>
+      <li>
+        National Insurance number (it’s on your National Insurance card, benefit letter, payslip or P60. For example,
+        ‘QQ 12 34 56 C’)
+      </li>
+      <li>
+        7 digit pin (this was set up when you started using the Child Maintenance Service. You can ask for a reminder if
+        you’re not sure)
+      </li>
+    </ul>
+    <p>Once signed in, you can report a change of circumstance, view your child maintenance arrangement, update personal
+      information, contact us and much more.</p>
+    <button class="govuk-button" data-module="govuk-button">
+      Sign in
+    </button>
+  </div>
+</div>
+{% endblock %}

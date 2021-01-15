@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo"/>
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">-> Coronavirus (Covid-19) | Guidance and support </a>
+</div>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <!-- <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+    </li> -->
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      {% if serviceName %} {{ serviceName }} {% endif %}
+    </h1>
+
+    <p>Select a sign in option:</p>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <h3 class="govuk-heading-m">
+          <a href="parents.html">Parents and Guardians</a>
+        </h3>
+        <p class="govuk-body">Sign in if you are a parent, grandparent or other guardian who pays or receives child
+          maintenance.</p>
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Register to manage your case online
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            If you have a child maintenance case, you can manage your case online. <a href="#">Find out how to sign in</a>.<br/><br/>
+            If you do not have a child maintenance case, find more information about the Child Maintenance Service and
+            <a href="#">making a child maintenance arrangement.</a>
+          </div>
+        </details>
+      </div>
+      <div class="govuk-grid-column-one-half">
+        <h3 class="govuk-heading-m">
+          <a href="employer.html">Employers</a>
+        </h3>
+        <p class="govuk-body">Sign in if you are an employer who pays your employees’ child maintenance through their
+          earnings.</p>
+
+      </div>
+
+    </div>
+    <div class="bottom-space"></div>
+  </div>
+  {% endblock %}
