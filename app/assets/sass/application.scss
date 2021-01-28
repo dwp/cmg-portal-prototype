@@ -71,3 +71,105 @@ $govuk-assets-path: '/govuk/assets/';
 .bottom-space {
   height: 60px
 }
+
+.navbar-main {
+  height: 52px;
+  width: 960px;
+  border-bottom: 2px solid #b1b4b6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: -30px;
+  margin-left: auto;
+  margin-right: auto;
+  a {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.navbar-sub {
+  display: flex;
+  justify-content: space-between;
+  width: 786px;
+}
+
+.home-card {
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+  width: 286px;
+  height: fit-content;
+}
+
+#contact-card {
+  width: 326px;
+}
+
+#track-changes-card-body {
+  padding-bottom: 0;
+}
+
+.card-header {
+  height: 60px;
+  padding: 12px 12px 15px;
+  box-sizing: border-box;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #b1b4b6;
+}
+
+.notification-badge {
+  background-color: #d4351c;
+  border-radius: 50%;
+  padding: 6px 8px;
+  color: white;
+  min-width: 32px;
+  width: auto;
+  box-sizing: border-box;
+  font-family: "GDS Transport", Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.custom-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 960px;
+}
+
+.card-body {
+  padding: 15px 12px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.govuk-table__cell {
+  font-size: 16px !important;
+}
+
+.govuk-table__cell {
+  font-size: 16px !important;
+}
+
+.butsmaller {
+  font-size: 16px !important;
+}
+
+.butblack {
+  color: #0b0c0c !important;
+
+  &:hover {
+    color: #1d70b8 !important;
+  }
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+}
