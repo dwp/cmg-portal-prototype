@@ -6,7 +6,13 @@ Start page example
 
 {% block header %}
 <!-- Blank header with no service name for the start page -->
-{{ govukHeader() }}
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo"/>
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">-> Impact of Coronavirus (COVID-19) </a>
+</div>
 {% endblock %}
 
 {% block beforeContent %}
