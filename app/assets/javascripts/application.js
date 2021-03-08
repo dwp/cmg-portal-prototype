@@ -10,21 +10,37 @@ $(document).ready(function () {
 })
 
 const showCase = (e) => {
-  console.log(e.target.value)
+  // console.log(e.target.value)
   switch (e.target.value) {
-    case "case1":
-      $("#first-row").show()
-      $("#second-row").hide()
+    case "janet":
+      $("#janet").show()
+      $("#clive").hide()
+      $("#frankie").hide()
       break;
-    case "case2":
-      $("#first-row").hide()
-      $("#second-row").show()
+    case "clive":
+      $("#clive").show()
+      $("#janet").hide()
+      $("#frankie").hide()
+      break;
+    case "frankie":
+      $("#frankie").show()
+      $("#clive").hide()
+      $("#janet").hide()
       break;
     default:
-      $("#first-row").show()
-      $("#second-row").show()
+      $("#clive").show()
+      $("#janet").show()
+      $("#frankie").show()
       break;
   }
+}
+
+const caseData = 
+{inbox:
+  {
+
+  }
+
 }
 
 const sorter = $("#sort")[0]

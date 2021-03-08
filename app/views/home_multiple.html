@@ -11,18 +11,18 @@ My Child Maintenance Case
   <img src="/public/images/cmg-banner.png" id="header-logo" />
 </header>
 <div class="covid-banner">
-  <a href="#" id="covid-link">-> Impact of Coronavirus (COVID-19) </a>
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
 </div>
 <nav class="navbar-main">
   <div class="navbar-sub">
-    <a>Home</a>
-    <a href="#">Communications</a>
-    <a href="#">Payments</a>
-    <a href="#">Track Changes</a>
-    <a href="#">Case Details</a>
-    <a href="#">Personal Details</a>
+    <a id="home-link">Home</a>
+    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a href="#" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
   </div>
-  <a href="#">Sign out</a>
+  <a href="home.html" class="govuk-link--no-visited-state">Sign out</a>
 </nav>
 {% endblock %}
 
@@ -44,130 +44,38 @@ My Child Maintenance Case
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
       Welcome, Alex
     </h1>
-    <div class="govuk-form-group govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+      Useful links
+    </h2>
+    <div id="useful-links" class="govuk-!-margin-bottom-7">
+      <a href="#" class="govuk-link--no-visited-state">Missed payments</a>
+      <a href="#" class="govuk-link--no-visited-state">Update income</a>
+      <a href="#" class="govuk-link--no-visited-state">Change service type</a>
+      <a href="#" class="govuk-link--no-visited-state">Update shared care</a>
+      <a href="#" class="govuk-link--no-visited-state">Upload documents</a>
+    </div>
+    <div class="govuk-form-group govuk-!-margin-bottom-6">
       <label class="govuk-label" for="sort">
         Show view for:
       </label>
       <select class="govuk-select" id="sort" name="sort">
         <option value="all-cases" selected>All cases</option>
-        <option value="case1">FGClaire, FGTodd</option>
-        <option value="case2">FHClaire, FHTodd</option>
+        <option value="janet">Janet</option>
+        <option value="clive">Clive</option>
+        <option value="frankie">Frankie</option>
       </select>
     </div>
   </div>
   <div id="first-row" class="govuk-grid-column-full">
-    <h2 class="govuk-heading-l govuk-!-margin-bottom-5">
+    <!-- <h2 class="govuk-heading-l govuk-!-margin-bottom-5">
       FGClaire, FGTodd
-    </h2>
+    </h2> -->
     <div class="custom-row">
       <div class="home-card" id="contact-card">
-        <div class="card-header"><a href="#">
-            <h2>Contact history</h4>
+        <div class="card-header">
+          <a href="#" class="govuk-link--no-visited-state">
+            <h2>Inbox</h2>
           </a>
-        </div>
-        <div class="card-body">
-          <p>No previous messages</p>
-          <div class="card-bottom">
-            <a href="#">Send a message</a>
-          </div>
-        </div>
-      </div>
-      <div class="home-card" id="payments-card">
-        <div class="card-header"><a href="#">
-            <h2>Payments I receive</h4>
-          </a>
-        </div>
-        <div class="card-body">
-
-          <table class="govuk-table">
-            <div class="govuk-!-margin-bottom-2"></div>
-            <caption class="govuk-table__caption">Expected payments</caption>
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Date Due</th>
-                <th scope="col" class="govuk-table__header">Amount</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">12/01/2021</td>
-                <td class="govuk-table__cell">£109.80</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">12/01/2021</td>
-                <td class="govuk-table__cell">£109.80</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">12/01/2021</td>
-                <td class="govuk-table__cell">£4,282.20</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="#">Report a missing payment</a>
-        </div>
-      </div>
-      <div class="home-card" id="track-changes-card">
-        <div class="card-header"><a href="#">
-            <h2>Track changes</h4>
-          </a>
-        </div>
-        <div class="card-body" id="track-changes-card-body">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack">Received (5)</a></th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">Shared care</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack">In Progress (2)</a></th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">Change to Direct Pay or Collect and Pay</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack">Complete (23)</a></th>
-                <th scope="col" class="govuk-table__header"></th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">Case closure</td>
-                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">
-                    Approved
-                  </strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div id="spacer-row" class="govuk-grid-column-full">
-  </div>
-    <div class="govuk-!-margin-bottom-6"></div>
-  </div>
-  <div id="second-row" class="govuk-grid-column-full">
-    <h2 class="govuk-heading-l govuk-!-margin-bottom-5">
-      FHClaire, FHTodd
-    </h2>
-    <div class="custom-row">
-      <div class="home-card" id="contact-card">
-        <div class="card-header"><a href="#">
-            <h2>Contact history</h4>
-          </a><span class="notification-badge">1</span>
         </div>
         <div class="card-body">
           <table class="govuk-table">
@@ -181,62 +89,29 @@ My Child Maintenance Case
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">We need to check some information
                     with you</a></td>
-                <td class="govuk-table__cell">12/01/2021</td>
+                <td class="govuk-table__cell">01/02/2021</td>
               </tr>
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header butsmaller"><a href="#" class="butblack">We haven't received
-                    a child maintenance payment</a></th>
-                <td class="govuk-table__header butsmaller">12/01/2021</td>
+                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">Your child maintenance payments
+                    will not change</a></td>
+                <td class="govuk-table__cell">15/01/2021</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">We haven't received a child
-                    maintenance payment</a></td>
-                <td class="govuk-table__cell">12/01/2021</td>
+                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">We've worked out your child
+                    maintenance payments</a></td>
+                <td class="govuk-table__cell">31/12/2020</td>
               </tr>
             </tbody>
           </table>
           <div class="card-bottom">
-            <a href="#">Send a message</a>
-            <a href="#">View all</a>
+            <a href="#" class="govuk-link--no-visited-state">Send a message</a>
+            <a href="#" class="govuk-link--no-visited-state">View all</a>
           </div>
         </div>
       </div>
-      <div class="home-card" id="payments-card">
-        <div class="card-header"><a href="#">
-            <h2>Payments I send</h4>
-          </a>
-        </div>
-        <div class="card-body">
-
-          <table class="govuk-table">
-            <div class="govuk-!-margin-bottom-2"></div>
-            <caption class="govuk-table__caption">Expected payments</caption>
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Date Due</th>
-                <th scope="col" class="govuk-table__header">Amount</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">12/01/2021</td>
-                <td class="govuk-table__cell">£109.80</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">12/01/2021</td>
-                <td class="govuk-table__cell">£109.80</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">12/01/2021</td>
-                <td class="govuk-table__cell">£4,282.20</td>
-              </tr>
-            </tbody>
-          </table>
-          <a href="#">View payment history</a>
-        </div>
-      </div>
       <div class="home-card" id="track-changes-card">
-        <div class="card-header"><a href="#">
+        <div class="card-header">
+          <a href="#" class="govuk-link--no-visited-state">
             <h2>Track changes</h4>
           </a>
         </div>
@@ -244,43 +119,114 @@ My Child Maintenance Case
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack">Received (0)</a></th>
+                <th scope="col" class="govuk-table__header"><a href="#" class="butblack"></a></th>
+                <th scope="col" class="govuk-table__header"><a href="#" class="butblack"></a></th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">Nothing received</td>
+                <td scope="row" class="govuk-table__cell">Shared care</td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--blue">
+                    Received
+                  </strong>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell">Change address</td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--blue">
+                    Received
+                  </strong>
+                </td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell">Change to Direct Pay or Collect and Pay</td>
+                <td class="govuk-table__cell">
+                  <strong class="govuk-tag govuk-tag--yellow">
+                    In progress
+                  </strong>
+                </td>
               </tr>
             </tbody>
           </table>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack">In Progress (0)</a></th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">Nothing in progress</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack">Complete (0)</a></th>
-                <th scope="col" class="govuk-table__header"></th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell">Nothing complete</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="card-bottom">
+            <a href="#" class="govuk-link--no-visited-state"></a>
+            <a href="#" class="govuk-link--no-visited-state">View all</a>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+  <div id="spacer-row" class="govuk-grid-column-full govuk-!-margin-bottom-9"></div>
+  <div id="second-row" class="govuk-grid-column-full">
+    <h2 class="govuk-heading-m">Payments</h2>
+    <div class="payments-grid">
+      <div class="home-card payments-card" id="janet">
+        <div class="card-header">
+          <a href="#" class="govuk-link--no-visited-state">
+            <h2>Janet</h4>
+          </a>
+        </div>
+        <div class="card-body">
+          <p class="small govuk-!-margin-bottom-2">Expected payments - Direct Pay</p>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
+          <div class="flex">
+            <p class="small">12/02 2021</p>
+            <p class="small">£96.00</p>
+          </div>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
+          <div class="flex">
+            <p class="small">12/03 2021</p>
+            <p class="small">£96.00</p>
+          </div>
+          <a href="#" class="govuk-link--no-visited-state">Report a missing payment</a>
+        </div>
+      </div>
+      <div class="home-card payments-card" id="clive">
+        <div class="card-header">
+          <a href="#" class="govuk-link--no-visited-state">
+            <h2>Clive</h4>
+          </a>
+        </div>
+        <div class="card-body">
+          <p class="small govuk-!-margin-bottom-2">Payments - Collect and Pay</p>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
+          <div class="flex">
+            <p class="small">16/02 2021</p>
+            <p class="small">£53.00</p>
+          </div>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
+          <div class="flex">
+            <p class="small">16/03 2021</p>
+            <p class="small">£53.00</p>
+          </div>
+          <a href="#" class="govuk-link--no-visited-state">Update income</a>
+        </div>
+      </div>
+      <div class="home-card payments-card" id="frankie">
+        <div class="card-header">
+          <a href="#" class="govuk-link--no-visited-state">
+            <h2>Frankie</h4>
+          </a>
+        </div>
+        <div class="card-body">
+          <p class="small govuk-!-margin-bottom-2">Expected payments - Direct Pay</p>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
+          <div class="flex">
+            <p class="small">28/02 2021</p>
+            <p class="small">£82.00</p>
+          </div>
+          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
+          <div class="flex">
+            <p class="small">28/03 2021</p>
+            <p class="small">£82.00</p>
+          </div>
+          <a href="#" class="govuk-link--no-visited-state">Update income</a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="govuk-!-margin-bottom-6"></div> -->
   </div>
 </div>
 {% endblock %}

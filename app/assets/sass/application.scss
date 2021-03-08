@@ -2,7 +2,7 @@
 $govuk-global-styles: true;
 
 // We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
-$govuk-assets-path: '/govuk/assets/';
+$govuk-assets-path: "/govuk/assets/";
 
 // Import GOV.UK Frontend and any extension styles if extensions have been configured
 @import "lib/extensions/extensions";
@@ -20,9 +20,9 @@ $govuk-assets-path: '/govuk/assets/';
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 .grey-box {
-    background-color: govuk-colour("light-grey", $legacy: "grey-4");
-    padding: 22px;
-  }
+  background-color: govuk-colour("light-grey", $legacy: "grey-4");
+  padding: 22px;
+}
 
 .CMG-header {
   display: flex;
@@ -32,7 +32,7 @@ $govuk-assets-path: '/govuk/assets/';
   padding-left: 35px;
   font-size: 20px;
   height: 90px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 #teal-ting {
@@ -59,7 +59,6 @@ $govuk-assets-path: '/govuk/assets/';
 
 #covid-link {
   color: white;
-  text-decoration: none;
   width: 960px;
   font-size: 19px;
 }
@@ -69,7 +68,7 @@ $govuk-assets-path: '/govuk/assets/';
 }
 
 .bottom-space {
-  height: 60px
+  height: 60px;
 }
 
 .navbar-main {
@@ -91,25 +90,47 @@ $govuk-assets-path: '/govuk/assets/';
   }
 }
 
+#home-link {
+  position: relative;
+  top: 4px;
+  border-bottom: 4px solid #1d70b8;
+  padding: 10px 10px;
+}
+
 .navbar-sub {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   width: 786px;
+
+  a {
+    margin-right: 32px;
+  }
+}
+
+#useful-links {
+  a {
+    margin-right: 32px;
+  }
 }
 
 .home-card {
   background-color: #f3f2f1;
   border: 1px solid #b1b4b6;
-  width: 286px;
+  width: 316px;
   height: fit-content;
 }
 
 #contact-card {
-  width: 326px;
+  width: 480px;
+  margin-right: 60px;
+}
+
+.payments-card {
+  width: 248px;
 }
 
 #track-changes-card-body {
-  padding-bottom: 0;
+  padding-bottom: 30px;
 }
 
 .card-header {
@@ -139,8 +160,18 @@ $govuk-assets-path: '/govuk/assets/';
 .custom-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   max-width: 960px;
+}
+
+.payments-grid {
+  display: flex;
+  flex-direction: row;
+  max-width: 960px;
+
+  .home-card {
+    margin-right: 60px;
+    margin-bottom: 30px;
+  }
 }
 
 .card-body {
@@ -176,4 +207,14 @@ $govuk-assets-path: '/govuk/assets/';
 
 .govuk-table {
   margin-bottom: 20px !important;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  max-width: 180px;
+}
+
+.small {
+  font-size: 16px;
 }
