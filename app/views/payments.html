@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="home.html" class="govuk-link--no-visited-state">Home</a>
+    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a id="current-link" href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Payments</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Payments
+    </h1>
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-5">
+      Next payments
+    </h3>
+  </div>
+  <div id="first-row" class="govuk-grid-column-full">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Case</th>
+          <th scope="col" class="govuk-table__header">Service type</th>
+          <th scope="col" class="govuk-table__header">Date due</th>
+          <th scope="col" class="govuk-table__header">Expected amount</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="jane.html" class="govuk-!-font-size-16">Jane</a></td>
+          <td class="govuk-table__cell">Direct pay</td>
+          <td class="govuk-table__cell">02/02/2021</td>
+          <td class="govuk-table__cell">£95.00</td>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="jill.html" class="govuk-!-font-size-16">Jill</a></td>
+          <td class="govuk-table__cell">Collect and pay</td>
+          <td class="govuk-table__cell">03/02/2021</td>
+          <td class="govuk-table__cell">£105.00</td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a class="govuk-link" href="all_payments.html">View all payments</a>
+    <div class="govuk-!-margin-bottom-5"></div>
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-5">
+      Payments summary
+    </h3>
+    <div class="summary-card-container">
+      <div class="summary-card">
+        <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Child maintenance</h4>
+        <div class="amount-freq">
+          <h2 class="govuk-heading-l">£78.12</h2>
+          <h4 class="govuk-heading-s">per week</h4>
+        </div>
+      </div>
+      <div class="summary-card">
+        <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Service type fees</h4>
+        <div class="amount-freq">
+          <h2 class="govuk-heading-l">£15.62</h2>
+          <h4 class="govuk-heading-s">per week</h4>
+        </div>
+      </div>
+      <div class="summary-card">
+        <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Repayments for money owned</h4>
+        <div class="amount-freq govuk-!-margin-bottom-2">
+          <h2 class="govuk-heading-l">£50.00</h2>
+          <h4 class="govuk-heading-s">per week</h4>
+        </div>
+        <a class="govuk-link--no-visited-state" href="#">Make a payment online</a>
+      </div>
+    </div>
+    <div class="summary-card govuk-!-margin-bottom-5">
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Total amount</h4>
+      <div class="amount-freq">
+        <h2 class="govuk-heading-l">£147.91</h2>
+        <h4 class="govuk-heading-s">per week</h4>
+      </div>
+    </div>
+    <a class="govuk-link--no-visited-state govuk-!-margin-bottom-6" href="calculations.html">Find out how your payments were calculated</a>
+    <div class="govuk-!-margin-bottom-5"></div>
+    <a class="govuk-link--no-visited-state" href="#">Report a change in your income</a>
+  </div>
+</div>
+{% endblock %}

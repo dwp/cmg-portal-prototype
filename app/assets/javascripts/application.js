@@ -131,6 +131,67 @@ const showCase = (e) => {
   }
 };
 
-const sorter = $("#sort")[0];
+const showCalcs = (e) => {
+  console.log(e.target.value)
+  switch (e.target.value) {
+    case "janet":
+      $("#janet").show();
+      $("#frankie").hide();
+      $("#all-cases").hide();
+      break;
+    case "frankie":
+      $("#frankie").show();
+      $("#janet").hide();
+      $("#all-cases").hide();
+      break;
+    default:
+      $("#all-cases").show();
+      $("#frankie").hide();
+      $("#janet").hide();
+      break;
+  }
+};
 
-sorter.addEventListener("change", showCase);
+const showPayments = (e) => {
+  console.log(e.target.value)
+  switch (e.target.value) {
+    case "case1":
+      $("#case1").show();
+      $("#case2").hide();
+      $("#all-cases").hide();
+      break;
+    case "case2":
+      $("#case2").show();
+      $("#case1").hide();
+      $("#all-cases").hide();
+      break;
+    default:
+      $("#all-cases").show();
+      $("#case1").hide();
+      $("#case2").hide();
+      break;
+  }
+};
+
+const sorter = $("#sort")[0];
+const calcSorter = $("#calcs-sort")[0]
+const paySorter = $("#payment-sort")[0]
+
+try {
+  sorter.addEventListener("change", showCase);
+}
+catch(err) {
+}
+
+try {
+  calcSorter.addEventListener("change", showCalcs);
+}
+catch(err) {
+}
+
+try {
+  paySorter.addEventListener("change", showPayments);
+}
+catch(err) {
+}
+

@@ -1,0 +1,492 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="home.html">Home</a>
+    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a id="current-link" href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="payments.html">Payments</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="all_payments.html">All Payments</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      All Payments
+    </h1>
+    <h2 class="govuk-heading-m">Payments for the period 02/03/2020 to 01/03/2021</h2>
+    <div class="govuk-form-group govuk-!-margin-bottom-6">
+      <label class="govuk-label" for="sort">
+        Show payments for:
+      </label>
+      <select class="govuk-select" id="payment-sort" name="sort">
+        <option value="all">All cases</option>
+        <option value="case1">Jane</option>
+        <option value="case2">Jill</option>
+      </select>
+    </div>
+    <div id="all-cases" class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#direct">
+            Direct pay cases
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#collect">
+            Collect and pay cases
+          </a>
+        </li>
+      </ul>
+      <div class="govuk-tabs__panel" id="direct">
+        <h2 class="govuk-heading-s">Direct pay payments</h2>
+        <p>Direct payment amounts show you how much money you should expect to
+          receive on that date. If you want to confirm that you received that payment you
+          should check your bank account.</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Date</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expected amount</th>
+              <th scope="col" class="govuk-table__header">Payment type</th>
+              <th scope="col" class="govuk-table__header">Description</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pag-download">
+          <div class="paginator">
+            <a href="#" class="govuk-link--no-visited-state govuk-link">« Previous</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link current">1</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">2</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">3</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">4</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">Next »</a>
+          </div>
+          <a href="#" class="govuk-link govuk-link--no-visited-state">Download payments history as a pdf</a>
+        </div>
+
+      </div>
+      <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="collect">
+        <h2 class="govuk-heading-s">Collect and pay payments</h2>
+        <p>Collect and pay amount show how much money you should have paid and how
+          much was deducted from your account.</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Date</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expected amount</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount we received</th>
+              <th scope="col" class="govuk-table__header">Description</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="pag-download">
+          <div class="paginator">
+            <a href="#" class="govuk-link--no-visited-state govuk-link">« Previous</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link current">1</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">2</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">3</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">4</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">Next »</a>
+          </div>
+          <a href="#" class="govuk-link govuk-link--no-visited-state">Download payments history as a pdf</a>
+        </div>
+      </div>
+
+    </div>
+    <div id="case1" hidden>
+        <h2 class="govuk-heading-s">Direct pay payments</h2>
+        <p>Direct payment amounts show you how much money you should expect to
+          receive on that date. If you want to confirm that you received that payment you
+          should check your bank account.</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Date</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expected amount</th>
+              <th scope="col" class="govuk-table__header">Payment type</th>
+              <th scope="col" class="govuk-table__header">Description</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Direct pay</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pag-download">
+          <div class="paginator">
+            <a href="#" class="govuk-link--no-visited-state govuk-link">« Previous</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link current">1</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">2</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">3</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">4</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">Next »</a>
+          </div>
+          <a href="#" class="govuk-link govuk-link--no-visited-state">Download payments history as a pdf</a>
+        </div>
+    </div>
+    <div id="case2" hidden>
+      <div id="collect">
+        <h2 class="govuk-heading-s">Collect and pay payments</h2>
+        <p>Collect and pay amount show how much money you should have paid and how
+          much was deducted from your account.</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Date</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expected amount</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount we received</th>
+              <th scope="col" class="govuk-table__header">Description</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-width-one-eighth">03/01/2021</td>
+              <td class="govuk-table__cell govuk-width-one-quarter govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£105.00</td>
+              <td class="govuk-table__cell">Child maintenance for Jill</td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div class="pag-download">
+          <div class="paginator">
+            <a href="#" class="govuk-link--no-visited-state govuk-link">« Previous</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link current">1</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">2</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">3</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">4</a>
+            <a href="#" class="govuk-link--no-visited-state govuk-link">Next »</a>
+          </div>
+          <a href="#" class="govuk-link govuk-link--no-visited-state">Download payments history as a pdf</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

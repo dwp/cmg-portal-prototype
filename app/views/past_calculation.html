@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="home.html">Home</a>
+    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a id="current-link" href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="payments.html">Payments</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="calculations.html">Payment Calculations</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Past Calculations</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row govuk-!-margin-bottom-5">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Payment Calculations
+    </h1>
+    <p>Here you can find a breakdown of how your old payments were calculated.</p>
+    <a class="govuk-link govuk-link--no-visited-state" href="#">See how we make calculations for all cases across the service</a>
+  </div>
+</div>
+<div id="current-calculations" class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h2 class="govuk-heading-l">
+      Past calculation
+    </h2>
+    <div id="step-1" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 1 - Income</h3>
+      <p>Gross annual income: <strong>£36,500.00</strong>
+        <br />
+        Gross weekly income: <strong>£700.00</strong>
+      </p>
+    </div>
+    <div id="step-2" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 2 - Things that affect income</h3>
+      <p>Pension payments: <strong>£3,000.00</strong>
+        <br />
+        Boarding school fees: <strong>£6,000.00</strong>
+      </p>
+    </div>
+    <div id="step-3" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 3 - Child Maintenance Rate</h3>
+      <p>Gross weekly income after Step 2: <strong>£542.47</strong>
+        <br />
+        <br />
+        Your gross weekly income is between £200.00 and £800.00. This means we use the <strong>Basic rate</strong> of
+        child maintenance to work out how much you must pay.
+      </p>
+    </div>
+    <div id="step-4" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 4 - Children</h3>
+      <p>You pay child maintenance for <strong>2 children:</strong>
+        <br />
+        <br />
+        <strong>Alaina Jenkins</strong>
+        <br />
+        <strong>Moses Lamar</strong>
+      </p>
+    </div>
+    <div id="step-5" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 5 - Weekly Amount</h3>
+      <p>
+        Gross weekly income after reductions: <strong>£642.47</strong>
+        <br />
+        Child maintenance rate: <strong>Basic</strong>
+        <br />
+        Number of children: <strong>2</strong>
+        <br />
+        Percentage of gross weekly income: <strong>19%</strong>
+        <br />
+        <br />
+        Weekly amount: <strong>£122.07</strong>
+      </p>
+    </div>
+    <div id="step-6" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 6 - Shared Care</h3>
+      <p>
+        <strong>Alaina</strong>
+        <br />
+        with you: <strong>106 nights per year</strong>
+        <br />
+        Reduction to child maintenance: <strong>2/7</strong>ths
+        <br />
+        Monetary reduction: <strong>£17.44</strong>
+        <br />
+        <br />
+        <strong>Moses</strong>
+        <br />
+        with you: <strong>156 nights per year</strong>
+        <br />
+        Reduction to child maintenance: <strong>3/7</strong>ths
+        <br />
+        Monetary reduction: <strong>£26.16</strong>
+      </p>
+    </div>
+    <div id="service type fees" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Service type fees</h3>
+      <p>20% fee added for Collect and Pay
+        <br />
+        <br />
+        Weekly amount: <strong>£15.62</strong>
+      </p>
+    </div>
+    <div class="totals-flex govuk-!-margin-bottom-8">
+      <div>
+        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Child Maintenance</h4>
+        <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£78.12</h2>
+      </div>
+      <div>
+        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Service type fees</h4>
+        <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£15.62</h2>
+      </div>
+      <!-- <div>
+        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Money you owe</h4>
+        <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£15.62</h2>
+      </div> -->
+    </div>
+    <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">Total weekly amount</h2>
+    <h1 class="govuk-!-margin-bottom-0 govuk-heading-xl">£97.91</h1>
+  </div>
+</div>
+{% endblock %}

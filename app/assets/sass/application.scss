@@ -90,11 +90,13 @@ $govuk-assets-path: "/govuk/assets/";
   }
 }
 
-#home-link {
+#current-link {
+  color: #0b0c0c;
   position: relative;
-  top: 4px;
+  top: 2px;
   border-bottom: 4px solid #1d70b8;
-  padding: 10px 10px;
+  padding: 12px 10px;
+  margin-right: 22px;
 }
 
 .navbar-sub {
@@ -217,4 +219,97 @@ $govuk-assets-path: "/govuk/assets/";
 
 .small {
   font-size: 16px;
+}
+
+// Payments Styling
+
+.totals-flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+  & > * {
+    margin-right: 60px;
+  }
+}
+
+.timeline-wrapper {
+  border-left:4px #1d70b8 solid;
+  padding-left: 26px;
+  padding-bottom: 35px;
+  margin-top: 10px;
+  position: relative;
+  margin-bottom: -15px;
+
+  &::before {
+    content: " ";
+    height: 4px;
+    width: 10px;
+    background: #1d70b8;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+  }
+}
+
+.timeline-body {
+  position: relative;
+  top: -10px;
+}
+
+.new-amount {
+  & > * {
+    margin-bottom: 0;
+  }
+  margin-bottom: 16px;
+}
+
+.amount-difference {
+  color: #505a5f;
+}
+
+.govuk-width-one-eighth {
+  width: 12.5% !important
+}
+
+.paginator {
+
+  a {
+    text-decoration: none;
+    margin-right: 16px;
+  }
+
+  .current {
+    color: #0b0c0c;
+    font-weight: bold;
+  }
+}
+
+.amount-freq {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  & > * {
+    margin-bottom: 0;
+    margin-right: 5px;
+  }
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-card-container {
+  display: flex;
+  & > * {
+    margin-right: 40px;
+  }
+  margin-bottom: 30px;
+}
+
+.pag-download {
+  display: flex;
+  justify-content: space-between;
 }

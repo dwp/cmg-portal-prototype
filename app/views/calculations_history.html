@@ -1,0 +1,189 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="home.html">Home</a>
+    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a id="current-link" href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="payments.html">Payments</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="calculations.html">Payment calculations</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Calculation history</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      Calculation history
+    </h1>
+    <p>Here you can find the history of recalculations to your payemtns.</p>
+    <div class="govuk-form-group govuk-!-margin-bottom-6">
+      <label class="govuk-label" for="sort">
+        Show calculations for review period:
+      </label>
+      <select class="govuk-select" id="sort" name="sort">
+        <option value="janet">2020 - 2021</option>
+        <option value="clive">2019 - 2020</option>
+        <option value="frankie">2018 - 2019</option>
+      </select>
+    </div>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-width-one-eighth">Date</th>
+          <th scope="col" class="govuk-table__header">Change type</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount</th>
+          <th scope="col" class="govuk-table__header">Difference</th>
+          <th scope="col" class="govuk-table__header">Calculation</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">13/01/2021</td>
+          <td class="govuk-table__cell">Change to service type</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£134.50</td>
+          <td class="govuk-table__cell">£13.42 more</td>
+          <td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="past_calculation.html">View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pag-download">
+      <div class="paginator">
+        <a href="#" class="govuk-link--no-visited-state govuk-link">« Previous</a>
+        <a href="#" class="govuk-link--no-visited-state govuk-link current">1</a>
+        <a href="#" class="govuk-link--no-visited-state govuk-link">2</a>
+        <a href="#" class="govuk-link--no-visited-state govuk-link">3</a>
+        <a href="#" class="govuk-link--no-visited-state govuk-link">4</a>
+        <a href="#" class="govuk-link--no-visited-state govuk-link">Next »</a>
+      </div>
+      <a href="#" class="govuk-link govuk-link--no-visited-state">Download payments history as a pdf</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
