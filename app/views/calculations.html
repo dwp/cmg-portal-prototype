@@ -48,11 +48,14 @@ My Child Maintenance Case
 <div class="govuk-grid-row govuk-!-margin-bottom-5">
   <div id="payment-calculations" class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-      Payment Calculations
+      How we calculated your payments
     </h1>
-    <p>Here you can find a breakdown of how your payments are calculatied, and a history of recalculations to your
-      payments.</p>
-    <a class="govuk-link govuk-link--no-visited-state" href="#">See how we make calculations for all cases across the service</a>
+    <p>The Child Maintenance Service usually follows 6 steps to work out the weekly amount of child maintenance. Find
+      more information on
+      <a class="govuk-link govuk-link--no-visited-state" href="#">
+        how child maintenance is worked out (opens in a new tab).
+      </a>
+    </p>
   </div>
 </div>
 <div class="govuk-form-group govuk-!-margin-bottom-6">
@@ -61,8 +64,8 @@ My Child Maintenance Case
   </label>
   <select class="govuk-select" id="calcs-sort" name="sort">
     <option value="all">All cases</option>
-    <option value="frankie">Frankie</option>
-    <option value="janet">Janet</option>
+    <option value="frankie">J. Smith</option>
+    <option value="janet">C. Jones</option>
   </select>
 </div>
 <div id="all-cases" class="govuk-grid-row">
@@ -70,29 +73,31 @@ My Child Maintenance Case
     <h2 class="govuk-heading-l govuk-!-margin-bottom-1">
       Current calculations
     </h2>
-    <p class="govuk-!-margin-bottom-1">12/03/2021</p>
-    <p>Change to Shared Care</p>
+    <p class="govuk-!-margin-bottom-5">12/03/2021 - Change to Shared care</p>
     <div id="step-1" class="govuk-!-margin-bottom-8">
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 1 - Income</h3>
       <p>Gross annual income: <strong>£36,500.00</strong>
-        <br />
-        Gross weekly income: <strong>£700.00</strong>
+        <!-- <br /> -->
+        <!-- Gross weekly income: <strong>£700.00</strong> -->
       </p>
       <a class="govuk-link govuk-link--no-visited-state" href="#">Update income</a>
     </div>
     <div id="step-2" class="govuk-!-margin-bottom-8">
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 2 - Things that affect income</h3>
-      <p>Pension payments: <strong>£3,000.00</strong>
+      <p>These are things that change your gross income amount
         <br />
-        Boarding school fees (Frankie): <strong>£6,000.00</strong>
         <br />
-        Something else (Janet): <strong>£3,000.00</strong>
+        Pension payments: <strong>£3,000.00</strong>
+        <br />
+        Boarding school fees (J. Smith): <strong>£6,000.00</strong>
+        <br />
+        Something else (C. Jones): <strong>£3,000.00</strong>
       </p>
       <a class="govuk-link govuk-link--no-visited-state" href="#">Update special expenses</a>
     </div>
     <div id="step-3" class="govuk-!-margin-bottom-8">
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 3 - Child Maintenance Rate</h3>
-      <p>Gross weekly income after Step 2: <strong>£542.47</strong>
+      <p>Your gross annual income is then converted to a gross weekly figure: <strong>£700.00</strong>
         <br />
         <br />
         Your gross weekly income is between £200.00 and £800.00. This means we use the <strong>Basic rate</strong> of
@@ -101,17 +106,17 @@ My Child Maintenance Case
     </div>
     <div id="step-4" class="govuk-!-margin-bottom-8">
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 4 - Children</h3>
-      <p>You pay child maintenance for <strong>2 children:</strong>
+      <p>You pay child maintenance for <strong>3 children:</strong>
         <br />
         <br />
-        Frankie
+        J. Smith
         <br />
         <strong>Alaina Jenkins</strong>
         <br />
         <strong>Moses Lamar</strong>
         <br />
         <br />
-        Janet
+        C. Jones
         <br />
         <strong>Joseph Carner</strong>
       </p>
@@ -121,6 +126,9 @@ My Child Maintenance Case
     <div id="step-5" class="govuk-!-margin-bottom-8">
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 5 - Weekly Amount</h3>
       <p>
+        Using information from the first 4 steps, we work out the weekly child maintenance amount.
+        <br />
+        <br />
         Gross weekly income after reductions: <strong>£642.47</strong>
         <br />
         Child maintenance rate: <strong>Basic</strong>
@@ -136,45 +144,34 @@ My Child Maintenance Case
     <div id="step-6" class="govuk-!-margin-bottom-8">
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 6 - Shared Care</h3>
       <p>
+        We work out the average number of nights per week your child stays overnight with you.
+        You do not pay child maintenance for the nights your child stays with you.
+        <br />
+        <br />
         <strong>Alaina</strong>
         <br />
-        with you: <strong>106 nights per year</strong>
+        stays with you <strong>2 out of 7</strong> nights per week.
         <br />
-        Reduction to child maintenance: <strong>2/7</strong>ths
-        <br />
-        Monetary reduction: <strong>£17.44</strong>
+        Reduction to weekly child maintenance: <strong>£17.44</strong>
         <br />
         <br />
         <strong>Moses</strong>
         <br />
-        with you: <strong>156 nights per year</strong>
+        stays with you <strong>2 out of 7</strong> nights per week.
         <br />
-        Reduction to child maintenance: <strong>3/7</strong>ths
-        <br />
-        Monetary reduction: <strong>£26.16</strong>
+        Reduction to weekly child maintenance: <strong>£17.44</strong>
         <br />
         <br />
-        Weekly amount: <strong>£78.12</strong>
       </p>
       <a class="govuk-link govuk-link--no-visited-state" href="#">Update shared care</a>
     </div>
-    <div id="service type fees" class="govuk-!-margin-bottom-8">
-      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Service type fees</h3>
-      <p>20% fee added for Collect and Pay
-        <br />
-        Weekly amount: <strong>£15.62</strong>
-      </p>
-      <a class="govuk-link govuk-link--no-visited-state" href="#">Change payment service</a>
-    </div>
     <div id="arrears" class="govuk-!-margin-bottom-8">
-      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Money you owe</h3>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Arrears</h3>
       <p>You have unpaid child maintenance from missed payments
-        <br />
         <br />
         Unpaid amount: <strong>£50.00</strong>
       </p>
       <p>You have unpaid charges to the Child Maintenance Service
-        <br />
         <br />
         Unpaid collection fees: <strong>£60.00</strong>
         <br />
@@ -184,21 +181,30 @@ My Child Maintenance Case
       <p>You've agreed to pay <strong>£25.00 weekly over 7 weeks</strong></p>
       <a class="govuk-link govuk-link--no-visited-state" href="#">Make an online payments</a>
     </div>
+    <div id="service type fees" class="govuk-!-margin-bottom-8">
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Collection fees</h3>
+      <p>We add a 20% fee to your child maintenance payments for using the Collect and Pay service.
+        <br />
+        <br />
+        Weekly amount: <strong>£15.62</strong>
+      </p>
+      <a class="govuk-link govuk-link--no-visited-state" href="#">Change payment service</a>
+    </div>
     <div class="totals-flex govuk-!-margin-bottom-8">
       <div>
         <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Child Maintenance</h4>
         <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£78.12</h2>
       </div>
       <div>
-        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Service type fees</h4>
-        <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£15.62</h2>
-      </div>
-      <div>
-        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Money you owe</h4>
+        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Arrears</h4>
         <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£25.72</h2>
       </div>
+      <div>
+        <h4 class="govuk-!-margin-bottom-0 govuk-heading-s">Collection fee</h4>
+        <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">£15.62</h2>
+      </div>
     </div>
-    <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">Total weekly amount</h2>
+    <h2 class="govuk-!-margin-bottom-0 govuk-heading-l">Weekly amount</h2>
     <h1 class="govuk-!-margin-bottom-0 govuk-heading-xl">£119.46</h1>
   </div>
   <div id="recent-calculations" class="govuk-grid-column-one-third">
@@ -247,7 +253,7 @@ My Child Maintenance Case
 <div id="frankie" class="govuk-grid-row" hidden>
   <div id="current-calculations" class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-l govuk-!-margin-bottom-1">
-      Current calculations fi Frankie
+      Current calculations fi J. Smith
     </h2>
     <p class="govuk-!-margin-bottom-1">12/03/2021</p>
     <p>Change to Shared Care</p>
@@ -263,7 +269,7 @@ My Child Maintenance Case
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 2 - Things that affect income</h3>
       <p>Pension payments: <strong>£3,000.00</strong>
         <br />
-        Boarding school fees (Frankie): <strong>£6,000.00</strong>
+        Boarding school fees (J. Smith): <strong>£6,000.00</strong>
       </p>
       <a class="govuk-link govuk-link--no-visited-state" href="#">Update special expenses</a>
     </div>
@@ -281,7 +287,7 @@ My Child Maintenance Case
       <p>You pay child maintenance for <strong>2 children:</strong>
         <br />
         <br />
-        Frankie
+        J. Smith
         <br />
         <strong>Alaina Jenkins</strong>
         <br />
@@ -331,7 +337,7 @@ My Child Maintenance Case
       <a class="govuk-link govuk-link--no-visited-state" href="#">Update shared care</a>
     </div>
     <div id="service type fees" class="govuk-!-margin-bottom-8">
-      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Service type fees</h3>
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Collection fees</h3>
       <p>20% fee added for Collect and Pay
         <br />
         Weekly amount: <strong>£15.62</strong>
@@ -419,7 +425,7 @@ My Child Maintenance Case
 <div id="janet" class="govuk-grid-row" hidden>
   <div id="current-calculations" class="govuk-grid-column-two-thirds">
     <h2 class="govuk-heading-l govuk-!-margin-bottom-1">
-      Current calculations fi Janet
+      Current calculations fi C. Jones
     </h2>
     <p class="govuk-!-margin-bottom-1">12/03/2021</p>
     <p>Change to Shared Care</p>
@@ -435,9 +441,9 @@ My Child Maintenance Case
       <h3 class="govuk-heading-m govuk-!-margin-bottom-1">Step 2 - Things that affect income</h3>
       <p>Pension payments: <strong>£3,000.00</strong>
         <br />
-        Boarding school fees (Frankie): <strong>£6,000.00</strong>
+        Boarding school fees (J. Smith): <strong>£6,000.00</strong>
         <br />
-        Something else (Janet): <strong>£3,000.00</strong>
+        Something else (C. Jones): <strong>£3,000.00</strong>
       </p>
       <a class="govuk-link govuk-link--no-visited-state" href="#">Update special expenses</a>
     </div>
@@ -455,14 +461,14 @@ My Child Maintenance Case
       <p>You pay child maintenance for <strong>2 children:</strong>
         <br />
         <br />
-        Frankie
+        J. Smith
         <br />
         <strong>Alaina Jenkins</strong>
         <br />
         <strong>Moses Lamar</strong>
         <br />
         <br />
-        Janet
+        C. Jones
         <br />
         <strong>Joseph Carner</strong>
       </p>
