@@ -144,12 +144,12 @@ const showCalcs = (e) => {
     case "janet":
       $("#janet").show();
       $("#frankie").hide();
-      $("#all-cases").hide();
+      $("#all-calcs").hide();
       break;
     case "frankie":
       $("#frankie").show();
       $("#janet").hide();
-      $("#all-cases").hide();
+      $("#all-calcs").hide();
       break;
     default:
       $("#all-calcs").show();
@@ -231,18 +231,24 @@ try {
     case "janet":
       $("#janet").show();
       $("#frankie").hide();
-      $("#all-cases").hide();
+      $("#all-calcs").hide();
       calcSorter.value='janet'
       break;
     case "frankie":
       $("#frankie").show();
       $("#janet").hide();
-      $("#all-cases").hide();
+      $("#all-calcs").hide();
       calcSorter.value='frankie'
       break;
-    default:
+    case "all_calc":
+      $("#frankie").hide();
       $("#janet").hide();
-      $("#frankie").show();
+      $("#all-calcs").show();
+      calcSorter.value='all'
+      break;
+    default:
+      $("#janet").show();
+      $("#frankie").hide();
       break;
     }
 } catch (err) {}
