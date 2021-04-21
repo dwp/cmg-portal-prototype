@@ -152,7 +152,7 @@ const showCalcs = (e) => {
       $("#all-cases").hide();
       break;
     default:
-      $("#all-cases").show();
+      $("#all-calcs").show();
       $("#frankie").hide();
       $("#janet").hide();
       break;
@@ -187,6 +187,8 @@ const showPayments = (e) => {
 const sorter = $("#sort")[0];
 const calcSorter = $("#calcs-sort")[0];
 const paySorter = $("#payment-sort")[0];
+const urlParams = new URLSearchParams(window.location.search);
+
 
 try {
   sorter.addEventListener("change", showCase);
@@ -198,4 +200,49 @@ try {
 
 try {
   paySorter.addEventListener("change", showPayments);
+} catch (err) {}
+
+try {
+  switch (`case${urlParams.get('case')}`) {
+    case "case1":
+      $("#case1").show();
+      $("#case2").hide();
+      $("#all-cases").hide();
+      paySorter.value='case1'
+      break;
+    case "case2":
+      $("#case2").show();
+      $("#case1").hide();
+      $("#all-cases").hide();
+      paySorter.value='case2'
+      break;
+    default:
+      $("#all-cases").show();
+      $("#case1").hide();
+      $("#case2").hide();
+      break;
+  }
+} catch (err) {}
+
+try {
+  console.log('switching case calc')
+  console.log(urlParams.get('calc'))
+  switch (urlParams.get('calc')) {
+    case "janet":
+      $("#janet").show();
+      $("#frankie").hide();
+      $("#all-cases").hide();
+      calcSorter.value='janet'
+      break;
+    case "frankie":
+      $("#frankie").show();
+      $("#janet").hide();
+      $("#all-cases").hide();
+      calcSorter.value='frankie'
+      break;
+    default:
+      $("#janet").hide();
+      $("#frankie").show();
+      break;
+    }
 } catch (err) {}
