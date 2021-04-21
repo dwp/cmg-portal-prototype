@@ -233,6 +233,11 @@ $govuk-assets-path: "/govuk/assets/";
   }
 }
 
+.per {
+  display: flex;
+  align-items: flex-end;
+}
+
 .timeline-wrapper {
   border-left:4px #1d70b8 solid;
   padding-left: 26px;
@@ -313,3 +318,4 @@ $govuk-assets-path: "/govuk/assets/";
   display: flex;
   justify-content: space-between;
 }
+
