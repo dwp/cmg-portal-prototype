@@ -1,0 +1,223 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Messages
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="../Home.html" class="govuk-link--no-visited-state">Home</a>
+    <a  id="current-link" href="messages.html" class="govuk-link--no-visited-state">Messages</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<div class="govuk-breadcrumbs">
+	<ol class="govuk-breadcrumbs__list">
+		<li class="govuk-breadcrumbs__list-item">
+			<a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+		</li>
+		<li class="govuk-breadcrumbs__list-item">
+			<a class="govuk-breadcrumbs__link" href="Messages">Messages</a>
+		</li>
+	</ol>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-three-quarters">
+		<h1 class="govuk-heading-l">Messages</h1>
+	</div>
+	<div class="govuk-grid-column-one-quarter"
+		<form class="form" action="send-a-message-start" method="post">
+			{{ govukButton({
+			  text: "Send a message",
+				href: "send-a-message/send-a-message-start",
+				classes: "float-right"
+			}) }}
+		</form>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<!-- Tabs -->
+		<nav class="vertical-menu">
+			<a href="#" id="receivedTab" class="active govuk-body">Received messages</a>
+			<a href="#" id="sentTab" class="govuk-body">Sent messages</a>
+		</nav>
+
+		<h2 class="govuk-heading-m">Filters</h2>
+		<!--Filters-->
+		{% call govukFieldset({
+		  legend: {
+		    text: "Date received",
+		    classes: "govuk-fieldset__legend--s",
+		    isPageHeading: false
+		  }
+		}) %}
+
+		  {{ govukInput({
+		    label: {
+		      text: "Date from"
+		    },
+        hint: {
+          text: "For example, 2005 or 21/11/2014"
+        },
+		    id: "date-from",
+		    name: "date-from",
+				classes: "govuk-input--width-10"
+		  }) }}
+
+		  {{ govukInput({
+		    label: {
+		      text: "Date to"
+		    },
+        hint: {
+          text: "For example, 2005 or 21/11/2014"
+        },
+		    id: "date-to",
+		    name: "date-to",
+				classes: "govuk-input--width-10"
+		  }) }}
+		{% endcall %}
+
+		{{ govukCheckboxes({
+			idPrefix: "case",
+		  name: "case",
+		  classes: "govuk-checkboxes--small",
+		  fieldset: {
+		    legend: {
+		      text: "Case",
+		      isPageHeading: false,
+		      classes: "govuk-fieldset__legend--s"
+		    }
+		  },
+			items: [
+				{
+					value: "c-jones",
+					text: "C Jones"
+				},
+				{
+					value: "j-smith",
+					text: "J Smith"
+				},
+				{
+					value: "no-case",
+					text: "No specific case"
+				}
+			]
+		}) }}
+
+		{{ govukButton({
+		  text: "Apply filter",
+		  classes: "govuk-button--secondary"
+		}) }}
+	</div>
+
+	<div class="govuk-grid-column-two-thirds">
+		<!--Received messages-->
+		<form id="received" class="visible">
+			<table class="govuk-table">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" class="govuk-table__header">20 received messages</th>
+						<th scope="col" class="govuk-table__header"></th>
+					</tr>
+				</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">We need to check some information with you</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2021</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="table-row-subject" href="received-message.html">Message subject #2</a><span class="table-row-case">Case: C Smith</span></th>
+						<td class="govuk-table__cell table-row-date">7 March 2021</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #3</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2021</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #4</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #5</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #6</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #7</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #8</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #9</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #10</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+
+		<!--Sent messages-->
+		<form id="sent" class="hidden">
+			<table class="govuk-table">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" class="govuk-table__header">20 sent messages</th>
+						<th scope="col" class="govuk-table__header"></th>
+					</tr>
+				</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">We’ve worked out your child maintenance payments</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="table-row-subject" href="sent-message.html">Message subject goes here</a><span class="table-row-case">Case: C Smith</span></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">Message subject goes here</a></th>
+						<td class="govuk-table__cell table-row-date">1 January 2019
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+{% endblock %}

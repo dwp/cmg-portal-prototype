@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  We’ve worked out your child maintenance payments
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="../Home.html" class="govuk-link--no-visited-state">Home</a>
+    <a  id="current-link" href="messages.html" class="govuk-link--no-visited-state">Messages</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs -->
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="Messages">Messages</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Sent message</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      <span class="govuk-caption-l">Sent on 1 January 2021</span>
+      Change of income
+    </h1>
+
+    <p>For more help on downloading a PDF see our <a href="#">how to use this site</a> on our help section or contact us.</p>
+
+    {{ govukTable({
+      firstCellIsHeader: true,
+      head: [
+        {
+          text: "Letter"
+        },
+        {
+          text: ""
+        }
+      ],
+      rows: [
+        [
+          {
+            text: "This is the subject of a letter"
+          },
+          {
+            html: '<a href="#">Download PDF</a>'
+          }
+        ],
+        [
+          {
+            text: "This is another letter"
+          },
+          {
+            html: '<a href="#">Download PDF</a>'
+          }
+        ],
+        [
+          {
+            text: "The third and final letter that has a much longer subject than the rest"
+          },
+          {
+            html: '<a href="#">Download PDF</a>'
+          }
+        ]
+      ]
+    }) }}
+
+    <p>You need Adobe Acrobat Reader to view the PDF files. If you don't already have it on your computer, you can <a href="#">install the latest version Adobe Acrobat Reader (opens in a new tab)</a>.</p>
+
+  </div>
+</div>
+{% endblock %}

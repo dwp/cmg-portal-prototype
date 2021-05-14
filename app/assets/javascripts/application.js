@@ -244,3 +244,33 @@ try {
       break;
     }
 } catch (err) {}
+
+// Messages Tabs
+var receivedTab = document.getElementById("receivedTab");
+var sentTab = document.getElementById("sentTab");
+var receivedMessages = document.getElementById("received");
+var sentMessages = document.getElementById("sent");
+
+receivedTab.addEventListener("click", function() {
+  // if the received tab isn't selected
+  if(receivedMessages.classList.contains('hidden')){
+    receivedTab.classList.add('active');
+    sentTab.classList.remove('active');
+    receivedMessages.classList.remove('hidden');
+    receivedMessages.classList.add('visible');
+    sentMessages.classList.remove('visible');
+    sentMessages.classList.add('hidden');
+  }
+});
+
+sentTab.addEventListener("click", function() {
+  //if the sent tab isn't selected
+  if(sentMessages.classList.contains('hidden')){
+    receivedTab.classList.remove('active');
+    sentTab.classList.add('active');
+    sentMessages.classList.remove('hidden');
+    sentMessages.classList.add('visible');
+    receivedMessages.classList.remove('visible');
+    receivedMessages.classList.add('hidden');
+  }
+});

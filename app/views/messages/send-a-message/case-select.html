@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Which case is your message about?
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="../Home.html" class="govuk-link--no-visited-state">Home</a>
+    <a  id="current-link" href="../messages.html" class="govuk-link--no-visited-state">Messages</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<a class="govuk-back-link" href="subject.html">Back</a>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="write-message" method="post">
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "case",
+          name: "case-select",
+          fieldset: {
+            legend: {
+              text: "Which case is your message about?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+        items: [
+          {
+            value: "C Smith",
+            text: "C Smith",
+            checked: checked("case-select", "C Smith")
+          },
+          {
+            value: "M Welch",
+            text: "M Welch",
+            checked: checked("case-select", "M Welch")
+          },
+          {
+            value: "My message is not about a specific case",
+            text: "My message is not about a specific case",
+            checked: checked("case-select", "My message is not about a specific case")
+          }
+        ]
+      }) }}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Messages
+{% endblock %}
+
+{% block beforeContent %}
+<!-- Breadcrumbs -->
+<div class="govuk-breadcrumbs">
+	<ol class="govuk-breadcrumbs__list">
+		<li class="govuk-breadcrumbs__list-item">
+			<a class="govuk-breadcrumbs__link" href="https://www.gov.uk">Home</a>
+		</li>
+		<li class="govuk-breadcrumbs__list-item">
+			<a class="govuk-breadcrumbs__link" href="Messages">Messages</a>
+		</li>
+	</ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-three-quarters">
+		<h1 class="govuk-heading-l">Messages</h1>
+	</div>
+	<div class="govuk-grid-column-one-quarter"
+		<form class="form" action="send-a-message-start" method="post">
+			{{ govukButton({
+			  text: "Send a message",
+				href: "send-a-message-start",
+				classes: "float-right"
+			}) }}
+		</form>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<!-- Sub navigation -->
+		<nav class="vertical-menu govuk-!-font-size-19">
+			<a href="#" class="active govuk-body govuk-!-font-weight-bold">Received messages</a>
+			<a href="#">Sent messages</a>
+		</nav>
+
+		<div class="accordion-section">
+			<!-- Accordion header -->
+			<div class="accordion-expander">
+				<h2 class="accordion-heading">
+					<button class="accordion-section-button" type="button" id="accordion-default-heading-1" aria-expanded="false" aria-controls="accordion-content-1">
+						Date Received
+					</button>
+					<span class="accordion-selected-counter">
+						1 selected
+					</span>
+					<svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="accordion-icon accordion-icon-down" aria-hidden="true" focusable="false"><path d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z"></path></svg>
+				</h2>
+			</div>
+
+			<!-- Accordion content -->
+			<div id="accordion-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+				{{ govukInput({
+					label: {
+						text: "Date from"
+					},
+					classes: "govuk-input--width-10",
+					id: "date-from",
+					name: "date-from"
+				}) }}
+				{{ govukInput({
+					label: {
+						text: "Date to"
+					},
+					classes: "govuk-input--width-10",
+					id: "date-to",
+					name: "date-to"
+				}) }}
+			</div>
+		</div>
+
+		<div class="govuk-accordion__section ">
+			<!-- Accordion header -->
+			<div class="accordion-expander">
+				<h2 class="accordion-heading">
+					<button class="accordion-section-button" type="button" id="accordion-default-heading-2" aria-expanded="false" aria-controls="accordion-content-2">
+						Case
+					</button>
+					<span class="accordion-selected-counter">
+					</span>
+					<svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="accordion-icon accordion-icon-down" aria-hidden="true" focusable="false"><path d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z"></path></svg>
+				</h2>
+			</div>
+
+			<!-- Accordion content -->
+			<div id="accordion-content-2" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
+				{{ govukCheckboxes({
+					items: [
+						{
+							value: "c-jones",
+							text: "C Jones"
+						},
+						{
+							value: "j-smith",
+							text: "J Smith"
+						},
+						{
+							value: "no-case",
+							text: "No specific case"
+						}
+					]
+				}) }}
+			</div>
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-two-thirds"
+	<Form>
+		<table class="govuk-table">
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+					<th scope="col" class="govuk-table__header">20 received messages</th>
+					<th scope="col" class="govuk-table__header"></th>
+				</tr>
+			</thead>
+			<tbody class="govuk-table__body">
+				<tr class="govuk-table__row">
+					<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="message-details.html">We’ve worked out your child maintenance payments</a></th>
+					<td class="govuk-table__cell table-row-date">1 January 2019
+					</td>
+				</tr>
+				<tr class="govuk-table__row">
+					<th scope="row" class="govuk-table__header"><a class="table-row-subject" href="message-details.html">Message subject goes here</a><span class="table-row-case">Case: C Smith</span></th>
+					<td class="govuk-table__cell table-row-date">1 January 2019
+					</td>
+				</tr>
+				<tr class="govuk-table__row">
+					<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="message-details.html">Message subject goes here</a></th>
+					<td class="govuk-table__cell table-row-date">1 January 2019
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+	</div>
+</div>
+{% endblock %}

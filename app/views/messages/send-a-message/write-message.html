@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What is your message?
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="../Home.html" class="govuk-link--no-visited-state">Home</a>
+    <a  id="current-link" href="../messages.html" class="govuk-link--no-visited-state">Messages</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<a class="govuk-back-link" href="subject.html">Back</a>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="check-message" method="post">
+      {{ govukCharacterCount({
+        name: "write-message",
+        id: "write-message",
+        maxlength: 600,
+        rows: 10,
+        label: {
+          html: '<h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="with-hint">
+                      What is your message?
+                    </label>
+                  </h1>
+                  <div class="govuk-warning-text">
+                    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                    <strong class="govuk-warning-text__text">
+                      <span class="govuk-warning-text__assistive">Warning</span>
+                      The Child Maintenance Service takes a zero tolerance approach to unacceptable customer behaviour. We will not respond to any messages that contain inappropriate or offensive comments.
+                    </strong>
+                  </div>',
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        value: data['write-message'],
+        hint: {
+          text: "You will be able to save a copy of your message once you have sent it."
+        }
+      }) }}
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
