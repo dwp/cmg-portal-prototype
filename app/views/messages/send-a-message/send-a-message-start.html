@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Start page example
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+  <img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+  <div class="navbar-sub">
+    <a href="../../home.html" class="govuk-link--no-visited-state">Home</a>
+    <a  id="current-link" href="../messages.html" class="govuk-link--no-visited-state">Messages</a>
+    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
+    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
+    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+  </div>
+  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../../home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../messages">Messages</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Send a message</a>
+    </li>
+  </ol>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Send a message
+    </h1>
+
+    <p>You can send a message to the Child Maintenance Service if you:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>are responding to a request from us</li>
+      <li>need to tell us something that cannot be reported online</li>
+      <li>have a specific query about your case</li>
+    </ul>
+
+    <p>It can take up to 7 days to review your message.</p>
+
+    <a href="subject.html" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
+      Start now
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" role="presentation" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+      </svg>
+    </a>
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+
+    <p>For changes to your circumstances, it is usually faster to <a href="#">report a change online</a>. This includes <a href="#">reporting a missed payment</a>.</p>
+
+    <p>If you have a general query, you can find more information about <a href="#">managing your case online (opens in a new tab)</a>. and <a href="#">how we calculate your payments (opens in a new tab)</a>.</p>
+
+  </div>
+
+</div>
+{% endblock %}
