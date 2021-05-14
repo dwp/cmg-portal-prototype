@@ -15,14 +15,14 @@ My Child Maintenance Case
 </div>
 <nav class="navbar-main">
   <div class="navbar-sub">
-    <a href="home_multiple_pp.html" class="govuk-link--no-visited-state">Home</a>
-    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="home_multiple.html" class="govuk-link--no-visited-state">Home</a>
+    <a href="#" class="govuk-link--no-visited-state">Messages</a>
     <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
-    <a id="current-link" href="payments_pp.html" class="govuk-link--no-visited-state">Payments</a>
+    <a id="current-link" href="payments.html" class="govuk-link--no-visited-state">Payments</a>
     <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
     <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
   </div>
-  <a href="jill.html" class="govuk-link--no-visited-state">Sign out</a>
+  <a href="jsmith_pp.html" class="govuk-link--no-visited-state">Sign out</a>
 </nav>
 {% endblock %}
 
@@ -35,10 +35,10 @@ My Child Maintenance Case
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="home_multiple_pp.html">Home</a>
+      <a class="govuk-breadcrumbs__link" href="home_multiple.html">Home</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="payments_pp.html">Payments</a>
+      <a class="govuk-breadcrumbs__link" href="payments.html">Payments</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
       <a class="govuk-breadcrumbs__link" href="#">Payments for a case</a>
@@ -48,17 +48,17 @@ My Child Maintenance Case
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-      Payments to J. Smith
+      Payments from J. Smith
     </h1>
     <div class="govuk-inset-text">
       You use the Collect and Pay service for this case
     </div>
     <p>
-      We have worked out the amount of child maintenance you must pay and when it must be paid by. A 20% collection fee
-      is included in the amount you pay.
+      We have worked out the amount of child maintenance you will receive and when you will receive it.
+      A 4% collection fee is already deducted from the amount you receive.
       <br />
       <br />
-      It can take up to 5 days for the other parent to receive the Child Maintenance you have paid.
+      It can take up to 5 days for you to receive a payment.
     </p>
   </div>
   <div id="first-row" class="govuk-grid-column-full">
@@ -75,21 +75,21 @@ My Child Maintenance Case
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">Next payment</th>
           <td class="govuk-table__cell">03/05/2021</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£430.04</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£344.07</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">Not yet received</td>
           </td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">Previous payment</th>
           <td class="govuk-table__cell">03/04/2021</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£430.04</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£430.04</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£344.07</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£344.07</td>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <a class="govuk-link--no-visited-state govuk-!-margin-bottom-5" href="all_payments_pp?case=2">
+    <a class="govuk-link--no-visited-state govuk-!-margin-bottom-5" href="all_payments?case=2">
       View all payments from J. Smith
     </a>
     <div class="govuk-!-margin-bottom-5"></div>
@@ -115,7 +115,7 @@ My Child Maintenance Case
       <div class="summary-card">
         <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Collection fee</h4>
         <div class="amount-freq">
-          <h2 class="govuk-heading-l">£71.67</h2>
+          <h2 class="govuk-heading-l">- £14.30</h2>
           <h3 class="govuk-heading-m">per month</h3>
         </div>
       </div>
@@ -123,13 +123,12 @@ My Child Maintenance Case
     <div class="summary-card govuk-!-margin-bottom-2">
       <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Expected total amount</h4>
       <div class="amount-freq">
-        <h2 class="govuk-heading-l">£430.04</h2>
+        <h2 class="govuk-heading-l">£344.07</h2>
         <h4 class="govuk-heading-s">per month</h4>
       </div>
     </div>
     <div class="govuk-!-margin-bottom-5"></div>
-    <a class="govuk-link--no-visited-state govuk-!-font-size-16 govuk-!-margin-bottom-4"
-      href="calculations_pp?calc=frankie">
+    <a class="govuk-link--no-visited-state govuk-!-font-size-16 govuk-!-margin-bottom-4" href="calculations?calc=jsmith">
       Find out how your payments were calculated</a>
     <div class="govuk-!-margin-bottom-5"></div>
   </div>

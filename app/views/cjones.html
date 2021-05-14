@@ -16,13 +16,13 @@ My Child Maintenance Case
 <nav class="navbar-main">
   <div class="navbar-sub">
     <a href="home_multiple.html" class="govuk-link--no-visited-state">Home</a>
-    <a href="#" class="govuk-link--no-visited-state">Inbox</a>
+    <a href="#" class="govuk-link--no-visited-state">Messages</a>
     <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
     <a id="current-link" href="payments.html" class="govuk-link--no-visited-state">Payments</a>
     <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
     <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
   </div>
-  <a href="jill_pp.html" class="govuk-link--no-visited-state">Sign out</a>
+  <a href="jsmith_pp.html" class="govuk-link--no-visited-state">Sign out</a>
 </nav>
 {% endblock %}
 
@@ -48,88 +48,82 @@ My Child Maintenance Case
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-      Payments from J. Smith
+      Payments from C. Jones
     </h1>
     <div class="govuk-inset-text">
-      You use the Collect and Pay service for this case
+      You use the Direct Pay service for this case which is free of charge.
     </div>
     <p>
-      We have worked out the amount of child maintenance you will receive and when you will receive it.
-      A 4% collection fee is already deducted from the amount you receive.
+      We have worked out the amount of child maintenance you should receive and when you should receive it. You agree with the other parent how the payments are made. 
       <br />
       <br />
-      It can take up to 5 days for you to receive a payment.
+      Direct Pay cases only show the amount you were expected to receive. To confirm the actual amount received, you’ll
+      need to check your bank account.
+      <br />
+      <br />
+      The Child Maintenance Service can still enforce missed payments.
     </p>
-  </div>
-  <div id="first-row" class="govuk-grid-column-full">
     <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">Payments</th>
           <th scope="col" class="govuk-table__header">Date</th>
           <th scope="col" class="govuk-table__header govuk-table__header--numeric">Expected amount</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount received</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">Next payment</th>
-          <td class="govuk-table__cell">03/05/2021</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£344.07</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">Not yet received</td>
+          <td class="govuk-table__cell">02/05/2021</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£192.10</td>
           </td>
         </tr>
         <tr class="govuk-table__row">
           <th scope="row" class="govuk-table__header">Previous payment</th>
-          <td class="govuk-table__cell">03/04/2021</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£344.07</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£344.07</td>
+          <td class="govuk-table__cell">02/04/2021</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£192.10</td>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <a class="govuk-link--no-visited-state govuk-!-margin-bottom-5" href="all_payments?case=2">
-      View all payments from J. Smith
+  </div>
+  <div id="first-row" class="govuk-grid-column-full">
+    <a class="govuk-link--no-visited-state govuk-!-margin-bottom-5" href="all_payments?case=1">
+      View all payments from C. Jones
     </a>
-    <div class="govuk-!-margin-bottom-5"></div>
-    <h3 class="govuk-heading-m govuk-!-margin-bottom-3">
-      Monthly total
+    <!-- <div class="govuk-!-margin-bottom-5"></div>
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-5">
+      Payments summary for J. Smith
     </h3>
     <div class="summary-card-container">
       <div class="summary-card">
         <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Child maintenance</h4>
         <div class="amount-freq">
-          <h2 class="govuk-heading-l">£246.96</h2>
-          <h3 class="govuk-heading-m">per month</h3>
+          <h2 class="govuk-heading-l">£78.12</h2>
         </div>
       </div>
       <div class="summary-card">
         <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Arrears</h4>
         <div class="amount-freq govuk-!-margin-bottom-2">
-          <h2 class="govuk-heading-l">£111.41</h2>
-          <h3 class="govuk-heading-m">per month</h3>
+          <h2 class="govuk-heading-l">£50.00</h2>
         </div>
-        <a class="govuk-link--no-visited-state govuk-!-font-size-16" href="#">Make an online payment</a>
-      </div>
-      <div class="summary-card">
-        <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Collection fee</h4>
-        <div class="amount-freq">
-          <h2 class="govuk-heading-l">- £14.30</h2>
-          <h3 class="govuk-heading-m">per month</h3>
-        </div>
+        <a class="govuk-link--no-visited-state govuk-!-font-size-16" href="#">Make a payment online</a>
       </div>
     </div>
-    <div class="summary-card govuk-!-margin-bottom-2">
-      <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Expected total amount</h4>
+    <div class="summary-card govuk-!-margin-bottom-5">
+      <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Total amount</h4>
       <div class="amount-freq">
-        <h2 class="govuk-heading-l">£344.07</h2>
-        <h4 class="govuk-heading-s">per month</h4>
-      </div>
-    </div>
+        <h2 class="govuk-heading-l">£128.12</h2>
+        <h4 class="govuk-heading-s">per week</h4>
+      </div> -->
+    <!-- </div> -->
     <div class="govuk-!-margin-bottom-5"></div>
-    <a class="govuk-link--no-visited-state govuk-!-font-size-16 govuk-!-margin-bottom-4" href="calculations?calc=frankie">
-      Find out how your payments were calculated</a>
+    <a class="govuk-link--no-visited-state govuk-!-font-size-16 govuk-!-margin-bottom-4" href="calculations?calc=jsmith">Find
+      out how your payments were calculated</a>
+    <!-- <div class="govuk-!-margin-bottom-5"></div>
+    <a class="govuk-link--no-visited-state govuk-!-font-size-16 govuk-!-margin-bottom-4" href="#">
+      Report a missed payment
+    </a> -->
     <div class="govuk-!-margin-bottom-5"></div>
   </div>
 </div>

@@ -27,8 +27,8 @@ const caseData = {
       ],
     },
   },
-  janet: {
-    case: "janet",
+  jsmith: {
+    case: "jsmith",
     messages: {
       msg0: ["We need to check some information with you", "01/02/2021"],
       msg1: ["We haven't received a child maintenance payment", "28/12/2020"],
@@ -40,8 +40,8 @@ const caseData = {
       chng2: ["Special expenses", "green", "completed"],
     },
   },
-  clive: {
-    case: "clive",
+  cjones: {
+    case: "cjones",
     messages: {
       msg0: ["Your child maintenance payments will not change", "15/01/2021"],
       msg1: ["We have received a new report", "11/11/2020"],
@@ -57,8 +57,8 @@ const caseData = {
       chng2: ["Update shared care", "green", "Accepted"],
     },
   },
-  frankie: {
-    case: "frankie",
+  ftenet: {
+    case: "ftenet",
     messages: {
       msg0: ["We've worked out your child maintenance payments", "31/12/2020"],
       msg1: ["We've received your voluntary payment", "01/09/2020"],
@@ -111,28 +111,19 @@ const changeData = (caseName) => {
 const showCase = (e) => {
   console.log(e.target.value);
   switch (e.target.value) {
-    case "janet":
-      $("#janet").show();
-      $("#clive").hide();
-      $("#frankie").hide();
+    case "jsmith":
+      $("#jsmith").show();
+      $("#cjones").hide();
       changeData(e.target.value);
       break;
-    case "clive":
-      $("#clive").show();
-      $("#janet").hide();
-      $("#frankie").hide();
-      changeData(e.target.value);
-      break;
-    case "frankie":
-      $("#frankie").show();
-      $("#clive").hide();
-      $("#janet").hide();
+    case "cjones":
+      $("#cjones").show();
+      $("#jsmith").hide();
       changeData(e.target.value);
       break;
     default:
-      $("#clive").show();
-      $("#janet").show();
-      $("#frankie").show();
+      $("#cjones").show();
+      $("#jsmith").show();
       changeData("all");
       break;
   }
@@ -141,27 +132,23 @@ const showCase = (e) => {
 const showCalcs = (e) => {
   console.log(e.target.value);
   switch (e.target.value) {
-    case "janet":
-      $("#janet").show();
-      $("#frankie").hide();
+    case "jsmith":
+      $("#jsmith-calc").show();
+      $("#cjones-calc").hide();
       $("#all-calcs").hide();
       break;
-    case "frankie":
-      $("#frankie").show();
-      $("#janet").hide();
+    case "cjones":
+      $("#cjones-calc").show();
+      $("#jsmith-calc").hide();
       $("#all-calcs").hide();
       break;
     default:
       $("#all-calcs").show();
-      $("#frankie").hide();
-      $("#janet").hide();
+      $("#jsmith-calc").hide();
+      $("#cjones-calc").hide();
       break;
     }
 };
-
-// $("#janet").show();
-// $("#all-cases").hide();
-// $("#frankie").hide();
 
 const showPayments = (e) => {
   console.log(e.target.value);
@@ -228,27 +215,32 @@ try {
   console.log('switching case calc')
   console.log(urlParams.get('calc'))
   switch (urlParams.get('calc')) {
-    case "janet":
-      $("#janet").show();
-      $("#frankie").hide();
+    case "jsmith":
+      $("#jsmith-calc").show();
+      $("#cjones-calc").hide();
       $("#all-calcs").hide();
-      calcSorter.value='janet'
+      calcSorter.value='jsmith'
       break;
-    case "frankie":
-      $("#frankie").show();
-      $("#janet").hide();
+    case "cjones":
+      $("#cjones-calc").show();
+      $("#jsmith-calc").hide();
       $("#all-calcs").hide();
-      calcSorter.value='frankie'
+      calcSorter.value='cjones'
       break;
     case "all_calc":
-      $("#frankie").hide();
-      $("#janet").hide();
+      $("#jsmith-calc").hide();
+      $("#cjones-calc").hide();
       $("#all-calcs").show();
       calcSorter.value='all'
       break;
     default:
-      $("#janet").show();
-      $("#frankie").hide();
+      try {
+        $("#all-calcs").show();
+      }
+      catch (err) {
+        $("#jsmith-calc").show();
+        $("#cjones-calc").hide();
+      }
       break;
     }
 } catch (err) {}
