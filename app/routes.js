@@ -32,12 +32,16 @@ router.post('/messages/send-a-message/report-immediately-answer', function (req,
   const reportNow = req.session.data['report-now'];
 
   if (reportNow == 'Yes, report immediately' && messageSubject == 'Missed payment') {
-    // Go to case selection
+    // Go to missed payments start
     res.redirect('../../report-a-change/report-missed-payment')
-  } else {
-    // Go to report a change start page
+  } else if(reportNow == 'Yes, report immediately' && messageSubject == 'Change of income') {
+    // Go to change of income start page
+    res.redirect('../../report-a-change/change-income')
+  } else{
+    // Go to case select
     res.redirect('/messages/send-a-message/case-select')
   }
+
 })
 
 module.exports = router

@@ -7,24 +7,7 @@
 {% block header %}
 <!-- Blank header with no service name for the start page -->
 <!-- {{ govukHeader() }} -->
-<header class="CMG-header">
-  <img src="/public/images/cmg-banner.png" id="header-logo" />
-</header>
-<div class="covid-banner">
-  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
-</div>
-<nav class="navbar-main">
-  <div class="navbar-sub">
-    <a href="../Home.html" class="govuk-link--no-visited-state">Home</a>
-    <a  id="current-link" href="messages.html" class="govuk-link--no-visited-state">Messages</a>
-    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
-    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
-    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
-    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
-    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
-  </div>
-  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
-</nav>
+{% include "includes/header.html" %}
 {% endblock %}
 
 {% block beforeContent %}
@@ -48,54 +31,38 @@
 </div>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
     <h1 class="govuk-heading-xl">
-      <span class="govuk-caption-l">Sent on 1 January 2021</span>
+      <span class="govuk-caption-xl govuk-!-padding-top-4">Sent on 1 January 2021</span>
       Change of income
     </h1>
+    <h2 class="govuk-heading-m">Your message</h2>
 
-    <p>For more help on downloading a PDF see our <a href="#">how to use this site</a> on our help section or contact us.</p>
+    <p>Quisque id eros justo. Fusce ac posuere felis. Integer et magna orci. Sed vulputate, urna vitae posuere feugiat, dui urna finibus eros, eget dignissim elit nunc sit amet elit. Proin rhoncus massa ut lacus consequat blandit. Donec luctus non neque quis blandit. Fusce nec ullamcorper neque, sit amet pharetra augue. Donec tristique est vitae ullamcorper fermentum.</p>
 
     {{ govukTable({
+      caption: "Child Maintenance Service replies",
+      captionClasses: "govuk-table__caption--m",
       firstCellIsHeader: true,
+      classes: "govuk-!-margin-top-9",
       head: [
         {
-          text: "Letter"
+          text: "Message subject"
         },
         {
-          text: ""
+          text: "Date received"
         }
       ],
       rows: [
         [
           {
-            text: "This is the subject of a letter"
+            html: '<a href="received-message">We need to check some information with you</a>'
           },
           {
-            html: '<a href="#">Download PDF</a>'
-          }
-        ],
-        [
-          {
-            text: "This is another letter"
-          },
-          {
-            html: '<a href="#">Download PDF</a>'
-          }
-        ],
-        [
-          {
-            text: "The third and final letter that has a much longer subject than the rest"
-          },
-          {
-            html: '<a href="#">Download PDF</a>'
+            text: "1 January 2021"
           }
         ]
       ]
     }) }}
-
-    <p>You need Adobe Acrobat Reader to view the PDF files. If you don't already have it on your computer, you can <a href="#">install the latest version Adobe Acrobat Reader (opens in a new tab)</a>.</p>
-
   </div>
 </div>
 {% endblock %}
