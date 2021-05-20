@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+<header class="CMG-header">
+	<img src="/public/images/cmg-banner.png" id="header-logo" />
+</header>
+<div class="covid-banner">
+	<a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
+</div>
+<nav class="navbar-main">
+	<div class="navbar-sub">
+		<a href="home_multiple.html">Home</a>
+		<a href="#" class="govuk-link--no-visited-state">Messages</a>
+		<a href="#" class="govuk-link--no-visited-state">Report a Change</a>
+		<a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
+		<a id="current-link" href="track_changes" class="govuk-link--no-visited-state">Track Changes</a>
+		<a href="#" class="govuk-link--no-visited-state">Personal Details</a>
+	</div>
+	<a href="past_calculation_pp.html" class="govuk-link--no-visited-state">Sign out</a>
+</nav>
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+	<ol class="govuk-breadcrumbs__list">
+		<li class="govuk-breadcrumbs__list-item">
+			<a class="govuk-breadcrumbs__link" href="home_multiple.html">Home</a>
+		</li>
+		<li class="govuk-breadcrumbs__list-item">
+			<a class="govuk-breadcrumbs__link" href="payments.html">Track Changes</a>
+		</li>
+	</ol>
+</div>
+<div class="govuk-grid-row govuk-!-margin-bottom-5">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+			Track Changes
+		</h1>
+		<p>Track the progress of a change you have reported.</p>
+	</div>
+</div>
+<div class="govuk-grid-row govuk-!-margin-bottom-5">
+	<div class="govuk-grid-column-one-third">
+		<h3 class="govuk-heading-m govuk-!-margin-bottom-5">
+			Filters
+		</h3>
+		<div class="table-filter">
+			<!--Filters-->
+			{{ govukCheckboxes({
+			idPrefix: "status",
+			name: "status",
+			classes: "govuk-checkboxes--small",
+			fieldset: {
+			legend: {
+			text: "Status",
+			isPageHeading: false,
+			classes: "govuk-fieldset__legend--s"
+			}
+			},
+			items: [
+			{
+			value: "approved",
+			text: "Approved"
+			},
+			{
+			value: "evidence-requested",
+			text: "Evidence requested"
+			},
+			{
+			value: "in-progress",
+			text: "In progress"
+			},
+			{
+			value: "received",
+			text: "Received"
+			},
+			{
+			value: "rejected",
+			text: "Rejected"
+			}
+			]
+			}) }}
+
+			{% call govukFieldset({
+			legend: {
+			text: "Submitted",
+			classes: "govuk-fieldset__legend--s",
+			isPageHeading: false
+			}
+			}) %}
+
+			{{ govukInput({
+			label: {
+			text: "Submitted after"
+			},
+			hint: {
+			text: "For example, 2005 or 21/11/2014"
+			},
+			id: "submitted-after",
+			name: "submitted-after",
+			classes: "govuk-input--width-10"
+			}) }}
+
+			{{ govukInput({
+			label: {
+			text: "Submitted before"
+			},
+			hint: {
+			text: "For example, 2005 or 21/11/2014"
+			},
+			id: "submitted-before",
+			name: "submitted-before",
+			classes: "govuk-input--width-10"
+			}) }}
+			{% endcall %}
+		</div>
+	</div>
+	<div class="govuk-grid-column-two-thirds">
+		<form id="changes-table">
+			<table class="govuk-table">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" id="result-count" class="govuk-table__header">6 changes</th>
+						<th scope="col"
+							class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-third"></th>
+					</tr>
+				</thead>
+				<div id="status-facet-container" class="facet-container">
+					<h4 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Status</h4>
+					<!-- <div class="facet-tag" value="received">
+						<p class="govuk-!-margin-bottom-0">Received</p>
+					</div> -->
+				</div>
+				<tbody id="changes-table-body" class="govuk-table__body">
+				<div id="submitted-facet-container" class="facet-container even">
+					<h4 id="submitted-label" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Submitted</h4>
+					<div id="submitted-after-facet" class="facet-tag" hidden>
+						<p class="govuk-!-margin-bottom-0">1992</p>
+					</div>
+					<h4 id="submitted-and" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0" hidden>and</h4>
+					<div id="submitted-before-facet" class="facet-tag" hidden>
+						<p class="govuk-!-margin-bottom-0">2099</p>
+					</div>
+				</div>
+				<tbody id="changes-table-body" class="govuk-table__body">
+					<!-- <tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a
+								class="table-row-subject govuk-link--no-visited-state" href="change_details">Change to
+								service type</a>
+							<div class="changes-date-container">
+								<span class="table-row-change-date submitted-date">Submitted: 24 April 2021</span>
+								<span class="table-row-change-date updated-date">Updated: 18 May 2021</span>
+							</div>
+						</th>
+						<td class="govuk-table__cell table-row-date"><strong
+								class="govuk-tag govuk-tag--red">Rejected</strong></td>
+					</tr>-->
+				</tbody>
+			</table>
+		</form>
+		<!-- <div class="paginator">
+      <a href="#" class="govuk-link--no-visited-state govuk-link">« Previous</a>
+      <a href="#" class="govuk-link--no-visited-state govuk-link current">1</a>
+      <a href="#" class="govuk-link--no-visited-state govuk-link">2</a>
+      <a href="#" class="govuk-link--no-visited-state govuk-link">3</a>
+      <a href="#" class="govuk-link--no-visited-state govuk-link">4</a>
+      <a href="#" class="govuk-link--no-visited-state govuk-link">Next »</a>
+    </div> -->
+	</div>
+</div>
+{% endblock %}
