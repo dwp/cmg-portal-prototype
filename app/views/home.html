@@ -7,24 +7,7 @@ My Child Maintenance Case
 {% block header %}
 <!-- Blank header with no service name for the start page -->
 <!-- {{ govukHeader() }} -->
-<header class="CMG-header">
-  <img src="/public/images/cmg-banner.png" id="header-logo" />
-</header>
-<div class="covid-banner">
-  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
-</div>
-<nav class="navbar-main">
-  <div class="navbar-sub">
-    <a id="current-link">Home</a>
-    <a href="messages/messages.html" class="govuk-link--no-visited-state">Messages</a>
-    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
-    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
-    <a href="#" class="govuk-link--no-visited-state">Track Changes</a>
-    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
-    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
-  </div>
-  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
-</nav>
+{% include "includes/header.html" %}
 {% endblock %}
 
 {% block beforeContent %}

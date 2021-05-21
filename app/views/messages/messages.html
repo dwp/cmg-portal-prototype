@@ -150,16 +150,20 @@ Messages
 					</tr>
 				</thead>
 				<tbody class="govuk-table__body">
+					{% if data['sent-new-message'] === "true" %}
 					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">We’ve worked out your child maintenance payments</a></th>
+						<th scope="row" class="govuk-table__header table-row-subject">
+							<a class="table-row-subject" href="dynamic-sent-message.html">{{data['message-subject']}}</a>
+						</th>
 						<td class="govuk-table__cell table-row-date">
-              1 January 2019
+							{{data['today-date']}}
 						</td>
 					</tr>
-          <tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="dynamic-sent-message.html">MESSAGE THEY JUST SENT</a></th>
+					{% endif %}
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">Payment schedule query</a></th>
 						<td class="govuk-table__cell table-row-date">
-              {{data['today-date']}}
+              1 January 2021
 						</td>
 					</tr>
 				</tbody>

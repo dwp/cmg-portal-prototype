@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
+
 // Add your routes here - above the module.exports line
 
 // Message subject branch
@@ -42,6 +43,13 @@ router.post('/messages/send-a-message/report-immediately-answer', function (req,
     res.redirect('/messages/send-a-message/case-select')
   }
 
+})
+
+// new sent messages
+router.post('/messages/send-a-message/declaration-answer', function(req, res){
+  req.session.data['sent-new-message'] = "true";
+  console.log(req.session.data['sent-new-message']);
+  res.redirect('/messages/send-a-message/confirmation');
 })
 
 module.exports = router

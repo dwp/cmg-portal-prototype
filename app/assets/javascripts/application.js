@@ -248,8 +248,10 @@ try {
 // Messages Tabs
 var receivedTab = document.getElementById("receivedTab");
 var sentTab = document.getElementById("sentTab");
+var newMessage = document.getElementById("newMessage");
 var receivedMessages = document.getElementById("received");
 var sentMessages = document.getElementById("sent");
+let sentNewMessage = sessionStorage.getItem('sentNewMessage');
 
 receivedTab.addEventListener("click", function() {
   // if the received tab isn't selected

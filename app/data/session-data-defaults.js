@@ -32,5 +32,6 @@ function todayDate (){
 module.exports = {
 
   // Insert values here
-  'today-date': todayDate()
+  'today-date': todayDate(),
+  'sent-new-message': false
 };
