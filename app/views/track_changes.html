@@ -70,22 +70,27 @@ My Child Maintenance Case
 			},
 			items: [
 			{
+			id: "status-approved",
 			value: "approved",
 			text: "Approved"
 			},
 			{
+			id: "status-evidence-requested",
 			value: "evidence-requested",
 			text: "Evidence requested"
 			},
 			{
+			id: "status-in-progress",
 			value: "in-progress",
 			text: "In progress"
 			},
 			{
+			id: "status-received",
 			value: "received",
 			text: "Received"
 			},
 			{
+			id: "status-rejected",
 			value: "rejected",
 			text: "Rejected"
 			}
@@ -128,10 +133,12 @@ My Child Maintenance Case
 	</div>
 	<div class="govuk-grid-column-two-thirds">
 		<form id="changes-table">
+			<h4 id="result-count" class="govuk-heading-s table-result-count">6 changes</h4>
+
 			<table class="govuk-table">
 				<thead class="govuk-table__head">
 					<tr class="govuk-table__row">
-						<th scope="col" id="result-count" class="govuk-table__header">6 changes</th>
+						<th scope="col" class="govuk-table__header"></th>
 						<th scope="col"
 							class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-third"></th>
 					</tr>
@@ -143,16 +150,18 @@ My Child Maintenance Case
 					</div> -->
 				</div>
 				<tbody id="changes-table-body" class="govuk-table__body">
-				<div id="submitted-facet-container" class="facet-container even">
-					<h4 id="submitted-label" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Submitted</h4>
-					<div id="submitted-after-facet" class="facet-tag" hidden>
-						<p class="govuk-!-margin-bottom-0">1992</p>
+					<div id="submitted-facet-container" class="facet-container even">
+						<h4 id="submitted-label" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">
+							Submitted</h4>
+						<div id="submitted-after-facet" class="facet-tag" hidden>
+							<p id="submitted-after-date" class="govuk-!-margin-bottom-0">1992</p>
+						</div>
+						<h4 id="submitted-and" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0"
+							hidden>and</h4>
+						<div id="submitted-before-facet" class="facet-tag" hidden>
+							<p id="submitted-before-date" class="govuk-!-margin-bottom-0">2099</p>
+						</div>
 					</div>
-					<h4 id="submitted-and" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0" hidden>and</h4>
-					<div id="submitted-before-facet" class="facet-tag" hidden>
-						<p class="govuk-!-margin-bottom-0">2099</p>
-					</div>
-				</div>
 				<tbody id="changes-table-body" class="govuk-table__body">
 					<!-- <tr class="govuk-table__row">
 						<th scope="row" class="govuk-table__header"><a
@@ -166,6 +175,12 @@ My Child Maintenance Case
 						<td class="govuk-table__cell table-row-date"><strong
 								class="govuk-tag govuk-tag--red">Rejected</strong></td>
 					</tr>-->
+					<tr id="no-results" class="govuk-table__row" hidden>
+						<th scope="row" class="govuk-table__header">
+							There are no matching results.
+						</th>
+						<td class="govuk-table__cell table-row-date"></td>
+					</tr>
 				</tbody>
 			</table>
 		</form>

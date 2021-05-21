@@ -1,5 +1,7 @@
 /* global $ */
 
+// const e = require("express");
+
 // Warn about using the kit in production
 if (window.console && window.console.info) {
   window.console.info("GOV.UK Prototype Kit - do not use for production");
@@ -211,8 +213,8 @@ try {
 } catch (err) {}
 
 try {
-  console.log("switching case calc");
-  console.log(urlParams.get("calc"));
+  // console.log("switching case calc");
+  // console.log(urlParams.get("calc"));
   switch (urlParams.get("calc")) {
     case "jsmith":
       $("#jsmith-calc").show();
@@ -342,43 +344,61 @@ const submittedAnd = $("#submitted-and");
 // set an empty result
 let changesKeys = Object.keys(changesData);
 let filteredChangeData = {};
+let statusFilters = [];
 let isSubmittedAfter = false;
 let isSubmittedBefore = false;
+let submittedAfterDate = {};
+let submittedBeforeDate = {};
 
+// when submitted after input changes
 submittedAfter.addEventListener("change", function (e) {
-  console.log(new Date(e.target.value));
-  const submittedAfterDate = new Date(e.target.value);
+  submittedAfterDate = new Date(e.target.value);
+  if (e.target.value.length > 4) {
+    let formattedDate = e.target.value.replace("/", "-").replace("/", "-");
+    let UKDay = formattedDate.substring(0, 3);
+    let UKMonth = formattedDate.substring(3, 6);
+    let UKYear = formattedDate.substring(6);
+    submittedAfterDate = new Date(`${UKMonth}${UKDay}${UKYear}`);
+    console.log(submittedAfterDate);
+  }
   let isDate = submittedAfterDate instanceof Date && !isNaN(submittedAfterDate);
   if (isDate) {
     isSubmittedAfter = true;
     submittedFacets.show();
-    submittedAfterFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${submittedAfterDate.toLocaleDateString(
+    submittedAfterFacet[0].innerHTML = `<p id="submitted-after-date" class="govuk-!-margin-bottom-0">${submittedAfterDate.toLocaleDateString(
       "en-UK",
       { day: "numeric", month: "long", year: "numeric" }
     )}</p>`;
     submittedAfterFacet.show();
+  } else {
+    console.log("aint a date");
+    isSubmittedAfter = false;
+    submittedAfterFacet.hide();
   }
 
-  if (Object.keys(filteredChangeData).length == 0) {
-    filteredChangeData = {...changesData}
-  }
-
-  changesKeys.forEach((key) => {
-    let changeSubmittedDate = new Date(changesData[key].submitted)
-    // if data item is before the input date
-    if (changeSubmittedDate < submittedAfterDate) {
-      // remove it
-      console.log("removing", key)
-      delete filteredChangeData[`${key}`];
-    }
-  });
-
-  populateTrackChanges(filteredChangeData);
+  applyFilter();
 });
 
+// when clicking on the date facet, remove the filter
+submittedAfterFacet[0].addEventListener("click", function () {
+  isSubmittedAfter = false;
+  submittedAfterFacet.hide();
+  submittedAfter.value = "";
+
+  applyFilter();
+});
+
+// when submitted before input changes
 submittedBefore.addEventListener("change", function (e) {
-  console.log(new Date(e.target.value));
-  const submittedBeforeDate = new Date(e.target.value);
+  submittedBeforeDate = new Date(e.target.value);
+  if (e.target.value.length > 4) {
+    let formattedDate = e.target.value.replace("/", "-").replace("/", "-");
+    let UKDay = formattedDate.substring(0, 3);
+    let UKMonth = formattedDate.substring(3, 6);
+    let UKYear = formattedDate.substring(6);
+    submittedBeforeDate = new Date(`${UKMonth}${UKDay}${UKYear}`);
+    console.log(submittedBeforeDate);
+  }
   let isDate =
     submittedBeforeDate instanceof Date && !isNaN(submittedBeforeDate);
   if (isDate) {
@@ -389,37 +409,61 @@ submittedBefore.addEventListener("change", function (e) {
       { day: "numeric", month: "long", year: "numeric" }
     )}</p>`;
     submittedBeforeFacet.show();
+  } else {
+    isSubmittedBefore = false;
   }
 
-  if (Object.keys(filteredChangeData).length == 0) {
-    filteredChangeData = {...changesData}
-  }
+  // if (Object.keys(filteredChangeData).length == 0) {
+  //   filteredChangeData = {...changesData}
+  // }
 
-  changesKeys.forEach((key) => {
-    let changeSubmittedDate = new Date(changesData[key].submitted)
-    // if data item is after the input date
-    if (changeSubmittedDate > submittedBeforeDate) {
-      // remove it
-      console.log("removing", key)
-      delete filteredChangeData[`${key}`];
-    }
-  });
+  // changesKeys.forEach((key) => {
+  //   let changeSubmittedDate = new Date(changesData[key].submitted);
+  //   // if data item is after the input date
+  //   if (changeSubmittedDate > submittedBeforeDate) {
+  //     // remove it
+  //     console.log("removing", key);
+  //     delete filteredChangeData[`${key}`];
+  //   }
+  // });
 
-  populateTrackChanges(filteredChangeData);
+  applyFilter();
 });
 
+// when clicking the date facet, remove the filter
+submittedBeforeFacet[0].addEventListener("click", function () {
+  isSubmittedBefore = false;
+  submittedBeforeFacet.hide();
+  submittedBefore.value = "";
 
+  applyFilter();
+});
 
+// put data on screen
 const populateTrackChanges = (data) => {
-  // console.log("in the func", data, data.length);
   let newDataKeys = Object.keys(data);
-  // let newDataKeys = data
   let newHTML = [];
-  // if no filter is applied, use ALL the data
+
+  // console.log(
+  //   "after",
+  //   isSubmittedAfter,
+  //   "before",
+  //   isSubmittedBefore,
+  //   "status",
+  //   statusFilters
+  // );
+  // if data is empty
   if (newDataKeys.length == 0) {
-    newDataKeys = Object.keys(changesData);
-    statusFacets.hide();
-    submittedFacets.hide();
+    // if filters are applied, show no matches
+    if (isSubmittedBefore || isSubmittedAfter || statusFilters.length > 0) {
+      $("#no-results").show();
+    }
+    // if no filters, show all data
+    else {
+      newDataKeys = Object.keys(changesData);
+      statusFacets.hide();
+      submittedFacets.hide();
+    }
   }
 
   // add that to the screen
@@ -438,71 +482,147 @@ const populateTrackChanges = (data) => {
     				</tr> `;
   });
 
-  console.log("after", isSubmittedAfter, "before", isSubmittedBefore);
-  // console.log(submittedLabel);
   if (isSubmittedAfter && isSubmittedBefore) {
     submittedLabel.innerText = "Submitted between";
     submittedAnd.show();
   } else if (isSubmittedAfter) {
     submittedLabel.innerText = "Submitted after";
     submittedAnd.hide();
-    submittedBeforeFacet.hide()
-  } else {
+    submittedBeforeFacet.hide();
+  } else if (isSubmittedBefore) {
     submittedLabel.innerText = "Submitted before";
     submittedAnd.hide();
-    submittedAfterFacet.hide()
+    submittedAfterFacet.hide();
+  } else {
+    submittedAnd.hide();
+    submittedFacets.hide();
   }
+
   resultCount.innerText = `${newHTML.length} changes`;
   changesTableBody.innerHTML = newHTML.join("");
 };
 
 const removeStatus = (e) => {
-  e.target.classList.remove("selected");
-  changesKeys.forEach((key) => {
-    // if selection value matches changesData status
-    if (changesData[key].status == e.target.value) {
-      // remove it
-      delete filteredChangeData[`${key}`];
-    }
-    // remove facet tag
-    $(`#facet-${e.target.value}`).remove();
-  });
+  console.log(e.target.value);
+  $(`#status-${e.target.value}`)[0].checked = false;
+
+  // remove facet tag
+  $(`#facet-${e.target.value}`).remove();
+
+  // remove from status filters
+  const index = statusFilters.indexOf(e.target.value);
+  statusFilters.splice(index, 1);
+
+  if (statusFilters.length == 0) {
+    statusFacets.hide();
+  }
+
+  applyFilter();
 };
 
 const addStatus = (e) => {
-  e.target.classList.add("selected");
   // show status container
   statusFacets.show();
   // add facet tag
   statusFacets[0].innerHTML =
     statusFacets[0].innerHTML +
-    `<div id="facet-${e.target.value}" class="facet-tag selected" value=${e.target.value}>
-						<p class="govuk-!-margin-bottom-0">${e.target.value}</p>
+    `<div id="facet-${e.target.value}" class="facet-tag" value=${
+      e.target.value
+    }>
+						<p class="govuk-!-margin-bottom-0">
+            ${e.target.value.replace("-", " ")}
+            </p>
 					</div>`;
-  // $(`#facet-${e.target.value}`)[0].addEventListener("click", applyStatus);
   // add event listener to new facet
-  // remove the facet tag
-  // remove the value from filteredChangeData
-  // untick the thing
-  // remove the selected class from the checkbox item
-  changesKeys.forEach((key) => {
-    // if selection value matches changesData status
-    if (changesData[key].status == e.target.value) {
-      // if selected add it
-      filteredChangeData[`${key}`] = changesData[key];
+  console.log($(`#facet-${e.target.value}`)[0]);
+
+  $(`#facet-${e.target.value}`)[0].addEventListener("click", function () {
+    $(`#status-${e.target.value}`)[0].checked = false;
+
+    // remove facet tag
+    $(`#facet-${e.target.value}`).remove();
+
+    // remove from status filters
+    const index = statusFilters.indexOf(e.target.value);
+    statusFilters.splice(index, 1);
+
+    if (statusFilters.length == 0) {
+      statusFacets.hide();
     }
+
+    applyFilter();
   });
+
+  // add to status filters
+  statusFilters.push(e.target.value);
+
+  applyFilter();
 };
 
 const filterStatus = (e) => {
   // console.log(e.target);
   // mark it as selected if unselected, or not selected if selected
-  if (e.target.classList.contains("selected")) {
+  if (!e.target.checked) {
     removeStatus(e);
   } else {
     addStatus(e);
   }
+};
 
+const applyFilter = () => {
+  // if status filter is applied
+  if (statusFilters.length) {
+    console.log("we have ", statusFilters.length, " status filters applied");
+    filteredChangeData = {};
+    statusFilters.forEach((status) => {
+      changesKeys.forEach((key) => {
+        // if selection value matches changesData status
+        if (changesData[key].status == status) {
+          // if selected add it
+          filteredChangeData[`${key}`] = changesData[key];
+        }
+      });
+    });
+  } else {
+    // console.log("no status filters applied");
+    filteredChangeData = { ...changesData };
+  }
+
+  // go through all status and all data, if match, add to filteredData
+
+  // console.log("after status filtering: ", filteredChangeData);
+  // then if date filter is applied
+
+  // go through filteredData
+
+  // filter by date
+  if (isSubmittedAfter) {
+    changesKeys.forEach((key) => {
+      let changeSubmittedDate = new Date(changesData[key].submitted);
+      // if data item is after the input date
+      if (changeSubmittedDate < submittedAfterDate) {
+        // remove it
+        // console.log("removing", key);
+        delete filteredChangeData[`${key}`];
+      }
+    });
+  }
+
+  if (isSubmittedBefore) {
+    changesKeys.forEach((key) => {
+      let changeSubmittedDate = new Date(changesData[key].submitted);
+      // if data item is after the input date
+      if (changeSubmittedDate > submittedBeforeDate) {
+        // remove it
+        // console.log("removing", key);
+        delete filteredChangeData[`${key}`];
+      }
+    });
+  }
+
+  // console.log("after date filtering: ", filteredChangeData);
+
+  // use that, to populate
   populateTrackChanges(filteredChangeData);
 };
 

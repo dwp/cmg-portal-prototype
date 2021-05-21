@@ -495,6 +495,8 @@ $govuk-assets-path: '/govuk/assets/';
 
 .facet-container {
   background-color: #f3f2f1;
+  position: relative;
+  bottom: -20px;
 
   &.even {
     background-color: white !important;
@@ -520,4 +522,14 @@ $govuk-assets-path: '/govuk/assets/';
   cursor: pointer;
   display: flex;
   align-items: center;
+
+  &::before {
+    content: "x";
+    padding-right: 10px;
+  }
+}
+
+.table-result-count {
+  position: relative;
+  bottom: -10px;
 }
