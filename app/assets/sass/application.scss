@@ -526,6 +526,8 @@ $govuk-assets-path: '/govuk/assets/';
   &::before {
     content: "x";
     padding-right: 10px;
+    font-family: "nta",arial,sans-serif;
+    font-size: 22px;
   }
 }
 

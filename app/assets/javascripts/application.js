@@ -505,7 +505,6 @@ const populateTrackChanges = (data) => {
 };
 
 const removeStatus = (e) => {
-  console.log(e.target.value);
   $(`#status-${e.target.value}`)[0].checked = false;
 
   // remove facet tag
@@ -526,32 +525,30 @@ const addStatus = (e) => {
   // show status container
   statusFacets.show();
   // add facet tag
-  statusFacets[0].innerHTML =
-    statusFacets[0].innerHTML +
-    `<div id="facet-${e.target.value}" class="facet-tag" value=${
-      e.target.value
+  statusFacets.append(
+    `<div id="facet-${e.target.value}" class="facet-tag status-facet-tag"
     }>
 						<p class="govuk-!-margin-bottom-0">
-            ${e.target.value.replace("-", " ")}
+            ${e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).replace("-", " ")}
             </p>
-					</div>`;
+					</div>`);
   // add event listener to new facet
-  console.log($(`#facet-${e.target.value}`)[0]);
 
-  $(`#facet-${e.target.value}`)[0].addEventListener("click", function () {
+  $(`#facet-${e.target.value}`)[0].addEventListener("click", function() {
+    // uncheck checkbox
     $(`#status-${e.target.value}`)[0].checked = false;
-
+    
     // remove facet tag
     $(`#facet-${e.target.value}`).remove();
-
+    
     // remove from status filters
     const index = statusFilters.indexOf(e.target.value);
     statusFilters.splice(index, 1);
-
+    
     if (statusFilters.length == 0) {
       statusFacets.hide();
     }
-
+    
     applyFilter();
   });
 
@@ -559,7 +556,10 @@ const addStatus = (e) => {
   statusFilters.push(e.target.value);
 
   applyFilter();
+  
 };
+
+  
 
 const filterStatus = (e) => {
   // console.log(e.target);
@@ -623,6 +623,8 @@ const applyFilter = () => {
   }
 
   // console.log("after date filtering: ", filteredChangeData);
+
+  // sort by updated date
 
   // use that, to populate
   populateTrackChanges(filteredChangeData);
