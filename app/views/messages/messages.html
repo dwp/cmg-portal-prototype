@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% set active_page = "Messages" %} 
 
 {% block pageTitle %}
 Messages
@@ -7,24 +8,8 @@ Messages
 {% block header %}
 <!-- Blank header with no service name for the start page -->
 <!-- {{ govukHeader() }} -->
-<header class="CMG-header">
-  <img src="/public/images/cmg-banner.png" id="header-logo" />
-</header>
-<div class="covid-banner">
-  <a href="#" id="covid-link">Impact of Coronavirus (COVID-19) (opens in a new tab)</a>
-</div>
-<nav class="navbar-main">
-  <div class="navbar-sub">
-    <a href="../Home.html" class="govuk-link--no-visited-state">Home</a>
-    <a  id="current-link" href="messages.html" class="govuk-link--no-visited-state">Messages</a>
-    <a href="#" class="govuk-link--no-visited-state">Report a Change</a>
-    <a href="payments.html" class="govuk-link--no-visited-state">Payments</a>
-    <a href="track_changes" class="govuk-link--no-visited-state">Track Changes</a>
-    <a href="#" class="govuk-link--no-visited-state">Case Details</a>
-    <a href="#" class="govuk-link--no-visited-state">Personal Details</a>
-  </div>
-  <a href="home_multiple.html" class="govuk-link--no-visited-state">Sign out</a>
-</nav>
+{% include "includes/header.html" %}
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -32,6 +17,7 @@ Messages
 {% endblock %}
 
 {% block content %}
+
 <!-- Breadcrumbs -->
 <div class="govuk-breadcrumbs">
 	<ol class="govuk-breadcrumbs__list">
@@ -136,12 +122,15 @@ Messages
 	</div>
 
 	<div class="govuk-grid-column-two-thirds">
-		<!--Received messages-->
+    <!-- Filter bar to be added -->
+    <!--Received messages-->
 		<form id="received" class="visible">
 			<table class="govuk-table">
 				<thead class="govuk-table__head">
 					<tr class="govuk-table__row">
-						<th scope="col" class="govuk-table__header">20 received messages</th>
+						<th scope="col" class="govuk-table__header">
+              1 received message
+            </th>
 						<th scope="col" class="govuk-table__header"></th>
 					</tr>
 				</thead>
@@ -149,42 +138,6 @@ Messages
 					<tr class="govuk-table__row">
 						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">We need to check some information with you</a></th>
 						<td class="govuk-table__cell table-row-date">1 January 2021</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header"><a class="table-row-subject" href="received-message.html">Message subject #2</a><span class="table-row-case">Case: C Smith</span></th>
-						<td class="govuk-table__cell table-row-date">7 March 2021</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #3</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2021</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #4</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #5</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #6</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #7</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #8</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #9</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">Message subject #10</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019</td>
 					</tr>
 				</tbody>
 			</table>
@@ -195,24 +148,25 @@ Messages
 			<table class="govuk-table">
 				<thead class="govuk-table__head">
 					<tr class="govuk-table__row">
-						<th scope="col" class="govuk-table__header">20 sent messages</th>
+						<th scope="col" class="govuk-table__header">1 sent message</th>
 						<th scope="col" class="govuk-table__header"></th>
 					</tr>
 				</thead>
 				<tbody class="govuk-table__body">
+					{% if data['sent-new-message'] === "true" %}
 					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">We’ve worked out your child maintenance payments</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019
+						<th scope="row" class="govuk-table__header table-row-subject">
+							<a class="table-row-subject" href="dynamic-sent-message.html">{{data['message-subject']}}</a>
+						</th>
+						<td class="govuk-table__cell table-row-date">
+							{{data['today-date']}}
 						</td>
 					</tr>
+					{% endif %}
 					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header"><a class="table-row-subject" href="sent-message.html">Message subject goes here</a><span class="table-row-case">Case: C Smith</span></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019
-						</td>
-					</tr>
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">Message subject goes here</a></th>
-						<td class="govuk-table__cell table-row-date">1 January 2019
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">Payment schedule query</a></th>
+						<td class="govuk-table__cell table-row-date">
+              1 January 2021
 						</td>
 					</tr>
 				</tbody>
