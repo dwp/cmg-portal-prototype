@@ -33,37 +33,15 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
-      <span class="govuk-caption-xl govuk-!-padding-top-4">Sent on 1 January 2021</span>
-      Change of income
+      <span class="govuk-caption-xl govuk-!-padding-top-4">Sent on {{data["today-date"]}}</span>
+      {{data["message-subject"]}}
     </h1>
     <h2 class="govuk-heading-m">Your message</h2>
 
-    <p>Quisque id eros justo. Fusce ac posuere felis. Integer et magna orci. Sed vulputate, urna vitae posuere feugiat, dui urna finibus eros, eget dignissim elit nunc sit amet elit. Proin rhoncus massa ut lacus consequat blandit. Donec luctus non neque quis blandit. Fusce nec ullamcorper neque, sit amet pharetra augue. Donec tristique est vitae ullamcorper fermentum.</p>
+    <p>{{data["write-message"]}}</p>
 
-    {{ govukTable({
-      caption: "Child Maintenance Service replies",
-      captionClasses: "govuk-table__caption--m",
-      firstCellIsHeader: true,
-      classes: "govuk-!-margin-top-9",
-      head: [
-        {
-          text: "Message subject"
-        },
-        {
-          text: "Date received"
-        }
-      ],
-      rows: [
-        [
-          {
-            html: '<a href="received-message">We need to check some information with you</a>'
-          },
-          {
-            text: "1 January 2021"
-          }
-        ]
-      ]
-    }) }}
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">Child Maintenance Service replies</h2>
+    <p>There are no replies to your message. It can take up to 7 days to review your message</p>
   </div>
 </div>
 {% endblock %}

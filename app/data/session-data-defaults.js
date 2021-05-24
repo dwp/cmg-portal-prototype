@@ -17,8 +17,21 @@ Example usage:
 
 */
 
+function todayDate (){
+  // calculate todays date
+  const todayDate = new Date();
+  var options = {month: 'long'};
+  const day = todayDate.getDate();
+  const month = new Intl.DateTimeFormat('en-US', options).format(todayDate);
+  const year = todayDate.getFullYear();
+  // build the string to display on the page
+  //req.session.data['today-date'] = day + " " + month + " " + year;
+  return day + " " + month + " " + year;
+}
+
 module.exports = {
 
   // Insert values here
-
-}
+  'today-date': todayDate(),
+  'sent-new-message': false
+};
