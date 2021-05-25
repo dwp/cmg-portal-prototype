@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% set active_page = "Messages" %} 
+{% set active_page = "Messages" %}
 
 {% block pageTitle %}
 Messages
@@ -34,13 +34,12 @@ Messages
 	<div class="govuk-grid-column-three-quarters">
 		<h1 class="govuk-heading-l">Messages</h1>
 	</div>
-	<div class="govuk-grid-column-one-quarter"
-		<form class="form" action="send-a-message-start" method="post">
-			{{ govukButton({
-			  text: "Send a message",
-				href: "send-a-message/send-a-message-start",
-				classes: "float-right"
-			}) }}
+	<div class="govuk-grid-column-one-quarter" <form class="form" action="send-a-message-start" method="post">
+		{{ govukButton({
+		text: "Send a message",
+		href: "send-a-message/send-a-message-start",
+		classes: "float-right"
+		}) }}
 		</form>
 	</div>
 </div>
@@ -56,90 +55,120 @@ Messages
 		<h2 class="govuk-heading-m">Filters</h2>
 		<!--Filters-->
 		{% call govukFieldset({
-		  legend: {
-		    text: "Date received",
-		    classes: "govuk-fieldset__legend--s",
-		    isPageHeading: false
-		  }
+		legend: {
+		text: "Date received",
+		classes: "govuk-fieldset__legend--s",
+		isPageHeading: false
+		}
 		}) %}
 
-		  {{ govukInput({
-		    label: {
-		      text: "Date from"
-		    },
-        hint: {
-          text: "For example, 2005 or 21/11/2014"
-        },
-		    id: "date-from",
-		    name: "date-from",
-				classes: "govuk-input--width-10"
-		  }) }}
+		{{ govukInput({
+		label: {
+		text: "Date from"
+		},
+		hint: {
+		text: "For example, 2005 or 21/11/2014"
+		},
+		id: "received-after",
+		name: "date-from",
+		classes: "govuk-input--width-10"
+		}) }}
 
-		  {{ govukInput({
-		    label: {
-		      text: "Date to"
-		    },
-        hint: {
-          text: "For example, 2005 or 21/11/2014"
-        },
-		    id: "date-to",
-		    name: "date-to",
-				classes: "govuk-input--width-10"
-		  }) }}
+		{{ govukInput({
+		label: {
+		text: "Date to"
+		},
+		hint: {
+		text: "For example, 2005 or 21/11/2014"
+		},
+		id: "received-before",
+		name: "date-to",
+		classes: "govuk-input--width-10"
+		}) }}
 		{% endcall %}
 
 		{{ govukCheckboxes({
-			idPrefix: "case",
-		  name: "case",
-		  classes: "govuk-checkboxes--small",
-		  fieldset: {
-		    legend: {
-		      text: "Case",
-		      isPageHeading: false,
-		      classes: "govuk-fieldset__legend--s"
-		    }
-		  },
-			items: [
-				{
-					value: "c-jones",
-					text: "C Jones"
-				},
-				{
-					value: "j-smith",
-					text: "J Smith"
-				},
-				{
-					value: "no-case",
-					text: "No specific case"
-				}
-			]
+		idPrefix: "case",
+		name: "case",
+		classes: "govuk-checkboxes--small",
+		fieldset: {
+		legend: {
+		text: "Case",
+		isPageHeading: false,
+		classes: "govuk-fieldset__legend--s"
+		}
+		},
+		items: [
+		{
+		id: "case-c-jones",
+		value: "c-jones",
+		text: "C Jones"
+		},
+		{
+			id: "case-j-smith",
+		value: "j-smith",
+		text: "J Smith"
+		},
+		{
+			id: "case-no-case",
+		value: "no-case",
+		text: "No specific case"
+		}
+		]
 		}) }}
 
 		{{ govukButton({
-		  text: "Apply filter",
-		  classes: "govuk-button--secondary"
+		id: "apply-filter-button",
+		text: "Apply filter",
+		classes: "govuk-button--secondary"
 		}) }}
 	</div>
 
 	<div class="govuk-grid-column-two-thirds">
-    <!-- Filter bar to be added -->
-    <!--Received messages-->
+		<!-- Filter bar to be added -->
+		<h4 id="received-result-count" class="govuk-heading-s table-result-count">6 received messages</h4>
+		<h4 id="sent-result-count" class="govuk-heading-s table-result-count">6 received messages</h4>
+		<div id="case-facet-container" class="facet-container">
+			<h4 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Case</h4>
+			<!-- <div class="facet-tag" value="received">
+				<p class="govuk-!-margin-bottom-0">C Jones</p>
+			</div> -->
+		</div>
+		<div id="received-facet-container" class="facet-container even">
+			<h4 id="received-label" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">
+				Received</h4>
+			<div id="received-after-facet" class="facet-tag" hidden>
+				<p id="received-after-date" class="govuk-!-margin-bottom-0">1992</p>
+			</div>
+			<h4 id="received-and" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0" hidden>and</h4>
+			<div id="received-before-facet" class="facet-tag" hidden>
+				<p id="received-before-date" class="govuk-!-margin-bottom-0">2099</p>
+			</div>
+		</div>
+		<!--Received messages-->
 		<form id="received" class="visible">
 			<table class="govuk-table">
 				<thead class="govuk-table__head">
 					<tr class="govuk-table__row">
 						<th scope="col" class="govuk-table__header">
-              1 received message
-            </th>
+							<!-- 1 received message -->
+						</th>
 						<th scope="col" class="govuk-table__header"></th>
 					</tr>
 				</thead>
-				<tbody class="govuk-table__body">
+				<tbody id="received-table-body" class="govuk-table__body">
 					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">We need to check some information with you</a></th>
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject"
+								href="received-message.html">We need to check some information with you</a></th>
 						<td class="govuk-table__cell table-row-date">1 January 2021</td>
 					</tr>
 				</tbody>
+				<tr id="no-received-results" class="govuk-table__row" hidden>
+					<th scope="row" class="govuk-table__header">
+						There are no matching results.
+					</th>
+					<td class="govuk-table__cell table-row-date"></td>
+				</tr>
 			</table>
 		</form>
 
@@ -148,28 +177,38 @@ Messages
 			<table class="govuk-table">
 				<thead class="govuk-table__head">
 					<tr class="govuk-table__row">
-						<th scope="col" class="govuk-table__header">1 sent message</th>
+						<th scope="col" class="govuk-table__header">
+							<!-- 1 sent message -->
+						</th>
 						<th scope="col" class="govuk-table__header"></th>
 					</tr>
 				</thead>
-				<tbody class="govuk-table__body">
+				<tbody id="sent-table-body" class="govuk-table__body">
 					{% if data['sent-new-message'] === "true" %}
-					<tr class="govuk-table__row">
+					<tr id="new-message" class="govuk-table__row">
 						<th scope="row" class="govuk-table__header table-row-subject">
-							<a class="table-row-subject" href="dynamic-sent-message.html">{{data['message-subject']}}</a>
+							<a id="new-message-subject" class="table-row-subject"
+								href="dynamic-sent-message.html">{{data['message-subject']}}</a>
 						</th>
-						<td class="govuk-table__cell table-row-date">
+						<td id="new-message-date" class="govuk-table__cell table-row-date">
 							{{data['today-date']}}
 						</td>
 					</tr>
 					{% endif %}
-					<tr class="govuk-table__row">
-						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">Payment schedule query</a></th>
+					<!-- <tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject"
+								href="sent-message.html">Payment schedule query</a></th>
 						<td class="govuk-table__cell table-row-date">
-              1 January 2021
+							1 January 2021
 						</td>
-					</tr>
+					</tr> -->
 				</tbody>
+				<tr id="no-sent-results" class="govuk-table__row" hidden>
+					<th scope="row" class="govuk-table__header">
+						There are no matching results.
+					</th>
+					<td class="govuk-table__cell table-row-date"></td>
+				</tr>
 			</table>
 		</form>
 	</div>
