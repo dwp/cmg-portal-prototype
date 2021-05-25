@@ -305,7 +305,7 @@ const changesData = {
   },
 };
 
-if (window.location.href.includes("http://localhost:3000/track_changes")) {
+if (window.location.href.includes("/track_changes")) {
   const changeCheckboxes = $(".govuk-checkboxes__input").toArray();
 
   const submittedBefore = $("#submitted-before")[0];
