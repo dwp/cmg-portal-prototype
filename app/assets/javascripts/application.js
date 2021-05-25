@@ -305,7 +305,7 @@ const changesData = {
   },
 };
 
-if (window.location.href == "http://localhost:3000/track_changes") {
+if (window.location.href.includes("http://localhost:3000/track_changes")) {
   const changeCheckboxes = $(".govuk-checkboxes__input").toArray();
 
   const submittedBefore = $("#submitted-before")[0];
@@ -647,9 +647,7 @@ const receivedMessagesData = {
 };
 
 if (
-  window.location.href == "http://localhost:3000/messages/messages" ||
-  window.location.href == "http://localhost:3000/messages/messages#"
-) {
+  window.location.href.includes("/messages/messages")) {
   const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
   const sentResultCount = $("#sent-result-count")[0];
   const receivedResultCount = $("#received-result-count")[0];
