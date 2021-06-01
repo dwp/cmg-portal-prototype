@@ -620,9 +620,7 @@ if (window.location.href.includes("/track_changes")) {
 }
 
 if (window.location.href.includes("change_details")) {
-  console.log("we on change details bish");
   urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams.get("type"));
 
   const changeDetailsTag = $("#change-details-tag")[0];
   const changeDetailsDesc = $("#change-details-description")[0];
@@ -745,7 +743,6 @@ if (window.location.href.includes("change_details")) {
   };
 
   const populateReportTimeline = (type) => {
-    console.log(timelineData[type])
     timelineData[type].forEach(update => {
     reportTimelineBody.innerHTML += `
       <div class="timeline-wrapper">
