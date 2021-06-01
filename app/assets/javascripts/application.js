@@ -11,7 +11,6 @@ $(document).ready(function () {
   window.GOVUKFrontend.initAll();
 });
 
-
 // HOME
 // SCREEN
 // THANGS
@@ -185,7 +184,7 @@ const showPayments = (e) => {
 const sorter = $("#sort")[0];
 const calcSorter = $("#calcs-sort")[0];
 const paySorter = $("#payment-sort")[0];
-const urlParams = new URLSearchParams(window.location.search);
+let urlParams = new URLSearchParams(window.location.search);
 
 try {
   sorter.addEventListener("change", showCase);
@@ -298,7 +297,7 @@ const changesData = {
   },
   change5: {
     changeType: "Change to service type",
-    status: "approved",
+    status: "completed",
     colour: "green",
     submitted: "24 Apr 2021",
     updated: "10 May 2021",
@@ -453,14 +452,14 @@ if (window.location.href.includes("/track_changes")) {
       let change = changesData[key];
       return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="change_details">${change.changeType}</a>
+    							class="table-row-subject govuk-link--no-visited-state" href="change_details?type=${change.status}">${change.changeType}</a>
     						<div class="changes-date-container">
     							<span class="table-row-change-date submitted-date">Submitted: ${change.submitted}</span>
     							<span class="table-row-change-date updated-date">Updated: ${change.updated}</span>
     						</div>
     					</th>
     					<td class="govuk-table__cell table-row-date"><strong
-    							class="govuk-tag govuk-tag--${change.colour}">${change.status}</strong></td>
+    							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace("-", " ")}</strong></td>
     				</tr> `;
     });
 
@@ -620,6 +619,192 @@ if (window.location.href.includes("/track_changes")) {
   populateTrackChanges([]);
 }
 
+if (window.location.href.includes("change_details")) {
+  console.log("we on change details bish");
+  urlParams = new URLSearchParams(window.location.search);
+  console.log(urlParams.get("type"));
+
+  const changeDetailsTag = $("#change-details-tag")[0];
+  const changeDetailsDesc = $("#change-details-description")[0];
+  const changeCompletionDate = $("#change-completion-date");
+  const reportTimelineBody = $("#report-timeline-body")[0]
+
+  const timelineData = {
+    received: [
+      {
+        date: "1 January 2021",
+        status: "received",
+        tag: "blue",
+        desc: "We are assigning your report to a case worker",
+      },
+    ],
+    inProgress: [
+      {
+        date: "10 February 2021",
+        status: "in progress",
+        tag: "yellow",
+        desc: "Case worker administration",
+      },
+      {
+        date: "25 January 2021",
+        status: "in progress",
+        tag: "yellow",
+        desc: "Third party involvement<br/><br/>We are speaking to a third party to get further information.",
+      },
+      {
+        date: "8 January 2021",
+        status: "received",
+        tag: "yellow",
+        desc: "Assigned<br/><br/>A case worker has started working on your report.",
+      },
+      {
+        date: "1 January 2021",
+        status: "received",
+        tag: "blue",
+        desc: "We are assigning your report to a case worker",
+      },
+    ],
+    evidenceRequested: [
+      {
+        date: "10 February 2021",
+        status: "evidence requested",
+        tag: "purple",
+        desc: "We need evidence to support the change you have reported",
+      },
+      {
+        date: "25 January 2021",
+        status: "in progress",
+        tag: "yellow",
+        desc: "Third party involvement<br/><br/>We are speaking to a third party to get further information.",
+      },
+      {
+        date: "8 January 2021",
+        status: "received",
+        tag: "yellow",
+        desc: "Assigned<br/><br/>A case worker has started working on your report.",
+      },
+      {
+        date: "1 January 2021",
+        status: "received",
+        tag: "blue",
+        desc: "We are assigning your report to a case worker",
+      },
+    ],
+    completed: [
+      {
+        date: "10 February 2021",
+        status: "completed",
+        tag: "green",
+        desc: "We have completed and closed your change report.",
+      },
+      {
+        date: "25 January 2021",
+        status: "in progress",
+        tag: "yellow",
+        desc: "Third party involvement<br/><br/>We are speaking to a third party to get further information.",
+      },
+      {
+        date: "8 January 2021",
+        status: "received",
+        tag: "yellow",
+        desc: "Assigned<br/><br/>A case worker has started working on your report.",
+      },
+      {
+        date: "1 January 2021",
+        status: "received",
+        tag: "blue",
+        desc: "We are assigning your report to a case worker",
+      },
+    ],
+    rejected: [
+      {
+        date: "10 February 2021",
+        status: "rejected",
+        tag: "red",
+        desc: "Your change has been rejected and we have closed your report.",
+      },
+      {
+        date: "25 January 2021",
+        status: "in progress",
+        tag: "yellow",
+        desc: "Third party involvement<br/><br/>We are speaking to a third party to get further information.",
+      },
+      {
+        date: "8 January 2021",
+        status: "received",
+        tag: "yellow",
+        desc: "Assigned<br/><br/>A case worker has started working on your report.",
+      },
+      {
+        date: "1 January 2021",
+        status: "received",
+        tag: "blue",
+        desc: "We are assigning your report to a case worker",
+      },
+    ],
+  };
+
+  const populateReportTimeline = (type) => {
+    console.log(timelineData[type])
+    timelineData[type].forEach(update => {
+    reportTimelineBody.innerHTML += `
+      <div class="timeline-wrapper">
+        <div class="timeline-body">
+          <h3 class="govuk-heading-m">${update.date}</h3>
+          <strong class="govuk-tag govuk-tag--${update.tag} govuk-!-margin-bottom-5">${update.status}</strong>
+          <p>${update.desc}</p>
+        </div>
+      </div>
+      `
+    })
+  }
+
+  switch (urlParams.get("type")) {
+    case "received":
+      changeDetailsTag.classList =
+        "govuk-tag govuk-tag--blue govuk-!-margin-bottom-5";
+      changeDetailsTag.innerText = "Received";
+      changeDetailsDesc.innerHTML =
+        "We are assigning your report to a case worker who will start working on it within 7 days. Once your report has been assigned, we will change the status to in progress.";
+        populateReportTimeline("received")
+      break;
+    case "in-progress":
+      changeDetailsTag.classList =
+        "govuk-tag govuk-tag--yellow govuk-!-margin-bottom-5";
+      changeDetailsTag.innerText = "In Progress";
+      changeDetailsDesc.innerHTML =
+        "We are currently working on your report.<br/><br/>We provide the most up to date status information that we have and are doing all we can to progress your report. There may be multiple steps we have take while your report is in progress, such as speaking to the other parent or working with another government organisation.<br/><br/>We will contact you when the change is complete or if we need more information. You do not need to contact us.";
+        populateReportTimeline("inProgress")
+        break;
+    case "evidence-requested":
+      changeDetailsTag.classList =
+        "govuk-tag govuk-tag--purple govuk-!-margin-bottom-5";
+      changeDetailsTag.innerText = "Evidence requested";
+      changeDetailsDesc.innerHTML = `We need evidence to support the change you have reported.<br/><br/>
+      <a href="#">View messages and contact history</a> to see if we have sent you a letter requesting evidence. To send us a copy of your evidence select ‘Upload evidence’.<br/><br/>
+      If we have not contacted you this means we require evidence from the other parent and are awaiting their response. You do not need to do anything.
+      `;
+      populateReportTimeline("evidenceRequested")
+      break;
+    case "completed":
+      changeDetailsTag.classList =
+        "govuk-tag govuk-tag--green govuk-!-margin-bottom-5";
+      changeDetailsTag.innerText = "Completed";
+      changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been accepted and we have sent you a <a href="#">confirmation letter.</a>`;
+      changeCompletionDate.hide();
+      populateReportTimeline("completed")
+      break;
+    case "rejected":
+      changeDetailsTag.classList =
+        "govuk-tag govuk-tag--red govuk-!-margin-bottom-5";
+      changeDetailsTag.innerText = "Rejected";
+      changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
+      changeCompletionDate.hide();
+      populateReportTimeline("rejected")
+      break;
+  }
+}
+
 //
 // MESSAGES
 // FILTER
@@ -646,8 +831,7 @@ const receivedMessagesData = {
   },
 };
 
-if (
-  window.location.href.includes("/messages/messages")) {
+if (window.location.href.includes("/messages/messages")) {
   const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
   const sentResultCount = $("#sent-result-count")[0];
   const receivedResultCount = $("#received-result-count")[0];
@@ -707,7 +891,7 @@ if (
       box.checked = false;
     });
     $(".case-facet-tag").each((tag) => {
-      $(".case-facet-tag")[tag].remove()
+      $(".case-facet-tag")[tag].remove();
     });
     caseFacets.hide();
 
@@ -724,7 +908,7 @@ if (
 
   // when submitted after input changes
   receivedAfter.addEventListener("change", function (e) {
-    console.log("changing the date nuh")
+    console.log("changing the date nuh");
     receivedAfterDate = new Date(e.target.value);
     receivedAfterString = e.target.value;
     if (e.target.value.length > 4) {
@@ -765,7 +949,7 @@ if (
   // when received before input changes
   receivedBefore.addEventListener("change", function (e) {
     receivedBeforeDate = new Date(e.target.value);
-    receivedBeforeString = e.target.value
+    receivedBeforeString = e.target.value;
     if (e.target.value.length > 4) {
       let formattedDate = e.target.value.replace("/", "-").replace("/", "-");
       let UKDay = formattedDate.substring(0, 3);
@@ -1046,9 +1230,9 @@ if (
       let filteredReceivedMessageData = {};
       let filteredSentMessageData = {};
 
-    // clear status facets
+      // clear status facets
       $(".case-facet-tag").each((tag) => {
-        $(".case-facet-tag")[tag].remove()
+        $(".case-facet-tag")[tag].remove();
       });
       caseFacets.hide();
 
@@ -1149,12 +1333,12 @@ if (
     // filter by date
     if (isReceivedAfter) {
       // add date facet tag
-        receivedFacets.show();
-        receivedAfterFacet[0].innerHTML = `<p id="received-after-date" class="govuk-!-margin-bottom-0">${receivedAfterDate.toLocaleDateString(
-          "en-UK",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</p>`;
-        receivedAfterFacet.show();
+      receivedFacets.show();
+      receivedAfterFacet[0].innerHTML = `<p id="received-after-date" class="govuk-!-margin-bottom-0">${receivedAfterDate.toLocaleDateString(
+        "en-UK",
+        { day: "numeric", month: "long", year: "numeric" }
+      )}</p>`;
+      receivedAfterFacet.show();
       // filter received data
       receivedMessagesKeys.forEach((key) => {
         // console.log(receivedMessagesData[key]);
@@ -1185,12 +1369,12 @@ if (
 
     if (isReceivedBefore) {
       // add date facet tag
-        receivedFacets.show();
-        receivedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${receivedBeforeDate.toLocaleDateString(
-          "en-UK",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</p>`;
-        receivedBeforeFacet.show();
+      receivedFacets.show();
+      receivedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${receivedBeforeDate.toLocaleDateString(
+        "en-UK",
+        { day: "numeric", month: "long", year: "numeric" }
+      )}</p>`;
+      receivedBeforeFacet.show();
       // filter received data
       receivedMessagesKeys.forEach((key) => {
         // console.log(receivedMessagesData[key]);
