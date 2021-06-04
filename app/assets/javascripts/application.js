@@ -253,6 +253,8 @@ try {
   }
 } catch (err) {}
 
+// sessionStorage.getItem(,)
+
 // TRACK
 // CHANGES
 // FITLER
@@ -293,20 +295,19 @@ const changesData = {
     status: "in-progress",
     colour: "yellow",
     submitted: "24 Apr 2021",
-    updated: "10 May 2021",
+    updated: "08 May 2021",
   },
   change5: {
     changeType: "Change to service type",
     status: "completed",
     colour: "green",
     submitted: "24 Apr 2021",
-    updated: "10 May 2021",
+    updated: "09 May 2021",
   },
 };
 
 if (window.location.href.includes("/track_changes")) {
   const changeCheckboxes = $(".govuk-checkboxes__input").toArray();
-
   const submittedBefore = $("#submitted-before")[0];
   const submittedAfter = $("#submitted-after")[0];
   const changesTable = $("#changes-table")[0];
@@ -328,6 +329,19 @@ if (window.location.href.includes("/track_changes")) {
   let isSubmittedBefore = false;
   let submittedAfterDate = {};
   let submittedBeforeDate = {};
+
+  if (sessionStorage.getItem("newMessage")) {
+     changesData["change6"] = {
+      changeType: sessionStorage.getItem("newMessageTitle"),
+      status: "received",
+      colour: "blue",
+      submitted: new Date().toLocaleDateString("en-UK",{ day: "2-digit", month: "short", year: "numeric" }),
+      updated: new Date().toLocaleDateString("en-UK",{ day: "2-digit", month: "short", year: "numeric" }),
+     }
+     changesKeys = Object.keys(changesData)
+     console.log(changesData)
+  }
+
 
   try {
     // when submitted after input changes
@@ -448,6 +462,8 @@ if (window.location.href.includes("/track_changes")) {
       }
     }
 
+    newDataKeys.sort((a, b) => (new Date(changesData[a].updated) < new Date(changesData[b].updated)) ? 1 : -1 )
+
     // add that to the screen
     newHTML = newDataKeys.map((key) => {
       let change = changesData[key];
@@ -488,6 +504,7 @@ if (window.location.href.includes("/track_changes")) {
       submittedAnd.hide();
       submittedFacets.hide();
     }
+
 
     try {
       resultCount.innerText = `${newHTML.length} changes`;
@@ -674,8 +691,6 @@ if (window.location.href.includes("/track_changes")) {
     }
 
     // console.log("after date filtering: ", filteredChangeData);
-
-    // sort by updated date
 
     // use that, to populate
     populateTrackChanges(filteredChangeData);
@@ -927,13 +942,13 @@ if (window.location.href.includes("/messages/messages")) {
   let isReceivedBefore = false;
   let receivedAfterDate = {};
   let receivedBeforeDate = {};
-  let receivedAfterString = "";
-  let receivedBeforeString = "";
 
   // check if new message has been reported
   if (newMessage) {
     console.log("That new message in there!");
-    let newMessageTitle = $("#new-message-subject")[0].innerText;
+    newMessageTitle = $("#new-message-subject")[0].innerText;
+    sessionStorage.setItem("newMessage", true)
+    sessionStorage.setItem("newMessageTitle", newMessageTitle)
     sentMessagesData[2] = {
       title: newMessageTitle,
       date: new Date(),
@@ -1169,7 +1184,7 @@ if (window.location.href.includes("/messages/messages")) {
     newReceivedHTML = newReceivedDataKeys.map((key) => {
       let message = receivedMessagesData[key];
       return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">${
         message.title
       }</a></th>
       <td class="govuk-table__cell table-row-date">
@@ -1199,6 +1214,9 @@ if (window.location.href.includes("/messages/messages")) {
       receivedAnd.hide();
       receivedFacets.hide();
     }
+
+    // sort
+
 
     // put it in the respective tables
     sentResultCount.innerText = `${newSentHTML.length} sent messages`;
