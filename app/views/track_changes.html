@@ -42,6 +42,39 @@ My Child Maintenance Case
 		</h3>
 		<div class="table-filter">
 			<!--Filters-->
+			{% call govukFieldset({
+				legend: {
+					text: "Submitted",
+					classes: "govuk-fieldset__legend--s",
+					isPageHeading: false
+				}
+			}) %}
+			
+			{{ govukInput({
+				label: {
+					text: "Submitted after"
+				},
+				hint: {
+					text: "For example, 2005 or 21/11/2014"
+				},
+				id: "submitted-after",
+				name: "submitted-after",
+				classes: "govuk-input--width-10"
+			}) }}
+			
+			{{ govukInput({
+				label: {
+					text: "Submitted before"
+				},
+				hint: {
+					text: "For example, 2005 or 21/11/2014"
+				},
+				id: "submitted-before",
+				name: "submitted-before",
+				classes: "govuk-input--width-10"
+			}) }}
+			
+			
 			{{ govukCheckboxes({
 			idPrefix: "status",
 			name: "status",
@@ -82,36 +115,10 @@ My Child Maintenance Case
 			]
 			}) }}
 
-			{% call govukFieldset({
-			legend: {
-			text: "Submitted",
-			classes: "govuk-fieldset__legend--s",
-			isPageHeading: false
-			}
-			}) %}
-
-			{{ govukInput({
-			label: {
-			text: "Submitted after"
-			},
-			hint: {
-			text: "For example, 2005 or 21/11/2014"
-			},
-			id: "submitted-after",
-			name: "submitted-after",
-			classes: "govuk-input--width-10"
-			}) }}
-
-			{{ govukInput({
-			label: {
-			text: "Submitted before"
-			},
-			hint: {
-			text: "For example, 2005 or 21/11/2014"
-			},
-			id: "submitted-before",
-			name: "submitted-before",
-			classes: "govuk-input--width-10"
+			{{ govukButton({
+				id: "apply-filter-button",
+				text: "Apply filter",
+				classes: "govuk-button--secondary"
 			}) }}
 			{% endcall %}
 		</div>
@@ -128,12 +135,6 @@ My Child Maintenance Case
 							class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-third"></th>
 					</tr>
 				</thead>
-				<div id="status-facet-container" class="facet-container">
-					<h4 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Status</h4>
-					<!-- <div class="facet-tag" value="received">
-						<p class="govuk-!-margin-bottom-0">Received</p>
-					</div> -->
-				</div>
 				<tbody id="changes-table-body" class="govuk-table__body">
 					<div id="submitted-facet-container" class="facet-container even">
 						<h4 id="submitted-label" class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">
@@ -147,6 +148,13 @@ My Child Maintenance Case
 							<p id="submitted-before-date" class="govuk-!-margin-bottom-0">2099</p>
 						</div>
 					</div>
+				</tbody>
+				<div id="status-facet-container" class="facet-container">
+					<h4 class="govuk-heading-s govuk-!-margin-bottom-0 govuk-!-margin-top-0">Status</h4>
+					<!-- <div class="facet-tag" value="received">
+						<p class="govuk-!-margin-bottom-0">Received</p>
+					</div> -->
+				</div>
 				<tbody id="changes-table-body" class="govuk-table__body">
 					<!-- <tr class="govuk-table__row">
 						<th scope="row" class="govuk-table__header"><a

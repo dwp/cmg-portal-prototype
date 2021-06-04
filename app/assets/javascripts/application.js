@@ -318,6 +318,7 @@ if (window.location.href.includes("/track_changes")) {
   const submittedAfterFacet = $("#submitted-after-facet");
   const submittedBeforeFacet = $("#submitted-before-facet");
   const submittedAnd = $("#submitted-and");
+  const applyFilterButton = $(".govuk-button--secondary")[0];
 
   // set an empty result
   let changesKeys = Object.keys(changesData);
@@ -344,19 +345,19 @@ if (window.location.href.includes("/track_changes")) {
         submittedAfterDate instanceof Date && !isNaN(submittedAfterDate);
       if (isDate) {
         isSubmittedAfter = true;
-        submittedFacets.show();
-        submittedAfterFacet[0].innerHTML = `<p id="submitted-after-date" class="govuk-!-margin-bottom-0">${submittedAfterDate.toLocaleDateString(
-          "en-UK",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</p>`;
-        submittedAfterFacet.show();
+        // submittedFacets.show();
+        // submittedAfterFacet[0].innerHTML = `<p id="submitted-after-date" class="govuk-!-margin-bottom-0">${submittedAfterDate.toLocaleDateString(
+        //   "en-UK",
+        //   { day: "numeric", month: "long", year: "numeric" }
+        // )}</p>`;
+        // submittedAfterFacet.show();
       } else {
         console.log("aint a date");
         isSubmittedAfter = false;
         submittedAfterFacet.hide();
       }
 
-      applyFilter();
+      // applyFilter();
     });
 
     // when clicking on the date facet, remove the filter
@@ -383,12 +384,12 @@ if (window.location.href.includes("/track_changes")) {
         submittedBeforeDate instanceof Date && !isNaN(submittedBeforeDate);
       if (isDate) {
         isSubmittedBefore = true;
-        submittedFacets.show();
-        submittedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${submittedBeforeDate.toLocaleDateString(
-          "en-UK",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</p>`;
-        submittedBeforeFacet.show();
+        // submittedFacets.show();
+        // submittedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${submittedBeforeDate.toLocaleDateString(
+        //   "en-UK",
+        //   { day: "numeric", month: "long", year: "numeric" }
+        // )}</p>`;
+        // submittedBeforeFacet.show();
       } else {
         isSubmittedBefore = false;
       }
@@ -407,7 +408,7 @@ if (window.location.href.includes("/track_changes")) {
       //   }
       // });
 
-      applyFilter();
+      // applyFilter();
     });
 
     // when clicking the date facet, remove the filter
@@ -452,14 +453,23 @@ if (window.location.href.includes("/track_changes")) {
       let change = changesData[key];
       return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="change_details?type=${change.status}">${change.changeType}</a>
+    							class="table-row-subject govuk-link--no-visited-state" href="change_details?type=${
+                    change.status
+                  }">${change.changeType}</a>
     						<div class="changes-date-container">
-    							<span class="table-row-change-date submitted-date">Submitted: ${change.submitted}</span>
-    							<span class="table-row-change-date updated-date">Updated: ${change.updated}</span>
+    							<span class="table-row-change-date submitted-date">Submitted: ${
+                    change.submitted
+                  }</span>
+    							<span class="table-row-change-date updated-date">Updated: ${
+                    change.updated
+                  }</span>
     						</div>
     					</th>
     					<td class="govuk-table__cell table-row-date"><strong
-    							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace("-", " ")}</strong></td>
+    							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
+        "-",
+        " "
+      )}</strong></td>
     				</tr> `;
     });
 
@@ -486,61 +496,61 @@ if (window.location.href.includes("/track_changes")) {
   };
 
   const removeStatus = (e) => {
-    $(`#status-${e.target.value}`)[0].checked = false;
+    // $(`#status-${e.target.value}`)[0].checked = false;
 
     // remove facet tag
-    $(`#facet-${e.target.value}`).remove();
+    // $(`#facet-${e.target.value}`).remove();
 
     // remove from status filters
     const index = statusFilters.indexOf(e.target.value);
     statusFilters.splice(index, 1);
 
-    if (statusFilters.length == 0) {
-      statusFacets.hide();
-    }
+    // if (statusFilters.length == 0) {
+    //   statusFacets.hide();
+    // }
 
-    applyFilter();
+    // applyFilter();
   };
 
   const addStatus = (e) => {
-    // show status container
-    statusFacets.show();
-    // add facet tag
-    statusFacets.append(
-      `<div id="facet-${e.target.value}" class="facet-tag status-facet-tag"
-    }>
-						<p class="govuk-!-margin-bottom-0">
-            ${
-              e.target.value.charAt(0).toUpperCase() +
-              e.target.value.slice(1).replace("-", " ")
-            }
-            </p>
-					</div>`
-    );
-    // add event listener to new facet
+    // // show status container
+    // statusFacets.show();
+    // // add facet tag
+    // statusFacets.append(
+    //   `<div id="facet-${e.target.value}" class="facet-tag status-facet-tag"
+    // }>
+    // 				<p class="govuk-!-margin-bottom-0">
+    //         ${
+    //           e.target.value.charAt(0).toUpperCase() +
+    //           e.target.value.slice(1).replace("-", " ")
+    //         }
+    //         </p>
+    // 			</div>`
+    // );
+    // // add event listener to new facet
 
-    $(`#facet-${e.target.value}`)[0].addEventListener("click", function () {
-      // uncheck checkbox
-      $(`#status-${e.target.value}`)[0].checked = false;
+    // $(`#facet-${e.target.value}`)[0].addEventListener("click", function () {
+    //   // uncheck checkbox
+    //   $(`#status-${e.target.value}`)[0].checked = false;
 
-      // remove facet tag
-      $(`#facet-${e.target.value}`).remove();
+    //   // remove facet tag
+    //   $(`#facet-${e.target.value}`).remove();
 
-      // remove from status filters
-      const index = statusFilters.indexOf(e.target.value);
-      statusFilters.splice(index, 1);
+    //   // remove from status filters
+    //   const index = statusFilters.indexOf(e.target.value);
+    //   statusFilters.splice(index, 1);
 
-      if (statusFilters.length == 0) {
-        statusFacets.hide();
-      }
+    //   if (statusFilters.length == 0) {
+    //     statusFacets.hide();
+    //   }
 
-      applyFilter();
-    });
+    //   applyFilter();
+    // });
 
     // add to status filters
     statusFilters.push(e.target.value);
 
-    applyFilter();
+    // applyFilter();
   };
 
   const filterStatus = (e) => {
@@ -558,7 +568,48 @@ if (window.location.href.includes("/track_changes")) {
     if (statusFilters.length) {
       console.log("we have ", statusFilters.length, " status filters applied");
       filteredChangeData = {};
+      // clear status facets
+      $(".status-facet-tag").each((tag) => {
+        $(".status-facet-tag")[tag].remove();
+      });
+      statusFacets.hide();
+
       statusFilters.forEach((status) => {
+        // add facet tag
+        // show status container
+        statusFacets.show();
+        // add facet tag
+        statusFacets.append(
+          `<div id="facet-${status}" class="facet-tag status-facet-tag"
+    }>
+						<p class="govuk-!-margin-bottom-0">
+            ${
+              status.charAt(0).toUpperCase() + status.slice(1).replace("-", " ")
+            }
+            </p>
+					</div>`
+        );
+        // add event listener to new facet
+
+        $(`#facet-${status}`)[0].addEventListener("click", function () {
+          // uncheck checkbox
+          $(`#status-${status}`)[0].checked = false;
+
+          // remove facet tag
+          $(`#facet-${status}`).remove();
+
+          // remove from status filters
+          const index = statusFilters.indexOf(status);
+          statusFilters.splice(index, 1);
+
+          if (statusFilters.length == 0) {
+            statusFacets.hide();
+          }
+
+          applyFilter();
+        });
+
+        // filter data
         changesKeys.forEach((key) => {
           // if selection value matches changesData status
           if (changesData[key].status == status) {
@@ -574,6 +625,8 @@ if (window.location.href.includes("/track_changes")) {
 
     // go through all status and all data, if match, add to filteredData
 
+    // add facet tags
+
     // console.log("after status filtering: ", filteredChangeData);
     // then if date filter is applied
 
@@ -581,6 +634,14 @@ if (window.location.href.includes("/track_changes")) {
 
     // filter by date
     if (isSubmittedAfter) {
+      // add date facet tag
+      submittedFacets.show();
+      submittedAfterFacet[0].innerHTML = `<p id="submitted-after-date" class="govuk-!-margin-bottom-0">${submittedAfterDate.toLocaleDateString(
+        "en-UK",
+        { day: "numeric", month: "long", year: "numeric" }
+      )}</p>`;
+      submittedAfterFacet.show();
+      // filter data
       changesKeys.forEach((key) => {
         let changeSubmittedDate = new Date(changesData[key].submitted);
         // if data item is after the input date
@@ -593,6 +654,14 @@ if (window.location.href.includes("/track_changes")) {
     }
 
     if (isSubmittedBefore) {
+      // add date facet tag
+      submittedFacets.show();
+        submittedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${submittedBeforeDate.toLocaleDateString(
+          "en-UK",
+          { day: "numeric", month: "long", year: "numeric" }
+        )}</p>`;
+        submittedBeforeFacet.show();
+        // filter data
       changesKeys.forEach((key) => {
         let changeSubmittedDate = new Date(changesData[key].submitted);
         // if data item is after the input date
@@ -616,6 +685,8 @@ if (window.location.href.includes("/track_changes")) {
     checkbox.addEventListener("click", filterStatus);
   });
 
+  applyFilterButton.addEventListener("click", applyFilter);
+
   populateTrackChanges([]);
 }
 
@@ -625,7 +696,7 @@ if (window.location.href.includes("change_details")) {
   const changeDetailsTag = $("#change-details-tag")[0];
   const changeDetailsDesc = $("#change-details-description")[0];
   const changeCompletionDate = $("#change-completion-date");
-  const reportTimelineBody = $("#report-timeline-body")[0]
+  const reportTimelineBody = $("#report-timeline-body")[0];
 
   const timelineData = {
     received: [
@@ -743,8 +814,8 @@ if (window.location.href.includes("change_details")) {
   };
 
   const populateReportTimeline = (type) => {
-    timelineData[type].forEach(update => {
-    reportTimelineBody.innerHTML += `
+    timelineData[type].forEach((update) => {
+      reportTimelineBody.innerHTML += `
       <div class="timeline-wrapper">
         <div class="timeline-body">
           <h3 class="govuk-heading-m">${update.date}</h3>
@@ -752,9 +823,9 @@ if (window.location.href.includes("change_details")) {
           <p>${update.desc}</p>
         </div>
       </div>
-      `
-    })
-  }
+      `;
+    });
+  };
 
   switch (urlParams.get("type")) {
     case "received":
@@ -763,7 +834,7 @@ if (window.location.href.includes("change_details")) {
       changeDetailsTag.innerText = "Received";
       changeDetailsDesc.innerHTML =
         "We are assigning your report to a case worker who will start working on it within 7 days. Once your report has been assigned, we will change the status to in progress.";
-        populateReportTimeline("received")
+      populateReportTimeline("received");
       break;
     case "in-progress":
       changeDetailsTag.classList =
@@ -771,8 +842,8 @@ if (window.location.href.includes("change_details")) {
       changeDetailsTag.innerText = "In Progress";
       changeDetailsDesc.innerHTML =
         "We are currently working on your report.<br/><br/>We provide the most up to date status information that we have and are doing all we can to progress your report. There may be multiple steps we have take while your report is in progress, such as speaking to the other parent or working with another government organisation.<br/><br/>We will contact you when the change is complete or if we need more information. You do not need to contact us.";
-        populateReportTimeline("inProgress")
-        break;
+      populateReportTimeline("inProgress");
+      break;
     case "evidence-requested":
       changeDetailsTag.classList =
         "govuk-tag govuk-tag--purple govuk-!-margin-bottom-5";
@@ -781,7 +852,7 @@ if (window.location.href.includes("change_details")) {
       <a href="#">View messages and contact history</a> to see if we have sent you a letter requesting evidence. To send us a copy of your evidence select ‘Upload evidence’.<br/><br/>
       If we have not contacted you this means we require evidence from the other parent and are awaiting their response. You do not need to do anything.
       `;
-      populateReportTimeline("evidenceRequested")
+      populateReportTimeline("evidenceRequested");
       break;
     case "completed":
       changeDetailsTag.classList =
@@ -789,7 +860,7 @@ if (window.location.href.includes("change_details")) {
       changeDetailsTag.innerText = "Completed";
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been accepted and we have sent you a <a href="#">confirmation letter.</a>`;
       changeCompletionDate.hide();
-      populateReportTimeline("completed")
+      populateReportTimeline("completed");
       break;
     case "rejected":
       changeDetailsTag.classList =
@@ -797,7 +868,7 @@ if (window.location.href.includes("change_details")) {
       changeDetailsTag.innerText = "Rejected";
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
       changeCompletionDate.hide();
-      populateReportTimeline("rejected")
+      populateReportTimeline("rejected");
       break;
   }
 }
@@ -1227,7 +1298,7 @@ if (window.location.href.includes("/messages/messages")) {
       let filteredReceivedMessageData = {};
       let filteredSentMessageData = {};
 
-      // clear status facets
+      // clear case facets
       $(".case-facet-tag").each((tag) => {
         $(".case-facet-tag")[tag].remove();
       });
