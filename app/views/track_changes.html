@@ -30,9 +30,11 @@ My Child Maintenance Case
 <div class="govuk-grid-row govuk-!-margin-bottom-5">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-			Track Changes
+			Track changes
 		</h1>
-		<p>Track the progress of a change you have reported.</p>
+		<p>Track the progress of a change you have reported. Your report will be dealt with as soon as possible, usually within 4 weeks. It may take longer, for example, if we need to contact the other parent or evidence is required. 
+			<br/><br/>You will not be able to view the progress of any enforcement action we are taking to recover unpaid child maintenance. 
+			</p>
 	</div>
 </div>
 <div class="govuk-grid-row govuk-!-margin-bottom-5">
@@ -44,7 +46,7 @@ My Child Maintenance Case
 			<!--Filters-->
 			{% call govukFieldset({
 				legend: {
-					text: "Submitted",
+					text: "Date submitted",
 					classes: "govuk-fieldset__legend--s",
 					isPageHeading: false
 				}
@@ -52,7 +54,7 @@ My Child Maintenance Case
 			
 			{{ govukInput({
 				label: {
-					text: "Submitted after"
+					text: "Report submitted after"
 				},
 				hint: {
 					text: "For example, 2005 or 21/11/2014"
@@ -64,7 +66,7 @@ My Child Maintenance Case
 			
 			{{ govukInput({
 				label: {
-					text: "Submitted before"
+					text: "Report submitted before"
 				},
 				hint: {
 					text: "For example, 2005 or 21/11/2014"
@@ -81,7 +83,7 @@ My Child Maintenance Case
 			classes: "govuk-checkboxes--small",
 			fieldset: {
 			legend: {
-			text: "Status",
+			text: "Status of report",
 			isPageHeading: false,
 			classes: "govuk-fieldset__legend--s"
 			}
