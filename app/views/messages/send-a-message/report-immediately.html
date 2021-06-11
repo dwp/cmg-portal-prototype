@@ -29,19 +29,25 @@
           name: "report-now",
           fieldset: {
             legend: {
-              text: "Do you want to report a " + data['message-subject-lower'] + " immediately?",
+              text: "Do you want to report a " + data['message-subject-lower'] + "?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
+          hint: {
+            text: "You can immediately report a " + data['message-subject-lower'] + " yourself using report a change."
+          },
         items: [
           {
             value: "Yes, report immediately",
-            text: "Yes, report immediately"
+            text: "Yes, report a change"
           },
           {
             value: "No, send a message",
-            text: "No, send a message"
+            text: "No, send a message",
+            hint: {
+              text: "It can take up to 7 days to review your message."
+            }
           }
         ]
       }) }}
