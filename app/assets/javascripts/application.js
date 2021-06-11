@@ -11,9 +11,9 @@ $(document).ready(function () {
   window.GOVUKFrontend.initAll();
 });
 
-// HOME
-// SCREEN
-// THANGS
+// PROTOTYPE
+// GLOBAL
+// DATA
 
 const caseData = {
   all: {
@@ -78,62 +78,165 @@ const caseData = {
   },
 };
 
-let message0 = $("#message0")[0];
-let message1 = $("#message1")[0];
-let message2 = $("#message2")[0];
-let date0 = $("#date0")[0];
-let date1 = $("#date1")[0];
-let date2 = $("#date2")[0];
-let change0 = $("#change0")[0];
-let change1 = $("#change1")[0];
-let change2 = $("#change2")[0];
-let tag0 = $("#tag0")[0];
-let tag1 = $("#tag1")[0];
-let tag2 = $("#tag2")[0];
-
-const changeData = (caseName) => {
-  let newData = caseData[caseName];
-  // console.log(newData)
-  message0.innerText = newData.messages.msg0[0];
-  message1.innerText = newData.messages.msg1[0];
-  message2.innerText = newData.messages.msg2[0];
-  date0.innerText = newData.messages.msg0[1];
-  date1.innerText = newData.messages.msg1[1];
-  date2.innerText = newData.messages.msg2[1];
-  change0.innerText = newData.changes.chng0[0];
-  change1.innerText = newData.changes.chng1[0];
-  change2.innerText = newData.changes.chng2[0];
-  tag0.classList.remove(...tag0.classList);
-  tag1.classList.remove(...tag1.classList);
-  tag2.classList.remove(...tag2.classList);
-  tag0.classList.add("govuk-tag", `govuk-tag--${newData.changes.chng0[1]}`);
-  tag1.classList.add("govuk-tag", `govuk-tag--${newData.changes.chng1[1]}`);
-  tag2.classList.add("govuk-tag", `govuk-tag--${newData.changes.chng2[1]}`);
-  tag0.innerText = newData.changes.chng0[2];
-  tag1.innerText = newData.changes.chng1[2];
-  tag2.innerText = newData.changes.chng2[2];
+const sentMessagesData = {
+  0: {
+    title: "Payment schedule query",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  1: {
+    title: "Something else",
+    date: "02 Apr 2020",
+    case: "j-smith",
+  },
 };
 
-const showCase = (e) => {
-  console.log(e.target.value);
-  switch (e.target.value) {
-    case "jsmith":
-      $("#jsmith").show();
-      $("#cjones").hide();
-      changeData(e.target.value);
-      break;
-    case "cjones":
-      $("#cjones").show();
-      $("#jsmith").hide();
-      changeData(e.target.value);
-      break;
-    default:
-      $("#cjones").show();
-      $("#jsmith").show();
-      changeData("all");
-      break;
-  }
+const receivedMessagesData = {
+  0: {
+    title: "We need to check some information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+    link: "some_message_page",
+  },
+  1: {
+    title: "We need to check some informfsasfsation with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  2: {
+    title: "We need to check some information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
 };
+
+const changesData = {
+  change0: {
+    changeType: "Change to service type",
+    status: "rejected",
+    colour: "red",
+    submitted: "24 Apr 2004",
+    updated: "10 May 2021",
+    link: "LINKBISH"
+  },
+  change1: {
+    changeType:
+      "Add a new child with the parent of an existing child maintenance case",
+    status: "evidence-requested",
+    colour: "purple",
+    submitted: "24 Apr 2021",
+    updated: "10 May 2021",
+  },
+  change2: {
+    changeType: "Change to service type",
+    status: "received",
+    colour: "blue",
+    submitted: "24 Apr 2021",
+    updated: "10 May 2021",
+  },
+  change3: {
+    changeType: "Change to service type",
+    status: "in-progress",
+    colour: "yellow",
+    submitted: "24 Apr 2021",
+    updated: "10 May 2021",
+  },
+  change4: {
+    changeType:
+      "Add a new child with the parent of an existing child maintenance case",
+    status: "in-progress",
+    colour: "yellow",
+    submitted: "24 Apr 2021",
+    updated: "08 May 2021",
+  },
+  change5: {
+    changeType: "Change to service type",
+    status: "completed",
+    colour: "green",
+    submitted: "24 Apr 2021",
+    updated: "09 May 2021",
+  },
+};
+
+// HOME
+// SCREEN
+// THANGS
+
+if (window.location.href.includes("/home")) {
+  let message0 = $("#message0")[0];
+  let message1 = $("#message1")[0];
+  let message2 = $("#message2")[0];
+  let date0 = $("#date0")[0];
+  let date1 = $("#date1")[0];
+  let date2 = $("#date2")[0];
+  let change0 = $("#change0")[0];
+  let change1 = $("#change1")[0];
+  let change2 = $("#change2")[0];
+  let tag0 = $("#tag0")[0];
+  let tag1 = $("#tag1")[0];
+  let tag2 = $("#tag2")[0];
+
+  const changeData = (caseName) => {
+    let newData = caseData[caseName];
+    // console.log(newData)
+    message0.innerText = receivedMessagesData[0].title;
+    message1.innerText = receivedMessagesData[1].title;
+    message2.innerText = receivedMessagesData[2].title;
+    date0.innerText = new Date(receivedMessagesData[0].date).toLocaleDateString(
+      "en-GB"
+    );
+    date1.innerText = new Date(receivedMessagesData[1].date).toLocaleDateString(
+      "en-GB"
+    );
+    date2.innerText = new Date(receivedMessagesData[2].date).toLocaleDateString(
+      "en-GB"
+    );
+    change0.innerText = changesData["change0"].changeType;
+    change1.innerText = changesData["change1"].changeType;
+    change2.innerText = changesData["change2"].changeType;
+    tag0.classList.remove(...tag0.classList);
+    tag1.classList.remove(...tag1.classList);
+    tag2.classList.remove(...tag2.classList);
+    tag0.classList.add(
+      "govuk-tag",
+      `govuk-tag--${changesData["change0"].colour}`
+    );
+    tag1.classList.add(
+      "govuk-tag",
+      `govuk-tag--${changesData["change1"].colour}`
+    );
+    tag2.classList.add(
+      "govuk-tag",
+      `govuk-tag--${changesData["change2"].colour}`
+    );
+    tag0.innerText = changesData["change0"].status;
+    tag1.innerText = changesData["change1"].status;
+    tag2.innerText = changesData["change2"].status;
+  };
+
+  const showCase = (e) => {
+    console.log(e.target.value);
+    switch (e.target.value) {
+      case "jsmith":
+        $("#jsmith").show();
+        $("#cjones").hide();
+        changeData(e.target.value);
+        break;
+      case "cjones":
+        $("#cjones").show();
+        $("#jsmith").hide();
+        changeData(e.target.value);
+        break;
+      default:
+        $("#cjones").show();
+        $("#jsmith").show();
+        changeData("all");
+        break;
+    }
+  };
+
+  changeData("all");
+}
 
 // PAYMENT
 // SCREEN
@@ -253,58 +356,9 @@ try {
   }
 } catch (err) {}
 
-// sessionStorage.getItem(,)
-
 // TRACK
 // CHANGES
-// FITLER
-
-const changesData = {
-  change0: {
-    changeType: "Change to service type",
-    status: "rejected",
-    colour: "red",
-    submitted: "24 Apr 2004",
-    updated: "10 May 2021",
-  },
-  change1: {
-    changeType:
-      "Add a new child with the parent of an existing child maintenance case",
-    status: "evidence-requested",
-    colour: "purple",
-    submitted: "24 Apr 2021",
-    updated: "10 May 2021",
-  },
-  change2: {
-    changeType: "Change to service type",
-    status: "received",
-    colour: "blue",
-    submitted: "24 Apr 2021",
-    updated: "10 May 2021",
-  },
-  change3: {
-    changeType: "Change to service type",
-    status: "in-progress",
-    colour: "yellow",
-    submitted: "24 Apr 2021",
-    updated: "10 May 2021",
-  },
-  change4: {
-    changeType:
-      "Add a new child with the parent of an existing child maintenance case",
-    status: "in-progress",
-    colour: "yellow",
-    submitted: "24 Apr 2021",
-    updated: "08 May 2021",
-  },
-  change5: {
-    changeType: "Change to service type",
-    status: "completed",
-    colour: "green",
-    submitted: "24 Apr 2021",
-    updated: "09 May 2021",
-  },
-};
+// PAGE
 
 if (window.location.href.includes("/track_changes")) {
   const changeCheckboxes = $(".govuk-checkboxes__input").toArray();
@@ -331,17 +385,24 @@ if (window.location.href.includes("/track_changes")) {
   let submittedBeforeDate = {};
 
   if (sessionStorage.getItem("newMessage")) {
-     changesData["change6"] = {
+    changesData["change6"] = {
       changeType: sessionStorage.getItem("newMessageTitle"),
       status: "received",
       colour: "blue",
-      submitted: new Date().toLocaleDateString("en-UK",{ day: "2-digit", month: "short", year: "numeric" }),
-      updated: new Date().toLocaleDateString("en-UK",{ day: "2-digit", month: "short", year: "numeric" }),
-     }
-     changesKeys = Object.keys(changesData)
-     console.log(changesData)
+      submitted: new Date().toLocaleDateString("en-UK", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+      updated: new Date().toLocaleDateString("en-UK", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+    };
+    changesKeys = Object.keys(changesData);
+    console.log(changesData);
   }
-
 
   try {
     // when submitted after input changes
@@ -462,16 +523,19 @@ if (window.location.href.includes("/track_changes")) {
       }
     }
 
-    newDataKeys.sort((a, b) => (new Date(changesData[a].updated) < new Date(changesData[b].updated)) ? 1 : -1 )
+    newDataKeys.sort((a, b) =>
+      new Date(changesData[a].updated) < new Date(changesData[b].updated)
+        ? 1
+        : -1
+    );
 
     // add that to the screen
     newHTML = newDataKeys.map((key) => {
       let change = changesData[key];
-      return `<tr class="govuk-table__row">
+      if (change.link) {
+        return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="change_details?type=${
-                    change.status
-                  }">${change.changeType}</a>
+    							class="table-row-subject govuk-link--no-visited-state" href="${change.link}">${change.changeType}</a>
     						<div class="changes-date-container">
     							<span class="table-row-change-date submitted-date">Submitted: ${
                     change.submitted
@@ -483,10 +547,30 @@ if (window.location.href.includes("/track_changes")) {
     					</th>
     					<td class="govuk-table__cell table-row-date"><strong
     							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
-        "-",
-        " "
-      )}</strong></td>
+          "-",
+          " "
+        )}</strong></td>
     				</tr> `;
+      } else {
+        return `<tr class="govuk-table__row">
+    					<th scope="row" class="govuk-table__header"><a
+    							class="table-row-subject govuk-link--no-visited-state" href="#">${change.changeType}</a>
+    						<div class="changes-date-container">
+    							<span class="table-row-change-date submitted-date">Submitted: ${
+                    change.submitted
+                  }</span>
+    							<span class="table-row-change-date updated-date">Updated: ${
+                    change.updated
+                  }</span>
+    						</div>
+    					</th>
+    					<td class="govuk-table__cell table-row-date"><strong
+    							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
+          "-",
+          " "
+        )}</strong></td>
+    				</tr> `;
+      }
     });
 
     if (isSubmittedAfter && isSubmittedBefore) {
@@ -504,7 +588,6 @@ if (window.location.href.includes("/track_changes")) {
       submittedAnd.hide();
       submittedFacets.hide();
     }
-
 
     try {
       resultCount.innerText = `${newHTML.length} changes`;
@@ -673,12 +756,12 @@ if (window.location.href.includes("/track_changes")) {
     if (isSubmittedBefore) {
       // add date facet tag
       submittedFacets.show();
-        submittedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${submittedBeforeDate.toLocaleDateString(
-          "en-UK",
-          { day: "numeric", month: "long", year: "numeric" }
-        )}</p>`;
-        submittedBeforeFacet.show();
-        // filter data
+      submittedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${submittedBeforeDate.toLocaleDateString(
+        "en-UK",
+        { day: "numeric", month: "long", year: "numeric" }
+      )}</p>`;
+      submittedBeforeFacet.show();
+      // filter data
       changesKeys.forEach((key) => {
         let changeSubmittedDate = new Date(changesData[key].submitted);
         // if data item is after the input date
@@ -890,29 +973,8 @@ if (window.location.href.includes("change_details")) {
 
 //
 // MESSAGES
-// FILTER
+// PAGE
 //
-
-const sentMessagesData = {
-  0: {
-    title: "Payment schedule query",
-    date: "01 Jan 2021",
-    case: "no-case",
-  },
-  1: {
-    title: "Something else",
-    date: "02 Apr 2020",
-    case: "j-smith",
-  },
-};
-
-const receivedMessagesData = {
-  0: {
-    title: "We need to check some information with you",
-    date: "01 Jan 2021",
-    case: "no-case",
-  },
-};
 
 if (window.location.href.includes("/messages/messages")) {
   const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
@@ -947,8 +1009,8 @@ if (window.location.href.includes("/messages/messages")) {
   if (newMessage) {
     console.log("That new message in there!");
     newMessageTitle = $("#new-message-subject")[0].innerText;
-    sessionStorage.setItem("newMessage", true)
-    sessionStorage.setItem("newMessageTitle", newMessageTitle)
+    sessionStorage.setItem("newMessage", true);
+    sessionStorage.setItem("newMessageTitle", newMessageTitle);
     sentMessagesData[2] = {
       title: newMessageTitle,
       date: new Date(),
@@ -1183,8 +1245,22 @@ if (window.location.href.includes("/messages/messages")) {
 
     newReceivedHTML = newReceivedDataKeys.map((key) => {
       let message = receivedMessagesData[key];
-      return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="received-message.html">${
+      if (message.link) {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
+        message.link
+      }">${message.title}</a></th>
+      <td class="govuk-table__cell table-row-date">
+      ${new Date(message.date).toLocaleDateString("en-UK", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })}
+      </td>
+    </tr>`;
+      } else {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a></th>
       <td class="govuk-table__cell table-row-date">
@@ -1195,6 +1271,7 @@ if (window.location.href.includes("/messages/messages")) {
       })}
       </td>
     </tr>`;
+      }
     });
 
     // if date filters are applied, show facets and labels
@@ -1216,7 +1293,6 @@ if (window.location.href.includes("/messages/messages")) {
     }
 
     // sort
-
 
     // put it in the respective tables
     sentResultCount.innerText = `${newSentHTML.length} sent messages`;
