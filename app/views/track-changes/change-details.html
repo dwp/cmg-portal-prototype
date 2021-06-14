@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="track_changes.html">Track Changes</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Change details</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row govuk-!-margin-bottom-5">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 id="change-details-title" class="govuk-heading-xl govuk-!-margin-bottom-0">
+      Change to service type
+    </h1>
+    <p id="change-date-submitted" class="secondary govuk-!-margin-bottom-5">Submitted: 1 January 2021</p>
+    <strong id="change-details-tag" class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-5">In progress</strong> <a
+      href="#" class="govuk-link">Upload evidence</a>
+    <p id="change-details-description">We are currently working on your report.
+      <br />
+      <br />
+      Your report will be dealt with as soon as possible, usually within 4 weeks. It may take longer, for example, if we
+      need to contact the other parent or evidence is required. We will contact you when the change is complete or if we
+      need more information. You do not need to contact us.
+    </p>
+    <p id="change-completion-date"><strong>To be completed by:</strong> 10/07/2021</p>
+    <h2 class="govuk-heading-l">Report timeline</h2>
+    <div id="report-timeline-body">
+      <!-- <div class="timeline-wrapper">
+        <div class="timeline-body">
+          <h3 class="govuk-heading-m">10 March 2021</h3>
+          <strong class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-5">In progress</strong>
+          <p>Case worker administration</p>
+          <p>The case worker is working on recalculating something</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+{% endblock %}
