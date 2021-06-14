@@ -108,6 +108,11 @@ const receivedMessagesData = {
     date: "01 Jan 2021",
     case: "no-case",
   },
+  3: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "j-smith",
+  },
 };
 
 const changesData = {
@@ -117,7 +122,7 @@ const changesData = {
     colour: "red",
     submitted: "24 Apr 2004",
     updated: "10 May 2021",
-    link: "LINKBISH"
+    link: "LINKBISH",
   },
   change1: {
     changeType:
@@ -158,11 +163,32 @@ const changesData = {
   },
 };
 
+// If Change Children journey has been completed
+if (sessionStorage.getItem("changeChildren")) {
+  changesData[`change${Object.keys(changesData).length}`] = {
+    changeType: "Change number of children",
+    status: "received",
+    colour: "blue",
+    submitted: new Date().toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }),
+    updated: new Date().toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }),
+    link: "/track-change-children"
+  };
+}
+
 // HOME
 // SCREEN
 // THANGS
 
 if (window.location.href.includes("/home")) {
+
   let message0 = $("#message0")[0];
   let message1 = $("#message1")[0];
   let message2 = $("#message2")[0];
@@ -212,6 +238,33 @@ if (window.location.href.includes("/home")) {
     tag0.innerText = changesData["change0"].status;
     tag1.innerText = changesData["change1"].status;
     tag2.innerText = changesData["change2"].status;
+    
+    // If the Change Children journey has been completed
+    if (sessionStorage.getItem("changeChildren")) {
+      change0.innerText = changesData[`change${Object.keys(changesData).length - 1}`].changeType;
+      change0.href = "somepage.html"
+    change1.innerText = changesData["change0"].changeType;
+    change2.innerText = changesData["change1"].changeType;
+    tag0.classList.remove(...tag0.classList);
+    tag1.classList.remove(...tag1.classList);
+    tag2.classList.remove(...tag2.classList);
+    tag0.classList.add(
+      "govuk-tag",
+      `govuk-tag--${changesData[`change${Object.keys(changesData).length - 1}`].colour}`
+    );
+    tag1.classList.add(
+      "govuk-tag",
+      `govuk-tag--${changesData["change0"].colour}`
+    );
+    tag2.classList.add(
+      "govuk-tag",
+      `govuk-tag--${changesData["change1"].colour}`
+    );
+    tag0.innerText = changesData[`change${Object.keys(changesData).length - 1}`].status;
+    tag1.innerText = changesData["change0"].status;
+    tag2.innerText = changesData["change1"].status;
+    }
+
   };
 
   const showCase = (e) => {
@@ -535,7 +588,9 @@ if (window.location.href.includes("/track_changes")) {
       if (change.link) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="${change.link}">${change.changeType}</a>
+    							class="table-row-subject govuk-link--no-visited-state" href="${
+                    change.link
+                  }">${change.changeType}</a>
     						<div class="changes-date-container">
     							<span class="table-row-change-date submitted-date">Submitted: ${
                     change.submitted
@@ -554,7 +609,9 @@ if (window.location.href.includes("/track_changes")) {
       } else {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="#">${change.changeType}</a>
+    							class="table-row-subject govuk-link--no-visited-state" href="#">${
+                    change.changeType
+                  }</a>
     						<div class="changes-date-container">
     							<span class="table-row-change-date submitted-date">Submitted: ${
                     change.submitted
@@ -1258,6 +1315,24 @@ if (window.location.href.includes("/messages/messages")) {
       })}
       </td>
     </tr>`;
+      } else if (message.case != "no-case") {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
+        message.title
+      }</a><span class="table-row-case">${
+          message.case[0].toUpperCase() +
+          " " +
+          message.case[2].toUpperCase() +
+          message.case.slice(3)
+        }</span></th>
+      <td class="govuk-table__cell table-row-date">
+        ${new Date(message.date).toLocaleDateString("en-UK", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
+      </td>
+    </tr>`;
       } else {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
@@ -1611,4 +1686,20 @@ if (window.location.href.includes("/messages/messages")) {
   });
 
   applyFilterButton.addEventListener("click", applyFilter);
+}
+
+// REPORT
+// A
+// CHANGE
+
+if (window.location.href.includes("/report-a-change")) {
+  const startChangeChildrenButton = $("#start-change-children-button")[0];
+
+  // add new change when start button is clicked
+  startChangeChildrenButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    sessionStorage.setItem("changeChildren", true);
+    console.log("Doing the ting");
+    window.location.href = window.location.href.replace("/number-of-children", "/number-of-children-confirmation.html")
+  });
 }
