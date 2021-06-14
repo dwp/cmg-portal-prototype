@@ -438,7 +438,7 @@ if (window.location.href.includes("/track_changes")) {
   let submittedBeforeDate = {};
 
   if (sessionStorage.getItem("newMessage")) {
-    changesData["change6"] = {
+    changesData[`change${Object.keys(changesData).length}`] = {
       changeType: sessionStorage.getItem("newMessageTitle"),
       status: "received",
       colour: "blue",
