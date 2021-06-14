@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% set active_page = "Report a change" %} 
+
+{% block pageTitle %}
+  Report a change
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Report a change</a>
+    </li>
+  </ol>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Report a change
+    </h1>
+
+    <a href="number-of-children.html" class="govuk-link--no-visited-state">
+      <h2>Number of children</h2>
+    </a>
+    <p>Let us know if the gross taxable annual income, we have previously used to calculate your child maintenance, has already increased or decreased.</p>
+  </div>
+</div>
+{% endblock %}
