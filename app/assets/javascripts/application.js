@@ -89,6 +89,12 @@ const sentMessagesData = {
     date: "02 Apr 2020",
     case: "j-smith",
   },
+  2: {
+    title: "Something else",
+    date: "02 Apr 2020",
+    case: "no-case",
+    link: "sent-message"
+  },
 };
 
 const receivedMessagesData = {
@@ -96,7 +102,7 @@ const receivedMessagesData = {
     title: "We need to check some information with you",
     date: "01 Jan 2021",
     case: "no-case",
-    link: "some_message_page",
+    link: "received-message",
   },
   1: {
     title: "We need to check some informfsasfsation with you",
@@ -112,6 +118,91 @@ const receivedMessagesData = {
     title: "We need to check other information with you",
     date: "01 Jan 2021",
     case: "j-smith",
+  },
+  4: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "j-smith",
+  },
+  5: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  6: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  7: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  8: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  9: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  10: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  11: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  12: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  13: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  14: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  15: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  16: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  17: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  18: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  19: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  20: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case"
   },
 };
 
@@ -1264,9 +1355,22 @@ if (window.location.href.includes("/messages/messages")) {
         })}
       </td>
     </tr>`;
+      } else if (message.link) {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="${message.link}">${
+        message.title
+      }</a></th>
+      <td class="govuk-table__cell table-row-date">
+        ${new Date(message.date).toLocaleDateString("en-UK", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
+      </td>
+    </tr>`;
       } else if (message.case != "no-case") {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="#">${
         message.title
       }</a><span class="table-row-case">${
           message.case[0].toUpperCase() +
@@ -1284,7 +1388,7 @@ if (window.location.href.includes("/messages/messages")) {
     </tr>`;
       } else {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="#">${
         message.title
       }</a></th>
       <td class="govuk-table__cell table-row-date">
