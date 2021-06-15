@@ -208,56 +208,63 @@ const receivedMessagesData = {
 
 const changesData = {
   change0: {
-    changeType: "Change to service type",
-    status: "rejected",
-    colour: "red",
-    submitted: "24 Apr 2004",
-    updated: "10 May 2021",
-    link: "/track-changes/new-child",
-  },
-  change1: {
-    changeType:
-      "Add a new child with the parent of an existing child maintenance case",
-    status: "evidence-requested",
-    colour: "purple",
-    submitted: "24 Apr 2021",
-    updated: "10 May 2021",
-  },
-  change2: {
-    changeType: "Change to service type",
+    changeType: "Change bank details",
     status: "received",
     colour: "blue",
-    submitted: "24 Apr 2021",
-    updated: "10 May 2021",
+    submitted: "10 Jun 2021",
+    updated: "11 Jun 2021",
   },
-  change3: {
+  change1: {
     changeType: "Change to service type",
     status: "in-progress",
     colour: "yellow",
-    submitted: "24 Apr 2021",
-    updated: "10 May 2021",
+    submitted: "01 Jun 2021",
+    updated: "05 June 2021",
+  },
+  change2: {
+    changeType:
+      "Additional income",
+    status: "completed",
+    colour: "green",
+    submitted: "06 Feb 2021",
+    updated: "08 May 2021",
+  },
+  change3: {
+    changeType:
+      "Shared care",
+    status: "evidence-requested",
+    colour: "purple",
+    submitted: "08 Apr 2021",
+    updated: "12 Apr 2021",
   },
   change4: {
     changeType:
-      "Add a new child with the parent of an existing child maintenance case",
-    status: "in-progress",
-    colour: "yellow",
-    submitted: "24 Apr 2021",
-    updated: "08 May 2021",
-  },
-  change5: {
-    changeType: "Change to service type",
+      "Full time education",
     status: "completed",
     colour: "green",
-    submitted: "24 Apr 2021",
-    updated: "09 May 2021",
+    submitted: "06 Sep 2020",
+    updated: "19 Oct 2020",
+  },
+  change5: {
+    changeType: "Special expenses",
+    status: "rejected",
+    colour: "red",
+    submitted: "12 Aug 2020",
+    updated: "29 Aug 2020",
+  },
+  change6: {
+    changeType: "Change of income",
+    status: "completed",
+    colour: "green",
+    submitted: "24 Mar 2020",
+    updated: "06 Apr 2020",
   },
 };
 
 // If Change Children journey has been completed
 if (sessionStorage.getItem("changeChildren")) {
   changesData[`change${Object.keys(changesData).length}`] = {
-    changeType: "Change number of children",
+    changeType: "Supporting another child",
     status: "received",
     colour: "blue",
     submitted: new Date().toLocaleDateString("en-GB", {
@@ -1402,7 +1409,26 @@ if (window.location.href.includes("/messages/messages")) {
 
     newReceivedHTML = newReceivedDataKeys.map((key) => {
       let message = receivedMessagesData[key];
-      if (message.link) {
+      if (message.case != "no-case" && message.link) {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
+        message.title
+      }</a><span class="table-row-case">${
+          message.case[0].toUpperCase() +
+          " " +
+          message.case[2].toUpperCase() +
+          message.case.slice(3)
+        }</span></th>
+      <td class="govuk-table__cell table-row-date">
+        ${new Date(message.date).toLocaleDateString("en-UK", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
+      </td>
+    </tr>`;
+      }
+      else if (message.link) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
         message.link
