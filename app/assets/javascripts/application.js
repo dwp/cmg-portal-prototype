@@ -1404,7 +1404,26 @@ if (window.location.href.includes("/messages/messages")) {
 
     newReceivedHTML = newReceivedDataKeys.map((key) => {
       let message = receivedMessagesData[key];
-      if (message.link) {
+      if (message.case != "no-case" && message.link) {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
+        message.title
+      }</a><span class="table-row-case">${
+          message.case[0].toUpperCase() +
+          " " +
+          message.case[2].toUpperCase() +
+          message.case.slice(3)
+        }</span></th>
+      <td class="govuk-table__cell table-row-date">
+        ${new Date(message.date).toLocaleDateString("en-UK", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
+      </td>
+    </tr>`;
+      }
+      else if (message.link) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
         message.link
