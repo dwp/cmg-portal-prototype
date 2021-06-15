@@ -259,7 +259,7 @@ const changesData = {
 // If Change Children journey has been completed
 if (sessionStorage.getItem("changeChildren")) {
   changesData[`change${Object.keys(changesData).length}`] = {
-    changeType: "Change number of children",
+    changeType: "Supporting another child",
     status: "received",
     colour: "blue",
     submitted: new Date().toLocaleDateString("en-GB", {

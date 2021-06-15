@@ -35,6 +35,9 @@ router.post('/messages/send-a-message/report-immediately-answer', function (req,
   if (reportNow == 'Yes, report immediately' && messageSubject == 'Missed payment') {
     // Go to missed payments start
     res.redirect('../../report-a-change/report-missed-payment')
+  } else if(reportNow == 'Yes, report immediately' && messageSubject == 'Change to number of children in your household') {
+    // Go to supporting another child
+    res.redirect('../../report-a-change/number-of-children')
   } else if(reportNow == 'Yes, report immediately' && messageSubject == 'Change of income') {
     // Go to change of income start page
     res.redirect('../../report-a-change/change-income')
