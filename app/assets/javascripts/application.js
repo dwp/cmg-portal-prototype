@@ -99,69 +99,69 @@ const sentMessagesData = {
 
 const receivedMessagesData = {
   0: {
-    title: "We need to check some information with you",
-    date: "01 Jan 2021",
+    title: "We need information about your gross weekly income",
+    date: "07 May 2021",
     case: "no-case",
-    link: "received-message",
   },
   1: {
-    title: "We need to check some informfsasfsation with you",
-    date: "01 Jan 2021",
+    title: "Paying child maintenance by standing order",
+    date: "01 Mar 2021",
     case: "no-case",
   },
   2: {
     title: "We need to check some information with you",
-    date: "01 Jan 2021",
+    date: "25 Jan 2021",
     case: "no-case",
   },
   3: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Your child maintenance enquiry",
+    date: "18 Dec 2020",
     case: "j-smith",
   },
   4: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Your child maintenance payments will not change",
+    date: "15 Oct 2020",
     case: "j-smith",
   },
   5: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+    date: "24 Aug 2020",
     case: "no-case",
   },
   6: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Your child maintenance enquiry",
+    date: "20 Jul 2020",
     case: "no-case",
   },
   7: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "We need some information from you",
+    date: "28 May 2020",
     case: "no-case",
   },
   8: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "We've made a decision about a variation application",
+    date: "28 Apr 2020",
     case: "no-case",
   },
   9: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Your payment plan for effective date of payment schedule to last payment date of schedule",
+    date: "24 Mar 2020",
     case: "no-case",
   },
   10: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Your direct debit payments have been set up",
+    date: "19 Feb 2020",
     case: "no-case",
   },
   11: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
-    case: "no-case",
+    title: "Your service type has changed",
+    date: "21 Jan 2020",
+    case: "c-jones",
+    link: "received-message",
   },
   12: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "We need to check some information with you",
+    date: "17 Dec 2019",
     case: "no-case",
   },
   13: {
@@ -170,33 +170,38 @@ const receivedMessagesData = {
     case: "no-case",
   },
   14: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Your child maintenance enquiry",
+    date: "11 Nov 2019",
     case: "no-case",
   },
   15: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+    date: "24 Aug 2019",
     case: "no-case",
   },
   16: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
-    case: "no-case",
+    title: "Your child maintenance payments will not change",
+    date: "17 Jul 2019",
+    case: "j-smith",
   },
   17: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "We need some information from you",
+    date: "07 Jun 2019",
     case: "no-case",
   },
   18: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "A variation application has been made that could affect your payments - please respond ",
+    date: "08 Apr 2019",
     case: "no-case",
   },
   19: {
-    title: "We need to check other information with you",
-    date: "01 Jan 2021",
+    title: "Issue reminder request",
+    date: "07 Feb 2019",
+    case: "no-case",
+  },
+  20: {
+    title: "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+    date: "24 Aug 2018",
     case: "no-case",
   },
 };
@@ -326,7 +331,7 @@ if (window.location.href.includes("/home")) {
     tag0.innerText = changesData["change0"].status;
     tag1.innerText = changesData["change1"].status;
     tag2.innerText = changesData["change2"].status;
-    
+
     // If the Change Children journey has been completed
     if (sessionStorage.getItem("changeChildren")) {
       change0.innerText = changesData[`change${Object.keys(changesData).length - 1}`].changeType;
@@ -935,7 +940,7 @@ if (window.location.href.includes("/track-changes/track-changes")) {
 
 if (window.location.href.includes("change-details")) {
   urlParams = new URLSearchParams(window.location.search);
-  let changeNum = urlParams.get("change") 
+  let changeNum = urlParams.get("change")
 
   const changeDetailsTitle = $("#change-details-title")[0];
   const changeDetailsTag = $("#change-details-tag")[0];
