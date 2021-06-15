@@ -80,28 +80,44 @@ const caseData = {
 
 const sentMessagesData = {
   0: {
-    title: "Payment schedule query",
-    date: "01 Jan 2021",
-    case: "no-case",
+    title: "Responding to a request from the Child Maintenance Service",
+    date: "03 Jun 2021",
+    case: "c-jones",
   },
   1: {
-    title: "Something else",
-    date: "02 Apr 2020",
+    title: "Payment schedule query",
+    date: "13 May 2021",
     case: "j-smith",
+    link: "sent-message",
   },
   2: {
-    title: "Something else",
-    date: "02 Apr 2020",
+    title: "General query",
+    date: "15 Apr 2021",
     case: "no-case",
-    link: "sent-message"
+  },
+  3: {
+    title: "Missed payment",
+    date: "29 Mar 2021",
+    case: "j-smith",
+  },
+  4: {
+    title: "General query",
+    date: "26 Mar 2021",
+    case: "c-smith",
+  },
+  5: {
+    title: "Other change",
+    date: "11 Mar 2021",
+    case: "no-case",
   },
 };
 
 const receivedMessagesData = {
   0: {
-    title: "We need information about your gross weekly income",
-    date: "07 May 2021",
-    case: "no-case",
+    title: "Your child maintenance enquiry",
+    date: "21 May 2021",
+    case: "j-smith",
+    link: "week-received-message"
   },
   1: {
     title: "Paying child maintenance by standing order",
