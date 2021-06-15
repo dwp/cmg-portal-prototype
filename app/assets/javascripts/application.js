@@ -120,7 +120,7 @@ const receivedMessagesData = {
     link: "week-received-message"
   },
   1: {
-    title: "Paying child maintenance by standing order",
+    title: "We need some information from you",
     date: "01 Mar 2021",
     case: "no-case",
   },
@@ -165,7 +165,7 @@ const receivedMessagesData = {
     case: "no-case",
   },
   10: {
-    title: "Your direct debit payments have been set up",
+    title: "Issue reminder request",
     date: "19 Feb 2020",
     case: "no-case",
   },
