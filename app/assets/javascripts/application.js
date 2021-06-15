@@ -89,6 +89,12 @@ const sentMessagesData = {
     date: "02 Apr 2020",
     case: "j-smith",
   },
+  2: {
+    title: "Something else",
+    date: "02 Apr 2020",
+    case: "no-case",
+    link: "sent-message"
+  },
 };
 
 const receivedMessagesData = {
@@ -96,7 +102,7 @@ const receivedMessagesData = {
     title: "We need to check some information with you",
     date: "01 Jan 2021",
     case: "no-case",
-    link: "some_message_page",
+    link: "received-message",
   },
   1: {
     title: "We need to check some informfsasfsation with you",
@@ -113,6 +119,86 @@ const receivedMessagesData = {
     date: "01 Jan 2021",
     case: "j-smith",
   },
+  4: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "j-smith",
+  },
+  5: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  6: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  7: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  8: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  9: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  10: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  11: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  12: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  13: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  14: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  15: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  16: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  17: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  18: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
+  19: {
+    title: "We need to check other information with you",
+    date: "01 Jan 2021",
+    case: "no-case",
+  },
 };
 
 const changesData = {
@@ -122,7 +208,7 @@ const changesData = {
     colour: "red",
     submitted: "24 Apr 2004",
     updated: "10 May 2021",
-    link: "LINKBISH",
+    link: "/track-changes/new-child",
   },
   change1: {
     changeType:
@@ -178,8 +264,7 @@ if (sessionStorage.getItem("changeChildren")) {
       day: "2-digit",
       month: "short",
       year: "numeric",
-    }),
-    link: "/track-change-children"
+    })
   };
 }
 
@@ -220,6 +305,9 @@ if (window.location.href.includes("/home")) {
     change0.innerText = changesData["change0"].changeType;
     change1.innerText = changesData["change1"].changeType;
     change2.innerText = changesData["change2"].changeType;
+    change0.href = "track-changes/change-details?change=change0"
+    change1.href = "track-changes/change-details?change=change1"
+    change2.href = "track-changes/change-details?change=change2"
     tag0.classList.remove(...tag0.classList);
     tag1.classList.remove(...tag1.classList);
     tag2.classList.remove(...tag2.classList);
@@ -242,7 +330,7 @@ if (window.location.href.includes("/home")) {
     // If the Change Children journey has been completed
     if (sessionStorage.getItem("changeChildren")) {
       change0.innerText = changesData[`change${Object.keys(changesData).length - 1}`].changeType;
-      change0.href = "somepage.html"
+      change0.href = `track-changes/change-details?change=change${Object.keys(changesData).length - 1}`
     change1.innerText = changesData["change0"].changeType;
     change2.innerText = changesData["change1"].changeType;
     tag0.classList.remove(...tag0.classList);
@@ -411,9 +499,9 @@ try {
 
 // TRACK
 // CHANGES
-// PAGE
+// PAGES
 
-if (window.location.href.includes("/track_changes")) {
+if (window.location.href.includes("/track-changes/track-changes")) {
   const changeCheckboxes = $(".govuk-checkboxes__input").toArray();
   const submittedBefore = $("#submitted-before")[0];
   const submittedAfter = $("#submitted-after")[0];
@@ -609,7 +697,7 @@ if (window.location.href.includes("/track_changes")) {
       } else {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="#">${
+    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${
                     change.changeType
                   }</a>
     						<div class="changes-date-container">
@@ -845,13 +933,16 @@ if (window.location.href.includes("/track_changes")) {
   populateTrackChanges([]);
 }
 
-if (window.location.href.includes("change_details")) {
+if (window.location.href.includes("change-details")) {
   urlParams = new URLSearchParams(window.location.search);
+  let changeNum = urlParams.get("change") 
 
+  const changeDetailsTitle = $("#change-details-title")[0];
   const changeDetailsTag = $("#change-details-tag")[0];
   const changeDetailsDesc = $("#change-details-description")[0];
   const changeCompletionDate = $("#change-completion-date");
   const reportTimelineBody = $("#report-timeline-body")[0];
+  const changeDateSubmitted = $("#change-date-submitted")[0]
 
   const timelineData = {
     received: [
@@ -982,27 +1073,23 @@ if (window.location.href.includes("change_details")) {
     });
   };
 
-  switch (urlParams.get("type")) {
+  changeDetailsTitle.innerText = `${changesData[changeNum].changeType}`
+  changeDetailsTag.classList = `govuk-tag govuk-tag--${changesData[changeNum].colour} govuk-!-margin-bottom-5`
+  changeDetailsTag.innerText = `${changesData[changeNum].status}`
+  changeDateSubmitted.innerText = `Submitted: ${new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "short", year: "numeric",})}`
+
+  switch (changesData[changeNum].status) {
     case "received":
-      changeDetailsTag.classList =
-        "govuk-tag govuk-tag--blue govuk-!-margin-bottom-5";
-      changeDetailsTag.innerText = "Received";
       changeDetailsDesc.innerHTML =
         "We are assigning your report to a case worker who will start working on it within 7 days. Once your report has been assigned, we will change the status to in progress.";
       populateReportTimeline("received");
       break;
     case "in-progress":
-      changeDetailsTag.classList =
-        "govuk-tag govuk-tag--yellow govuk-!-margin-bottom-5";
-      changeDetailsTag.innerText = "In Progress";
       changeDetailsDesc.innerHTML =
         "We are currently working on your report.<br/><br/>We provide the most up to date status information that we have and are doing all we can to progress your report. There may be multiple steps we have take while your report is in progress, such as speaking to the other parent or working with another government organisation.<br/><br/>We will contact you when the change is complete or if we need more information. You do not need to contact us.";
       populateReportTimeline("inProgress");
       break;
     case "evidence-requested":
-      changeDetailsTag.classList =
-        "govuk-tag govuk-tag--purple govuk-!-margin-bottom-5";
-      changeDetailsTag.innerText = "Evidence requested";
       changeDetailsDesc.innerHTML = `We need evidence to support the change you have reported.<br/><br/>
       <a href="#">View messages and contact history</a> to see if we have sent you a letter requesting evidence. To send us a copy of your evidence select ‘Upload evidence’.<br/><br/>
       If we have not contacted you this means we require evidence from the other parent and are awaiting their response. You do not need to do anything.
@@ -1010,22 +1097,17 @@ if (window.location.href.includes("change_details")) {
       populateReportTimeline("evidenceRequested");
       break;
     case "completed":
-      changeDetailsTag.classList =
-        "govuk-tag govuk-tag--green govuk-!-margin-bottom-5";
-      changeDetailsTag.innerText = "Completed";
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been accepted and we have sent you a <a href="#">confirmation letter.</a>`;
       changeCompletionDate.hide();
       populateReportTimeline("completed");
       break;
     case "rejected":
-      changeDetailsTag.classList =
-        "govuk-tag govuk-tag--red govuk-!-margin-bottom-5";
-      changeDetailsTag.innerText = "Rejected";
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
       changeCompletionDate.hide();
       populateReportTimeline("rejected");
       break;
   }
+
 }
 
 //
@@ -1253,7 +1335,20 @@ if (window.location.href.includes("/messages/messages")) {
       let message = sentMessagesData[key];
       if (message.new) {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="dynamic-sent-message.html">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="dynamic-sent-message.html">${
+        message.title
+      }</a></th>
+      <td class="govuk-table__cell table-row-date">
+        ${new Date(message.date).toLocaleDateString("en-UK", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        })}
+      </td>
+    </tr>`;
+      } else if (message.link) {
+        return `<tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
         message.title
       }</a></th>
       <td class="govuk-table__cell table-row-date">
@@ -1266,7 +1361,7 @@ if (window.location.href.includes("/messages/messages")) {
     </tr>`;
       } else if (message.case != "no-case") {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a><span class="table-row-case">${
           message.case[0].toUpperCase() +
@@ -1284,7 +1379,7 @@ if (window.location.href.includes("/messages/messages")) {
     </tr>`;
       } else {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject" href="sent-message.html">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a></th>
       <td class="govuk-table__cell table-row-date">

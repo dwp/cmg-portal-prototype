@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
-{% set active_page = "Report a change" %} 
+{% set active_page = "Report a change" %}
 
 {% block pageTitle %}
-  Change of income
+Change of income
 {% endblock %}
 
 {% block header %}
@@ -25,7 +25,7 @@
       <a class="govuk-breadcrumbs__link" href="#">Report a change</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">Number of children</a>
+      <a class="govuk-breadcrumbs__link" href="#">New child</a>
     </li>
   </ol>
 </div>
@@ -35,26 +35,30 @@
 
     <div class="govuk-panel govuk-panel--confirmation">
       <h1 class="govuk-panel__title">
-        Application complete
+        We have received your request
       </h1>
-      <div class="govuk-panel__body">
-        Your reference number<br><strong>HDJ2123F</strong>
-      </div>
     </div>
 
-    <p>Let us know if the gross taxable annual income, we have previously used to calculate your child maintenance, has already increased or decreased.</p>
+    <h3 class="govuk-heading-m">
+      What happens next
+    </h3>
+    <p>Once we have reviewed your request and received your evidence, we will contact the other parent to confirm the
+      details you’ve given us.</p>
 
-    <p>You can only report a change of income that has already happened. If income is changing in the future, complete this report after the effective date.</p>
+    <p>If there is:</p>
 
-    <p>We review Child Maintenance each year, on the anniversary of the date we were first told about the application for child maintenance.</p>
-
-    <p>"If the income has changed by less than 25%, we will take this into consideration at the time of your Annual Review."</p>
-
-    <p>Changes in circumstances may affect your child maintenance.</p>
-
-    <a  href="/home.html" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8"  data-module="govuk-button">
-      Back to homepage
-    </a>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a change to your child maintenance payments, we will send you a new expected payment plan advising how much child maintenance you will receive and by when</li>
+      <li>no change to your child maintenance payments we will let you know</li>
+    </ul>
+    <h3 class="govuk-heading-m">
+      You need to upload your evidence
+    </h3>
+    <p>Evidence can include, for example a copy of child benefit payments, a legal document or a letter proving they are in full time education.</p>
+    <button class="govuk-button" data-module="govuk-button">Upload evidence</button>
+    <p>If you don’t have your evidence available now, you have 14 days to upload your documents, go to ‘Messages’ and select ‘Upload documents’.</p>
+    <p><a class="govuk-link--no-visited-state" href="#">Check the progress of the change you have reported</a> (it may take up to 30 seconds for your change to appear).</p>
+    <p>Remember to check we have your correct telephone number in case we need to contact you, go to 'Details' and select 'Contact details'.</p>
   </div>
 </div>
 {% endblock %}
