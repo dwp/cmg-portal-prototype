@@ -228,13 +228,13 @@ const changesData = {
     status: "received",
     colour: "blue",
     submitted: "10 Jun 2021",
-    updated: "11 Jun 2021",
+    updated: "10 Jun 2021",
   },
   change1: {
     changeType: "Change to service type",
     status: "in-progress",
     colour: "yellow",
-    submitted: "01 Jun 2021",
+    submitted: "16 May 2021",
     updated: "05 June 2021",
   },
   change2: {
@@ -1088,23 +1088,34 @@ if (window.location.href.includes("change-details")) {
   };
 
   const populateReportTimeline = (type) => {
-    timelineData[type].forEach((update) => {
+    // populate with default dates
+    timelineData[type].forEach((update,i) => {
       reportTimelineBody.innerHTML += `
       <div class="timeline-wrapper">
         <div class="timeline-body">
-          <h3 class="govuk-heading-m">${update.date}</h3>
+          <h3 id="update-${i}" class="govuk-heading-m">${update.date}</h3>
           <strong class="govuk-tag govuk-tag--${update.tag} govuk-!-margin-bottom-5">${update.status}</strong>
           <p>${update.desc}</p>
         </div>
       </div>
       `;
     });
+    // work out dates based on submitted and updated dates
+    let d0 = new Date(changesData[changeNum].updated)
+    $("#update-0")[0].innerText = d0.toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
+    try {
+      $("#update-1")[0].innerText = new Date(d0.setDate(d0.getDate() - 1)).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
+      $("#update-2")[0].innerText = new Date(d0.setDate(d0.getDate() - 1)).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
+      $("#update-3")[0].innerText = new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
+    }
+  catch (err) {}
   };
 
+  // Insert correct values on the change details page
   changeDetailsTitle.innerText = `${changesData[changeNum].changeType}`
   changeDetailsTag.classList = `govuk-tag govuk-tag--${changesData[changeNum].colour} govuk-!-margin-bottom-5`
   changeDetailsTag.innerText = `${changesData[changeNum].status}`
-  changeDateSubmitted.innerText = `Submitted: ${new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "short", year: "numeric",})}`
+  changeDateSubmitted.innerText = `Submitted: ${new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})}`
 
   switch (changesData[changeNum].status) {
     case "received":
@@ -1119,7 +1130,7 @@ if (window.location.href.includes("change-details")) {
       break;
     case "evidence-requested":
       changeDetailsDesc.innerHTML = `We need evidence to support the change you have reported.<br/><br/>
-      <a href="#">View messages and contact history</a> to see if we have sent you a letter requesting evidence. To send us a copy of your evidence select ‘Upload evidence’.<br/><br/>
+      <a class="govuk-link--no-visited-state" href="/messages/messages">View messages and contact history</a> to see if we have sent you a letter requesting evidence. To send us a copy of your evidence select ‘Upload evidence’.<br/><br/>
       If we have not contacted you this means we require evidence from the other parent and are awaiting their response. You do not need to do anything.
       `;
       populateReportTimeline("evidenceRequested");
