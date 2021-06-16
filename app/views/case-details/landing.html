@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+{% set active_page = "Case details" %}
+
+{% block pageTitle %}
+Report a change
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+    <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="#">Case details</a>
+        </li>
+    </ol>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+            Case details
+        </h1>
+        <p>You can view or make changes to your details here. Any changes you make are private and are not shared with
+            the other parent. </p>
+        <p>It’s important to keep your details up to date. Any incorrect or missing details could delay important
+            messages from us. </p>
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Personal details</h2>
+        </a>
+        <p>View your name, date of birth, gender, National Insurance number and children’s names.</p>
+        
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Contact details and preferences</h2>
+        </a>
+        <p>Keep your contact details up to date so we can keep in touch with you. Update your:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>telephone number</li>
+            <li>home and postal address</li>
+            <li>email address</li>
+            <li>contact preferences</li>
+        </ul>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Change PIN (personal identification number)</h2>
+        </a>
+        <p>Change your 7 digit PIN. This is the number you use when signing in or talking to us over the phone.</p>
+        
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Bank or building society details</h2>
+        </a>
+        <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Collect and Pay</h4>
+        <p>Check or change the bank account you receive child maintenance to.</p>
+        <!-- <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Direct Pay</h4>
+        <p>We do not have your bank details as you have arranged payments directly with the other parent. If you need us to pass on your details to the other parent, <a href="/messages/messages">send us a message.</a></p> -->
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Cases</h2>
+        </a>
+        <p>View details of your cases</p>
+        
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Annual reviews</h2>
+        </a>
+        <p>View details of your annual reviews</p>
+    </div>
+</div>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Income details</h2>
+        </a>
+        <p>View the income figure we have used to calculate your child maintenance payments.</p>
+        
+    </div>
+    <div class="govuk-grid-column-one-half">
+        <a href="#" class="govuk-link--no-visited-state">
+            <h2 class="govuk-!-margin-bottom-1">Client representative</h2>
+        </a>
+        <p>View your existing client representative.</p>
+    </div>
+</div>
+{% endblock %}
