@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% set active_page = "Track changes" %}
 
 {% block pageTitle %}
 My Child Maintenance Case
@@ -34,9 +35,9 @@ My Child Maintenance Case
     <h1 id="change-details-title" class="govuk-heading-xl govuk-!-margin-bottom-0">
       Change to service type
     </h1>
-    <p id="change-date-submitted" class="secondary govuk-!-margin-bottom-5">Submitted: 1 January 2021</p>
-    <strong id="change-details-tag" class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-5">In progress</strong> <a
-      href="#" class="govuk-link">Upload evidence</a>
+    <p id="change-details-case" class="secondary govuk-!-margin-bottom-5"></p>
+    <strong id="change-details-tag" class="govuk-tag govuk-tag--yellow govuk-!-margin-bottom-5">In progress</strong> 
+    <a id="upload-evidence" href="#" class="govuk-link">Upload evidence</a>
     <p id="change-details-description">We are currently working on your report.
       <br />
       <br />
@@ -44,7 +45,7 @@ My Child Maintenance Case
       need to contact the other parent or evidence is required. We will contact you when the change is complete or if we
       need more information. You do not need to contact us.
     </p>
-    <p id="change-completion-date"><strong>To be completed by:</strong> 16 July 2021</p>
+    <p id="change-completion-date" class="govuk-!-margin-bottom-0"><strong>Completion date</strong><br/>We aim to advise if your change request has been accepted or rejected by <strong>10 March 2021</strong></p>
     <h2 class="govuk-heading-l">Report timeline</h2>
     <div id="report-timeline-body">
       <!-- <div class="timeline-wrapper">
