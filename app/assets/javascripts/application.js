@@ -1461,12 +1461,13 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
-      }</a><span class="table-row-case">${
+        
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
           message.case.slice(3)
-        }</span></th>
+        }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
@@ -1499,12 +1500,12 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
         message.title
-      }</a><span class="table-row-case">${
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
           message.case.slice(3)
-        }</span></th>
+        }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
@@ -1531,12 +1532,12 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
-      }</a><span class="table-row-case">${
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
           message.case.slice(3)
-        }</span></th>
+        }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
