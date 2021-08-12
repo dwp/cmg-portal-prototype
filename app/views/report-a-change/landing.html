@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
-{% set active_page = "Report a change" %} 
+{% set active_page = "Report a change" %}
 
 {% block pageTitle %}
-  Report a change
+Report a change
 {% endblock %}
 
 {% block header %}
@@ -30,15 +30,49 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
       Report a change
     </h1>
+    <p>You can <a class="govuk-link--no-visited-state" href="#">track the progress of any changes</a> you report.</p>
+  </div>
+</div>
 
-    <a href="number-of-children.html" class="govuk-link--no-visited-state">
-      <h2>A child from a different relationship</h2>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <a href="payments/payments-landing.html" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Payments</h2>
     </a>
-    <p>We need to know if the other parent is financially supporting a child, from a different relationship, who is not part of your existing child maintenance arrangement.</p>
-    <p>The child must be from a different relationship to your existing child maintenance case.</p>
+    <p>Change how you make or receive payments, or let us know of any missed or voluntary payments.
+</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <a href="income/income-landing.html" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Income and expenses</h2>
+    </a>
+
+    <p>Report any changes to income and expenses.</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-one-half">
+    <a href="children/children-landing.html" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Children</h2>
+    </a>
+
+    <p>Let us know if anything has changed with the children you pay or receive maintenance for, or the number of children you support.</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <a href="children/children-landing.html" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Case details</h2>
+    </a>
+
+    <p>Change your:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>name</li>
+      <li>contact details and preferences</li>
+      <li>7 digit pin</li>
+    </ul>
   </div>
 </div>
 {% endblock %}
