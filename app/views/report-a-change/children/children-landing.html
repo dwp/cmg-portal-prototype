@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% set active_page = "Report a change" %}
+
+{% block pageTitle %}
+Children
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../landing.html">Report a change</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Children</a>
+    </li>
+  </ol>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+      Children
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Shared care</h2>
+    </a>
+
+    <p>Let us know how many nights a child stays overnight with the paying parent.</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Main carer</h2>
+    </a>
+
+    <p>Change who has financial or main day-to-day care of a child.</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Education</h2>
+    </a>
+
+    <p>We need to know when a child on your case, or a child the paying parent financially supports, is no longer in full time education.</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <a href="supporting-another-child/start.html" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Supporting another child</h2>
+    </a>
+
+    <p>Report a new child:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>with a parent you already have a child maintenance case with</li>
+      <li>a paying parent is financially supporting, from a different relationship, who is not part of an existing child maintenance arrangement.</li>
+    </ul>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Adoption</h2>
+    </a>
+
+    <p>Let us know if someone has adopted a child on your case or a child the paying parent financially supports.</p>
+  </div>
+</div>
+{% endblock %}

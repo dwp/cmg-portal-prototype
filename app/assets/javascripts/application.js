@@ -229,6 +229,7 @@ const changesData = {
     colour: "blue",
     submitted: "10 Jun 2021",
     updated: "10 Jun 2021",
+    case: "J. Smith"
   },
   change1: {
     changeType: "Change to service type",
@@ -244,6 +245,7 @@ const changesData = {
     colour: "green",
     submitted: "06 Feb 2021",
     updated: "08 May 2021",
+    case: "C. Jones"
   },
   change3: {
     changeType:
@@ -351,9 +353,9 @@ if (window.location.href.includes("/home")) {
       "govuk-tag",
       `govuk-tag--${changesData["change2"].colour}`
     );
-    tag0.innerText = changesData["change0"].status;
-    tag1.innerText = changesData["change1"].status;
-    tag2.innerText = changesData["change2"].status;
+    tag0.innerText = changesData["change0"].status.replace("-", " ");
+    tag1.innerText = changesData["change1"].status.replace("-", " ");
+    tag2.innerText = changesData["change2"].status.replace("-", " ");
 
     // If the Change Children journey has been completed
     if (sessionStorage.getItem("changeChildren")) {
@@ -701,7 +703,54 @@ if (window.location.href.includes("/track-changes/track-changes")) {
     // add that to the screen
     newHTML = newDataKeys.map((key) => {
       let change = changesData[key];
-      if (change.link) {
+      if (change.link && change.case) {
+        return `<tr class="govuk-table__row">
+    					<th scope="row" class="govuk-table__header"><a
+    							class="table-row-subject govuk-link--no-visited-state" href="${
+                    change.link
+                  }">${change.changeType}</a>
+    						<div class="changes-date-container govuk-!-margin-bottom-3">
+    							<span class="table-row-change-date submitted-date">Submitted: ${
+                    change.submitted
+                  }</span>
+    							<span class="table-row-change-date updated-date">Updated: ${
+                    change.updated
+                  }</span>
+    						</div>
+                <h4 class="govuk-heading-s govuk-!-margin-bottom-0 secondary">${change.case}</h4>
+    					</th>
+    					<td class="govuk-table__cell table-row-date"><strong
+    							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
+          "-",
+          " "
+        )}</strong></td>
+    				</tr> `;
+      } 
+      else if (change.case) {
+        return `<tr class="govuk-table__row">
+    					<th scope="row" class="govuk-table__header"><a
+    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${change.changeType}</a>
+    						<div class="changes-date-container govuk-!-margin-bottom-3">
+    							<span class="table-row-change-date submitted-date">Submitted: ${
+                    change.submitted
+                  }</span>
+    							<span class="table-row-change-date updated-date">Updated: ${
+                    change.updated
+                  }</span>
+    						</div>
+                <h4 class="govuk-heading-s govuk-!-margin-bottom-0 secondary">${change.case}</h4>
+    					</th>
+    					<td class="govuk-table__cell table-row-date"><strong
+    							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
+          "-",
+          " "
+        )}</strong>
+        
+        </td>
+        
+    				</tr> `;
+      }
+      else if (change.link) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
     							class="table-row-subject govuk-link--no-visited-state" href="${
@@ -837,15 +886,18 @@ if (window.location.href.includes("/track-changes/track-changes")) {
   };
 
   const applyFilter = () => {
+    // clear status facets
+    $(".status-facet-tag").each((tag) => {
+      console.log(tag)
+      $(".status-facet-tag")[tag].remove();
+    });
+    statusFacets.hide();
+    
     // if status filter is applied
     if (statusFilters.length) {
       console.log("we have ", statusFilters.length, " status filters applied");
       filteredChangeData = {};
-      // clear status facets
-      $(".status-facet-tag").each((tag) => {
-        $(".status-facet-tag")[tag].remove();
-      });
-      statusFacets.hide();
+
 
       statusFilters.forEach((status) => {
         // add facet tag
@@ -970,7 +1022,8 @@ if (window.location.href.includes("change-details")) {
   const changeDetailsDesc = $("#change-details-description")[0];
   const changeCompletionDate = $("#change-completion-date");
   const reportTimelineBody = $("#report-timeline-body")[0];
-  const changeDateSubmitted = $("#change-date-submitted")[0]
+  const changeDetailsCase = $("#change-details-case")[0]
+  const uploadEvidence = $("#upload-evidence")
 
   const timelineData = {
     received: [
@@ -1114,8 +1167,11 @@ if (window.location.href.includes("change-details")) {
   // Insert correct values on the change details page
   changeDetailsTitle.innerText = `${changesData[changeNum].changeType}`
   changeDetailsTag.classList = `govuk-tag govuk-tag--${changesData[changeNum].colour} govuk-!-margin-bottom-5`
-  changeDetailsTag.innerText = `${changesData[changeNum].status}`
-  changeDateSubmitted.innerText = `Submitted: ${new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})}`
+  changeDetailsTag.innerText = `${changesData[changeNum].status.replace("-", " ")}`
+  if (changesData[changeNum].case) {
+  changeDetailsCase.innerText = `${changesData[changeNum].case}`
+  }
+  // changeDateSubmitted.innerText = `Submitted: ${new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})}`
 
   switch (changesData[changeNum].status) {
     case "received":
@@ -1129,20 +1185,23 @@ if (window.location.href.includes("change-details")) {
       populateReportTimeline("inProgress");
       break;
     case "evidence-requested":
-      changeDetailsDesc.innerHTML = `We need evidence to support the change you have reported.<br/><br/>
-      <a class="govuk-link--no-visited-state" href="/messages/messages">View messages and contact history</a> to see if we have sent you a letter requesting evidence. To send us a copy of your evidence select ‘Upload evidence’.<br/><br/>
-      If we have not contacted you this means we require evidence from the other parent and are awaiting their response. You do not need to do anything.
-      `;
+      changeDetailsDesc.innerHTML = `If we need evidence from:
+      <ul>
+      <li>you, we have sent you a message. <a class="govuk-link--no-visited-state" href="/messages/messages">View messages and contact history</a> to see see if you need to upload evidence.</li>
+      <li>the other parent, you will not have received a message from us. You do not need to do anything.</li>
+      </ul>`;
       populateReportTimeline("evidenceRequested");
       break;
     case "completed":
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been accepted and we have sent you a <a href="#">confirmation letter.</a>`;
       changeCompletionDate.hide();
+      uploadEvidence.hide()
       populateReportTimeline("completed");
       break;
     case "rejected":
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
       changeCompletionDate.hide();
+      uploadEvidence.hide()
       populateReportTimeline("rejected");
       break;
   }
@@ -1402,12 +1461,13 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
-      }</a><span class="table-row-case">${
+        
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
           message.case.slice(3)
-        }</span></th>
+        }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
@@ -1440,12 +1500,12 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
         message.title
-      }</a><span class="table-row-case">${
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
           message.case.slice(3)
-        }</span></th>
+        }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
@@ -1472,12 +1532,12 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
-      }</a><span class="table-row-case">${
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
           message.case.slice(3)
-        }</span></th>
+        }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
@@ -1613,6 +1673,12 @@ if (window.location.href.includes("/messages/messages")) {
 
   const applyFilter = () => {
     console.log("applying filter");
+    // clear case facets
+    $(".case-facet-tag").each((tag) => {
+      $(".case-facet-tag")[tag].remove();
+    });
+    caseFacets.hide();
+
     // if status filter is applied
     if (caseFilters.length) {
       console.log("we have ", caseFilters.length, " case filters applied");
@@ -1620,11 +1686,6 @@ if (window.location.href.includes("/messages/messages")) {
       let filteredReceivedMessageData = {};
       let filteredSentMessageData = {};
 
-      // clear case facets
-      $(".case-facet-tag").each((tag) => {
-        $(".case-facet-tag")[tag].remove();
-      });
-      caseFacets.hide();
 
       // add facet tags
       caseFilters.forEach((casee) => {
