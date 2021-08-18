@@ -2,7 +2,7 @@
 {% set active_page = "Report a change" %}
 
 {% block pageTitle %}
-  Report a missed payment
+  Supporting another child
 {% endblock %}
 
 {% block header %}
@@ -37,20 +37,20 @@
   <div class="govuk-grid-column-two-thirds">
 
     <h1 class="govuk-heading-xl">
-      Where did the child come from?
+      What type of child are you reporting?
     </h1>
 
     <div class="govuk-radios">
       <div class="govuk-radios__item">
         <input class="govuk-radios__input" id="existing-case" name="type-of-child" type="radio" value="existing-case">
         <label class="govuk-label govuk-radios__label" for="existing-case">
-          with a parent from an existing case
+          A child with a parent from an existing case
         </label>
       </div>
-      <div class="govuk-radios__item">
+      <div class="govuk-radios__item govuk-!-margin-bottom-5">
         <input class="govuk-radios__input" id="another-relationship" name="type-of-child" type="radio" value="another-relationship" >
         <label class="govuk-label govuk-radios__label" for="another-relationship">
-          a child from another relationship
+          A child from another relationship that the paying parent financially supports 
         </label>
       </div>
     </div>
