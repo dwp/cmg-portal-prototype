@@ -19,6 +19,32 @@ $govuk-assets-path: "/govuk/assets/";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+#user-type-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  width: 60px;
+  background-color: red;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+
+  &:hover {
+    transition: all;
+    transition-duration: 0.5s;
+    opacity: 100%;
+  }
+}
+
+#user-type-para {
+  margin: 0;
+  color: white;
+}
+
 .grey-box {
   background-color: govuk-colour("light-grey", $legacy: "grey-4");
   padding: 22px;
@@ -546,4 +572,9 @@ $govuk-assets-path: '/govuk/assets/';
 
 .change-case-name {
   color: $govuk-secondary-text-colour;
+}
+
+.message-case-name {
+  color: $govuk-secondary-text-colour;
+  margin-top: 15px;
 }

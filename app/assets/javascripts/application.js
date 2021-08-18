@@ -15,6 +15,43 @@ $(document).ready(function () {
 // GLOBAL
 // DATA
 
+let urlParams = new URLSearchParams(window.location.search);
+
+if (urlParams.get("userType")) {
+  console.log(urlParams.get("userType").toUpperCase());
+  sessionStorage.setItem("userType", urlParams.get("userType").toUpperCase());
+}
+
+if (sessionStorage.getItem("userType")) {
+  $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+}
+
+const changeUserType = () => {
+  switch (sessionStorage.getItem("userType")) {
+    case "PP":
+      sessionStorage.setItem("userType", "RP");
+      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+      break;
+    case "RP":
+      sessionStorage.setItem("userType", "DUAL");
+      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+      break;
+    case "DUAL":
+      sessionStorage.setItem("userType", "PP");
+      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+      break;
+    default:
+      sessionStorage.setItem("userType", "PP");
+      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+      break;
+  }
+  location.reload();
+};
+
+$("#user-type-container")[0].addEventListener("click", changeUserType);
+
+let userType = sessionStorage.getItem("userType");
+
 const caseData = {
   all: {
     case: "allCases",
@@ -117,7 +154,7 @@ const receivedMessagesData = {
     title: "Your child maintenance enquiry",
     date: "21 May 2021",
     case: "j-smith",
-    link: "week-received-message"
+    link: "week-received-message",
   },
   1: {
     title: "We need some information from you",
@@ -140,7 +177,8 @@ const receivedMessagesData = {
     case: "j-smith",
   },
   5: {
-    title: "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+    title:
+      "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
     date: "24 Aug 2020",
     case: "no-case",
   },
@@ -160,7 +198,8 @@ const receivedMessagesData = {
     case: "no-case",
   },
   9: {
-    title: "Your payment plan for effective date of payment schedule to last payment date of schedule",
+    title:
+      "Your payment plan for effective date of payment schedule to last payment date of schedule",
     date: "24 Mar 2020",
     case: "no-case",
   },
@@ -191,7 +230,8 @@ const receivedMessagesData = {
     case: "no-case",
   },
   15: {
-    title: "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+    title:
+      "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
     date: "24 Aug 2019",
     case: "no-case",
   },
@@ -206,7 +246,8 @@ const receivedMessagesData = {
     case: "no-case",
   },
   18: {
-    title: "A variation application has been made that could affect your payments - please respond ",
+    title:
+      "A variation application has been made that could affect your payments - please respond ",
     date: "08 Apr 2019",
     case: "no-case",
   },
@@ -216,7 +257,8 @@ const receivedMessagesData = {
     case: "no-case",
   },
   20: {
-    title: "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+    title:
+      "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
     date: "24 Aug 2018",
     case: "no-case",
   },
@@ -229,7 +271,7 @@ const changesData = {
     colour: "blue",
     submitted: "10 Jun 2021",
     updated: "10 Jun 2021",
-    case: "J. Smith"
+    case: "J. Smith",
   },
   change1: {
     changeType: "Change to service type",
@@ -239,25 +281,22 @@ const changesData = {
     updated: "05 June 2021",
   },
   change2: {
-    changeType:
-      "Additional income",
+    changeType: "Additional income",
     status: "completed",
     colour: "green",
     submitted: "06 Feb 2021",
     updated: "08 May 2021",
-    case: "C. Jones"
+    case: "C. Jones",
   },
   change3: {
-    changeType:
-      "Shared care",
+    changeType: "Shared care",
     status: "evidence-requested",
     colour: "purple",
     submitted: "08 Apr 2021",
     updated: "12 Apr 2021",
   },
   change4: {
-    changeType:
-      "Full time education",
+    changeType: "Full time education",
     status: "completed",
     colour: "green",
     submitted: "06 Sep 2020",
@@ -294,7 +333,7 @@ if (sessionStorage.getItem("changeChildren")) {
       day: "2-digit",
       month: "short",
       year: "numeric",
-    })
+    }),
   };
 }
 
@@ -303,7 +342,6 @@ if (sessionStorage.getItem("changeChildren")) {
 // THANGS
 
 if (window.location.href.includes("/home")) {
-
   let message0 = $("#message0")[0];
   let message1 = $("#message1")[0];
   let message2 = $("#message2")[0];
@@ -316,6 +354,17 @@ if (window.location.href.includes("/home")) {
   let tag0 = $("#tag0")[0];
   let tag1 = $("#tag1")[0];
   let tag2 = $("#tag2")[0];
+
+  switch (userType) {
+    case "RP":
+      $("#update-income-useful-link").hide();
+      break;
+    case "PP":
+      $("#missed-payment-useful-link").hide();
+      break;
+    case "DUAL":
+      break;
+  }
 
   const changeData = (caseName) => {
     let newData = caseData[caseName];
@@ -335,9 +384,9 @@ if (window.location.href.includes("/home")) {
     change0.innerText = changesData["change0"].changeType;
     change1.innerText = changesData["change1"].changeType;
     change2.innerText = changesData["change2"].changeType;
-    change0.href = "track-changes/change-details?change=change0"
-    change1.href = "track-changes/change-details?change=change1"
-    change2.href = "track-changes/change-details?change=change2"
+    change0.href = "track-changes/change-details?change=change0";
+    change1.href = "track-changes/change-details?change=change1";
+    change2.href = "track-changes/change-details?change=change2";
     tag0.classList.remove(...tag0.classList);
     tag1.classList.remove(...tag1.classList);
     tag2.classList.remove(...tag2.classList);
@@ -359,30 +408,35 @@ if (window.location.href.includes("/home")) {
 
     // If the Change Children journey has been completed
     if (sessionStorage.getItem("changeChildren")) {
-      change0.innerText = changesData[`change${Object.keys(changesData).length - 1}`].changeType;
-      change0.href = `track-changes/change-details?change=change${Object.keys(changesData).length - 1}`
-    change1.innerText = changesData["change0"].changeType;
-    change2.innerText = changesData["change1"].changeType;
-    tag0.classList.remove(...tag0.classList);
-    tag1.classList.remove(...tag1.classList);
-    tag2.classList.remove(...tag2.classList);
-    tag0.classList.add(
-      "govuk-tag",
-      `govuk-tag--${changesData[`change${Object.keys(changesData).length - 1}`].colour}`
-    );
-    tag1.classList.add(
-      "govuk-tag",
-      `govuk-tag--${changesData["change0"].colour}`
-    );
-    tag2.classList.add(
-      "govuk-tag",
-      `govuk-tag--${changesData["change1"].colour}`
-    );
-    tag0.innerText = changesData[`change${Object.keys(changesData).length - 1}`].status;
-    tag1.innerText = changesData["change0"].status;
-    tag2.innerText = changesData["change1"].status;
+      change0.innerText =
+        changesData[`change${Object.keys(changesData).length - 1}`].changeType;
+      change0.href = `track-changes/change-details?change=change${
+        Object.keys(changesData).length - 1
+      }`;
+      change1.innerText = changesData["change0"].changeType;
+      change2.innerText = changesData["change1"].changeType;
+      tag0.classList.remove(...tag0.classList);
+      tag1.classList.remove(...tag1.classList);
+      tag2.classList.remove(...tag2.classList);
+      tag0.classList.add(
+        "govuk-tag",
+        `govuk-tag--${
+          changesData[`change${Object.keys(changesData).length - 1}`].colour
+        }`
+      );
+      tag1.classList.add(
+        "govuk-tag",
+        `govuk-tag--${changesData["change0"].colour}`
+      );
+      tag2.classList.add(
+        "govuk-tag",
+        `govuk-tag--${changesData["change1"].colour}`
+      );
+      tag0.innerText =
+        changesData[`change${Object.keys(changesData).length - 1}`].status;
+      tag1.innerText = changesData["change0"].status;
+      tag2.innerText = changesData["change1"].status;
     }
-
   };
 
   const showCase = (e) => {
@@ -458,7 +512,6 @@ const showPayments = (e) => {
 const sorter = $("#sort")[0];
 const calcSorter = $("#calcs-sort")[0];
 const paySorter = $("#payment-sort")[0];
-let urlParams = new URLSearchParams(window.location.search);
 
 try {
   sorter.addEventListener("change", showCase);
@@ -717,7 +770,9 @@ if (window.location.href.includes("/track-changes/track-changes")) {
                     change.updated
                   }</span>
     						</div>
-                <h4 class="govuk-heading-s govuk-!-margin-bottom-0 secondary">${change.case}</h4>
+                <h4 class="govuk-heading-s govuk-!-margin-bottom-0 secondary">${
+                  change.case
+                }</h4>
     					</th>
     					<td class="govuk-table__cell table-row-date"><strong
     							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
@@ -725,11 +780,12 @@ if (window.location.href.includes("/track-changes/track-changes")) {
           " "
         )}</strong></td>
     				</tr> `;
-      } 
-      else if (change.case) {
+      } else if (change.case) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${change.changeType}</a>
+    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${
+          change.changeType
+        }</a>
     						<div class="changes-date-container govuk-!-margin-bottom-3">
     							<span class="table-row-change-date submitted-date">Submitted: ${
                     change.submitted
@@ -738,7 +794,9 @@ if (window.location.href.includes("/track-changes/track-changes")) {
                     change.updated
                   }</span>
     						</div>
-                <h4 class="govuk-heading-s govuk-!-margin-bottom-0 secondary">${change.case}</h4>
+                <h4 class="govuk-heading-s govuk-!-margin-bottom-0 secondary">${
+                  change.case
+                }</h4>
     					</th>
     					<td class="govuk-table__cell table-row-date"><strong
     							class="govuk-tag govuk-tag--${change.colour}">${change.status.replace(
@@ -749,8 +807,7 @@ if (window.location.href.includes("/track-changes/track-changes")) {
         </td>
         
     				</tr> `;
-      }
-      else if (change.link) {
+      } else if (change.link) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
     							class="table-row-subject govuk-link--no-visited-state" href="${
@@ -775,8 +832,8 @@ if (window.location.href.includes("/track-changes/track-changes")) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
     							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${
-                    change.changeType
-                  }</a>
+          change.changeType
+        }</a>
     						<div class="changes-date-container">
     							<span class="table-row-change-date submitted-date">Submitted: ${
                     change.submitted
@@ -888,16 +945,15 @@ if (window.location.href.includes("/track-changes/track-changes")) {
   const applyFilter = () => {
     // clear status facets
     $(".status-facet-tag").each((tag) => {
-      console.log(tag)
+      console.log(tag);
       $(".status-facet-tag")[tag].remove();
     });
     statusFacets.hide();
-    
+
     // if status filter is applied
     if (statusFilters.length) {
       console.log("we have ", statusFilters.length, " status filters applied");
       filteredChangeData = {};
-
 
       statusFilters.forEach((status) => {
         // add facet tag
@@ -1015,15 +1071,15 @@ if (window.location.href.includes("/track-changes/track-changes")) {
 
 if (window.location.href.includes("change-details")) {
   urlParams = new URLSearchParams(window.location.search);
-  let changeNum = urlParams.get("change")
+  let changeNum = urlParams.get("change");
 
   const changeDetailsTitle = $("#change-details-title")[0];
   const changeDetailsTag = $("#change-details-tag")[0];
   const changeDetailsDesc = $("#change-details-description")[0];
   const changeCompletionDate = $("#change-completion-date");
   const reportTimelineBody = $("#report-timeline-body")[0];
-  const changeDetailsCase = $("#change-details-case")[0]
-  const uploadEvidence = $("#upload-evidence")
+  const changeDetailsCase = $("#change-details-case")[0];
+  const uploadEvidence = $("#upload-evidence");
 
   const timelineData = {
     received: [
@@ -1142,7 +1198,7 @@ if (window.location.href.includes("change-details")) {
 
   const populateReportTimeline = (type) => {
     // populate with default dates
-    timelineData[type].forEach((update,i) => {
+    timelineData[type].forEach((update, i) => {
       reportTimelineBody.innerHTML += `
       <div class="timeline-wrapper">
         <div class="timeline-body">
@@ -1154,22 +1210,46 @@ if (window.location.href.includes("change-details")) {
       `;
     });
     // work out dates based on submitted and updated dates
-    let d0 = new Date(changesData[changeNum].updated)
-    $("#update-0")[0].innerText = d0.toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
+    let d0 = new Date(changesData[changeNum].updated);
+    $("#update-0")[0].innerText = d0.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
     try {
-      $("#update-1")[0].innerText = new Date(d0.setDate(d0.getDate() - 1)).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
-      $("#update-2")[0].innerText = new Date(d0.setDate(d0.getDate() - 1)).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
-      $("#update-3")[0].innerText = new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})
-    }
-  catch (err) {}
+      $("#update-1")[0].innerText = new Date(
+        d0.setDate(d0.getDate() - 1)
+      ).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+      $("#update-2")[0].innerText = new Date(
+        d0.setDate(d0.getDate() - 1)
+      ).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+      $("#update-3")[0].innerText = new Date(
+        changesData[changeNum].submitted
+      ).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      });
+    } catch (err) {}
   };
 
   // Insert correct values on the change details page
-  changeDetailsTitle.innerText = `${changesData[changeNum].changeType}`
-  changeDetailsTag.classList = `govuk-tag govuk-tag--${changesData[changeNum].colour} govuk-!-margin-bottom-5`
-  changeDetailsTag.innerText = `${changesData[changeNum].status.replace("-", " ")}`
+  changeDetailsTitle.innerText = `${changesData[changeNum].changeType}`;
+  changeDetailsTag.classList = `govuk-tag govuk-tag--${changesData[changeNum].colour} govuk-!-margin-bottom-5`;
+  changeDetailsTag.innerText = `${changesData[changeNum].status.replace(
+    "-",
+    " "
+  )}`;
   if (changesData[changeNum].case) {
-  changeDetailsCase.innerText = `${changesData[changeNum].case}`
+    changeDetailsCase.innerText = `${changesData[changeNum].case}`;
   }
   // changeDateSubmitted.innerText = `Submitted: ${new Date(changesData[changeNum].submitted).toLocaleDateString("en-GB", {day: "2-digit", month: "long", year: "numeric",})}`
 
@@ -1195,17 +1275,16 @@ if (window.location.href.includes("change-details")) {
     case "completed":
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been accepted and we have sent you a <a href="#">confirmation letter.</a>`;
       changeCompletionDate.hide();
-      uploadEvidence.hide()
+      uploadEvidence.hide();
       populateReportTimeline("completed");
       break;
     case "rejected":
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
       changeCompletionDate.hide();
-      uploadEvidence.hide()
+      uploadEvidence.hide();
       populateReportTimeline("rejected");
       break;
   }
-
 }
 
 //
@@ -1446,9 +1525,9 @@ if (window.location.href.includes("/messages/messages")) {
     </tr>`;
       } else if (message.link) {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
-        message.title
-      }</a></th>
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
+        message.link
+      }">${message.title}</a></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
           day: "numeric",
@@ -1461,8 +1540,7 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
-        
-      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
@@ -1498,9 +1576,11 @@ if (window.location.href.includes("/messages/messages")) {
       let message = receivedMessagesData[key];
       if (message.case != "no-case" && message.link) {
         return `<tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${message.link}">${
-        message.title
-      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
+      <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
+        message.link
+      }">${
+          message.title
+        }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
@@ -1514,8 +1594,7 @@ if (window.location.href.includes("/messages/messages")) {
         })}
       </td>
     </tr>`;
-      }
-      else if (message.link) {
+      } else if (message.link) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
         message.link
@@ -1532,7 +1611,7 @@ if (window.location.href.includes("/messages/messages")) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
-      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 change-case-name">${
+      }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
           message.case[0].toUpperCase() +
           " " +
           message.case[2].toUpperCase() +
@@ -1685,7 +1764,6 @@ if (window.location.href.includes("/messages/messages")) {
       filteredMessageData = {};
       let filteredReceivedMessageData = {};
       let filteredSentMessageData = {};
-
 
       // add facet tags
       caseFilters.forEach((casee) => {
@@ -1907,13 +1985,39 @@ if (window.location.href.includes("/messages/messages")) {
 // CHANGE
 
 if (window.location.href.includes("/report-a-change")) {
-  const startChangeChildrenButton = $("#start-change-children-button")[0];
+  if (window.location.href.includes("/report-a-change/landing")) {
+    if (userType == "RP") {
+      $("#income-and-expenses-link-h2")[0].innerText = "Income";
+      $("#income-and-expenses-para")[0].innerText =
+        "Report any changes to income";
+    }
+  }
 
-  // add new change when start button is clicked
-  startChangeChildrenButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    sessionStorage.setItem("changeChildren", true);
-    console.log("Doing the ting");
-    window.location.href = window.location.href.replace("/number-of-children", "/number-of-children-confirmation.html")
-  });
+  if (window.location.href.includes("/report-a-change/income/income-landing")) {
+    if (userType == "RP") {
+      $("#special-expenses-row").hide();
+    }
+  }
+
+  // add new change when start Change Children button is clicked
+
+  // const startChangeChildrenButton = $("#start-change-children-button")[0];
+
+  // startChangeChildrenButton.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   sessionStorage.setItem("changeChildren", true);
+  //   console.log("Doing the ting");
+  //   window.location.href = window.location.href.replace("/number-of-children", "/number-of-children-confirmation.html")
+  // });
+}
+
+if (window.location.href.includes("/case-details/landing")) {
+  if (userType == "RP") {
+    $(
+      "#income-details-div"
+    )[0].innerHTML = `<a class="govuk-link--no-visited-state">
+    <h2 class="govuk-!-margin-bottom-1">Income details</h2>
+</a>
+<p>As you don't pay child maintenance, we don't record your income details.</p>`;
+  }
 }
