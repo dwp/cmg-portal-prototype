@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% set active_page = "Report a change" %}
+
+{% block pageTitle %}
+Report a change
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../landing.html">Report a change</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Payments</a>
+    </li>
+  </ol>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+      Payments
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Payment service</h2>
+    </a>
+    <p>Ask to change from using Collect and Pay to Direct Pay, or the other way around.</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Voluntary payments</h2>
+    </a>
+
+    <p>Tell us about a voluntary payment you have made or received.</p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Missed Payment</h2>
+    </a>
+
+    <p>Report a missed payment and find out what measures the Child Maintenance Service can take to enforce unpaid child maintenance.</p>
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <a href="#" class="govuk-link--no-visited-state">
+      <h2 class="govuk-!-margin-bottom-2">Bank or building society</h2>
+    </a>
+
+    <p>Change the bank or building society details you use to pay or receive child maintenance.</p>
+  </div>
+
+</div>
+
+{% endblock %}
