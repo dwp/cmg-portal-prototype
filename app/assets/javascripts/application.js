@@ -1996,6 +1996,8 @@ if (window.location.href.includes("/report-a-change")) {
   if (window.location.href.includes("/report-a-change/income/income-landing")) {
     if (userType == "RP") {
       $("#special-expenses-row").hide();
+      $("#income-and-expenses-title")[0].innerText = "Income"
+      $("#income-and-expenses-breadcrumb")[0].innerText = "Income"
     }
   }
 
