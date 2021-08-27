@@ -15,327 +15,352 @@ $(document).ready(function () {
 // GLOBAL
 // DATA
 
-let urlParams = new URLSearchParams(window.location.search);
+  let urlParams = new URLSearchParams(window.location.search);
 
-if (urlParams.get("userType")) {
-  console.log(urlParams.get("userType").toUpperCase());
-  sessionStorage.setItem("userType", urlParams.get("userType").toUpperCase());
-}
-
-if (sessionStorage.getItem("userType")) {
-  $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
-}
-
-const changeUserType = () => {
-  switch (sessionStorage.getItem("userType")) {
-    case "PP":
-      sessionStorage.setItem("userType", "RP");
-      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
-      break;
-    case "RP":
-      sessionStorage.setItem("userType", "DUAL");
-      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
-      break;
-    case "DUAL":
-      sessionStorage.setItem("userType", "PP");
-      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
-      break;
-    default:
-      sessionStorage.setItem("userType", "PP");
-      $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
-      break;
+  if (urlParams.get("userType")) {
+    console.log(urlParams.get("userType").toUpperCase());
+    sessionStorage.setItem("userType", urlParams.get("userType").toUpperCase());
   }
-  location.reload();
-};
 
-$("#user-type-container")[0].addEventListener("click", changeUserType);
+  if (sessionStorage.getItem("userType")) {
+    $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+  }
 
-let userType = sessionStorage.getItem("userType");
-
-const caseData = {
-  all: {
-    case: "allCases",
-    messages: {
-      msg0: ["We need to check some information with you", "01/02/2021"],
-      msg1: ["Your child maintenance payments will not change", "15/01/2021"],
-      msg2: ["We've worked out your child maintenance payments", "31/12/2020"],
-    },
-    changes: {
-      chng0: ["Change phone number", "blue", "received"],
-      chng1: ["Change address", "blue", "received"],
-      chng2: [
-        "Change to Direct Pay or Collect and Pay",
-        "yellow",
-        "in progress",
-      ],
-    },
-  },
-  jsmith: {
-    case: "jsmith",
-    messages: {
-      msg0: ["We need to check some information with you", "01/02/2021"],
-      msg1: ["We haven't received a child maintenance payment", "28/12/2020"],
-      msg2: ["A variation has been reported", "19/12/2020"],
-    },
-    changes: {
-      chng0: ["Update shared care", "yellow", "in progress"],
-      chng1: ["Update income", "yellow", "in progress"],
-      chng2: ["Special expenses", "green", "completed"],
-    },
-  },
-  cjones: {
-    case: "cjones",
-    messages: {
-      msg0: ["Your child maintenance payments will not change", "15/01/2021"],
-      msg1: ["We have received a new report", "11/11/2020"],
-      msg2: ["We have been updated of special expenses", "10/11/2020"],
-    },
-    changes: {
-      chng0: [
-        "Change to Direct Pay or Collect and Pay",
-        "yellow",
-        "in progress",
-      ],
-      chng1: ["Update shared care", "green", "Accepted"],
-      chng2: ["Update shared care", "green", "Accepted"],
-    },
-  },
-  ftenet: {
-    case: "ftenet",
-    messages: {
-      msg0: ["We've worked out your child maintenance payments", "31/12/2020"],
-      msg1: ["We've received your voluntary payment", "01/09/2020"],
-      msg2: ["We've received your voluntary payment", "13/08/2020"],
-    },
-    changes: {
-      chng0: ["Update income", "yellow", "in progress"],
-      chng1: ["Child still in education", "green", "Accepted"],
-      chng2: ["Update shared care", "green", "Accepted"],
-    },
-  },
-};
-
-const sentMessagesData = {
-  0: {
-    title: "Responding to a request from the Child Maintenance Service",
-    date: "03 Jun 2021",
-    case: "c-jones",
-  },
-  1: {
-    title: "Payment schedule query",
-    date: "13 May 2021",
-    case: "j-smith",
-    link: "sent-message",
-  },
-  2: {
-    title: "General query",
-    date: "15 Apr 2021",
-    case: "no-case",
-  },
-  3: {
-    title: "Missed payment",
-    date: "29 Mar 2021",
-    case: "j-smith",
-  },
-  4: {
-    title: "General query",
-    date: "26 Mar 2021",
-    case: "c-smith",
-  },
-  5: {
-    title: "Other change",
-    date: "11 Mar 2021",
-    case: "no-case",
-  },
-};
-
-const receivedMessagesData = {
-  0: {
-    title: "Your child maintenance enquiry",
-    date: "21 May 2021",
-    case: "j-smith",
-    link: "week-received-message",
-  },
-  1: {
-    title: "We need some information from you",
-    date: "01 Mar 2021",
-    case: "no-case",
-  },
-  2: {
-    title: "We need to check some information with you",
-    date: "25 Jan 2021",
-    case: "no-case",
-  },
-  3: {
-    title: "Your child maintenance enquiry",
-    date: "18 Dec 2020",
-    case: "j-smith",
-  },
-  4: {
-    title: "Your child maintenance payments will not change",
-    date: "15 Oct 2020",
-    case: "j-smith",
-  },
-  5: {
-    title:
-      "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
-    date: "24 Aug 2020",
-    case: "no-case",
-  },
-  6: {
-    title: "Your child maintenance enquiry",
-    date: "20 Jul 2020",
-    case: "no-case",
-  },
-  7: {
-    title: "We need some information from you",
-    date: "28 May 2020",
-    case: "no-case",
-  },
-  8: {
-    title: "We've made a decision about a variation application",
-    date: "28 Apr 2020",
-    case: "no-case",
-  },
-  9: {
-    title:
-      "Your payment plan for effective date of payment schedule to last payment date of schedule",
-    date: "24 Mar 2020",
-    case: "no-case",
-  },
-  10: {
-    title: "Issue reminder request",
-    date: "19 Feb 2020",
-    case: "no-case",
-  },
-  11: {
-    title: "Your service type has changed",
-    date: "21 Jan 2020",
-    case: "c-jones",
-    link: "received-message",
-  },
-  12: {
-    title: "We need to check some information with you",
-    date: "17 Dec 2019",
-    case: "no-case",
-  },
-  13: {
-    title: "We need to check other information with you",
-    date: "01 Dec 2019",
-    case: "no-case",
-  },
-  14: {
-    title: "Your child maintenance enquiry",
-    date: "11 Nov 2019",
-    case: "no-case",
-  },
-  15: {
-    title:
-      "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
-    date: "24 Aug 2019",
-    case: "no-case",
-  },
-  16: {
-    title: "Your child maintenance payments will not change",
-    date: "17 Jul 2019",
-    case: "j-smith",
-  },
-  17: {
-    title: "We need some information from you",
-    date: "07 Jun 2019",
-    case: "no-case",
-  },
-  18: {
-    title:
-      "A variation application has been made that could affect your payments - please respond ",
-    date: "08 Apr 2019",
-    case: "no-case",
-  },
-  19: {
-    title: "Issue reminder request",
-    date: "07 Feb 2019",
-    case: "no-case",
-  },
-  20: {
-    title:
-      "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
-    date: "24 Aug 2018",
-    case: "no-case",
-  },
-};
-
-const changesData = {
-  change0: {
-    changeType: "Change bank details",
-    status: "received",
-    colour: "blue",
-    submitted: "10 Jun 2021",
-    updated: "10 Jun 2021",
-    case: "J. Smith",
-  },
-  change1: {
-    changeType: "Change to service type",
-    status: "in-progress",
-    colour: "yellow",
-    submitted: "16 May 2021",
-    updated: "05 June 2021",
-  },
-  change2: {
-    changeType: "Additional income",
-    status: "completed",
-    colour: "green",
-    submitted: "06 Feb 2021",
-    updated: "08 May 2021",
-    case: "C. Jones",
-  },
-  change3: {
-    changeType: "Shared care",
-    status: "evidence-requested",
-    colour: "purple",
-    submitted: "08 Apr 2021",
-    updated: "12 Apr 2021",
-  },
-  change4: {
-    changeType: "Full time education",
-    status: "completed",
-    colour: "green",
-    submitted: "06 Sep 2020",
-    updated: "19 Oct 2020",
-  },
-  change5: {
-    changeType: "Special expenses",
-    status: "rejected",
-    colour: "red",
-    submitted: "12 Aug 2020",
-    updated: "29 Aug 2020",
-  },
-  change6: {
-    changeType: "Change of income",
-    status: "completed",
-    colour: "green",
-    submitted: "24 Mar 2020",
-    updated: "06 Apr 2020",
-  },
-};
-
-// If Change Children journey has been completed
-if (sessionStorage.getItem("changeChildren")) {
-  changesData[`change${Object.keys(changesData).length}`] = {
-    changeType: "Supporting another child",
-    status: "received",
-    colour: "blue",
-    submitted: new Date().toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }),
-    updated: new Date().toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }),
+  const changeUserType = () => {
+    switch (sessionStorage.getItem("userType")) {
+      case "PP":
+        sessionStorage.setItem("userType", "RP");
+        $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+        break;
+      case "RP":
+        sessionStorage.setItem("userType", "DUAL");
+        $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+        break;
+      case "DUAL":
+        sessionStorage.setItem("userType", "PP");
+        $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+        break;
+      default:
+        sessionStorage.setItem("userType", "PP");
+        $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
+        break;
+    }
+    location.reload();
   };
-}
+
+  $("#user-type-container")[0].addEventListener("click", changeUserType);
+
+  let userType = sessionStorage.getItem("userType");
+
+  const caseData = {
+    all: {
+      case: "allCases",
+      messages: {
+        msg0: ["We need to check some information with you", "01/02/2021"],
+        msg1: ["Your child maintenance payments will not change", "15/01/2021"],
+        msg2: [
+          "We've worked out your child maintenance payments",
+          "31/12/2020",
+        ],
+      },
+      changes: {
+        chng0: ["Change phone number", "blue", "received"],
+        chng1: ["Change address", "blue", "received"],
+        chng2: [
+          "Change to Direct Pay or Collect and Pay",
+          "yellow",
+          "in progress",
+        ],
+      },
+    },
+    jsmith: {
+      case: "jsmith",
+      messages: {
+        msg0: ["We need to check some information with you", "01/02/2021"],
+        msg1: ["We haven't received a child maintenance payment", "28/12/2020"],
+        msg2: ["A variation has been reported", "19/12/2020"],
+      },
+      changes: {
+        chng0: ["Update shared care", "yellow", "in progress"],
+        chng1: ["Update income", "yellow", "in progress"],
+        chng2: ["Special expenses", "green", "completed"],
+      },
+    },
+    cjones: {
+      case: "cjones",
+      messages: {
+        msg0: ["Your child maintenance payments will not change", "15/01/2021"],
+        msg1: ["We have received a new report", "11/11/2020"],
+        msg2: ["We have been updated of special expenses", "10/11/2020"],
+      },
+      changes: {
+        chng0: [
+          "Change to Direct Pay or Collect and Pay",
+          "yellow",
+          "in progress",
+        ],
+        chng1: ["Update shared care", "green", "Accepted"],
+        chng2: ["Update shared care", "green", "Accepted"],
+      },
+    },
+    ftenet: {
+      case: "ftenet",
+      messages: {
+        msg0: [
+          "We've worked out your child maintenance payments",
+          "31/12/2020",
+        ],
+        msg1: ["We've received your voluntary payment", "01/09/2020"],
+        msg2: ["We've received your voluntary payment", "13/08/2020"],
+      },
+      changes: {
+        chng0: ["Update income", "yellow", "in progress"],
+        chng1: ["Child still in education", "green", "Accepted"],
+        chng2: ["Update shared care", "green", "Accepted"],
+      },
+    },
+  };
+
+  const sentMessagesData = {
+    0: {
+      title: "Responding to a request from the Child Maintenance Service",
+      date: "03 Jun 2021",
+      case: "c-jones",
+    },
+    1: {
+      title: "Payment schedule query",
+      date: "13 May 2021",
+      case: "j-smith",
+      link: "sent-message",
+    },
+    2: {
+      title: "General query",
+      date: "15 Apr 2021",
+      case: "no-case",
+    },
+    3: {
+      title: "Missed payment",
+      date: "29 Mar 2021",
+      case: "j-smith",
+    },
+    4: {
+      title: "General query",
+      date: "26 Mar 2021",
+      case: "c-smith",
+    },
+    5: {
+      title: "Other change",
+      date: "11 Mar 2021",
+      case: "no-case",
+    },
+  };
+
+  const receivedMessagesData = {
+    0: {
+      title: "Your child maintenance enquiry",
+      date: "21 May 2021",
+      case: "j-smith",
+      link: "week-received-message",
+    },
+    1: {
+      title: "We need some information from you",
+      date: "01 Mar 2021",
+      case: "no-case",
+    },
+    2: {
+      title: "We need to check some information with you",
+      date: "25 Jan 2021",
+      case: "no-case",
+    },
+    3: {
+      title: "Your child maintenance enquiry",
+      date: "18 Dec 2020",
+      case: "j-smith",
+    },
+    4: {
+      title: "Your child maintenance payments will not change",
+      date: "15 Oct 2020",
+      case: "j-smith",
+    },
+    5: {
+      title:
+        "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+      date: "24 Aug 2020",
+      case: "no-case",
+    },
+    6: {
+      title: "Your child maintenance enquiry",
+      date: "20 Jul 2020",
+      case: "no-case",
+    },
+    7: {
+      title: "We need some information from you",
+      date: "28 May 2020",
+      case: "no-case",
+    },
+    8: {
+      title: "We've made a decision about a variation application",
+      date: "28 Apr 2020",
+      case: "no-case",
+    },
+    9: {
+      title:
+        "Your payment plan for effective date of payment schedule to last payment date of schedule",
+      date: "24 Mar 2020",
+      case: "no-case",
+    },
+    10: {
+      title: "Issue reminder request",
+      date: "19 Feb 2020",
+      case: "no-case",
+    },
+    11: {
+      title: "Your service type has changed",
+      date: "21 Jan 2020",
+      case: "c-jones",
+      link: "received-message",
+    },
+    12: {
+      title: "We need to check some information with you",
+      date: "17 Dec 2019",
+      case: "no-case",
+    },
+    13: {
+      title: "We need to check other information with you",
+      date: "01 Dec 2019",
+      case: "no-case",
+    },
+    14: {
+      title: "Your child maintenance enquiry",
+      date: "11 Nov 2019",
+      case: "no-case",
+    },
+    15: {
+      title:
+        "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+      date: "24 Aug 2019",
+      case: "no-case",
+    },
+    16: {
+      title: "Your child maintenance payments will not change",
+      date: "17 Jul 2019",
+      case: "j-smith",
+    },
+    17: {
+      title: "We need some information from you",
+      date: "07 Jun 2019",
+      case: "no-case",
+    },
+    18: {
+      title:
+        "A variation application has been made that could affect your payments - please respond ",
+      date: "08 Apr 2019",
+      case: "no-case",
+    },
+    19: {
+      title: "Issue reminder request",
+      date: "07 Feb 2019",
+      case: "no-case",
+    },
+    20: {
+      title:
+        "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
+      date: "24 Aug 2018",
+      case: "no-case",
+    },
+  };
+
+  const paymentsData = [
+    {
+      case: "Jim and 1 other",
+      serviceType: "Direct pay",
+      nextPaymentDate: "20 Aug 2021",
+    },
+    {
+      case: "Jane and 2 others",
+      serviceType: "Direct pay",
+      nextPaymentDate: "20 Aug 2021",
+    },
+    {
+      case: "Joe and 2 others",
+      serviceType: "Collect and pay",
+      nextPaymentDate: "20 Aug 2021",
+    },
+  ];
+
+  const changesData = {
+    change0: {
+      changeType: "Change bank details",
+      status: "received",
+      colour: "blue",
+      submitted: "10 Jun 2021",
+      updated: "10 Jun 2021",
+      case: "J. Smith",
+    },
+    change1: {
+      changeType: "Change to service type",
+      status: "in-progress",
+      colour: "yellow",
+      submitted: "16 May 2021",
+      updated: "05 June 2021",
+    },
+    change2: {
+      changeType: "Additional income",
+      status: "completed",
+      colour: "green",
+      submitted: "06 Feb 2021",
+      updated: "08 May 2021",
+      case: "C. Jones",
+    },
+    change3: {
+      changeType: "Shared care",
+      status: "evidence-requested",
+      colour: "purple",
+      submitted: "08 Apr 2021",
+      updated: "12 Apr 2021",
+    },
+    change4: {
+      changeType: "Full time education",
+      status: "completed",
+      colour: "green",
+      submitted: "06 Sep 2020",
+      updated: "19 Oct 2020",
+    },
+    change5: {
+      changeType: "Special expenses",
+      status: "rejected",
+      colour: "red",
+      submitted: "12 Aug 2020",
+      updated: "29 Aug 2020",
+    },
+    change6: {
+      changeType: "Change of income",
+      status: "completed",
+      colour: "green",
+      submitted: "24 Mar 2020",
+      updated: "06 Apr 2020",
+    },
+  };
+
+  // If Change Children journey has been completed
+  if (sessionStorage.getItem("changeChildren")) {
+    changesData[`change${Object.keys(changesData).length}`] = {
+      changeType: "Supporting another child",
+      status: "received",
+      colour: "blue",
+      submitted: new Date().toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+      updated: new Date().toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+    };
+  }
+
 
 // HOME
 // SCREEN
@@ -467,118 +492,167 @@ if (window.location.href.includes("/home")) {
 // SCREEN
 // THANGS
 
-const showCalcs = (e) => {
-  console.log(e.target.value);
-  switch (e.target.value) {
-    case "jsmith":
-      $("#jsmith-calc").show();
-      $("#cjones-calc").hide();
-      $("#all-calcs").hide();
-      break;
-    case "cjones":
-      $("#cjones-calc").show();
-      $("#jsmith-calc").hide();
-      $("#all-calcs").hide();
-      break;
-    default:
-      $("#all-calcs").show();
-      $("#jsmith-calc").hide();
-      $("#cjones-calc").hide();
-      break;
+if (window.location.href.includes("/payments/landing")) {
+  const paymentsCasesTable = $("#payments-cases-table")[0];
+
+  let paymentTableHTML = paymentsData.map((payment, i) => {
+    return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">${
+      payment.case
+    }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPaymentDate
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          })}</td>
+          </td>`;
+  });
+
+  paymentsCasesTable.innerHTML = paymentTableHTML.join("");
+}
+
+if (window.location.href.includes("/payments/case-payment")) {
+  const casePaymentCaseName = $("#case-payment-case-name")[0];
+  const casePaymentServiceType = $("#case-payment-service-type")[0];
+  const casePaymentDate = $("#case-payment-date")[0];
+
+  if (urlParams.get("case")) {
+    let caseNum = urlParams.get("case");
+
+    casePaymentCaseName.innerText = paymentsData[caseNum].case;
+    casePaymentServiceType.innerText = paymentsData[caseNum].serviceType;
+    casePaymentDate.innerText = new Date(
+      paymentsData[caseNum].nextPaymentDate
+    ).toLocaleDateString("en-UK", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
   }
-};
+}
 
-const showPayments = (e) => {
-  console.log(e.target.value);
-  switch (e.target.value) {
-    case "case1":
-      $("#case1").show();
-      $("#case2").hide();
-      $("#all-cases").hide();
-      break;
-    case "case2":
-      $("#case2").show();
-      $("#case1").hide();
-      $("#all-cases").hide();
-      break;
-    default:
-      $("#all-cases").show();
-      $("#case1").hide();
-      $("#case2").hide();
-      break;
-  }
-};
+// OLD
+// PAYMENT
+// SCREEN
+// THANGS
 
-const sorter = $("#sort")[0];
-const calcSorter = $("#calcs-sort")[0];
-const paySorter = $("#payment-sort")[0];
-
-try {
-  sorter.addEventListener("change", showCase);
-} catch (err) {}
-
-try {
-  calcSorter.addEventListener("change", showCalcs);
-} catch (err) {}
-
-try {
-  paySorter.addEventListener("change", showPayments);
-} catch (err) {}
-
-try {
-  switch (`case${urlParams.get("case")}`) {
-    case "case1":
-      $("#case1").show();
-      $("#case2").hide();
-      $("#all-cases").hide();
-      paySorter.value = "case1";
-      break;
-    case "case2":
-      $("#case2").show();
-      $("#case1").hide();
-      $("#all-cases").hide();
-      paySorter.value = "case2";
-      break;
-    default:
-      $("#all-cases").show();
-      $("#case1").hide();
-      $("#case2").hide();
-      break;
-  }
-} catch (err) {}
-
-try {
-  // console.log("switching case calc");
-  // console.log(urlParams.get("calc"));
-  switch (urlParams.get("calc")) {
-    case "jsmith":
-      $("#jsmith-calc").show();
-      $("#cjones-calc").hide();
-      $("#all-calcs").hide();
-      calcSorter.value = "jsmith";
-      break;
-    case "cjones":
-      $("#cjones-calc").show();
-      $("#jsmith-calc").hide();
-      $("#all-calcs").hide();
-      calcSorter.value = "cjones";
-      break;
-    case "all_calc":
-      $("#jsmith-calc").hide();
-      $("#cjones-calc").hide();
-      $("#all-calcs").show();
-      calcSorter.value = "all";
-      break;
-    default:
-      try {
-        $("#all-calcs").show();
-      } catch (err) {
+if ("hell freezes over" == "today") {
+  const showCalcs = (e) => {
+    console.log(e.target.value);
+    switch (e.target.value) {
+      case "jsmith":
         $("#jsmith-calc").show();
         $("#cjones-calc").hide();
-      }
-      break;
-  }
-} catch (err) {}
+        $("#all-calcs").hide();
+        break;
+      case "cjones":
+        $("#cjones-calc").show();
+        $("#jsmith-calc").hide();
+        $("#all-calcs").hide();
+        break;
+      default:
+        $("#all-calcs").show();
+        $("#jsmith-calc").hide();
+        $("#cjones-calc").hide();
+        break;
+    }
+  };
+
+  const showPayments = (e) => {
+    console.log(e.target.value);
+    switch (e.target.value) {
+      case "case1":
+        $("#case1").show();
+        $("#case2").hide();
+        $("#all-cases").hide();
+        break;
+      case "case2":
+        $("#case2").show();
+        $("#case1").hide();
+        $("#all-cases").hide();
+        break;
+      default:
+        $("#all-cases").show();
+        $("#case1").hide();
+        $("#case2").hide();
+        break;
+    }
+  };
+
+  const sorter = $("#sort")[0];
+  const calcSorter = $("#calcs-sort")[0];
+  const paySorter = $("#payment-sort")[0];
+
+  try {
+    sorter.addEventListener("change", showCase);
+  } catch (err) {}
+
+  try {
+    calcSorter.addEventListener("change", showCalcs);
+  } catch (err) {}
+
+  try {
+    paySorter.addEventListener("change", showPayments);
+  } catch (err) {}
+
+  try {
+    switch (`case${urlParams.get("case")}`) {
+      case "case1":
+        $("#case1").show();
+        $("#case2").hide();
+        $("#all-cases").hide();
+        paySorter.value = "case1";
+        break;
+      case "case2":
+        $("#case2").show();
+        $("#case1").hide();
+        $("#all-cases").hide();
+        paySorter.value = "case2";
+        break;
+      default:
+        $("#all-cases").show();
+        $("#case1").hide();
+        $("#case2").hide();
+        break;
+    }
+  } catch (err) {}
+
+  try {
+    // console.log("switching case calc");
+    // console.log(urlParams.get("calc"));
+    switch (urlParams.get("calc")) {
+      case "jsmith":
+        $("#jsmith-calc").show();
+        $("#cjones-calc").hide();
+        $("#all-calcs").hide();
+        calcSorter.value = "jsmith";
+        break;
+      case "cjones":
+        $("#cjones-calc").show();
+        $("#jsmith-calc").hide();
+        $("#all-calcs").hide();
+        calcSorter.value = "cjones";
+        break;
+      case "all_calc":
+        $("#jsmith-calc").hide();
+        $("#cjones-calc").hide();
+        $("#all-calcs").show();
+        calcSorter.value = "all";
+        break;
+      default:
+        try {
+          $("#all-calcs").show();
+        } catch (err) {
+          $("#jsmith-calc").show();
+          $("#cjones-calc").hide();
+        }
+        break;
+    }
+  } catch (err) {}
+}
 
 // TRACK
 // CHANGES
@@ -1996,8 +2070,8 @@ if (window.location.href.includes("/report-a-change")) {
   if (window.location.href.includes("/report-a-change/income/income-landing")) {
     if (userType == "RP") {
       $("#special-expenses-row").hide();
-      $("#income-and-expenses-title")[0].innerText = "Income"
-      $("#income-and-expenses-breadcrumb")[0].innerText = "Income"
+      $("#income-and-expenses-title")[0].innerText = "Income";
+      $("#income-and-expenses-breadcrumb")[0].innerText = "Income";
     }
   }
 

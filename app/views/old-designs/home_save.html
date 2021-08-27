@@ -9,6 +9,7 @@ My Child Maintenance Case
 <!-- Blank header with no service name for the start page -->
 <!-- {{ govukHeader() }} -->
 {% include "includes/header.html" %}
+
 {% endblock %}
 
 {% block beforeContent %}
@@ -39,15 +40,14 @@ My Child Maintenance Case
       <a href="#" class="govuk-link--no-visited-state">Update shared care</a>
       <a href="#" class="govuk-link--no-visited-state">Upload documents</a>
     </div>
-    <div class="govuk-form-group govuk-!-margin-bottom-6">
+    <div class="govuk-form-group govuk-!-margin-bottom-8">
       <label class="govuk-label" for="sort">
         Show view for:
       </label>
       <select class="govuk-select" id="sort" name="sort">
         <option value="all-cases" selected>All cases</option>
-        <option value="jsmith">J. Smith</option>
-        <option value="cjones">C. Jones</option>
-        <!-- <option value="jsmith">F. Tenet</option> -->
+        <option value="case1">FGClaire, FGTodd</option>
+        <option value="case2">FHClaire, FHTodd</option>
       </select>
     </div>
   </div>
@@ -58,7 +58,7 @@ My Child Maintenance Case
     <div class="custom-row">
       <div class="home-card" id="contact-card">
         <div class="card-header">
-          <a href="#" class="govuk-link--no-visited-state">
+          <a href="messages/messages.html" class="govuk-link--no-visited-state">
             <h2>Messages</h2>
           </a>
         </div>
@@ -89,15 +89,17 @@ My Child Maintenance Case
             </tbody>
           </table>
           <div class="card-bottom">
-            <a href="#" class="govuk-link--no-visited-state"></a>
-            <a href="#" class="govuk-link--no-visited-state">View all</a>
+            <a href="#" class="govuk-link--no-visited-state">
+              <!-- Send a message -->
+            </a>
+            <a href="messages/messages.html" class="govuk-link--no-visited-state">View all</a>
           </div>
         </div>
       </div>
       <div class="home-card" id="track-changes-card">
         <div class="card-header">
-          <a href="track_changes.html" class="govuk-link--no-visited-state">
-            <h2>Track changes</h4>
+          <a href="track-changes/track-changes.html" class="govuk-link--no-visited-state">
+            <h2>Track changes</h2>
           </a>
         </div>
         <div class="card-body" id="track-changes-card-body">
@@ -110,7 +112,7 @@ My Child Maintenance Case
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell" id="change0"><a href="change-details?type=received" class="butblack">Change phone number</a></td>
+                <td scope="row" class="govuk-table__cell" ><a id="change0" href="#" class="butblack">Change phone number</a></td>
                 <td class="govuk-table__cell">
                   <strong class="govuk-tag govuk-tag--blue" id="tag0">
                     Received
@@ -118,7 +120,7 @@ My Child Maintenance Case
                 </td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell" id="change1"><a href="change-details?type=received" class="butblack">Change address</a></td>
+                <td scope="row" class="govuk-table__cell" ><a id="change1" href="#" class="butblack">Change address</a></td>
                 <td class="govuk-table__cell">
                   <strong class="govuk-tag govuk-tag--blue" id="tag1">
                     Received
@@ -126,7 +128,7 @@ My Child Maintenance Case
                 </td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell" id="change2"><a href="change-details?type=in-progress" class="butblack">Change to Direct Pay or Collect and Pay</a></td>
+                <td scope="row" class="govuk-table__cell" ><a id="change2" href="#" class="butblack">Change to Direct Pay or Collect and Pay</a></td>
                 <td class="govuk-table__cell">
                   <strong class="govuk-tag govuk-tag--yellow" id="tag2">
                     In progress
@@ -137,7 +139,7 @@ My Child Maintenance Case
           </table>
           <div class="card-bottom">
             <a href="#" class="govuk-link--no-visited-state"></a>
-            <a href="#" class="govuk-link--no-visited-state">View all</a>
+            <a href="track-changes/track-changes.html" class="govuk-link--no-visited-state">View all</a>
           </div>
         </div>
       </div>
@@ -145,48 +147,26 @@ My Child Maintenance Case
   </div>
   <div id="spacer-row" class="govuk-grid-column-full govuk-!-margin-bottom-9"></div>
   <div id="second-row" class="govuk-grid-column-full">
-    <h2 class="govuk-heading-m">Payments</h2>
     <div class="payments-grid">
-      <div class="home-card payments-card" id="jsmith">
+      <div class="home-card payments-card">
         <div class="card-header">
-          <a href="jsmith.html" class="govuk-link--no-visited-state">
-            <h2>J. Smith</h4>
+          <a href="payments.html" class="govuk-link--no-visited-state">
+            <h2>Payments</h2>
           </a>
         </div>
         <div class="card-body">
           <p class="small govuk-!-margin-bottom-2">Expected payments - Direct Pay</p>
           <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
           <div class="flex">
-            <p class="small">12/04/2021</p>
+            <p class="small">12/02/2021</p>
             <p class="small">£96.00</p>
           </div>
           <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
           <div class="flex">
-            <p class="small">12/05/2021</p>
+            <p class="small">12/03/2021</p>
             <p class="small">£96.00</p>
           </div>
           <a href="#" class="govuk-link--no-visited-state">Report a missed payment</a>
-        </div>
-      </div>
-      <div class="home-card payments-card" id="cjones">
-        <div class="card-header">
-          <a href="cjones" class="govuk-link--no-visited-state">
-            <h2>C. Jones</h4>
-          </a>
-        </div>
-        <div class="card-body">
-          <p class="small govuk-!-margin-bottom-2">Payments - Collect and Pay</p>
-          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
-          <div class="flex">
-            <p class="small">16/04/2021</p>
-            <p class="small">£53.00</p>
-          </div>
-          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
-          <div class="flex">
-            <p class="small">16/05/2021</p>
-            <p class="small">£53.00</p>
-          </div>
-          <a href="#" class="govuk-link--no-visited-state">Update income</a>
         </div>
       </div>
     </div>
