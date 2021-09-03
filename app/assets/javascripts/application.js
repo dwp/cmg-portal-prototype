@@ -270,35 +270,55 @@ const paymentsData = [
     case: "Jim and 1 other",
     serviceType: "Direct pay",
     reviewDate: "21 Sep 2021",
+    pastReviewDate: "21 Sep 2020",
     nextPaymentDate: "20 Aug 2021",
     nextPaymentAmount: 100.0,
     role: "PP",
     paymentFrequency: "month",
-    paymentPlan: [],
-    totalAmount: 500.00,
+    paymentPlan: [
+      ["13 Aug 2021", 100.00],
+      ["17 July 2021", 90.00],
+      ["21 Aug 2021", 10.00]
+    ],
+    totalAmount: 500.0,
   },
   {
     case: "Jane and 2 others",
     serviceType: "Direct pay",
     reviewDate: "21 Sep 2021",
+    pastReviewDate: "21 Sep 2020",
     nextPaymentDate: "20 Aug 2021",
     nextPaymentAmount: 100.0,
     role: "RP",
     paymentFrequency: "month",
-    paymentPlan: [],
-    totalAmount: 500.00,
+    paymentPlan: [
+      ["13 Aug 2021", 100.00],
+      ["17 July 2021", 90.00],
+      ["21 Aug 2021", 10.00]
+    ],
+    totalAmount: 500.0,
   },
   {
     case: "Joe and 2 others",
     serviceType: "Collect and pay",
     reviewDate: "21 Sep 2021",
+    pastReviewDate: "21 Sep 2020",
     paymentMethod: "Direct Debit",
     nextPaymentDate: "20 Aug 2021",
     nextPaymentAmount: 100.0,
     role: "PP",
     paymentFrequency: "week",
-    paymentPlan: [],
-    totalAmount: 500.00,
+    paymentPlan: [
+      ["13 Aug 2021", 100.00],
+      ["17 July 2021", 90.00],
+      ["21 Aug 2021", 10.00]
+    ],
+    totalAmount: 500.0,
+    arrears: {
+      owed: 5000,
+      paid: 2500,
+      charge: 30,
+    }
   },
 ];
 
@@ -356,7 +376,15 @@ const changesData = {
   },
 };
 
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 // If Change Children journey has been completed
 if (sessionStorage.getItem("changeChildren")) {
@@ -513,7 +541,7 @@ if (window.location.href.includes("/payments/landing")) {
   let paymentTableHTML = paymentsData.map((payment, i) => {
     if (userType == "RP") {
       return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receiving maintenance for ${
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
         payment.case
       }</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
@@ -581,12 +609,25 @@ if (window.location.href.includes("/payments/landing")) {
 if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentCaseName = $("#case-payment-case-name")[0];
   const casePaymentServiceType = $("#case-payment-service-type")[0];
-  const casePaymentFrequency = $("#case-payment-frequency")[0]
+  const casePaymentFrequency = $("#case-payment-frequency")[0];
   const casePaymentReviewDate = $("#case-payment-review-date")[0];
   const casePaymentAmount = $("#case-payment-amount")[0];
-  const casePaymentFeeSpan = $("#case-payment-fee-span");
+  const casePaymentFeeSpans = $(".case-payment-fee-spans");
   const casePaymentDate = $("#case-payment-date")[0];
-  const casePaymentMethod = $("#case-payment-method")[0]
+  const casePaymentMethod = $("#case-payment-method")[0];
+  const casePaymentMethodDiv = $("#case-payment-method-div");
+  const casePaymentPastReview = $("#case-payment-past-review")[0];
+  const casePaymentTotalAmount = $("#case-payment-total-amount")[0];
+  const casePaymentRecentPaymentsDiv = $("#case-payments-recent-payments-div");
+  const casePaymentArrearsDiv = $("#case-payments-arrears-div");
+  const casePaymentDirectRPDiv = $("#case-payment-direct-rp-div");
+  const casePaymentCollectRPPara = $("#case-payment-collect-rp-para");
+  const casePaymentRecentPaymentsBody = $("#case-payment-recent-payments-body")[0];
+  const paidReceived = $(".paid-received")
+  const casePaymentEnforcementDiv = $("#case-payment-enforcement-div")
+  const casePaymentArrearsOwed = $("#case-payment-arrears-owed")[0]
+  const casePaymentArrearsPaid = $("#case-payment-arrears-paid")[0]
+  const casePaymentEnforcementCharge = $("#case-payment-enforcement-charge")[0]
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
@@ -601,23 +642,83 @@ if (window.location.href.includes("/payments/case-payment")) {
       year: "numeric",
     });
 
-
+    // Summary info
     if (paymentsData[caseNum].serviceType == "Direct pay") {
-      casePaymentFeeSpan.hide();
+      casePaymentFeeSpans.hide();
+      casePaymentMethodDiv.hide();
     }
 
-    casePaymentAmount.innerHTML = paymentsData[caseNum].nextPaymentAmount
-    casePaymentFrequency.innerHTML = paymentsData[caseNum].paymentFrequency
-    if (paymentsData[caseNum].paymentFrequency == "month") {
-      casePaymentDate.innerText = `${new Date(paymentsData[caseNum].nextPaymentDate).getDate()}th monthly`
+    if (userType == "PP" || userType == "DUAL" && paymentsData[caseNum].role == "PP") {
+      casePaymentFeeSpans.each(index => {
+        casePaymentFeeSpans[index].innerText = "including 20% collection fee"
+      })
+      paidReceived.each(index => {
+        paidReceived[index].innerText = "paid"
+      })
     }
-    else if (paymentsData[caseNum].paymentFrequency == "week") {
-      casePaymentDate.innerText = days[new Date(paymentsData[caseNum].nextPaymentDate).getDay()]
+
+    casePaymentAmount.innerHTML =
+      paymentsData[caseNum].nextPaymentAmount.toFixed(2);
+    casePaymentFrequency.innerHTML = paymentsData[caseNum].paymentFrequency;
+
+    // show month(th)ly or day of the week
+    if (paymentsData[caseNum].paymentFrequency == "month") {
+      casePaymentDate.innerText = `${new Date(
+        paymentsData[caseNum].nextPaymentDate
+      ).getDate()}th monthly`;
+    } else if (paymentsData[caseNum].paymentFrequency == "week") {
+      casePaymentDate.innerText =
+        days[new Date(paymentsData[caseNum].nextPaymentDate).getDay()];
     }
 
     if (paymentsData[caseNum].serviceType == "Collect and pay") {
-    casePaymentMethod.innerText = paymentsData[caseNum].paymentMethod
+      casePaymentMethod.innerText = paymentsData[caseNum].paymentMethod;
     }
+
+    casePaymentPastReview.innerText = new Date(
+      paymentsData[caseNum].pastReviewDate
+    ).toLocaleDateString("en-UK", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+    casePaymentTotalAmount.innerText =
+      paymentsData[caseNum].totalAmount.toFixed(2);
+
+    // Recent Payments
+    if (paymentsData[caseNum].serviceType == "Direct pay") {
+      casePaymentRecentPaymentsDiv.hide();
+      casePaymentArrearsDiv.hide();
+      casePaymentDirectRPDiv.hide();
+      if (userType == "RP") {
+        casePaymentDirectRPDiv.show();
+      }
+    }
+    else {
+      let RecentPaymentsTableHTML = paymentsData[caseNum].paymentPlan.map(payment => {
+        return `<tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">${payment[0]}</th>
+        <td class="govuk-table__cell govuk-table__cell--numeric">£${payment[1].toFixed(2)}</td>
+      </tr>`
+      })
+
+      casePaymentRecentPaymentsBody.innerHTML = RecentPaymentsTableHTML.join("")
+    }
+    if (paymentsData[caseNum].serviceType == "Collect and pay" && userType != "RP") {
+      casePaymentCollectRPPara.hide()
+    }
+
+    // Arrears
+    if (paymentsData[caseNum].arrears) {
+      if (userType == "RP" || userType == "DUAL" && paymentsData[caseNum].role == "RP") {
+        casePaymentEnforcementDiv.hide()
+      }
+      casePaymentArrearsOwed.innerText = `£${paymentsData[caseNum].arrears.owed.toFixed(2)}`
+      casePaymentArrearsPaid.innerText = `£${paymentsData[caseNum].arrears.paid.toFixed(2)}`
+      casePaymentEnforcementCharge.innerText = `£${paymentsData[caseNum].arrears.charge.toFixed(2)}`
+      casePaymentArrearsDiv.show()
+    }
+    else {casePaymentArrearsDiv.hide()}
 
   }
 }
