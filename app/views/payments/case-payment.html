@@ -33,16 +33,29 @@ My Child Maintenance Case
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
-      Payments received for <span id="case-payment-case-name"></span>
+      Payments <span id="made-received">received</span> for <span id="case-payment-case-name"></span>
     </h1>
   </div>
   <div id="first-row" class="govuk-grid-column-two-thirds">
     <!-- <h2  class="govuk-heading-l">Case</h2> -->
     <h3 id="case-payment-service-type" class="govuk-heading-s">Service type</h3>
-    <p>We’ve worked out your payments until your next annual review on <span id="case-payment-review-date">12 September
-        2021</span>. Find out <a class="govuk-link" href="#">how the Child Maintenance Service works out child
-        maintenance</a>.</p>
-    <!-- <p id="case-payment-date">Date</p> -->
+    <div id="case-payment-intro-div">
+      <p>We’ve worked out your payments until your next annual review on <span id="case-payment-review-date">12
+          September
+          2021</span>. Find out <a class="govuk-link" href="#">how the Child Maintenance Service works out child
+          maintenance</a>.</p>
+    </div>
+    <div id="case-payment-intro-multiple-div">
+      <p>We’ve worked out your payments until your next annual review on <span id="case-payment-review-multiple-date">12
+          September
+          2021</span> for:</p>
+          <ul id="case-payment-names-ul" class="govuk-list govuk-list--bullet">
+            <li>Jim and 1 more</li>
+          </ul>
+          <p>Find out <a class="govuk-link" href="#">how the Child Maintenance Service works out child
+          maintenance</a>.</p>
+    </div>
+    
     <h2 class="govuk-heading-m">Child maintenance payments summary</h2>
     <!-- <table class="govuk-table">
       <thead class="govuk-table__head">
@@ -97,7 +110,8 @@ My Child Maintenance Case
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Total amount you have <span class="paid-received">received</span> since <span id="case-payment-past-review">{00 Month 0000}</span>
+          Total amount you have <span class="paid-received">received</span> since <span
+            id="case-payment-past-review">{00 Month 0000}</span>
         </dt>
         <dd class="govuk-summary-list__value govuk-table__cell--numeric">
           £<span id="case-payment-total-amount">0.00</span>
@@ -114,7 +128,8 @@ My Child Maintenance Case
             <th scope="col" class="govuk-table__header">Date of payment</th>
             <th scope="col" class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-half">Amount
               <span class="paid-received">received</span> <span class="case-payment-fee-spans">after 4% collection
-              fee deduction</span></th>
+                fee deduction</span>
+            </th>
           </tr>
         </thead>
         <tbody id="case-payment-recent-payments-body" class="govuk-table__body">

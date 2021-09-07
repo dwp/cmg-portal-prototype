@@ -266,59 +266,180 @@ const receivedMessagesData = {
 };
 
 const paymentsData = [
+  // This is case 0
   {
-    case: "Jim and 1 other",
+    name: "Jim and 1 other",
     serviceType: "Direct pay",
-    reviewDate: "21 Sep 2021",
-    pastReviewDate: "21 Sep 2020",
-    nextPaymentDate: "20 Aug 2021",
-    nextPaymentAmount: 100.0,
     role: "PP",
-    paymentFrequency: "month",
-    paymentPlan: [
-      ["13 Aug 2021", 100.00],
-      ["17 July 2021", 90.00],
-      ["21 Aug 2021", 10.00]
+    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "month",
+      paymentMethod: null,
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 78.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
     ],
-    totalAmount: 500.0,
   },
   {
-    case: "Jane and 2 others",
+    name: "Jane and 2 others",
     serviceType: "Direct pay",
-    reviewDate: "21 Sep 2021",
-    pastReviewDate: "21 Sep 2020",
-    nextPaymentDate: "20 Aug 2021",
-    nextPaymentAmount: 100.0,
     role: "RP",
-    paymentFrequency: "month",
-    paymentPlan: [
-      ["13 Aug 2021", 100.00],
-      ["17 July 2021", 90.00],
-      ["21 Aug 2021", 10.00]
+    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "month",
+      paymentMethod: null,
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 78.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
     ],
-    totalAmount: 500.0,
   },
   {
-    case: "Joe and 2 others",
+    name: "Joe and 3 others",
     serviceType: "Collect and pay",
-    reviewDate: "21 Sep 2021",
-    pastReviewDate: "21 Sep 2020",
-    paymentMethod: "Direct Debit",
-    nextPaymentDate: "20 Aug 2021",
-    nextPaymentAmount: 100.0,
-    role: "PP",
-    paymentFrequency: "week",
-    paymentPlan: [
-      ["13 Aug 2021", 100.00],
-      ["17 July 2021", 90.00],
-      ["21 Aug 2021", 10.00]
+    role: "RP",
+    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "week",
+      paymentMethod: "Direct Debit",
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 78.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
     ],
-    totalAmount: 500.0,
     arrears: {
       owed: 5000,
       paid: 2500,
       charge: 30,
-    }
+    },
+  },
+  {
+    name: ["Joe and 3 others", "Jill and 6 others", "JERREH"],
+    serviceType: "Collect and pay",
+    role: "PP",
+    nextPayment: { date: "25 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "week",
+      paymentMethod: "Direct Debit",
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 88.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
+    ],
+    arrears: {
+      owed: 5000,
+      paid: 2500,
+      charge: 30,
+    },
   },
 ];
 
@@ -539,45 +660,17 @@ if (window.location.href.includes("/payments/landing")) {
   const paymentsCasesTable = $("#payments-cases-table")[0];
 
   let paymentTableHTML = paymentsData.map((payment, i) => {
-    if (userType == "RP") {
-      return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-        payment.case
-      }</a></td>
-          <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPaymentDate
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
-          </td>`;
-    }
-    if (userType == "PP") {
-      return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-        payment.case
-      }</a></td>
-          <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPaymentDate
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
-          </td>`;
-    }
-    if (userType == "DUAL") {
-      if (payment.role == "PP") {
+    // if it is a combined case
+    if (Array.isArray(payment.name)) {
+      console.log("iss got more than one");
+      if (userType == "RP") {
         return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-          payment.case
-        }</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+          payment.name.length
+        } cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           <td class="govuk-table__cell">${new Date(
-            payment.nextPaymentDate
+            payment.nextPayment.date
           ).toLocaleDateString("en-UK", {
             day: "2-digit",
             month: "long",
@@ -585,20 +678,115 @@ if (window.location.href.includes("/payments/landing")) {
           })}</td>
           </td>`;
       }
-      if (payment.role == "RP") {
+      if (userType == "PP") {
         return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-          payment.case
-        }</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+          payment.name.length
+        } cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           <td class="govuk-table__cell">${new Date(
-            payment.nextPaymentDate
+            payment.nextPayment.date
           ).toLocaleDateString("en-UK", {
             day: "2-digit",
             month: "long",
             year: "numeric",
           })}</td>
           </td>`;
+      }
+      if (userType == "DUAL") {
+        if (payment.role == "PP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+            payment.name.length
+          } cases</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+        if (payment.role == "RP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+            payment.name.length
+          } cases</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+      }
+    } else {
+      if (userType == "RP") {
+        return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+          payment.name
+        }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+      }
+      if (userType == "PP") {
+        return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+          payment.name
+        }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+      }
+      if (userType == "DUAL") {
+        if (payment.role == "PP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+            payment.name
+          }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+        if (payment.role == "RP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+            payment.name
+          }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
       }
     }
   });
@@ -611,6 +799,7 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentServiceType = $("#case-payment-service-type")[0];
   const casePaymentFrequency = $("#case-payment-frequency")[0];
   const casePaymentReviewDate = $("#case-payment-review-date")[0];
+  const casePaymentReviewMultipleDate = $("#case-payment-review-multiple-date")[0];
   const casePaymentAmount = $("#case-payment-amount")[0];
   const casePaymentFeeSpans = $(".case-payment-fee-spans");
   const casePaymentDate = $("#case-payment-date")[0];
@@ -623,19 +812,36 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentDirectRPDiv = $("#case-payment-direct-rp-div");
   const casePaymentCollectRPPara = $("#case-payment-collect-rp-para");
   const casePaymentRecentPaymentsBody = $("#case-payment-recent-payments-body")[0];
-  const paidReceived = $(".paid-received")
-  const casePaymentEnforcementDiv = $("#case-payment-enforcement-div")
-  const casePaymentArrearsOwed = $("#case-payment-arrears-owed")[0]
-  const casePaymentArrearsPaid = $("#case-payment-arrears-paid")[0]
-  const casePaymentEnforcementCharge = $("#case-payment-enforcement-charge")[0]
+  const paidReceived = $(".paid-received");
+  const madeReceived = $("#made-received")[0];
+  const casePaymentEnforcementDiv = $("#case-payment-enforcement-div");
+  const casePaymentArrearsOwed = $("#case-payment-arrears-owed")[0];
+  const casePaymentArrearsPaid = $("#case-payment-arrears-paid")[0];
+  const casePaymentEnforcementCharge = $("#case-payment-enforcement-charge")[0];
+  const casePaymentIntroDiv = $("#case-payment-intro-div");
+  const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
+  const casePaymentNamesUl = $("#case-payment-names-ul")[0]
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
 
-    casePaymentCaseName.innerText = paymentsData[caseNum].case;
+    // if multiple cases combined
+    if (Array.isArray(paymentsData[caseNum].name)) {
+      casePaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`
+      casePaymentIntroDiv.hide()
+      let casePaymentNamesHTML = paymentsData[caseNum].name.map(name => {
+        return `<li>${name}</li>`
+      })
+      casePaymentNamesUl.innerHTML = casePaymentNamesHTML.join("")
+    } else {
+      casePaymentCaseName.innerText = paymentsData[caseNum].name;
+      casePaymentIntroMultipleDiv.hide()
+    }
+
+
     casePaymentServiceType.innerText = paymentsData[caseNum].serviceType;
     casePaymentReviewDate.innerText = new Date(
-      paymentsData[caseNum].reviewDate
+      paymentsData[caseNum].annualReviews[0].startDate
     ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
@@ -648,42 +854,53 @@ if (window.location.href.includes("/payments/case-payment")) {
       casePaymentMethodDiv.hide();
     }
 
-    if (userType == "PP" || userType == "DUAL" && paymentsData[caseNum].role == "PP") {
-      casePaymentFeeSpans.each(index => {
-        casePaymentFeeSpans[index].innerText = "including 20% collection fee"
-      })
-      paidReceived.each(index => {
-        paidReceived[index].innerText = "paid"
-      })
+    if (
+      userType == "PP" ||
+      (userType == "DUAL" && paymentsData[caseNum].role == "PP")
+    ) {
+      casePaymentFeeSpans.each((index) => {
+        casePaymentFeeSpans[index].innerText = "including 20% collection fee";
+      });
+      paidReceived.each((index) => {
+        paidReceived[index].innerText = "paid";
+      });
+      madeReceived.innerText = "made"
     }
 
     casePaymentAmount.innerHTML =
-      paymentsData[caseNum].nextPaymentAmount.toFixed(2);
-    casePaymentFrequency.innerHTML = paymentsData[caseNum].paymentFrequency;
+      paymentsData[caseNum].nextPayment.amount.toFixed(2);
+    casePaymentFrequency.innerHTML =
+      paymentsData[caseNum].paymentPlan.paymentFrequency;
 
     // show month(th)ly or day of the week
-    if (paymentsData[caseNum].paymentFrequency == "month") {
+    if (paymentsData[caseNum].paymentPlan.paymentFrequency == "month") {
       casePaymentDate.innerText = `${new Date(
-        paymentsData[caseNum].nextPaymentDate
+        paymentsData[caseNum].nextPayment.date
       ).getDate()}th monthly`;
-    } else if (paymentsData[caseNum].paymentFrequency == "week") {
+    } else if (paymentsData[caseNum].paymentPlan.paymentFrequency == "week") {
       casePaymentDate.innerText =
-        days[new Date(paymentsData[caseNum].nextPaymentDate).getDay()];
+        days[new Date(paymentsData[caseNum].nextPayment.date).getDay()];
     }
 
     if (paymentsData[caseNum].serviceType == "Collect and pay") {
-      casePaymentMethod.innerText = paymentsData[caseNum].paymentMethod;
+      casePaymentMethod.innerText =
+        paymentsData[caseNum].paymentPlan.paymentMethod;
     }
 
     casePaymentPastReview.innerText = new Date(
-      paymentsData[caseNum].pastReviewDate
+      paymentsData[caseNum].annualReviews[1].startDate
     ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
       year: "numeric",
     });
-    casePaymentTotalAmount.innerText =
-      paymentsData[caseNum].totalAmount.toFixed(2);
+    let calcuatedTotal = 0;
+    paymentsData[caseNum].annualReviews[0].receivedPayments.forEach(
+      (payment) => {
+        calcuatedTotal += payment.amount;
+      }
+    );
+    casePaymentTotalAmount.innerText = calcuatedTotal.toFixed(2);
 
     // Recent Payments
     if (paymentsData[caseNum].serviceType == "Direct pay") {
@@ -694,32 +911,54 @@ if (window.location.href.includes("/payments/case-payment")) {
         casePaymentDirectRPDiv.show();
       }
     }
+    // update with new Payment Plan structure
     else {
-      let RecentPaymentsTableHTML = paymentsData[caseNum].paymentPlan.map(payment => {
-        return `<tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">${payment[0]}</th>
-        <td class="govuk-table__cell govuk-table__cell--numeric">£${payment[1].toFixed(2)}</td>
-      </tr>`
-      })
+      let RecentPaymentsTableHTML = paymentsData[
+        caseNum
+      ].annualReviews[0].receivedPayments.map((payment, i) => {
+        if (i > 2) {
+          return;
+        } else {
+          return `<tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">${payment.date}</th>
+        <td class="govuk-table__cell govuk-table__cell--numeric">£${payment.amount.toFixed(
+          2
+        )}</td>
+      </tr>`;
+        }
+      });
 
-      casePaymentRecentPaymentsBody.innerHTML = RecentPaymentsTableHTML.join("")
+      casePaymentRecentPaymentsBody.innerHTML =
+        RecentPaymentsTableHTML.join("");
     }
-    if (paymentsData[caseNum].serviceType == "Collect and pay" && userType != "RP") {
-      casePaymentCollectRPPara.hide()
+    if (
+      paymentsData[caseNum].serviceType == "Collect and pay" &&
+      userType != "RP"
+    ) {
+      casePaymentCollectRPPara.hide();
     }
 
     // Arrears
     if (paymentsData[caseNum].arrears) {
-      if (userType == "RP" || userType == "DUAL" && paymentsData[caseNum].role == "RP") {
-        casePaymentEnforcementDiv.hide()
+      if (
+        userType == "RP" ||
+        (userType == "DUAL" && paymentsData[caseNum].role == "RP")
+      ) {
+        casePaymentEnforcementDiv.hide();
       }
-      casePaymentArrearsOwed.innerText = `£${paymentsData[caseNum].arrears.owed.toFixed(2)}`
-      casePaymentArrearsPaid.innerText = `£${paymentsData[caseNum].arrears.paid.toFixed(2)}`
-      casePaymentEnforcementCharge.innerText = `£${paymentsData[caseNum].arrears.charge.toFixed(2)}`
-      casePaymentArrearsDiv.show()
+      casePaymentArrearsOwed.innerText = `£${paymentsData[
+        caseNum
+      ].arrears.owed.toFixed(2)}`;
+      casePaymentArrearsPaid.innerText = `£${paymentsData[
+        caseNum
+      ].arrears.paid.toFixed(2)}`;
+      casePaymentEnforcementCharge.innerText = `£${paymentsData[
+        caseNum
+      ].arrears.charge.toFixed(2)}`;
+      casePaymentArrearsDiv.show();
+    } else {
+      casePaymentArrearsDiv.hide();
     }
-    else {casePaymentArrearsDiv.hide()}
-
   }
 }
 
