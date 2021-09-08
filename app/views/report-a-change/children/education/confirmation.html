@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% set active_page = "Report a change" %}
+
+{% block pageTitle %}
+Education
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Report a change</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="../children-landing.html">Children</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Education</a>
+    </li>
+  </ol>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        We have received your request
+      </h1>
+    </div>
+
+    <h3 class="govuk-heading-m">
+      What happens next
+    </h3>
+    <p>Once we have reviewed your request and received your evidence, we will contact the other parent to confirm the
+      details you’ve given us.</p>
+
+    <p>If there is:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a change to your child maintenance payments, we will send you a new expected payment plan advising how much child maintenance you will receive and by when</li>
+      <li>no change to your child maintenance payments we will let you know</li>
+    </ul>
+    <h3 class="govuk-heading-m">
+      You need to upload your evidence
+    </h3>
+    <p>Evidence can include, for example a copy of child benefit payments, a legal document or a letter proving they are in full time education.</p>
+    <button class="govuk-button" data-module="govuk-button">Upload evidence</button>
+    <p>If you don’t have your evidence available now, you have 14 days to upload your documents, go to ‘Messages’ and select ‘Upload documents’.</p>
+    <p><a class="govuk-link--no-visited-state" href="/track-changes/track-changes">Check the progress of the change you have reported</a> (it may take up to 30 seconds for your change to appear).</p>
+    <p>Remember to check we have your correct telephone number in case we need to contact you, go to 'Details' and select 'Contact details'.</p>
+  </div>
+</div>
+{% endblock %}

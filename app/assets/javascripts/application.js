@@ -18,7 +18,7 @@ $(document).ready(function () {
 let urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.get("userType")) {
-  console.log(urlParams.get("userType").toUpperCase());
+  // console.log(urlParams.get("userType").toUpperCase());
   sessionStorage.setItem("userType", urlParams.get("userType").toUpperCase());
 }
 
@@ -45,6 +45,7 @@ const changeUserType = () => {
       $("#user-type-para")[0].innerText = sessionStorage.getItem("userType");
       break;
   }
+  // reload the page
   location.reload();
 };
 
@@ -264,6 +265,184 @@ const receivedMessagesData = {
   },
 };
 
+const paymentsData = [
+  // This is case 0
+  {
+    name: "Jim and 1 other",
+    serviceType: "Direct pay",
+    role: "PP",
+    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "month",
+      paymentMethod: null,
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 78.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Jane and 2 others",
+    serviceType: "Direct pay",
+    role: "RP",
+    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "month",
+      paymentMethod: null,
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 78.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Joe and 3 others",
+    serviceType: "Collect and pay",
+    role: "RP",
+    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "week",
+      paymentMethod: "Direct Debit",
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 78.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
+    ],
+    arrears: {
+      owed: 5000,
+      paid: 2500,
+      charge: 30,
+    },
+  },
+  {
+    name: ["Joe and 3 others", "Jill and 6 others", "JERREH"],
+    serviceType: "Collect and pay",
+    role: "PP",
+    nextPayment: { date: "25 Aug 2021", amount: 100.0 },
+    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    paymentPlan: {
+      startDate: "01 Jan 2021",
+      endDate: "31 Dec 2021",
+      paymentFrequency: "week",
+      paymentMethod: "Direct Debit",
+      expectedPayments: [
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+        { date: "21 Sep 2021", amount: 100 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "20 Sep 2020",
+        endDate: "19 Sep 2021",
+        receivedPayments: [
+          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "03 Jan 2021", amount: 88.99 },
+        ],
+      },
+      {
+        startDate: "20 Sep 2019",
+        endDate: "19 Sep 2020",
+        receivedPayments: [
+          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "03 Jan 2020", amount: 78.99 },
+        ],
+      },
+    ],
+    arrears: {
+      owed: 5000,
+      paid: 2500,
+      charge: 30,
+    },
+  },
+];
+
 const changesData = {
   change0: {
     changeType: "Change bank details",
@@ -317,6 +496,16 @@ const changesData = {
     updated: "06 Apr 2020",
   },
 };
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 // If Change Children journey has been completed
 if (sessionStorage.getItem("changeChildren")) {
@@ -467,118 +656,431 @@ if (window.location.href.includes("/home")) {
 // SCREEN
 // THANGS
 
-const showCalcs = (e) => {
-  console.log(e.target.value);
-  switch (e.target.value) {
-    case "jsmith":
-      $("#jsmith-calc").show();
-      $("#cjones-calc").hide();
-      $("#all-calcs").hide();
-      break;
-    case "cjones":
-      $("#cjones-calc").show();
-      $("#jsmith-calc").hide();
-      $("#all-calcs").hide();
-      break;
-    default:
-      $("#all-calcs").show();
-      $("#jsmith-calc").hide();
-      $("#cjones-calc").hide();
-      break;
+if (window.location.href.includes("/payments/landing")) {
+  const paymentsCasesTable = $("#payments-cases-table")[0];
+
+  let paymentTableHTML = paymentsData.map((payment, i) => {
+    // if it is a combined case
+    if (Array.isArray(payment.name)) {
+      console.log("iss got more than one");
+      if (userType == "RP") {
+        return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+          payment.name.length
+        } cases</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+      }
+      if (userType == "PP") {
+        return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+          payment.name.length
+        } cases</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+      }
+      if (userType == "DUAL") {
+        if (payment.role == "PP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+            payment.name.length
+          } cases</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+        if (payment.role == "RP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+            payment.name.length
+          } cases</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+      }
+    } else {
+      if (userType == "RP") {
+        return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+          payment.name
+        }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+      }
+      if (userType == "PP") {
+        return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+          payment.name
+        }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+      }
+      if (userType == "DUAL") {
+        if (payment.role == "PP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
+            payment.name
+          }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+        if (payment.role == "RP") {
+          return `<tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
+            payment.name
+          }</a></td>
+          <td class="govuk-table__cell">${payment.serviceType}</td>
+          <td class="govuk-table__cell">${new Date(
+            payment.nextPayment.date
+          ).toLocaleDateString("en-UK", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}</td>
+          </td>`;
+        }
+      }
+    }
+  });
+
+  paymentsCasesTable.innerHTML = paymentTableHTML.join("");
+}
+
+if (window.location.href.includes("/payments/case-payment")) {
+  const casePaymentCaseName = $("#case-payment-case-name")[0];
+  const casePaymentServiceType = $("#case-payment-service-type")[0];
+  const casePaymentFrequency = $("#case-payment-frequency")[0];
+  const casePaymentReviewDate = $("#case-payment-review-date")[0];
+  const casePaymentReviewMultipleDate = $("#case-payment-review-multiple-date")[0];
+  const casePaymentAmount = $("#case-payment-amount")[0];
+  const casePaymentFeeSpans = $(".case-payment-fee-spans");
+  const casePaymentDate = $("#case-payment-date")[0];
+  const casePaymentMethod = $("#case-payment-method")[0];
+  const casePaymentMethodDiv = $("#case-payment-method-div");
+  const casePaymentPastReview = $("#case-payment-past-review")[0];
+  const casePaymentTotalAmount = $("#case-payment-total-amount")[0];
+  const casePaymentRecentPaymentsDiv = $("#case-payments-recent-payments-div");
+  const casePaymentArrearsDiv = $("#case-payments-arrears-div");
+  const casePaymentDirectRPDiv = $("#case-payment-direct-rp-div");
+  const casePaymentCollectRPPara = $("#case-payment-collect-rp-para");
+  const casePaymentRecentPaymentsBody = $("#case-payment-recent-payments-body")[0];
+  const paidReceived = $(".paid-received");
+  const madeReceived = $("#made-received")[0];
+  const casePaymentEnforcementDiv = $("#case-payment-enforcement-div");
+  const casePaymentArrearsOwed = $("#case-payment-arrears-owed")[0];
+  const casePaymentArrearsPaid = $("#case-payment-arrears-paid")[0];
+  const casePaymentEnforcementCharge = $("#case-payment-enforcement-charge")[0];
+  const casePaymentIntroDiv = $("#case-payment-intro-div");
+  const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
+  const casePaymentNamesUl = $("#case-payment-names-ul")[0]
+
+  if (urlParams.get("case")) {
+    let caseNum = urlParams.get("case");
+
+    // if multiple cases combined
+    if (Array.isArray(paymentsData[caseNum].name)) {
+      casePaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`
+      casePaymentIntroDiv.hide()
+      let casePaymentNamesHTML = paymentsData[caseNum].name.map(name => {
+        return `<li>${name}</li>`
+      })
+      casePaymentNamesUl.innerHTML = casePaymentNamesHTML.join("")
+    } else {
+      casePaymentCaseName.innerText = paymentsData[caseNum].name;
+      casePaymentIntroMultipleDiv.hide()
+    }
+
+
+    casePaymentServiceType.innerText = paymentsData[caseNum].serviceType;
+    casePaymentReviewDate.innerText = new Date(
+      paymentsData[caseNum].annualReviews[0].startDate
+    ).toLocaleDateString("en-UK", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+    // Summary info
+    if (paymentsData[caseNum].serviceType == "Direct pay") {
+      casePaymentFeeSpans.hide();
+      casePaymentMethodDiv.hide();
+    }
+
+    if (
+      userType == "PP" ||
+      (userType == "DUAL" && paymentsData[caseNum].role == "PP")
+    ) {
+      casePaymentFeeSpans.each((index) => {
+        casePaymentFeeSpans[index].innerText = "including 20% collection fee";
+      });
+      paidReceived.each((index) => {
+        paidReceived[index].innerText = "paid";
+      });
+      madeReceived.innerText = "made"
+    }
+
+    casePaymentAmount.innerHTML =
+      paymentsData[caseNum].nextPayment.amount.toFixed(2);
+    casePaymentFrequency.innerHTML =
+      paymentsData[caseNum].paymentPlan.paymentFrequency;
+
+    // show month(th)ly or day of the week
+    if (paymentsData[caseNum].paymentPlan.paymentFrequency == "month") {
+      casePaymentDate.innerText = `${new Date(
+        paymentsData[caseNum].nextPayment.date
+      ).getDate()}th monthly`;
+    } else if (paymentsData[caseNum].paymentPlan.paymentFrequency == "week") {
+      casePaymentDate.innerText =
+        days[new Date(paymentsData[caseNum].nextPayment.date).getDay()];
+    }
+
+    if (paymentsData[caseNum].serviceType == "Collect and pay") {
+      casePaymentMethod.innerText =
+        paymentsData[caseNum].paymentPlan.paymentMethod;
+    }
+
+    casePaymentPastReview.innerText = new Date(
+      paymentsData[caseNum].annualReviews[1].startDate
+    ).toLocaleDateString("en-UK", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+    let calcuatedTotal = 0;
+    paymentsData[caseNum].annualReviews[0].receivedPayments.forEach(
+      (payment) => {
+        calcuatedTotal += payment.amount;
+      }
+    );
+    casePaymentTotalAmount.innerText = calcuatedTotal.toFixed(2);
+
+    // Recent Payments
+    if (paymentsData[caseNum].serviceType == "Direct pay") {
+      casePaymentRecentPaymentsDiv.hide();
+      casePaymentArrearsDiv.hide();
+      casePaymentDirectRPDiv.hide();
+      if (userType == "RP") {
+        casePaymentDirectRPDiv.show();
+      }
+    }
+    // update with new Payment Plan structure
+    else {
+      let RecentPaymentsTableHTML = paymentsData[
+        caseNum
+      ].annualReviews[0].receivedPayments.map((payment, i) => {
+        if (i > 2) {
+          return;
+        } else {
+          return `<tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">${payment.date}</th>
+        <td class="govuk-table__cell govuk-table__cell--numeric">£${payment.amount.toFixed(
+          2
+        )}</td>
+      </tr>`;
+        }
+      });
+
+      casePaymentRecentPaymentsBody.innerHTML =
+        RecentPaymentsTableHTML.join("");
+    }
+    if (
+      paymentsData[caseNum].serviceType == "Collect and pay" &&
+      userType != "RP"
+    ) {
+      casePaymentCollectRPPara.hide();
+    }
+
+    // Arrears
+    if (paymentsData[caseNum].arrears) {
+      if (
+        userType == "RP" ||
+        (userType == "DUAL" && paymentsData[caseNum].role == "RP")
+      ) {
+        casePaymentEnforcementDiv.hide();
+      }
+      casePaymentArrearsOwed.innerText = `£${paymentsData[
+        caseNum
+      ].arrears.owed.toFixed(2)}`;
+      casePaymentArrearsPaid.innerText = `£${paymentsData[
+        caseNum
+      ].arrears.paid.toFixed(2)}`;
+      casePaymentEnforcementCharge.innerText = `£${paymentsData[
+        caseNum
+      ].arrears.charge.toFixed(2)}`;
+      casePaymentArrearsDiv.show();
+    } else {
+      casePaymentArrearsDiv.hide();
+    }
   }
-};
+}
 
-const showPayments = (e) => {
-  console.log(e.target.value);
-  switch (e.target.value) {
-    case "case1":
-      $("#case1").show();
-      $("#case2").hide();
-      $("#all-cases").hide();
-      break;
-    case "case2":
-      $("#case2").show();
-      $("#case1").hide();
-      $("#all-cases").hide();
-      break;
-    default:
-      $("#all-cases").show();
-      $("#case1").hide();
-      $("#case2").hide();
-      break;
-  }
-};
+// OLD
+// PAYMENT
+// SCREEN
+// THANGS
 
-const sorter = $("#sort")[0];
-const calcSorter = $("#calcs-sort")[0];
-const paySorter = $("#payment-sort")[0];
-
-try {
-  sorter.addEventListener("change", showCase);
-} catch (err) {}
-
-try {
-  calcSorter.addEventListener("change", showCalcs);
-} catch (err) {}
-
-try {
-  paySorter.addEventListener("change", showPayments);
-} catch (err) {}
-
-try {
-  switch (`case${urlParams.get("case")}`) {
-    case "case1":
-      $("#case1").show();
-      $("#case2").hide();
-      $("#all-cases").hide();
-      paySorter.value = "case1";
-      break;
-    case "case2":
-      $("#case2").show();
-      $("#case1").hide();
-      $("#all-cases").hide();
-      paySorter.value = "case2";
-      break;
-    default:
-      $("#all-cases").show();
-      $("#case1").hide();
-      $("#case2").hide();
-      break;
-  }
-} catch (err) {}
-
-try {
-  // console.log("switching case calc");
-  // console.log(urlParams.get("calc"));
-  switch (urlParams.get("calc")) {
-    case "jsmith":
-      $("#jsmith-calc").show();
-      $("#cjones-calc").hide();
-      $("#all-calcs").hide();
-      calcSorter.value = "jsmith";
-      break;
-    case "cjones":
-      $("#cjones-calc").show();
-      $("#jsmith-calc").hide();
-      $("#all-calcs").hide();
-      calcSorter.value = "cjones";
-      break;
-    case "all_calc":
-      $("#jsmith-calc").hide();
-      $("#cjones-calc").hide();
-      $("#all-calcs").show();
-      calcSorter.value = "all";
-      break;
-    default:
-      try {
-        $("#all-calcs").show();
-      } catch (err) {
+if ("hell freezes over" == "today") {
+  const showCalcs = (e) => {
+    console.log(e.target.value);
+    switch (e.target.value) {
+      case "jsmith":
         $("#jsmith-calc").show();
         $("#cjones-calc").hide();
-      }
-      break;
-  }
-} catch (err) {}
+        $("#all-calcs").hide();
+        break;
+      case "cjones":
+        $("#cjones-calc").show();
+        $("#jsmith-calc").hide();
+        $("#all-calcs").hide();
+        break;
+      default:
+        $("#all-calcs").show();
+        $("#jsmith-calc").hide();
+        $("#cjones-calc").hide();
+        break;
+    }
+  };
+
+  const showPayments = (e) => {
+    console.log(e.target.value);
+    switch (e.target.value) {
+      case "case1":
+        $("#case1").show();
+        $("#case2").hide();
+        $("#all-cases").hide();
+        break;
+      case "case2":
+        $("#case2").show();
+        $("#case1").hide();
+        $("#all-cases").hide();
+        break;
+      default:
+        $("#all-cases").show();
+        $("#case1").hide();
+        $("#case2").hide();
+        break;
+    }
+  };
+
+  const sorter = $("#sort")[0];
+  const calcSorter = $("#calcs-sort")[0];
+  const paySorter = $("#payment-sort")[0];
+
+  try {
+    sorter.addEventListener("change", showCase);
+  } catch (err) {}
+
+  try {
+    calcSorter.addEventListener("change", showCalcs);
+  } catch (err) {}
+
+  try {
+    paySorter.addEventListener("change", showPayments);
+  } catch (err) {}
+
+  try {
+    switch (`case${urlParams.get("case")}`) {
+      case "case1":
+        $("#case1").show();
+        $("#case2").hide();
+        $("#all-cases").hide();
+        paySorter.value = "case1";
+        break;
+      case "case2":
+        $("#case2").show();
+        $("#case1").hide();
+        $("#all-cases").hide();
+        paySorter.value = "case2";
+        break;
+      default:
+        $("#all-cases").show();
+        $("#case1").hide();
+        $("#case2").hide();
+        break;
+    }
+  } catch (err) {}
+
+  try {
+    // console.log("switching case calc");
+    // console.log(urlParams.get("calc"));
+    switch (urlParams.get("calc")) {
+      case "jsmith":
+        $("#jsmith-calc").show();
+        $("#cjones-calc").hide();
+        $("#all-calcs").hide();
+        calcSorter.value = "jsmith";
+        break;
+      case "cjones":
+        $("#cjones-calc").show();
+        $("#jsmith-calc").hide();
+        $("#all-calcs").hide();
+        calcSorter.value = "cjones";
+        break;
+      case "all_calc":
+        $("#jsmith-calc").hide();
+        $("#cjones-calc").hide();
+        $("#all-calcs").show();
+        calcSorter.value = "all";
+        break;
+      default:
+        try {
+          $("#all-calcs").show();
+        } catch (err) {
+          $("#jsmith-calc").show();
+          $("#cjones-calc").hide();
+        }
+        break;
+    }
+  } catch (err) {}
+}
 
 // TRACK
 // CHANGES
@@ -1996,8 +2498,8 @@ if (window.location.href.includes("/report-a-change")) {
   if (window.location.href.includes("/report-a-change/income/income-landing")) {
     if (userType == "RP") {
       $("#special-expenses-row").hide();
-      $("#income-and-expenses-title")[0].innerText = "Income"
-      $("#income-and-expenses-breadcrumb")[0].innerText = "Income"
+      $("#income-and-expenses-title")[0].innerText = "Income";
+      $("#income-and-expenses-breadcrumb")[0].innerText = "Income";
     }
   }
 
