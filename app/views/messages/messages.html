@@ -87,11 +87,13 @@ Messages
 		}) }}
 		{% endcall %}
 
+		<!-- Boxes -->
 		{{ govukCheckboxes({
 		idPrefix: "case",
 		name: "case",
 		classes: "govuk-checkboxes--small",
 		fieldset: {
+		id: "case-checkboxes",
 		legend: {
 		text: "Case",
 		isPageHeading: false,
@@ -105,12 +107,12 @@ Messages
 		text: "C Jones"
 		},
 		{
-			id: "case-j-smith",
+		id: "case-j-smith",
 		value: "j-smith",
 		text: "J Smith"
 		},
 		{
-			id: "case-no-case",
+		id: "case-no-case",
 		value: "no-case",
 		text: "No specific case"
 		}

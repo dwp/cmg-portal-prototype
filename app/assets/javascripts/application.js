@@ -53,68 +53,11 @@ $("#user-type-container")[0].addEventListener("click", changeUserType);
 
 let userType = sessionStorage.getItem("userType");
 
-const caseData = {
-  all: {
-    case: "allCases",
-    messages: {
-      msg0: ["We need to check some information with you", "01/02/2021"],
-      msg1: ["Your child maintenance payments will not change", "15/01/2021"],
-      msg2: ["We've worked out your child maintenance payments", "31/12/2020"],
-    },
-    changes: {
-      chng0: ["Change phone number", "blue", "received"],
-      chng1: ["Change address", "blue", "received"],
-      chng2: [
-        "Change to Direct Pay or Collect and Pay",
-        "yellow",
-        "in progress",
-      ],
-    },
-  },
-  jsmith: {
-    case: "jsmith",
-    messages: {
-      msg0: ["We need to check some information with you", "01/02/2021"],
-      msg1: ["We haven't received a child maintenance payment", "28/12/2020"],
-      msg2: ["A variation has been reported", "19/12/2020"],
-    },
-    changes: {
-      chng0: ["Update shared care", "yellow", "in progress"],
-      chng1: ["Update income", "yellow", "in progress"],
-      chng2: ["Special expenses", "green", "completed"],
-    },
-  },
-  cjones: {
-    case: "cjones",
-    messages: {
-      msg0: ["Your child maintenance payments will not change", "15/01/2021"],
-      msg1: ["We have received a new report", "11/11/2020"],
-      msg2: ["We have been updated of special expenses", "10/11/2020"],
-    },
-    changes: {
-      chng0: [
-        "Change to Direct Pay or Collect and Pay",
-        "yellow",
-        "in progress",
-      ],
-      chng1: ["Update shared care", "green", "Accepted"],
-      chng2: ["Update shared care", "green", "Accepted"],
-    },
-  },
-  ftenet: {
-    case: "ftenet",
-    messages: {
-      msg0: ["We've worked out your child maintenance payments", "31/12/2020"],
-      msg1: ["We've received your voluntary payment", "01/09/2020"],
-      msg2: ["We've received your voluntary payment", "13/08/2020"],
-    },
-    changes: {
-      chng0: ["Update income", "yellow", "in progress"],
-      chng1: ["Child still in education", "green", "Accepted"],
-      chng2: ["Update shared care", "green", "Accepted"],
-    },
-  },
-};
+const newCasesData = [
+  { name: "Jane and 1 other", children: ["Jane", "Joe"] },
+  { name: "Edward", children: ["Edward"] },
+  { name: "Adam and 3 others", children: ["Adam", "Larry", "Henry", "Oswald"] },
+];
 
 const sentMessagesData = {
   0: {
@@ -154,7 +97,7 @@ const receivedMessagesData = {
   0: {
     title: "Your child maintenance enquiry",
     date: "21 May 2021",
-    case: "j-smith",
+    case: newCasesData[0].name,
     link: "week-received-message",
   },
   1: {
@@ -170,12 +113,12 @@ const receivedMessagesData = {
   3: {
     title: "Your child maintenance enquiry",
     date: "18 Dec 2020",
-    case: "j-smith",
+    case: newCasesData[0].name,
   },
   4: {
     title: "Your child maintenance payments will not change",
     date: "15 Oct 2020",
-    case: "j-smith",
+    case: newCasesData[1].name,
   },
   5: {
     title:
@@ -212,7 +155,7 @@ const receivedMessagesData = {
   11: {
     title: "Your service type has changed",
     date: "21 Jan 2020",
-    case: "c-jones",
+    case: newCasesData[2].name,
     link: "received-message",
   },
   12: {
@@ -239,7 +182,7 @@ const receivedMessagesData = {
   16: {
     title: "Your child maintenance payments will not change",
     date: "17 Jul 2019",
-    case: "j-smith",
+    case: newCasesData[1].name,
   },
   17: {
     title: "We need some information from you",
@@ -268,25 +211,29 @@ const receivedMessagesData = {
 const paymentsData = [
   // This is case 0
   {
-    name: "Jim and 1 other",
+    name: newCasesData[0].name,
     serviceType: "Direct pay",
     role: "PP",
-    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
-    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    nextPayment: { date: "14 Oct 2021", amount: 75.03 },
+    previousPayment: { date: "14 Sep 2021", amount: 75.03 },
     paymentPlan: {
-      startDate: "01 Jan 2021",
-      endDate: "31 Dec 2021",
+      startDate: "08 Feb 2021",
+      endDate: "07 Feb 2022",
       paymentFrequency: "month",
       paymentMethod: null,
       expectedPayments: [
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
+        { date: "14 Mar 2021", amount: 75.03 },
+        { date: "14 Apr 2021", amount: 75.03 },
+        { date: "14 May 2021", amount: 75.03 },
+        { date: "14 Jun 2021", amount: 75.03 },
+        { date: "14 Jul 2021", amount: 75.03 },
+        { date: "14 Aug 2021", amount: 75.03 },
+        { date: "14 Sep 2021", amount: 75.03 },
+        { date: "14 Oct 2021", amount: 75.03 },
+        { date: "14 Nov 2021", amount: 75.03 },
+        { date: "14 Dec 2021", amount: 75.03 },
+        { date: "14 Jan 2022", amount: 75.03 },
+        { date: "14 Feb 2022", amount: 75.03 },
       ],
     },
     annualReviews: [
@@ -309,83 +256,157 @@ const paymentsData = [
     ],
   },
   {
-    name: "Jane and 2 others",
-    serviceType: "Direct pay",
-    role: "RP",
-    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
-    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
-    paymentPlan: {
-      startDate: "01 Jan 2021",
-      endDate: "31 Dec 2021",
-      paymentFrequency: "month",
-      paymentMethod: null,
-      expectedPayments: [
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-      ],
-    },
-    annualReviews: [
-      {
-        startDate: "20 Sep 2020",
-        endDate: "19 Sep 2021",
-        receivedPayments: [
-          { date: "03 Jan 2021", amount: 78.99 },
-          { date: "03 Jan 2021", amount: 78.99 },
-        ],
-      },
-      {
-        startDate: "20 Sep 2019",
-        endDate: "19 Sep 2020",
-        receivedPayments: [
-          { date: "03 Jan 2020", amount: 78.99 },
-          { date: "03 Jan 2020", amount: 78.99 },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Joe and 3 others",
+    name: newCasesData[1].name,
+    combined: true,
     serviceType: "Collect and pay",
-    role: "RP",
-    nextPayment: { date: "20 Aug 2021", amount: 100.0 },
-    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    role: "PP",
+    nextPayment: { date: "20 Sep 2021", amount: 51.34 },
+    previousPayment: { date: "24 Aug 2021", amount: 51.34 },
     paymentPlan: {
-      startDate: "01 Jan 2021",
-      endDate: "31 Dec 2021",
-      paymentFrequency: "week",
-      paymentMethod: "Direct Debit",
+      startDate: "14 Mar 2021",
+      endDate: "13 Mar 2022",
+      paymentFrequency: "monthly",
+      paymentMethod: "Deduction of earnings order (DEO)",
       expectedPayments: [
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
+        { date: "20 Mar 2021", amount: 51.34 },
+        { date: "20 Apr 2021", amount: 51.34 },
+        { date: "20 May 2021", amount: 51.34 },
+        { date: "20 Jun 2021", amount: 51.34 },
+        { date: "20 Jul 2021", amount: 51.34 },
+        { date: "20 Aug 2021", amount: 51.34 },
+        { date: "20 Sep 2021", amount: 51.34 },
+        { date: "20 Oct 2021", amount: 51.34 },
+        { date: "20 Nov 2021", amount: 51.34 },
+        { date: "20 Dec 2021", amount: 51.34 },
+        { date: "20 Jan 2022", amount: 51.34 },
+        { date: "20 Feb 2022", amount: 51.34 },
       ],
     },
     annualReviews: [
       {
-        startDate: "20 Sep 2020",
-        endDate: "19 Sep 2021",
+        startDate: "14 Mar 2021",
+        endDate: "13 Mar 2022",
         receivedPayments: [
-          { date: "03 Jan 2021", amount: 78.99 },
-          { date: "03 Jan 2021", amount: 78.99 },
+          { date: "24 Aug 2021", amount: 51.34 },
+          { date: "27 Jul 2021", amount: 51.34 },
+          { date: "27 Jun 2021", amount: 44.67 },
+          { date: "27 May 2021", amount: 49.01 },
+          { date: "27 Apr 2021", amount: 45.34 },
+          { date: "27 Mar 2021", amount: 51.34 },
         ],
       },
       {
-        startDate: "20 Sep 2019",
-        endDate: "19 Sep 2020",
+        startDate: "14 Mar 2020",
+        endDate: "13 Mar 2021",
         receivedPayments: [
-          { date: "03 Jan 2020", amount: 78.99 },
-          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "21 Feb 2021", amount: 51.34 },
+          { date: "25 Jan 2021", amount: 50.34 },
+          { date: "26 Dec 2020", amount: 18.01 },
+          { date: "25 Nov 2020", amount: 44.67 },
+          { date: "23 Oct 2020", amount: 44.67 },
+          { date: "22 Sep 2020", amount: 51.34 },
+          { date: "23 Aug 2020", amount: 51.34 },
+          { date: "23 Jul 2020", amount: 51.34 },
+          { date: "25 Jun 2020", amount: 51.34 },
+          { date: "26 May 2020", amount: 51.34 },
+          { date: "24 Apr 2020", amount: 51.34 },
+          { date: "23 Mar 2020", amount: 51.34 },
+        ],
+      },
+      {
+        startDate: "14 Mar 2019",
+        endDate: "13 Mar 2020",
+        receivedPayments: [
+          { date: "28 Feb 2020", amount: 51.34 },
+          { date: "22 Jan 2020", amount: 48.67 },
+          { date: "28 Dec 2019", amount: 14.67 },
+          { date: "23 Nov 2019", amount: 37.01 },
+          { date: "24 Oct 2019", amount: 51.34 },
+          { date: "25 Sep 2019", amount: 51.34 },
+          { date: "23 Aug 2019", amount: 51.34 },
+          { date: "23 Jul 2019", amount: 51.34 },
+          { date: "26 Jun 2019", amount: 29.67 },
+          { date: "25 May 2019", amount: 51.34 },
+          { date: "26 Apr 2019", amount: 51.34 },
+          { date: "28 Mar 2019", amount: 51.34 },
+        ],
+      },
+    ],
+  },
+  {
+    name: newCasesData[2].name,
+    combined: true,
+    serviceType: "Collect and pay",
+    role: "PP",
+    nextPayment: { date: "20 Sep 2021", amount: 154.02 },
+    previousPayment: { date: "24 Aug 2021", amount: 125.23 },
+    paymentPlan: {
+      startDate: "14 Mar 2021",
+      endDate: "13 Mar 2022",
+      paymentFrequency: "monthly",
+      paymentMethod: "Deduction of earnings order (DEO)",
+      expectedPayments: [
+        { date: "20 Mar 2021", amount: 102.68 },
+        { date: "20 Apr 2021", amount: 102.68 },
+        { date: "20 May 2021", amount: 102.68 },
+        { date: "20 Jun 2021", amount: 102.68 },
+        { date: "20 Jul 2021", amount: 102.68 },
+        { date: "20 Aug 2021", amount: 102.68 },
+        { date: "20 Sep 2021", amount: 102.68 },
+        { date: "20 Oct 2021", amount: 102.68 },
+        { date: "20 Nov 2021", amount: 102.68 },
+        { date: "20 Dec 2021", amount: 102.68 },
+        { date: "20 Jan 2022", amount: 102.68 },
+        { date: "20 Feb 2022", amount: 102.68 },
+      ],
+    },
+    annualReviews: [
+      {
+        startDate: "14 Mar 2021",
+        endDate: "13 Mar 2022",
+        receivedPayments: [
+          { date: "24 Aug 2021", amount: 102.68 },
+          { date: "27 Jul 2021", amount: 102.68 },
+          { date: "27 Jun 2021", amount: 89.35 },
+          { date: "27 May 2021", amount: 98.01 },
+          { date: "27 Apr 2021", amount: 90.68 },
+          { date: "27 Mar 2021", amount: 102.68 },
+        ],
+      },
+      {
+        startDate: "14 Mar 2020",
+        endDate: "13 Mar 2021",
+        receivedPayments: [
+          { date: "21 Feb 2021", amount: 102.68 },
+          { date: "25 Jan 2021", amount: 100.68 },
+          { date: "26 Dec 2020", amount: 36.01 },
+          { date: "25 Nov 2020", amount: 89.35 },
+          { date: "23 Oct 2020", amount: 89.35 },
+          { date: "22 Sep 2020", amount: 102.68 },
+          { date: "23 Aug 2020", amount: 102.68 },
+          { date: "23 Jul 2020", amount: 102.68 },
+          { date: "25 Jun 2020", amount: 102.68 },
+          { date: "26 May 2020", amount: 102.68 },
+          { date: "24 Apr 2020", amount: 102.68 },
+          { date: "23 Mar 2020", amount: 102.68 },
+        ],
+      },
+      {
+        startDate: "14 Mar 2019",
+        endDate: "13 Mar 2020",
+        receivedPayments: [
+          { date: "28 Feb 2020", amount: 102.68 },
+          { date: "22 Jan 2020", amount: 97.35 },
+          { date: "28 Dec 2019", amount: 29.35 },
+          { date: "23 Nov 2019", amount: 74.01 },
+          { date: "24 Oct 2019", amount: 102.68 },
+          { date: "25 Sep 2019", amount: 102.68 },
+          { date: "23 Aug 2019", amount: 102.68 },
+          { date: "23 Jul 2019", amount: 102.68 },
+          { date: "26 Jun 2019", amount: 59.35 },
+          { date: "25 May 2019", amount: 102.68 },
+          { date: "26 Apr 2019", amount: 102.68 },
+          { date: "28 Mar 2019", amount: 102.68 },
         ],
       },
     ],
@@ -396,42 +417,78 @@ const paymentsData = [
     },
   },
   {
-    name: ["Joe and 3 others", "Jill and 6 others", "JERREH"],
+    name: [newCasesData[1].name, newCasesData[2].name],
     serviceType: "Collect and pay",
     role: "PP",
-    nextPayment: { date: "25 Aug 2021", amount: 100.0 },
-    previousPayment: { date: "20 Jul 2021", amount: 100.0 },
+    nextPayment: { date: "20 Sep 2021", amount: 154.02 },
+    previousPayment: { date: "24 Aug 2021", amount: 125.23 },
     paymentPlan: {
-      startDate: "01 Jan 2021",
-      endDate: "31 Dec 2021",
-      paymentFrequency: "week",
-      paymentMethod: "Direct Debit",
+      startDate: "14 Mar 2021",
+      endDate: "13 Mar 2022",
+      paymentFrequency: "monthly",
+      paymentMethod: "Deduction of earnings order (DEO)",
       expectedPayments: [
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
-        { date: "21 Sep 2021", amount: 100 },
+        { date: "20 Mar 2021", amount: 154.02 },
+        { date: "20 Apr 2021", amount: 154.02 },
+        { date: "20 May 2021", amount: 154.02 },
+        { date: "20 Jun 2021", amount: 154.02 },
+        { date: "20 Jul 2021", amount: 154.02 },
+        { date: "20 Aug 2021", amount: 154.02 },
+        { date: "20 Sep 2021", amount: 154.02 },
+        { date: "20 Oct 2021", amount: 154.02 },
+        { date: "20 Nov 2021", amount: 154.02 },
+        { date: "20 Dec 2021", amount: 154.02 },
+        { date: "20 Jan 2022", amount: 154.02 },
+        { date: "20 Feb 2022", amount: 154.02 },
       ],
     },
     annualReviews: [
       {
-        startDate: "20 Sep 2020",
-        endDate: "19 Sep 2021",
+        startDate: "14 Mar 2021",
+        endDate: "13 Mar 2022",
         receivedPayments: [
-          { date: "03 Jan 2021", amount: 78.99 },
-          { date: "03 Jan 2021", amount: 88.99 },
+          { date: "24 Aug 2021", amount: 154.02 },
+          { date: "27 Jul 2021", amount: 154.02 },
+          { date: "27 Jun 2021", amount: 134.02 },
+          { date: "27 May 2021", amount: 147.02 },
+          { date: "27 Apr 2021", amount: 136.02 },
+          { date: "27 Mar 2021", amount: 154.02 },
         ],
       },
       {
-        startDate: "20 Sep 2019",
-        endDate: "19 Sep 2020",
+        startDate: "14 Mar 2020",
+        endDate: "13 Mar 2021",
         receivedPayments: [
-          { date: "03 Jan 2020", amount: 78.99 },
-          { date: "03 Jan 2020", amount: 78.99 },
+          { date: "21 Feb 2021", amount: 154.02 },
+          { date: "25 Jan 2021", amount: 151.02 },
+          { date: "26 Dec 2020", amount: 54.02 },
+          { date: "25 Nov 2020", amount: 34.02 },
+          { date: "23 Oct 2020", amount: 134.02 },
+          { date: "22 Sep 2020", amount: 154.02 },
+          { date: "23 Aug 2020", amount: 154.02 },
+          { date: "23 Jul 2020", amount: 154.02 },
+          { date: "25 Jun 2020", amount: 154.02 },
+          { date: "26 May 2020", amount: 154.02 },
+          { date: "24 Apr 2020", amount: 154.02 },
+          { date: "23 Mar 2020", amount: 154.02 },
+        ],
+      },
+      {
+        startDate: "14 Mar 2019",
+        endDate: "13 Mar 2020",
+        receivedPayments: [
+          { date: "28 Feb 2020", amount: 154.02 },
+          { date: "22 Jan 2020", amount: 151.02 },
+          { date: "28 Dec 2019", amount: 54.02 },
+          { date: "23 Nov 2019", amount: 34.02 },
+          { date: "24 Oct 2019", amount: 134.02 },
+          { date: "25 Sep 2019", amount: 154.02 },
+          { date: "23 Aug 2019", amount: 154.02 },
+          { date: "23 Jul 2019", amount: 154.02 },
+          { date: "26 Jun 2019", amount: 154.02 },
+          { date: "25 May 2019", amount: 154.02 },
+          { date: "26 Apr 2019", amount: 154.02 },
+          { date: "28 Mar 2019", amount: 154.02 },
         ],
       },
     ],
@@ -450,7 +507,8 @@ const changesData = {
     colour: "blue",
     submitted: "10 Jun 2021",
     updated: "10 Jun 2021",
-    case: "J. Smith",
+    complete: "09 Jul 2021",
+    case: newCasesData[0].name,
   },
   change1: {
     changeType: "Change to service type",
@@ -458,6 +516,7 @@ const changesData = {
     colour: "yellow",
     submitted: "16 May 2021",
     updated: "05 June 2021",
+    complete: "24 June 2021",
   },
   change2: {
     changeType: "Additional income",
@@ -465,7 +524,8 @@ const changesData = {
     colour: "green",
     submitted: "06 Feb 2021",
     updated: "08 May 2021",
-    case: "C. Jones",
+    complete: "03 Jun 2021",
+    case: newCasesData[1].name,
   },
   change3: {
     changeType: "Shared care",
@@ -473,6 +533,7 @@ const changesData = {
     colour: "purple",
     submitted: "08 Apr 2021",
     updated: "12 Apr 2021",
+    complete: "19 June 2021",
   },
   change4: {
     changeType: "Full time education",
@@ -480,6 +541,7 @@ const changesData = {
     colour: "green",
     submitted: "06 Sep 2020",
     updated: "19 Oct 2020",
+    complete: "19 Oct 2020",
   },
   change5: {
     changeType: "Special expenses",
@@ -487,6 +549,7 @@ const changesData = {
     colour: "red",
     submitted: "12 Aug 2020",
     updated: "29 Aug 2020",
+    complete: "20 Sep 2020",
   },
   change6: {
     changeType: "Change of income",
@@ -494,6 +557,7 @@ const changesData = {
     colour: "green",
     submitted: "24 Mar 2020",
     updated: "06 Apr 2020",
+    complete: "06 Apr 2020",
   },
 };
 
@@ -507,10 +571,13 @@ const days = [
   "Saturday",
 ];
 
-// If Change Children journey has been completed
-if (sessionStorage.getItem("changeChildren")) {
+// If Education journey has been completed
+if (sessionStorage.getItem("education")) {
+  let newCompletedDate = new Date(
+    new Date().setMonth(new Date().getMonth() + 2)
+  );
   changesData[`change${Object.keys(changesData).length}`] = {
-    changeType: "Supporting another child",
+    changeType: "Education",
     status: "received",
     colour: "blue",
     submitted: new Date().toLocaleDateString("en-GB", {
@@ -523,6 +590,11 @@ if (sessionStorage.getItem("changeChildren")) {
       month: "short",
       year: "numeric",
     }),
+    completed: newCompletedDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }),
   };
 }
 
@@ -531,18 +603,20 @@ if (sessionStorage.getItem("changeChildren")) {
 // THANGS
 
 if (window.location.href.includes("/home")) {
-  let message0 = $("#message0")[0];
-  let message1 = $("#message1")[0];
-  let message2 = $("#message2")[0];
-  let date0 = $("#date0")[0];
-  let date1 = $("#date1")[0];
-  let date2 = $("#date2")[0];
-  let change0 = $("#change0")[0];
-  let change1 = $("#change1")[0];
-  let change2 = $("#change2")[0];
-  let tag0 = $("#tag0")[0];
-  let tag1 = $("#tag1")[0];
-  let tag2 = $("#tag2")[0];
+  const message0 = $("#message0")[0];
+  const message1 = $("#message1")[0];
+  const message2 = $("#message2")[0];
+  const date0 = $("#date0")[0];
+  const date1 = $("#date1")[0];
+  const date2 = $("#date2")[0];
+  const change0 = $("#change0")[0];
+  const change1 = $("#change1")[0];
+  const change2 = $("#change2")[0];
+  const tag0 = $("#tag0")[0];
+  const tag1 = $("#tag1")[0];
+  const tag2 = $("#tag2")[0];
+  const paymentsGrid = $("#payments-grid")[0];
+  const homeCaseSelector = $("#home-case-selector")[0];
 
   switch (userType) {
     case "RP":
@@ -555,8 +629,129 @@ if (window.location.href.includes("/home")) {
       break;
   }
 
+  // populate payment cards with payments
+  let paymentsHTML = paymentsData.map((payment, i) => {
+    // don't show combined cases for RPs
+    if (userType == "RP") {
+      if (!Array.isArray(payment.name)) {
+        return `
+        <div class="home-card payments-card" id="payment-${i}">
+            <div class="card-header">
+              <a href="payments/case-payment?case=${i}" class="govuk-link--no-visited-state">
+                <h2>${payment.name}</h2>
+              </a>
+            </div>
+            <div class="card-body">
+              <p class="small govuk-!-margin-bottom-2">${
+                payment.serviceType
+              }</p>
+              <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
+              <div class="flex">
+                <p class="small">${new Date(
+                  payment.previousPayment.date
+                ).toLocaleDateString("en-GB")}</p>
+                <p class="small">£${payment.previousPayment.amount.toFixed(
+                  2
+                )}</p>
+              </div>
+              <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
+              <div class="flex">
+                <p class="small">${new Date(
+                  payment.nextPayment.date
+                ).toLocaleDateString("en-GB")}</p>
+                <p class="small">£${payment.nextPayment.amount.toFixed(2)}</p>
+              </div>
+              <a href="#" class="payment-card-link govuk-link--no-visited-state">Report a missed payment</a>
+            </div>
+          </div>
+          `;
+      }
+    }
+    //
+    else {
+      if (Array.isArray(payment.name)) {
+        return `
+          <div class="home-card payments-card" id="payment-${i}">
+              <div class="card-header">
+                <a href="payments/case-payment?case=${i}" class="govuk-link--no-visited-state">
+                  <h2>${payment.name.length} cases</h2>
+                </a>
+              </div>
+              <div class="card-body">
+                <p class="small govuk-!-margin-bottom-2">${
+                  payment.serviceType
+                }</p>
+                <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
+                <div class="flex">
+                  <p class="small">${new Date(
+                    payment.previousPayment.date
+                  ).toLocaleDateString("en-GB")}</p>
+                  <p class="small">£${payment.previousPayment.amount.toFixed(
+                    2
+                  )}</p>
+                </div>
+                <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
+                <div class="flex">
+                  <p class="small">${new Date(
+                    payment.nextPayment.date
+                  ).toLocaleDateString("en-GB")}</p>
+                  <p class="small">£${payment.nextPayment.amount.toFixed(2)}</p>
+                </div>
+                <a href="#" class="payment-card-link govuk-link--no-visited-state">Report a missed payment</a>
+              </div>
+            </div>
+            `;
+      } else if (payment.combined) {
+        return;
+      } else {
+        return `
+        <div class="home-card payments-card" id="payment-${i}">
+            <div class="card-header">
+              <a href="payments/case-payment?case=${i}" class="govuk-link--no-visited-state">
+                <h2>${payment.name}</h2>
+              </a>
+            </div>
+            <div class="card-body">
+              <p class="small govuk-!-margin-bottom-2">${
+                payment.serviceType
+              }</p>
+              <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
+              <div class="flex">
+                <p class="small">${new Date(
+                  payment.previousPayment.date
+                ).toLocaleDateString("en-GB")}</p>
+                <p class="small">£${payment.previousPayment.amount.toFixed(
+                  2
+                )}</p>
+              </div>
+              <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
+              <div class="flex">
+                <p class="small">${new Date(
+                  payment.nextPayment.date
+                ).toLocaleDateString("en-GB")}</p>
+                <p class="small">£${payment.nextPayment.amount.toFixed(2)}</p>
+              </div>
+              <a href="#" class="payment-card-link govuk-link--no-visited-state">Report a missed payment</a>
+            </div>
+          </div>
+          `;
+      }
+    }
+  });
+
+  paymentsGrid.innerHTML = paymentsHTML.join("");
+
+  // populate the case selector
+  let caseSelectorHTML = newCasesData.map((caseName, i) => {
+    return `
+    <option value="${caseName.name}">${caseName.name}</option>
+    `;
+  });
+  caseSelectorHTML.unshift(`<option value="all">All cases</option>`);
+
+  homeCaseSelector.innerHTML = caseSelectorHTML.join("");
+
   const changeData = (caseName) => {
-    let newData = caseData[caseName];
     // console.log(newData)
     message0.innerText = receivedMessagesData[0].title;
     message1.innerText = receivedMessagesData[1].title;
@@ -596,7 +791,7 @@ if (window.location.href.includes("/home")) {
     tag2.innerText = changesData["change2"].status.replace("-", " ");
 
     // If the Change Children journey has been completed
-    if (sessionStorage.getItem("changeChildren")) {
+    if (sessionStorage.getItem("education")) {
       change0.innerText =
         changesData[`change${Object.keys(changesData).length - 1}`].changeType;
       change0.href = `track-changes/change-details?change=change${
@@ -630,24 +825,20 @@ if (window.location.href.includes("/home")) {
 
   const showCase = (e) => {
     console.log(e.target.value);
-    switch (e.target.value) {
-      case "jsmith":
-        $("#jsmith").show();
-        $("#cjones").hide();
-        changeData(e.target.value);
-        break;
-      case "cjones":
-        $("#cjones").show();
-        $("#jsmith").hide();
-        changeData(e.target.value);
-        break;
-      default:
-        $("#cjones").show();
-        $("#jsmith").show();
-        changeData("all");
-        break;
-    }
+    // show relevant payment cards
+
+    // get payment cards
+
+    // loop through
+
+    // if case.name includes value
+
+    // show relevant messages data
+
+    // show relevant track changes data
   };
+
+  homeCaseSelector.addEventListener("change", showCase);
 
   changeData("all");
 }
@@ -662,21 +853,8 @@ if (window.location.href.includes("/payments/landing")) {
   let paymentTableHTML = paymentsData.map((payment, i) => {
     // if it is a combined case
     if (Array.isArray(payment.name)) {
-      console.log("iss got more than one");
       if (userType == "RP") {
-        return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-          payment.name.length
-        } cases</a></td>
-          <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
-          </td>`;
+        return;
       }
       if (userType == "PP") {
         return `<tr class="govuk-table__row">
@@ -726,38 +904,8 @@ if (window.location.href.includes("/payments/landing")) {
         }
       }
     } else {
-      if (userType == "RP") {
-        return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-          payment.name
-        }</a></td>
-          <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
-          </td>`;
-      }
-      if (userType == "PP") {
-        return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-          payment.name
-        }</a></td>
-          <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
-          </td>`;
-      }
-      if (userType == "DUAL") {
-        if (payment.role == "PP") {
+      if (userType == "PP" || (userType == "DUAL" && payment.role == "PP")) {
+        if (!payment.combined) {
           return `<tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
             payment.name
@@ -772,11 +920,11 @@ if (window.location.href.includes("/payments/landing")) {
           })}</td>
           </td>`;
         }
-        if (payment.role == "RP") {
-          return `<tr class="govuk-table__row">
+      } else {
+        return `<tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-            payment.name
-          }</a></td>
+          payment.name
+        }</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           <td class="govuk-table__cell">${new Date(
             payment.nextPayment.date
@@ -786,7 +934,6 @@ if (window.location.href.includes("/payments/landing")) {
             year: "numeric",
           })}</td>
           </td>`;
-        }
       }
     }
   });
@@ -799,7 +946,9 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentServiceType = $("#case-payment-service-type")[0];
   const casePaymentFrequency = $("#case-payment-frequency")[0];
   const casePaymentReviewDate = $("#case-payment-review-date")[0];
-  const casePaymentReviewMultipleDate = $("#case-payment-review-multiple-date")[0];
+  const casePaymentReviewMultipleDate = $(
+    "#case-payment-review-multiple-date"
+  )[0];
   const casePaymentAmount = $("#case-payment-amount")[0];
   const casePaymentFeeSpans = $(".case-payment-fee-spans");
   const casePaymentDate = $("#case-payment-date")[0];
@@ -811,7 +960,9 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentArrearsDiv = $("#case-payments-arrears-div");
   const casePaymentDirectRPDiv = $("#case-payment-direct-rp-div");
   const casePaymentCollectRPPara = $("#case-payment-collect-rp-para");
-  const casePaymentRecentPaymentsBody = $("#case-payment-recent-payments-body")[0];
+  const casePaymentRecentPaymentsBody = $(
+    "#case-payment-recent-payments-body"
+  )[0];
   const paidReceived = $(".paid-received");
   const madeReceived = $("#made-received")[0];
   const casePaymentEnforcementDiv = $("#case-payment-enforcement-div");
@@ -820,24 +971,23 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentEnforcementCharge = $("#case-payment-enforcement-charge")[0];
   const casePaymentIntroDiv = $("#case-payment-intro-div");
   const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
-  const casePaymentNamesUl = $("#case-payment-names-ul")[0]
+  const casePaymentNamesUl = $("#case-payment-names-ul")[0];
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
 
     // if multiple cases combined
     if (Array.isArray(paymentsData[caseNum].name)) {
-      casePaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`
-      casePaymentIntroDiv.hide()
-      let casePaymentNamesHTML = paymentsData[caseNum].name.map(name => {
-        return `<li>${name}</li>`
-      })
-      casePaymentNamesUl.innerHTML = casePaymentNamesHTML.join("")
+      casePaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`;
+      casePaymentIntroDiv.hide();
+      let casePaymentNamesHTML = paymentsData[caseNum].name.map((name) => {
+        return `<li>${name}</li>`;
+      });
+      casePaymentNamesUl.innerHTML = casePaymentNamesHTML.join("");
     } else {
       casePaymentCaseName.innerText = paymentsData[caseNum].name;
-      casePaymentIntroMultipleDiv.hide()
+      casePaymentIntroMultipleDiv.hide();
     }
-
 
     casePaymentServiceType.innerText = paymentsData[caseNum].serviceType;
     casePaymentReviewDate.innerText = new Date(
@@ -864,7 +1014,7 @@ if (window.location.href.includes("/payments/case-payment")) {
       paidReceived.each((index) => {
         paidReceived[index].innerText = "paid";
       });
-      madeReceived.innerText = "made"
+      madeReceived.innerText = "made";
     }
 
     casePaymentAmount.innerHTML =
@@ -1305,9 +1455,9 @@ if (window.location.href.includes("/track-changes/track-changes")) {
           "-",
           " "
         )}</strong>
-        
+
         </td>
-        
+
     				</tr> `;
       } else if (change.link) {
         return `<tr class="govuk-table__row">
@@ -1582,6 +1732,8 @@ if (window.location.href.includes("change-details")) {
   const reportTimelineBody = $("#report-timeline-body")[0];
   const changeDetailsCase = $("#change-details-case")[0];
   const uploadEvidence = $("#upload-evidence");
+  const uploadedDiv = $("#uploaded-div");
+  const completionDate = $("#completion-date")[0];
 
   const timelineData = {
     received: [
@@ -1750,6 +1902,13 @@ if (window.location.href.includes("change-details")) {
     "-",
     " "
   )}`;
+  completionDate.innerText = new Date(
+    changesData[changeNum].completed
+  ).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
   if (changesData[changeNum].case) {
     changeDetailsCase.innerText = `${changesData[changeNum].case}`;
   }
@@ -1784,6 +1943,7 @@ if (window.location.href.includes("change-details")) {
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
       changeCompletionDate.hide();
       uploadEvidence.hide();
+      uploadedDiv.show();
       populateReportTimeline("rejected");
       break;
   }
@@ -1795,10 +1955,9 @@ if (window.location.href.includes("change-details")) {
 //
 
 if (window.location.href.includes("/messages/messages")) {
-  const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
   const sentResultCount = $("#sent-result-count")[0];
   const receivedResultCount = $("#received-result-count")[0];
-
+  
   const receivedBefore = $("#received-before")[0];
   const receivedAfter = $("#received-after")[0];
   const receivedTable = $("#received")[0];
@@ -1813,6 +1972,18 @@ if (window.location.href.includes("/messages/messages")) {
   const receivedAnd = $("#received-and");
   const newMessage = $("#new-message")[0];
   const applyFilterButton = $(".govuk-button--secondary")[0];
+  const checkboxes = $(".govuk-checkboxes--small")[0];
+  
+  
+  checkboxes.innerHTML = newCasesData.map((caseName) => {
+    let replacement = caseName.name.replace(/ /g, "-");
+    return `<div class="govuk-checkboxes__item">
+  <input class="govuk-checkboxes__input" id="case-${replacement}" name="case" type="checkbox" value="${replacement}">
+  <label class="govuk-label govuk-checkboxes__label" for="case-${replacement}">${caseName.name}</label>
+  </div>`;
+  }).join("");
+
+  const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
 
   let sentMessagesKeys = Object.keys(sentMessagesData);
   let receivedMessagesKeys = Object.keys(receivedMessagesData);
@@ -2043,10 +2214,7 @@ if (window.location.href.includes("/messages/messages")) {
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
-          message.case[0].toUpperCase() +
-          " " +
-          message.case[2].toUpperCase() +
-          message.case.slice(3)
+          message.case
         }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
@@ -2083,10 +2251,7 @@ if (window.location.href.includes("/messages/messages")) {
       }">${
           message.title
         }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
-          message.case[0].toUpperCase() +
-          " " +
-          message.case[2].toUpperCase() +
-          message.case.slice(3)
+          message.case
         }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
@@ -2114,10 +2279,7 @@ if (window.location.href.includes("/messages/messages")) {
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
-          message.case[0].toUpperCase() +
-          " " +
-          message.case[2].toUpperCase() +
-          message.case.slice(3)
+          message.case
         }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
@@ -2284,12 +2446,7 @@ if (window.location.href.includes("/messages/messages")) {
           caseFacets.append(
             `<div id="facet-${casee}" class="facet-tag case-facet-tag"}>
               <p class="govuk-!-margin-bottom-0">
-              ${
-                casee.charAt(0).toUpperCase() +
-                " " +
-                casee[2].toUpperCase() +
-                casee.slice(3)
-              }
+              ${casee.replace(/-/g, " ")}
               </p>
             </div>`
           );
@@ -2319,7 +2476,7 @@ if (window.location.href.includes("/messages/messages")) {
       caseFilters.forEach((casee) => {
         receivedMessagesKeys.forEach((key) => {
           // if selection value matches changesData status
-          if (receivedMessagesData[key].case == casee) {
+          if (receivedMessagesData[key].case == casee.replace(/-/g, " ")) {
             // if selected add it
             filteredReceivedMessageData[`${key}`] = receivedMessagesData[key];
           }
@@ -2330,7 +2487,7 @@ if (window.location.href.includes("/messages/messages")) {
       caseFilters.forEach((casee) => {
         sentMessagesKeys.forEach((key) => {
           // if selection value matches changesData status
-          if (sentMessagesData[key].case == casee) {
+          if (sentMessagesData[key].case == casee.replace(/-/g, " ")) {
             // if selected add it
             filteredSentMessageData[`${key}`] = sentMessagesData[key];
           }
@@ -2503,16 +2660,21 @@ if (window.location.href.includes("/report-a-change")) {
     }
   }
 
-  // add new change when start Change Children button is clicked
+  if (window.location.href.includes("education/start")) {
+    // add new change when start Change Children button is clicked
 
-  // const startChangeChildrenButton = $("#start-change-children-button")[0];
+    const startEducationButton = $("#start-education-button")[0];
 
-  // startChangeChildrenButton.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   sessionStorage.setItem("changeChildren", true);
-  //   console.log("Doing the ting");
-  //   window.location.href = window.location.href.replace("/number-of-children", "/number-of-children-confirmation.html")
-  // });
+    startEducationButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      sessionStorage.setItem("education", true);
+      console.log("Doing the ting");
+      window.location.href = window.location.href.replace(
+        "/start",
+        "/confirmation"
+      );
+    });
+  }
 }
 
 if (window.location.href.includes("/case-details/landing")) {
