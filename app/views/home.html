@@ -43,7 +43,7 @@ My Child Maintenance Case
       <label class="govuk-label" for="sort">
         Show view for:
       </label>
-      <select class="govuk-select" id="sort" name="sort">
+      <select class="govuk-select" id="home-case-selector" name="sort">
         <option value="all-cases" selected>All cases</option>
         <option value="jsmith">J. Smith</option>
         <option value="cjones">C. Jones</option>
@@ -146,7 +146,7 @@ My Child Maintenance Case
   <div id="spacer-row" class="govuk-grid-column-full govuk-!-margin-bottom-9"></div>
   <div id="second-row" class="govuk-grid-column-full">
     <h2 class="govuk-heading-m">Payments</h2>
-    <div class="payments-grid">
+    <div id="payments-grid" class="payments-grid">
       <div class="home-card payments-card" id="jsmith">
         <div class="card-header">
           <a href="jsmith.html" class="govuk-link--no-visited-state">
@@ -166,27 +166,6 @@ My Child Maintenance Case
             <p class="small">£96.00</p>
           </div>
           <a href="#" class="govuk-link--no-visited-state">Report a missed payment</a>
-        </div>
-      </div>
-      <div class="home-card payments-card" id="cjones">
-        <div class="card-header">
-          <a href="cjones" class="govuk-link--no-visited-state">
-            <h2>C. Jones</h4>
-          </a>
-        </div>
-        <div class="card-body">
-          <p class="small govuk-!-margin-bottom-2">Payments - Collect and Pay</p>
-          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Previous</h4>
-          <div class="flex">
-            <p class="small">16/04/2021</p>
-            <p class="small">£53.00</p>
-          </div>
-          <h4 class="govuk-heading-s govuk-!-margin-bottom-1">Next</h4>
-          <div class="flex">
-            <p class="small">16/05/2021</p>
-            <p class="small">£53.00</p>
-          </div>
-          <a href="#" class="govuk-link--no-visited-state">Update income</a>
         </div>
       </div>
     </div>
