@@ -500,7 +500,7 @@ $govuk-assets-path: '/govuk/assets/';
 
 .changes-date-container {
   margin-top: 14px;
-  
+
   .submitted-date {
     margin-right: 40px;
   }
@@ -536,7 +536,7 @@ $govuk-assets-path: '/govuk/assets/';
   &.even {
     background-color: white !important;
   }
-  
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -582,4 +582,34 @@ $govuk-assets-path: '/govuk/assets/';
 .message-case-name {
   color: $govuk-secondary-text-colour;
   margin-top: 15px;
+}
+
+.annual-review-switcher{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #b1b4b6;
+  display: block;
+
+  &::after {
+
+      content: "";
+      display: block;
+      clear: both;
+
+  }
+}
+
+.annual-review-switcher__title{
+  font-family: "GDS Transport", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 25px;
+  float: left;
+  width: 75%;
+}
+
+.annual-review-switcher__link{
+  color: $govuk-link-colour;
+  float: right;
 }

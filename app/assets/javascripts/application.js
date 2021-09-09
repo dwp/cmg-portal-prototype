@@ -480,7 +480,7 @@ const paymentsData = [
     },
   },
   {
-    name: ["Edward", "Adam and 3 others"],
+    name: [newCasesData[1].name, newCasesData[2].name],
     serviceType: "Collect and pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
@@ -1511,9 +1511,9 @@ if (window.location.href.includes("/track-changes/track-changes")) {
           "-",
           " "
         )}</strong>
-        
+
         </td>
-        
+
     				</tr> `;
       } else if (change.link) {
         return `<tr class="govuk-table__row">

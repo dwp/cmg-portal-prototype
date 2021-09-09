@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% set active_page = "Payments" %}
+
+{% block pageTitle %}
+My Child Maintenance Case
+{% endblock %}
+
+{% block header %}
+<!-- Blank header with no service name for the start page -->
+<!-- {{ govukHeader() }} -->
+{% include "includes/header.html" %}
+{% endblock %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="home.html">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="landing.html">Payments</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="case-payments.html">Case payments</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">All payments</a>
+    </li>
+  </ol>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">
+      All payments for [CASE NAME]
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="annual-review-switcher">
+      <div class="annual-review-switcher__title">Annual review period [DATE FROM] to [DATE TO])</div>
+      <a href="#" class="annual-review-switcher__link">Change date period</a>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">All payments for [DATE FROM] to [DATE TO]</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Date received</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Money received</th>
+          <th scope="col" class="govuk-table__header govuk-table__header">Description</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">DATE #1</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£85</td>
+          <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">DATE #2</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£75</td>
+          <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">DATE #3</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£165</td>
+          <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+{% endblock %}
