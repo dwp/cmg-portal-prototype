@@ -59,69 +59,6 @@ const newCasesData = [
   { name: "Adam and 3 others", children: ["Adam", "Larry", "Henry", "Oswald"] },
 ];
 
-const caseData = {
-  all: {
-    case: "allCases",
-    messages: {
-      msg0: ["We need to check some information with you", "01/02/2021"],
-      msg1: ["Your child maintenance payments will not change", "15/01/2021"],
-      msg2: ["We've worked out your child maintenance payments", "31/12/2020"],
-    },
-    changes: {
-      chng0: ["Change phone number", "blue", "received"],
-      chng1: ["Change address", "blue", "received"],
-      chng2: [
-        "Change to Direct Pay or Collect and Pay",
-        "yellow",
-        "in progress",
-      ],
-    },
-  },
-  jsmith: {
-    case: "jsmith",
-    messages: {
-      msg0: ["We need to check some information with you", "01/02/2021"],
-      msg1: ["We haven't received a child maintenance payment", "28/12/2020"],
-      msg2: ["A variation has been reported", "19/12/2020"],
-    },
-    changes: {
-      chng0: ["Update shared care", "yellow", "in progress"],
-      chng1: ["Update income", "yellow", "in progress"],
-      chng2: ["Special expenses", "green", "completed"],
-    },
-  },
-  cjones: {
-    case: "cjones",
-    messages: {
-      msg0: ["Your child maintenance payments will not change", "15/01/2021"],
-      msg1: ["We have received a new report", "11/11/2020"],
-      msg2: ["We have been updated of special expenses", "10/11/2020"],
-    },
-    changes: {
-      chng0: [
-        "Change to Direct Pay or Collect and Pay",
-        "yellow",
-        "in progress",
-      ],
-      chng1: ["Update shared care", "green", "Accepted"],
-      chng2: ["Update shared care", "green", "Accepted"],
-    },
-  },
-  ftenet: {
-    case: "ftenet",
-    messages: {
-      msg0: ["We've worked out your child maintenance payments", "31/12/2020"],
-      msg1: ["We've received your voluntary payment", "01/09/2020"],
-      msg2: ["We've received your voluntary payment", "13/08/2020"],
-    },
-    changes: {
-      chng0: ["Update income", "yellow", "in progress"],
-      chng1: ["Child still in education", "green", "Accepted"],
-      chng2: ["Update shared care", "green", "Accepted"],
-    },
-  },
-};
-
 const sentMessagesData = {
   0: {
     title: "Responding to a request from the Child Maintenance Service",
@@ -160,7 +97,7 @@ const receivedMessagesData = {
   0: {
     title: "Your child maintenance enquiry",
     date: "21 May 2021",
-    case: "j-smith",
+    case: newCasesData[0].name,
     link: "week-received-message",
   },
   1: {
@@ -176,12 +113,12 @@ const receivedMessagesData = {
   3: {
     title: "Your child maintenance enquiry",
     date: "18 Dec 2020",
-    case: "j-smith",
+    case: newCasesData[0].name,
   },
   4: {
     title: "Your child maintenance payments will not change",
     date: "15 Oct 2020",
-    case: "j-smith",
+    case: newCasesData[1].name,
   },
   5: {
     title:
@@ -218,7 +155,7 @@ const receivedMessagesData = {
   11: {
     title: "Your service type has changed",
     date: "21 Jan 2020",
-    case: "c-jones",
+    case: newCasesData[2].name,
     link: "received-message",
   },
   12: {
@@ -245,7 +182,7 @@ const receivedMessagesData = {
   16: {
     title: "Your child maintenance payments will not change",
     date: "17 Jul 2019",
-    case: "j-smith",
+    case: newCasesData[1].name,
   },
   17: {
     title: "We need some information from you",
@@ -570,6 +507,7 @@ const changesData = {
     colour: "blue",
     submitted: "10 Jun 2021",
     updated: "10 Jun 2021",
+    complete: "09 Jul 2021",
     case: newCasesData[0].name,
   },
   change1: {
@@ -578,6 +516,7 @@ const changesData = {
     colour: "yellow",
     submitted: "16 May 2021",
     updated: "05 June 2021",
+    complete: "24 June 2021",
   },
   change2: {
     changeType: "Additional income",
@@ -585,6 +524,7 @@ const changesData = {
     colour: "green",
     submitted: "06 Feb 2021",
     updated: "08 May 2021",
+    complete: "03 Jun 2021",
     case: newCasesData[1].name,
   },
   change3: {
@@ -593,6 +533,7 @@ const changesData = {
     colour: "purple",
     submitted: "08 Apr 2021",
     updated: "12 Apr 2021",
+    complete: "19 June 2021",
   },
   change4: {
     changeType: "Full time education",
@@ -600,6 +541,7 @@ const changesData = {
     colour: "green",
     submitted: "06 Sep 2020",
     updated: "19 Oct 2020",
+    complete: "19 Oct 2020",
   },
   change5: {
     changeType: "Special expenses",
@@ -607,6 +549,7 @@ const changesData = {
     colour: "red",
     submitted: "12 Aug 2020",
     updated: "29 Aug 2020",
+    complete: "20 Sep 2020",
   },
   change6: {
     changeType: "Change of income",
@@ -614,6 +557,7 @@ const changesData = {
     colour: "green",
     submitted: "24 Mar 2020",
     updated: "06 Apr 2020",
+    complete: "06 Apr 2020",
   },
 };
 
@@ -627,8 +571,11 @@ const days = [
   "Saturday",
 ];
 
-// If Change Children journey has been completed
+// If Education journey has been completed
 if (sessionStorage.getItem("education")) {
+  let newCompletedDate = new Date(
+    new Date().setMonth(new Date().getMonth() + 2)
+  );
   changesData[`change${Object.keys(changesData).length}`] = {
     changeType: "Education",
     status: "received",
@@ -639,6 +586,11 @@ if (sessionStorage.getItem("education")) {
       year: "numeric",
     }),
     updated: new Date().toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    }),
+    completed: newCompletedDate.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -715,7 +667,7 @@ if (window.location.href.includes("/home")) {
           `;
       }
     }
-    //  
+    //
     else {
       if (Array.isArray(payment.name)) {
         return `
@@ -750,9 +702,8 @@ if (window.location.href.includes("/home")) {
             </div>
             `;
       } else if (payment.combined) {
-        return
-      }
-      else {
+        return;
+      } else {
         return `
         <div class="home-card payments-card" id="payment-${i}">
             <div class="card-header">
@@ -793,7 +744,7 @@ if (window.location.href.includes("/home")) {
   // populate the case selector
   let caseSelectorHTML = newCasesData.map((caseName, i) => {
     return `
-    <option value="${i}">${caseName.name}</option>
+    <option value="${caseName.name}">${caseName.name}</option>
     `;
   });
   caseSelectorHTML.unshift(`<option value="all">All cases</option>`);
@@ -801,7 +752,6 @@ if (window.location.href.includes("/home")) {
   homeCaseSelector.innerHTML = caseSelectorHTML.join("");
 
   const changeData = (caseName) => {
-    let newData = caseData[caseName];
     // console.log(newData)
     message0.innerText = receivedMessagesData[0].title;
     message1.innerText = receivedMessagesData[1].title;
@@ -875,23 +825,17 @@ if (window.location.href.includes("/home")) {
 
   const showCase = (e) => {
     console.log(e.target.value);
-    // switch (e.target.value) {
-    //   case "jsmith":
-    //     $("#jsmith").show();
-    //     $("#cjones").hide();
-    //     changeData(e.target.value);
-    //     break;
-    //   case "cjones":
-    //     $("#cjones").show();
-    //     $("#jsmith").hide();
-    //     changeData(e.target.value);
-    //     break;
-    //   default:
-    //     $("#cjones").show();
-    //     $("#jsmith").show();
-    //     changeData("all");
-    //     break;
-    // }
+    // show relevant payment cards
+
+    // get payment cards
+
+    // loop through
+
+    // if case.name includes value
+
+    // show relevant messages data
+
+    // show relevant track changes data
   };
 
   homeCaseSelector.addEventListener("change", showCase);
@@ -910,7 +854,7 @@ if (window.location.href.includes("/payments/landing")) {
     // if it is a combined case
     if (Array.isArray(payment.name)) {
       if (userType == "RP") {
-        return
+        return;
       }
       if (userType == "PP") {
         return `<tr class="govuk-table__row">
@@ -960,12 +904,12 @@ if (window.location.href.includes("/payments/landing")) {
         }
       }
     } else {
-      if (userType == "PP" || userType == "DUAL" && payment.role == "PP") {
+      if (userType == "PP" || (userType == "DUAL" && payment.role == "PP")) {
         if (!payment.combined) {
-        return `<tr class="govuk-table__row">
+          return `<tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-          payment.name
-        }</a></td>
+            payment.name
+          }</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           <td class="govuk-table__cell">${new Date(
             payment.nextPayment.date
@@ -975,8 +919,8 @@ if (window.location.href.includes("/payments/landing")) {
             year: "numeric",
           })}</td>
           </td>`;
-      }}
-      else {
+        }
+      } else {
         return `<tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
           payment.name
@@ -1788,6 +1732,8 @@ if (window.location.href.includes("change-details")) {
   const reportTimelineBody = $("#report-timeline-body")[0];
   const changeDetailsCase = $("#change-details-case")[0];
   const uploadEvidence = $("#upload-evidence");
+  const uploadedDiv = $("#uploaded-div");
+  const completionDate = $("#completion-date")[0];
 
   const timelineData = {
     received: [
@@ -1956,6 +1902,13 @@ if (window.location.href.includes("change-details")) {
     "-",
     " "
   )}`;
+  completionDate.innerText = new Date(
+    changesData[changeNum].completed
+  ).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
   if (changesData[changeNum].case) {
     changeDetailsCase.innerText = `${changesData[changeNum].case}`;
   }
@@ -1990,6 +1943,7 @@ if (window.location.href.includes("change-details")) {
       changeDetailsDesc.innerHTML = `We have completed and closed your change report. Your change has been rejected and we have sent you a <a href="#">letter explaining why.</a>`;
       changeCompletionDate.hide();
       uploadEvidence.hide();
+      uploadedDiv.show();
       populateReportTimeline("rejected");
       break;
   }
@@ -2001,10 +1955,9 @@ if (window.location.href.includes("change-details")) {
 //
 
 if (window.location.href.includes("/messages/messages")) {
-  const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
   const sentResultCount = $("#sent-result-count")[0];
   const receivedResultCount = $("#received-result-count")[0];
-
+  
   const receivedBefore = $("#received-before")[0];
   const receivedAfter = $("#received-after")[0];
   const receivedTable = $("#received")[0];
@@ -2019,6 +1972,18 @@ if (window.location.href.includes("/messages/messages")) {
   const receivedAnd = $("#received-and");
   const newMessage = $("#new-message")[0];
   const applyFilterButton = $(".govuk-button--secondary")[0];
+  const checkboxes = $(".govuk-checkboxes--small")[0];
+  
+  
+  checkboxes.innerHTML = newCasesData.map((caseName) => {
+    let replacement = caseName.name.replace(/ /g, "-");
+    return `<div class="govuk-checkboxes__item">
+  <input class="govuk-checkboxes__input" id="case-${replacement}" name="case" type="checkbox" value="${replacement}">
+  <label class="govuk-label govuk-checkboxes__label" for="case-${replacement}">${caseName.name}</label>
+  </div>`;
+  }).join("");
+
+  const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
 
   let sentMessagesKeys = Object.keys(sentMessagesData);
   let receivedMessagesKeys = Object.keys(receivedMessagesData);
@@ -2249,10 +2214,7 @@ if (window.location.href.includes("/messages/messages")) {
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
-          message.case[0].toUpperCase() +
-          " " +
-          message.case[2].toUpperCase() +
-          message.case.slice(3)
+          message.case
         }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
@@ -2289,10 +2251,7 @@ if (window.location.href.includes("/messages/messages")) {
       }">${
           message.title
         }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
-          message.case[0].toUpperCase() +
-          " " +
-          message.case[2].toUpperCase() +
-          message.case.slice(3)
+          message.case
         }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
@@ -2320,10 +2279,7 @@ if (window.location.href.includes("/messages/messages")) {
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="#">${
         message.title
       }</a><h4 class="govuk-heading-s govuk-!-margin-bottom-0 message-case-name">${
-          message.case[0].toUpperCase() +
-          " " +
-          message.case[2].toUpperCase() +
-          message.case.slice(3)
+          message.case
         }</h4></th>
       <td class="govuk-table__cell table-row-date">
         ${new Date(message.date).toLocaleDateString("en-UK", {
@@ -2490,12 +2446,7 @@ if (window.location.href.includes("/messages/messages")) {
           caseFacets.append(
             `<div id="facet-${casee}" class="facet-tag case-facet-tag"}>
               <p class="govuk-!-margin-bottom-0">
-              ${
-                casee.charAt(0).toUpperCase() +
-                " " +
-                casee[2].toUpperCase() +
-                casee.slice(3)
-              }
+              ${casee.replace(/-/g, " ")}
               </p>
             </div>`
           );
@@ -2525,7 +2476,7 @@ if (window.location.href.includes("/messages/messages")) {
       caseFilters.forEach((casee) => {
         receivedMessagesKeys.forEach((key) => {
           // if selection value matches changesData status
-          if (receivedMessagesData[key].case == casee) {
+          if (receivedMessagesData[key].case == casee.replace(/-/g, " ")) {
             // if selected add it
             filteredReceivedMessageData[`${key}`] = receivedMessagesData[key];
           }
@@ -2536,7 +2487,7 @@ if (window.location.href.includes("/messages/messages")) {
       caseFilters.forEach((casee) => {
         sentMessagesKeys.forEach((key) => {
           // if selection value matches changesData status
-          if (sentMessagesData[key].case == casee) {
+          if (sentMessagesData[key].case == casee.replace(/-/g, " ")) {
             // if selected add it
             filteredSentMessageData[`${key}`] = sentMessagesData[key];
           }
