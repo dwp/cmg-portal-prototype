@@ -266,7 +266,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 51.34 },
         { date: "20 Apr 2021", amount: 51.34 },
@@ -344,7 +344,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 102.68 },
         { date: "20 Apr 2021", amount: 102.68 },
@@ -426,7 +426,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 154.02 },
         { date: "20 Apr 2021", amount: 154.02 },
