@@ -54,9 +54,9 @@ $("#user-type-container")[0].addEventListener("click", changeUserType);
 let userType = sessionStorage.getItem("userType");
 
 const newCasesData = [
-  { name: "Jane and 1 other", children: ["Jane", "Joe"] },
+  { name: "Jane", children: ["Jane"] },
   { name: "Edward", children: ["Edward"] },
-  { name: "Adam and 3 others", children: ["Adam", "Larry", "Henry", "Oswald"] },
+  { name: "Adam and 1 more", children: ["Adam", "Emma"] },
 ];
 
 const sentMessagesData = {
@@ -267,7 +267,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 51.34 },
         { date: "20 Apr 2021", amount: 51.34 },
@@ -345,7 +345,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 102.68 },
         { date: "20 Apr 2021", amount: 102.68 },
@@ -427,7 +427,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 154.02 },
         { date: "20 Apr 2021", amount: 154.02 },
@@ -2668,7 +2668,7 @@ if (window.location.href.includes("/report-a-change")) {
       console.log("Doing the ting");
       window.location.href = window.location.href.replace(
         "/start",
-        "/confirmation"
+        "/select-child"
       );
     });
   }
