@@ -54,9 +54,9 @@ $("#user-type-container")[0].addEventListener("click", changeUserType);
 let userType = sessionStorage.getItem("userType");
 
 const newCasesData = [
-  { name: "Jane and 1 other", children: ["Jane", "Joe"] },
+  { name: "Jane", children: ["Jane"] },
   { name: "Edward", children: ["Edward"] },
-  { name: "Adam and 3 others", children: ["Adam", "Larry", "Henry", "Oswald"] },
+  { name: "Adam and 1 more", children: ["Adam", "Emma"] },
 ];
 
 const sentMessagesData = {
@@ -1957,7 +1957,7 @@ if (window.location.href.includes("change-details")) {
 if (window.location.href.includes("/messages/messages")) {
   const sentResultCount = $("#sent-result-count")[0];
   const receivedResultCount = $("#received-result-count")[0];
-  
+
   const receivedBefore = $("#received-before")[0];
   const receivedAfter = $("#received-after")[0];
   const receivedTable = $("#received")[0];
@@ -1973,8 +1973,8 @@ if (window.location.href.includes("/messages/messages")) {
   const newMessage = $("#new-message")[0];
   const applyFilterButton = $(".govuk-button--secondary")[0];
   const checkboxes = $(".govuk-checkboxes--small")[0];
-  
-  
+
+
   checkboxes.innerHTML = newCasesData.map((caseName) => {
     let replacement = caseName.name.replace(/ /g, "-");
     return `<div class="govuk-checkboxes__item">
@@ -2671,7 +2671,7 @@ if (window.location.href.includes("/report-a-change")) {
       console.log("Doing the ting");
       window.location.href = window.location.href.replace(
         "/start",
-        "/confirmation"
+        "/select-child"
       );
     });
   }
