@@ -54,9 +54,9 @@ $("#user-type-container")[0].addEventListener("click", changeUserType);
 let userType = sessionStorage.getItem("userType");
 
 const newCasesData = [
-  { name: "Jane and 1 other", children: ["Jane", "Joe"] },
+  { name: "Jane", children: ["Jane"] },
   { name: "Edward", children: ["Edward"] },
-  { name: "Adam and 3 others", children: ["Adam", "Larry", "Henry", "Oswald"] },
+  { name: "Adam and 1 more", children: ["Adam", "Emma"] },
 ];
 
 const sentMessagesData = {
@@ -93,6 +93,7 @@ const sentMessagesData = {
   },
 };
 
+// this should be converted to an array at some point
 const receivedMessagesData = {
   0: {
     title: "Your child maintenance enquiry",
@@ -266,7 +267,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 51.34 },
         { date: "20 Apr 2021", amount: 51.34 },
@@ -344,7 +345,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 102.68 },
         { date: "20 Apr 2021", amount: 102.68 },
@@ -426,7 +427,7 @@ const paymentsData = [
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
       paymentFrequency: "monthly",
-      paymentMethod: "Deduction of earnings order (DEO)",
+      paymentMethod: "Deduction from earnings order (DEO)",
       expectedPayments: [
         { date: "20 Mar 2021", amount: 154.02 },
         { date: "20 Apr 2021", amount: 154.02 },
@@ -500,6 +501,7 @@ const paymentsData = [
   },
 ];
 
+// this should be converted to an array at some point
 const changesData = {
   change0: {
     changeType: "Change bank details",
@@ -590,7 +592,7 @@ if (sessionStorage.getItem("education")) {
       month: "short",
       year: "numeric",
     }),
-    completed: newCompletedDate.toLocaleDateString("en-GB", {
+    complete: newCompletedDate.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -603,20 +605,10 @@ if (sessionStorage.getItem("education")) {
 // THANGS
 
 if (window.location.href.includes("/home")) {
-  const message0 = $("#message0")[0];
-  const message1 = $("#message1")[0];
-  const message2 = $("#message2")[0];
-  const date0 = $("#date0")[0];
-  const date1 = $("#date1")[0];
-  const date2 = $("#date2")[0];
-  const change0 = $("#change0")[0];
-  const change1 = $("#change1")[0];
-  const change2 = $("#change2")[0];
-  const tag0 = $("#tag0")[0];
-  const tag1 = $("#tag1")[0];
-  const tag2 = $("#tag2")[0];
   const paymentsGrid = $("#payments-grid")[0];
   const homeCaseSelector = $("#home-case-selector")[0];
+  const messagesTableBody = $("#messages-table-body")[0];
+  const changesTableBody = $("#changes-table-body")[0];
 
   switch (userType) {
     case "RP":
@@ -629,12 +621,23 @@ if (window.location.href.includes("/home")) {
       break;
   }
 
+  // populate the case selector
+  let caseSelectorHTML = newCasesData.map((caseName, i) => {
+    return `
+    <option value="${caseName.name}">${caseName.name}</option>
+    `;
+  });
+  caseSelectorHTML.unshift(`<option value="all">All cases</option>`);
+
+  homeCaseSelector.innerHTML = caseSelectorHTML.join("");
+
   // populate payment cards with payments
-  let paymentsHTML = paymentsData.map((payment, i) => {
-    // don't show combined cases for RPs
-    if (userType == "RP") {
-      if (!Array.isArray(payment.name)) {
-        return `
+  const populatePayments = () => {
+    let paymentsHTML = paymentsData.map((payment, i) => {
+      // don't show combined cases for RPs
+      if (userType == "RP") {
+        if (!Array.isArray(payment.name)) {
+          return `
         <div class="home-card payments-card" id="payment-${i}">
             <div class="card-header">
               <a href="payments/case-payment?case=${i}" class="govuk-link--no-visited-state">
@@ -665,12 +668,12 @@ if (window.location.href.includes("/home")) {
             </div>
           </div>
           `;
+        }
       }
-    }
-    //
-    else {
-      if (Array.isArray(payment.name)) {
-        return `
+      //
+      else {
+        if (Array.isArray(payment.name)) {
+          return `
           <div class="home-card payments-card" id="payment-${i}">
               <div class="card-header">
                 <a href="payments/case-payment?case=${i}" class="govuk-link--no-visited-state">
@@ -701,10 +704,10 @@ if (window.location.href.includes("/home")) {
               </div>
             </div>
             `;
-      } else if (payment.combined) {
-        return;
-      } else {
-        return `
+        } else if (payment.combined) {
+          return;
+        } else {
+          return `
         <div class="home-card payments-card" id="payment-${i}">
             <div class="card-header">
               <a href="payments/case-payment?case=${i}" class="govuk-link--no-visited-state">
@@ -735,112 +738,105 @@ if (window.location.href.includes("/home")) {
             </div>
           </div>
           `;
+        }
       }
-    }
-  });
+    });
 
-  paymentsGrid.innerHTML = paymentsHTML.join("");
-
-  // populate the case selector
-  let caseSelectorHTML = newCasesData.map((caseName, i) => {
-    return `
-    <option value="${caseName.name}">${caseName.name}</option>
-    `;
-  });
-  caseSelectorHTML.unshift(`<option value="all">All cases</option>`);
-
-  homeCaseSelector.innerHTML = caseSelectorHTML.join("");
-
-  const changeData = (caseName) => {
-    // console.log(newData)
-    message0.innerText = receivedMessagesData[0].title;
-    message1.innerText = receivedMessagesData[1].title;
-    message2.innerText = receivedMessagesData[2].title;
-    date0.innerText = new Date(receivedMessagesData[0].date).toLocaleDateString(
-      "en-GB"
-    );
-    date1.innerText = new Date(receivedMessagesData[1].date).toLocaleDateString(
-      "en-GB"
-    );
-    date2.innerText = new Date(receivedMessagesData[2].date).toLocaleDateString(
-      "en-GB"
-    );
-    change0.innerText = changesData["change0"].changeType;
-    change1.innerText = changesData["change1"].changeType;
-    change2.innerText = changesData["change2"].changeType;
-    change0.href = "track-changes/change-details?change=change0";
-    change1.href = "track-changes/change-details?change=change1";
-    change2.href = "track-changes/change-details?change=change2";
-    tag0.classList.remove(...tag0.classList);
-    tag1.classList.remove(...tag1.classList);
-    tag2.classList.remove(...tag2.classList);
-    tag0.classList.add(
-      "govuk-tag",
-      `govuk-tag--${changesData["change0"].colour}`
-    );
-    tag1.classList.add(
-      "govuk-tag",
-      `govuk-tag--${changesData["change1"].colour}`
-    );
-    tag2.classList.add(
-      "govuk-tag",
-      `govuk-tag--${changesData["change2"].colour}`
-    );
-    tag0.innerText = changesData["change0"].status.replace("-", " ");
-    tag1.innerText = changesData["change1"].status.replace("-", " ");
-    tag2.innerText = changesData["change2"].status.replace("-", " ");
-
-    // If the Change Children journey has been completed
-    if (sessionStorage.getItem("education")) {
-      change0.innerText =
-        changesData[`change${Object.keys(changesData).length - 1}`].changeType;
-      change0.href = `track-changes/change-details?change=change${
-        Object.keys(changesData).length - 1
-      }`;
-      change1.innerText = changesData["change0"].changeType;
-      change2.innerText = changesData["change1"].changeType;
-      tag0.classList.remove(...tag0.classList);
-      tag1.classList.remove(...tag1.classList);
-      tag2.classList.remove(...tag2.classList);
-      tag0.classList.add(
-        "govuk-tag",
-        `govuk-tag--${
-          changesData[`change${Object.keys(changesData).length - 1}`].colour
-        }`
-      );
-      tag1.classList.add(
-        "govuk-tag",
-        `govuk-tag--${changesData["change0"].colour}`
-      );
-      tag2.classList.add(
-        "govuk-tag",
-        `govuk-tag--${changesData["change1"].colour}`
-      );
-      tag0.innerText =
-        changesData[`change${Object.keys(changesData).length - 1}`].status;
-      tag1.innerText = changesData["change0"].status;
-      tag2.innerText = changesData["change1"].status;
-    }
+    paymentsGrid.innerHTML = paymentsHTML.join("");
   };
 
-  const showCase = (e) => {
-    console.log(e.target.value);
-    // show relevant payment cards
+  populatePayments();
 
-    // get payment cards
-
-    // loop through
-
-    // if case.name includes value
-
-    // show relevant messages data
-
-    // show relevant track changes data
+  // populate messages
+  const populateMessages = () => {
+    let messagesHTML = Object.keys(receivedMessagesData).map(
+      (receivedIndex) => {
+        if (receivedIndex < 3) {
+          let message = receivedMessagesData[receivedIndex];
+          return `
+      <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">${
+                  message.title
+                }</a></td>
+                <td class="govuk-table__cell" id="date0">${new Date(
+                  message.date
+                ).toLocaleDateString("en-GB")}</td>
+              </tr>
+      `;
+        }
+      }
+    );
+    messagesTableBody.innerHTML = messagesHTML.join("");
   };
 
-  homeCaseSelector.addEventListener("change", showCase);
+  populateMessages();
 
-  changeData("all");
+  // populate track changes
+  const populateTrackChanges = () => {
+    // sort data
+    let ordered = Object.keys(changesData).sort((a, b) =>
+      new Date(changesData[a].updated) < new Date(changesData[b].updated)
+        ? 1
+        : -1
+    );
+
+    // populate based on the sort
+    let changesHTML = ordered.map((changeIndex, i) => {
+      if (i < 3) {
+        let change =
+          changesData[`change${changeIndex[changeIndex.length - 1]}`];
+        // console.log(change)
+        return `
+      <tr class="govuk-table__row">
+        <td scope="row" class="govuk-table__cell" ><a href="/track-changes/change-details?change=${changeIndex}" class="butblack">${
+          change.changeType
+        }</a></td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag govuk-tag--${change.colour}">
+            ${
+              change.status[0].toUpperCase() +
+              change.status.slice(1).replace("-", " ")
+            }
+          </strong>
+        </td>
+      </tr>
+      `;
+      }
+    });
+    changesTableBody.innerHTML = changesHTML.join("");
+  };
+
+  populateTrackChanges();
+
+  // const showCase = (e) => {
+  //   console.log(e.target.value);
+  //   if (e.target.value == "all") {
+  //     populateMessages();
+  //     populateTrackChanges();
+  //     populatePayments();
+  //   }
+  //   else {
+  //     // filter messages
+  //     let filteredMessages = []
+  //     Object.keys(receivedMessagesData).filter( index => {
+  //       if (receivedMessagesData[index].case == e.target.value) {
+  //           filteredMessages.unshift(receivedMessagesData[index])
+  //         }
+  //     } )
+  //     console.log(filteredMessages)
+  //     // show filtered messages
+  //     // filter changes
+  //     // show filtered changes
+  //     // show filtered payments
+  //     paymentsGrid.innerHTML = paymentsData.filter( payment => {
+  //       if (payment.name == e.target.value) {
+  //         return 
+  //       }
+  //     } ) .join("");
+  //   }
+  // };
+
+  // homeCaseSelector.addEventListener("change", showCase);
 }
 
 // PAYMENT
@@ -1903,7 +1899,7 @@ if (window.location.href.includes("change-details")) {
     " "
   )}`;
   completionDate.innerText = new Date(
-    changesData[changeNum].completed
+    changesData[changeNum].complete
   ).toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "long",
@@ -1957,7 +1953,7 @@ if (window.location.href.includes("change-details")) {
 if (window.location.href.includes("/messages/messages")) {
   const sentResultCount = $("#sent-result-count")[0];
   const receivedResultCount = $("#received-result-count")[0];
-  
+
   const receivedBefore = $("#received-before")[0];
   const receivedAfter = $("#received-after")[0];
   const receivedTable = $("#received")[0];
@@ -1973,15 +1969,16 @@ if (window.location.href.includes("/messages/messages")) {
   const newMessage = $("#new-message")[0];
   const applyFilterButton = $(".govuk-button--secondary")[0];
   const checkboxes = $(".govuk-checkboxes--small")[0];
-  
-  
-  checkboxes.innerHTML = newCasesData.map((caseName) => {
-    let replacement = caseName.name.replace(/ /g, "-");
-    return `<div class="govuk-checkboxes__item">
+
+  checkboxes.innerHTML = newCasesData
+    .map((caseName) => {
+      let replacement = caseName.name.replace(/ /g, "-");
+      return `<div class="govuk-checkboxes__item">
   <input class="govuk-checkboxes__input" id="case-${replacement}" name="case" type="checkbox" value="${replacement}">
   <label class="govuk-label govuk-checkboxes__label" for="case-${replacement}">${caseName.name}</label>
   </div>`;
-  }).join("");
+    })
+    .join("");
 
   const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
 
@@ -2671,7 +2668,7 @@ if (window.location.href.includes("/report-a-change")) {
       console.log("Doing the ting");
       window.location.href = window.location.href.replace(
         "/start",
-        "/confirmation"
+        "/select-child"
       );
     });
   }
