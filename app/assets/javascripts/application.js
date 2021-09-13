@@ -953,7 +953,7 @@ if (window.location.href.includes("/payments/case-payment")) {
 
     casePaymentServiceType.innerText = paymentsData[caseNum].serviceType;
     casePaymentReviewDate.innerText = new Date(
-      paymentsData[caseNum].annualReviews[0].startDate
+      paymentsData[caseNum].annualReviews[0].endDate
     ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
@@ -1005,7 +1005,7 @@ if (window.location.href.includes("/payments/case-payment")) {
     }
 
     casePaymentPastReview.innerText = new Date(
-      paymentsData[caseNum].annualReviews[1].startDate
+      paymentsData[caseNum].annualReviews[0].startDate
     ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
