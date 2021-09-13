@@ -14,7 +14,7 @@ $(document).ready(function () {
 // PROTOTYPE
 // GLOBAL
 // DATA
-
+console.log("START");
 let urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.get("userType")) {
@@ -941,6 +941,7 @@ if (window.location.href.includes("/payments/landing")) {
   paymentsCasesTable.innerHTML = paymentTableHTML.join("");
 }
 
+console.log("TESTING BEFORE");
 if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentCaseName = $("#case-payment-case-name")[0];
   const casePaymentServiceType = $("#case-payment-service-type")[0];
@@ -972,9 +973,13 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentIntroDiv = $("#case-payment-intro-div");
   const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
   const casePaymentNamesUl = $("#case-payment-names-ul")[0];
+  const allPaymentsLink = $("#all-payments-link")[0];
+  console.log("TESTING 1");
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
+    console.log("TESTING 2");
+    allPaymentsLink.href = `/all-payments?case=${caseNum}`;
 
     // if multiple cases combined
     if (Array.isArray(paymentsData[caseNum].name)) {
@@ -1110,6 +1115,18 @@ if (window.location.href.includes("/payments/case-payment")) {
       casePaymentArrearsDiv.hide();
     }
   }
+}
+
+//All payments
+if (window.location.href.includes("/payments/all-payments"))
+{
+  const allPaymentCaseName = $("#all-payment-case-name")[0];
+
+  //Get the current case from the url parameter
+  if (urlParams.get("case")) {
+    let caseNum = urlParams.get("case"); //Set the caseNum variable to URL case parameter
+
+    allPaymentCaseName.innerText = paymentsData[caseNum].name;
 }
 
 // OLD
