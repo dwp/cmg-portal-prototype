@@ -945,6 +945,7 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentExpectedAmount = $("#case-payment-expected-amount")[0];
   const allPaymentsLink = $("#all-payments-link")[0];
   const casePaymentRPCollectMethod = $("#case-payment-RP-collect-method")[0];
+  const casePaymentCollectTotalAmount = $("#case-payment-collect-total-amount");
 
 
   if (urlParams.get("case")) {
@@ -1028,6 +1029,7 @@ if (window.location.href.includes("/payments/case-payment")) {
           month: "long",
           year: "numeric",
         })}`
+        casePaymentCollectTotalAmount.hide();
       if (userType == "RP") casePaymentRPCollectMethod.innerText = "Collection method"
     }
 
