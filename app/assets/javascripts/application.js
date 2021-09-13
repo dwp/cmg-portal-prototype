@@ -747,6 +747,14 @@ if (window.location.href.includes("/home")) {
 
   populatePayments();
 
+  // change payment card links
+  if (userType != "RP") {
+    let paymentCardLinks = $(".payment-card-link")
+    paymentCardLinks.each( index => {
+      paymentCardLinks[index].innerText = "Update income"
+    })
+  }
+
   // populate messages
   const populateMessages = () => {
     let messagesHTML = Object.keys(receivedMessagesData).map(
