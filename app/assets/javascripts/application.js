@@ -213,7 +213,7 @@ const paymentsData = [
   // This is case 0
   {
     name: newCasesData[0].name,
-    serviceType: "Direct pay",
+    serviceType: "Direct Pay",
     role: "PP",
     nextPayment: { date: "14 Oct 2021", amount: 75.03 },
     previousPayment: { date: "14 Sep 2021", amount: 75.03 },
@@ -259,7 +259,7 @@ const paymentsData = [
   {
     name: newCasesData[1].name,
     combined: true,
-    serviceType: "Collect and pay",
+    serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 51.34 },
     previousPayment: { date: "24 Aug 2021", amount: 51.34 },
@@ -337,7 +337,7 @@ const paymentsData = [
   {
     name: newCasesData[2].name,
     combined: true,
-    serviceType: "Collect and pay",
+    serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
     previousPayment: { date: "24 Aug 2021", amount: 125.23 },
@@ -419,7 +419,7 @@ const paymentsData = [
   },
   {
     name: [newCasesData[1].name, newCasesData[2].name],
-    serviceType: "Collect and pay",
+    serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
     previousPayment: { date: "24 Aug 2021", amount: 125.23 },
@@ -942,12 +942,10 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentIntroDiv = $("#case-payment-intro-div");
   const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
   const casePaymentNamesUl = $("#case-payment-names-ul")[0];
-<<<<<<< HEAD
   const casePaymentExpectedAmount = $("#case-payment-expected-amount")[0];
-=======
   const allPaymentsLink = $("#all-payments-link")[0];
+  const casePaymentRPCollectMethod = $("#case-payment-RP-collect-method")[0];
 
->>>>>>> 9939bbbee34cdd39c5ccf36ac00cdc9f9dac6259
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
@@ -977,7 +975,7 @@ if (window.location.href.includes("/payments/case-payment")) {
     });
 
     // Summary info
-    if (paymentsData[caseNum].serviceType == "Direct pay") {
+    if (paymentsData[caseNum].serviceType == "Direct Pay") {
       casePaymentFeeSpans.hide();
       casePaymentMethodDiv.hide();
       if (userType == "RP") casePaymentExpectedAmount.innerText = "Expected amount"
@@ -1011,13 +1009,19 @@ if (window.location.href.includes("/payments/case-payment")) {
         year: "numeric",
       })}`;
     } else if (paymentsData[caseNum].paymentPlan.paymentFrequency == "week") {
-      casePaymentDate.innerText =
-        days[new Date(paymentsData[caseNum].nextPayment.date).getDay()];
+      casePaymentDate.innerText = `${new Date(
+        paymentsData[caseNum].nextPayment.date
+      ).toLocaleDateString("en-UK", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })}`;
     }
 
-    if (paymentsData[caseNum].serviceType == "Collect and pay") {
+    if (paymentsData[caseNum].serviceType == "Collect and Pay") {
       casePaymentMethod.innerText =
         paymentsData[caseNum].paymentPlan.paymentMethod;
+      if (userType == "RP") casePaymentRPCollectMethod.innerText = "Collection method"
     }
 
     casePaymentPastReview.innerText = new Date(
@@ -1036,7 +1040,7 @@ if (window.location.href.includes("/payments/case-payment")) {
     casePaymentTotalAmount.innerText = calcuatedTotal.toFixed(2);
 
     // Recent Payments
-    if (paymentsData[caseNum].serviceType == "Direct pay") {
+    if (paymentsData[caseNum].serviceType == "Direct Pay") {
       casePaymentRecentPaymentsDiv.hide();
       casePaymentArrearsDiv.hide();
       casePaymentDirectRPDiv.hide();
@@ -1065,7 +1069,7 @@ if (window.location.href.includes("/payments/case-payment")) {
         RecentPaymentsTableHTML.join("");
     }
     if (
-      paymentsData[caseNum].serviceType == "Collect and pay" &&
+      paymentsData[caseNum].serviceType == "Collect and Pay" &&
       userType != "RP"
     ) {
       casePaymentCollectRPPara.hide();
