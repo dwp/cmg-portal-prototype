@@ -830,7 +830,7 @@ if (window.location.href.includes("/home")) {
   //     // show filtered payments
   //     paymentsGrid.innerHTML = paymentsData.filter( payment => {
   //       if (payment.name == e.target.value) {
-  //         return 
+  //         return
   //       }
   //     } ) .join("");
   //   }
@@ -937,6 +937,7 @@ if (window.location.href.includes("/payments/landing")) {
   paymentsCasesTable.innerHTML = paymentTableHTML.join("");
 }
 
+
 if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentCaseName = $("#case-payment-case-name")[0];
   const casePaymentServiceType = $("#case-payment-service-type")[0];
@@ -968,9 +969,13 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentIntroDiv = $("#case-payment-intro-div");
   const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
   const casePaymentNamesUl = $("#case-payment-names-ul")[0];
+  const allPaymentsLink = $("#all-payments-link")[0];
+
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
+
+    allPaymentsLink.href = `/payments/all-payments?case=${caseNum}`;
 
     // if multiple cases combined
     if (Array.isArray(paymentsData[caseNum].name)) {
@@ -1105,6 +1110,44 @@ if (window.location.href.includes("/payments/case-payment")) {
     } else {
       casePaymentArrearsDiv.hide();
     }
+  }
+}
+
+//All payments
+if (window.location.href.includes("/payments/all-payments")){
+  const allPaymentCaseName = $("#all-payment-case-name")[0];
+  const allPaymentsDateFrom = $("#all-payments-date-from")[0];
+  const allPaymentsDateTo = $("#all-payments-date-to")[0];
+
+  //Get the current case from the url parameter
+  if (urlParams.get("case")) {
+    let caseNum = urlParams.get("case"); //Set the caseNum variable to URL case parameter
+
+    allPaymentCaseName.innerText = paymentsData[caseNum].name;
+
+    //Payment period dates
+    allPaymentsDateFrom.innerText = new Date(paymentsData[caseNum].annualReviews[0].startDate).toLocaleDateString("en-UK", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+    allPaymentsDateTo.innerText = new Date(paymentsData[caseNum].annualReviews[0].endDate).toLocaleDateString("en-UK", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+    //Payments table
+    const allPaymentsTable = $("#all-payments-table")[0];
+    let allPaymentsTableHTML = paymentsData[caseNum].annualReviews[0].receivedPayments.map((payment, i) => {
+        return `<tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">${payment.date}</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">${payment.amount}</td>
+                  <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
+                </tr>`;
+          console.log("TESTING");
+    });
+    allPaymentsTable.innerHTML = allPaymentsTableHTML.join("");
   }
 }
 
@@ -2680,7 +2723,7 @@ if (window.location.href.includes("/case-details/landing")) {
       "#income-details-div"
     )[0].innerHTML = `<a class="govuk-link--no-visited-state">
     <h2 class="govuk-!-margin-bottom-1">Income details</h2>
-</a>
-<p>As you don't pay child maintenance, we don't record your income details.</p>`;
+    </a>
+    <p>As you don't pay child maintenance, we don't record your income details.</p>`;
   }
 }
