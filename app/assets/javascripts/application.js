@@ -1021,6 +1021,13 @@ if (window.location.href.includes("/payments/case-payment")) {
     if (paymentsData[caseNum].serviceType == "Collect and Pay") {
       casePaymentMethod.innerText =
         paymentsData[caseNum].paymentPlan.paymentMethod;
+        casePaymentDate.innerText = `${new Date(
+          paymentsData[caseNum].nextPayment.date
+        ).toLocaleDateString("en-UK", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })}`
       if (userType == "RP") casePaymentRPCollectMethod.innerText = "Collection method"
     }
 
