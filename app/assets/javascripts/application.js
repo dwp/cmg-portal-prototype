@@ -1145,8 +1145,8 @@ if (window.location.href.includes("/payments/all-payments")){
     const allPaymentsTable = $("#all-payments-table")[0];
     let allPaymentsTableHTML = paymentsData[caseNum].annualReviews[annualRev].receivedPayments.map((payment, i) => {
         return `<tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">${payment.date}</th>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">${payment.amount}</td>
+                  <th scope="row" class="govuk-table__header">${new Date(payment.date).toLocaleDateString("en-UK", {day:"2-digit", month:"long", year:"numeric"})}</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">${new Intl.NumberFormat("en-UK", {style: "currency", currency: "GBP"}).format(payment.amount)}</td>
                   <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
                 </tr>`;
     });
@@ -1172,7 +1172,7 @@ if (window.location.href.includes("/payments/payment-period")){
         return `<div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="date-range-${i}" name="date-range" type="radio" value="${i}">
                   <label class="govuk-label govuk-radios__label" for="date-range-${i}">
-                    ${payment.startDate} to ${payment.endDate}
+                    ${new Date(payment.startDate).toLocaleDateString("en-UK", {day:"2-digit", month:"long", year:"numeric"})} to ${new Date(payment.endDate).toLocaleDateString("en-UK", {day:"2-digit", month:"long", year:"numeric"})}
                   </label>
                 </div>`;
     });
