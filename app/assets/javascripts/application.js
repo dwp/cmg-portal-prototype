@@ -239,16 +239,16 @@ const paymentsData = [
     },
     annualReviews: [
       {
-        startDate: "20 Sep 2020",
-        endDate: "19 Sep 2021",
+        startDate: "08 Feb 2021",
+        endDate: "07 Feb 2022",
         receivedPayments: [
           { date: "03 Jan 2021", amount: 78.99 },
           { date: "03 Jan 2021", amount: 78.99 },
         ],
       },
       {
-        startDate: "20 Sep 2019",
-        endDate: "19 Sep 2020",
+        startDate: "08 Feb 2020",
+        endDate: "07 Feb 2021",
         receivedPayments: [
           { date: "03 Jan 2020", amount: 78.99 },
           { date: "03 Jan 2020", amount: 78.99 },
@@ -960,6 +960,7 @@ if (window.location.href.includes("/payments/case-payment")) {
       let casePaymentNamesHTML = paymentsData[caseNum].name.map((name) => {
         return `<li>${name}</li>`;
       });
+      casePaymentReviewMultipleDate.innerText = paymentsData[caseNum].annualReviews[0].endDate
       casePaymentNamesUl.innerHTML = casePaymentNamesHTML.join("");
     } else {
       casePaymentCaseName.innerText = paymentsData[caseNum].name;
