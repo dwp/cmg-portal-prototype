@@ -951,7 +951,7 @@ if (window.location.href.includes("/payments/case-payment")) {
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
 
-    allPaymentsLink.href = `/payments/all-payments?case=${caseNum}`;
+    allPaymentsLink.href = `/payments/all-payments?case=${caseNum}&annualReview=0`;
 
     // if multiple cases combined
     if (Array.isArray(paymentsData[caseNum].name)) {
@@ -1112,20 +1112,30 @@ if (window.location.href.includes("/payments/all-payments")){
   const allPaymentCaseName = $("#all-payment-case-name")[0];
   const allPaymentsDateFrom = $("#all-payments-date-from")[0];
   const allPaymentsDateTo = $("#all-payments-date-to")[0];
+  const allPaymentsSwitcherLink = $("#all-payments-switcher-link")[0];
+  const breadcrumbCasePayments = $("#all-payments-breadcrumb-payments")[0];
 
   //Get the current case from the url parameter
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case"); //Set the caseNum variable to URL case parameter
+    let annualRev = urlParams.get("annualReview");
+
+    allPaymentsSwitcherLink.href = `/payments/payment-period?case=${caseNum}&annualReview=${annualRev}`;
+    breadcrumbCasePayments.href = `/payments/case-payment?case=${caseNum}`;
 
     allPaymentCaseName.innerText = paymentsData[caseNum].name;
 
+    if(Array.isArray(paymentsData[caseNum].name)){
+      allPaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`;
+    }
+
     //Payment period dates
-    allPaymentsDateFrom.innerText = new Date(paymentsData[caseNum].annualReviews[0].startDate).toLocaleDateString("en-UK", {
+    allPaymentsDateFrom.innerText = new Date(paymentsData[caseNum].annualReviews[annualRev].startDate).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
       year: "numeric",
     });
-    allPaymentsDateTo.innerText = new Date(paymentsData[caseNum].annualReviews[0].endDate).toLocaleDateString("en-UK", {
+    allPaymentsDateTo.innerText = new Date(paymentsData[caseNum].annualReviews[annualRev].endDate).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -1133,15 +1143,46 @@ if (window.location.href.includes("/payments/all-payments")){
 
     //Payments table
     const allPaymentsTable = $("#all-payments-table")[0];
-    let allPaymentsTableHTML = paymentsData[caseNum].annualReviews[0].receivedPayments.map((payment, i) => {
+    let allPaymentsTableHTML = paymentsData[caseNum].annualReviews[annualRev].receivedPayments.map((payment, i) => {
         return `<tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header">${payment.date}</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric">${payment.amount}</td>
                   <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
                 </tr>`;
-          console.log("TESTING");
     });
     allPaymentsTable.innerHTML = allPaymentsTableHTML.join("");
+  }
+}
+
+//Payment period selection
+if (window.location.href.includes("/payments/payment-period")){
+  const paymentPeriodContinue = $("#payment-period-continue")[0];
+  const breadcrumbCasePayments = $("#payment-period-breadcrumb-payments")[0];
+  const breadcrumbAllPayments = $("#payment-period-breadcrumb-all-payments")[0];
+
+  if (urlParams.get("case")) {
+    let caseNum = urlParams.get("case"); //Set the caseNum variable to URL case parameter
+    let annualRev = urlParams.get("annualReview");
+    paymentPeriodContinue.href = `all-payments?case=${caseNum}&annualReview=${annualRev}`;
+    breadcrumbCasePayments.href = `/payments/case-payment?case=${caseNum}`;
+    breadcrumbAllPayments.href = `/payments/all-payments?case=${caseNum}&annualReview=${annualRev}`;
+
+    const paymentPeriodDateRadio = $("#payment-period-date-radio")[0];
+    let paymentPeriodDateRadioHTML = paymentsData[caseNum].annualReviews.map((payment, i) => {
+        return `<div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="date-range-${i}" name="date-range" type="radio" value="${i}">
+                  <label class="govuk-label govuk-radios__label" for="date-range-${i}">
+                    ${payment.startDate} to ${payment.endDate}
+                  </label>
+                </div>`;
+    });
+    paymentPeriodDateRadio.innerHTML = paymentPeriodDateRadioHTML.join("");
+    const radioList = $(".govuk-radios__input");
+    radioList.each(index => {
+      radioList[index].addEventListener("change", (e) => {
+        paymentPeriodContinue.href = `all-payments?case=${caseNum}&annualReview=${e.target.value}`;
+      });
+    })
   }
 }
 
