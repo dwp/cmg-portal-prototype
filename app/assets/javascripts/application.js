@@ -213,7 +213,7 @@ const paymentsData = [
   // This is case 0
   {
     name: newCasesData[0].name,
-    serviceType: "Direct pay",
+    serviceType: "Direct Pay",
     role: "PP",
     nextPayment: { date: "14 Oct 2021", amount: 75.03 },
     previousPayment: { date: "14 Sep 2021", amount: 75.03 },
@@ -259,7 +259,7 @@ const paymentsData = [
   {
     name: newCasesData[1].name,
     combined: true,
-    serviceType: "Collect and pay",
+    serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 51.34 },
     previousPayment: { date: "24 Aug 2021", amount: 51.34 },
@@ -337,7 +337,7 @@ const paymentsData = [
   {
     name: newCasesData[2].name,
     combined: true,
-    serviceType: "Collect and pay",
+    serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
     previousPayment: { date: "24 Aug 2021", amount: 125.23 },
@@ -419,7 +419,7 @@ const paymentsData = [
   },
   {
     name: [newCasesData[1].name, newCasesData[2].name],
-    serviceType: "Collect and pay",
+    serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
     previousPayment: { date: "24 Aug 2021", amount: 125.23 },
@@ -747,6 +747,14 @@ if (window.location.href.includes("/home")) {
 
   populatePayments();
 
+  // change payment card links
+  if (userType != "RP") {
+    let paymentCardLinks = $(".payment-card-link")
+    paymentCardLinks.each( index => {
+      paymentCardLinks[index].innerText = "Update income"
+    })
+  }
+
   // populate messages
   const populateMessages = () => {
     let messagesHTML = Object.keys(receivedMessagesData).map(
@@ -858,13 +866,6 @@ if (window.location.href.includes("/payments/landing")) {
           payment.name.length
         } cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
           </td>`;
       }
       if (userType == "DUAL") {
@@ -874,13 +875,6 @@ if (window.location.href.includes("/payments/landing")) {
             payment.name.length
           } cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
           </td>`;
         }
         if (payment.role == "RP") {
@@ -889,13 +883,6 @@ if (window.location.href.includes("/payments/landing")) {
             payment.name.length
           } cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
           </td>`;
         }
       }
@@ -907,13 +894,6 @@ if (window.location.href.includes("/payments/landing")) {
             payment.name
           }</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
           </td>`;
         }
       } else {
@@ -922,13 +902,6 @@ if (window.location.href.includes("/payments/landing")) {
           payment.name
         }</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
-          <td class="govuk-table__cell">${new Date(
-            payment.nextPayment.date
-          ).toLocaleDateString("en-UK", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}</td>
           </td>`;
       }
     }
@@ -941,7 +914,7 @@ if (window.location.href.includes("/payments/landing")) {
 if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentCaseName = $("#case-payment-case-name")[0];
   const casePaymentServiceType = $("#case-payment-service-type")[0];
-  const casePaymentFrequency = $("#case-payment-frequency")[0];
+  // const casePaymentFrequency = $("#case-payment-frequency")[0];
   const casePaymentReviewDate = $("#case-payment-review-date")[0];
   const casePaymentReviewMultipleDate = $(
     "#case-payment-review-multiple-date"
@@ -969,7 +942,10 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentIntroDiv = $("#case-payment-intro-div");
   const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
   const casePaymentNamesUl = $("#case-payment-names-ul")[0];
+  const casePaymentExpectedAmount = $("#case-payment-expected-amount")[0];
   const allPaymentsLink = $("#all-payments-link")[0];
+  const casePaymentRPCollectMethod = $("#case-payment-RP-collect-method")[0];
+  const casePaymentCollectTotalAmount = $("#case-payment-collect-total-amount");
 
 
   if (urlParams.get("case")) {
@@ -992,7 +968,7 @@ if (window.location.href.includes("/payments/case-payment")) {
 
     casePaymentServiceType.innerText = paymentsData[caseNum].serviceType;
     casePaymentReviewDate.innerText = new Date(
-      paymentsData[caseNum].annualReviews[0].startDate
+      paymentsData[caseNum].annualReviews[0].endDate
     ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
@@ -1000,9 +976,10 @@ if (window.location.href.includes("/payments/case-payment")) {
     });
 
     // Summary info
-    if (paymentsData[caseNum].serviceType == "Direct pay") {
+    if (paymentsData[caseNum].serviceType == "Direct Pay") {
       casePaymentFeeSpans.hide();
       casePaymentMethodDiv.hide();
+      if (userType == "RP") casePaymentExpectedAmount.innerText = "Expected amount"
     }
 
     if (
@@ -1020,26 +997,44 @@ if (window.location.href.includes("/payments/case-payment")) {
 
     casePaymentAmount.innerHTML =
       paymentsData[caseNum].nextPayment.amount.toFixed(2);
-    casePaymentFrequency.innerHTML =
-      paymentsData[caseNum].paymentPlan.paymentFrequency;
+    // casePaymentFrequency.innerHTML =
+    //   paymentsData[caseNum].paymentPlan.paymentFrequency;
 
     // show month(th)ly or day of the week
     if (paymentsData[caseNum].paymentPlan.paymentFrequency == "month") {
       casePaymentDate.innerText = `${new Date(
         paymentsData[caseNum].nextPayment.date
-      ).getDate()}th monthly`;
+      ).toLocaleDateString("en-UK", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })}`;
     } else if (paymentsData[caseNum].paymentPlan.paymentFrequency == "week") {
-      casePaymentDate.innerText =
-        days[new Date(paymentsData[caseNum].nextPayment.date).getDay()];
+      casePaymentDate.innerText = `${new Date(
+        paymentsData[caseNum].nextPayment.date
+      ).toLocaleDateString("en-UK", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })}`;
     }
 
-    if (paymentsData[caseNum].serviceType == "Collect and pay") {
+    if (paymentsData[caseNum].serviceType == "Collect and Pay") {
       casePaymentMethod.innerText =
         paymentsData[caseNum].paymentPlan.paymentMethod;
+        casePaymentDate.innerText = `${new Date(
+          paymentsData[caseNum].nextPayment.date
+        ).toLocaleDateString("en-UK", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })}`
+        casePaymentCollectTotalAmount.hide();
+      if (userType == "RP") casePaymentRPCollectMethod.innerText = "Collection method"
     }
 
     casePaymentPastReview.innerText = new Date(
-      paymentsData[caseNum].annualReviews[1].startDate
+      paymentsData[caseNum].annualReviews[0].startDate
     ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
@@ -1054,7 +1049,7 @@ if (window.location.href.includes("/payments/case-payment")) {
     casePaymentTotalAmount.innerText = calcuatedTotal.toFixed(2);
 
     // Recent Payments
-    if (paymentsData[caseNum].serviceType == "Direct pay") {
+    if (paymentsData[caseNum].serviceType == "Direct Pay") {
       casePaymentRecentPaymentsDiv.hide();
       casePaymentArrearsDiv.hide();
       casePaymentDirectRPDiv.hide();
@@ -1062,7 +1057,6 @@ if (window.location.href.includes("/payments/case-payment")) {
         casePaymentDirectRPDiv.show();
       }
     }
-    // update with new Payment Plan structure
     else {
       let RecentPaymentsTableHTML = paymentsData[
         caseNum
@@ -1071,11 +1065,10 @@ if (window.location.href.includes("/payments/case-payment")) {
           return;
         } else {
           return `<tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">${payment.date}</th>
-        <td class="govuk-table__cell govuk-table__cell--numeric">£${payment.amount.toFixed(
-          2
-        )}</td>
-      </tr>`;
+            <th scope="row" class="govuk-table__header">${payment.date}</th>
+            <td class="govuk-table__cell">£${payment.amount.toFixed(2)}</td>
+            <td class="govuk-table__cell">${paymentsData[caseNum].paymentPlan.paymentMethod}</td>
+             </tr>`;
         }
       });
 
@@ -1083,33 +1076,33 @@ if (window.location.href.includes("/payments/case-payment")) {
         RecentPaymentsTableHTML.join("");
     }
     if (
-      paymentsData[caseNum].serviceType == "Collect and pay" &&
+      paymentsData[caseNum].serviceType == "Collect and Pay" &&
       userType != "RP"
     ) {
       casePaymentCollectRPPara.hide();
     }
 
-    // Arrears
-    if (paymentsData[caseNum].arrears) {
-      if (
-        userType == "RP" ||
-        (userType == "DUAL" && paymentsData[caseNum].role == "RP")
-      ) {
-        casePaymentEnforcementDiv.hide();
-      }
-      casePaymentArrearsOwed.innerText = `£${paymentsData[
-        caseNum
-      ].arrears.owed.toFixed(2)}`;
-      casePaymentArrearsPaid.innerText = `£${paymentsData[
-        caseNum
-      ].arrears.paid.toFixed(2)}`;
-      casePaymentEnforcementCharge.innerText = `£${paymentsData[
-        caseNum
-      ].arrears.charge.toFixed(2)}`;
-      casePaymentArrearsDiv.show();
-    } else {
-      casePaymentArrearsDiv.hide();
-    }
+    // // Arrears
+    // if (paymentsData[caseNum].arrears) {
+    //   if (
+    //     userType == "RP" ||
+    //     (userType == "DUAL" && paymentsData[caseNum].role == "RP")
+    //   ) {
+    //     casePaymentEnforcementDiv.hide();
+    //   }
+    //   casePaymentArrearsOwed.innerText = `£${paymentsData[
+    //     caseNum
+    //   ].arrears.owed.toFixed(2)}`;
+    //   casePaymentArrearsPaid.innerText = `£${paymentsData[
+    //     caseNum
+    //   ].arrears.paid.toFixed(2)}`;
+    //   casePaymentEnforcementCharge.innerText = `£${paymentsData[
+    //     caseNum
+    //   ].arrears.charge.toFixed(2)}`;
+    //   casePaymentArrearsDiv.show();
+    // } else {
+    //   casePaymentArrearsDiv.hide();
+    // }
   }
 }
 
