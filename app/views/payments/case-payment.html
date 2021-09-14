@@ -53,10 +53,10 @@ My Child Maintenance Case
             <li>Jim and 1 more</li>
           </ul>
           <p>Find out <a class="govuk-link" href="#">how the Child Maintenance Service works out child
-          maintenance</a>.</p>
+          maintenance (opens in a new tab)</a>.</p>
     </div>
 
-    <h2 class="govuk-heading-m">Child maintenance payments summary</h2>
+    <h2 class="govuk-heading-m">Next payment summary</h2>
     <!-- <table class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
@@ -86,39 +86,50 @@ My Child Maintenance Case
     <dl class="govuk-summary-list govuk-!-margin-bottom-5">
       <div class="govuk-summary-list__row">
         <dt id="case-payment-amount-header" class="govuk-summary-list__key govuk-!-width-one-half">
-          Payment amount <span class="case-payment-fee-spans">after 4% collection fee deduction</span>
+         <span id="case-payment-expected-amount">Amount </span><span class="case-payment-fee-spans">after 4% collection fee deduction</span>
         </dt>
         <dd class="govuk-summary-list__value govuk-!-width-one-quarter govuk-table__header--numeric">
-          £<span id="case-payment-amount">0.00</span> per <span id="case-payment-frequency">month</span>
+          £<span id="case-payment-amount">0.00</span>
         </dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Payment date
+          Date
         </dt>
         <dd id="case-payment-date" class="govuk-summary-list__value govuk-table__cell--numeric">
-          12th monthly
+          10 
         </dd>
       </div>
       <div id="case-payment-method-div" class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Payment method
+          <span id="case-payment-RP-collect-method">Method</span>
         </dt>
         <dd id="case-payment-method" class="govuk-summary-list__value govuk-table__cell--numeric">
           {Payment Method}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
+        <!-- <dt class="govuk-summary-list__key">
           Total amount you have <span class="paid-received">received</span> since <span
             id="case-payment-past-review">{00 Month 0000}</span>
-        </dt>
-        <dd class="govuk-summary-list__value govuk-table__cell--numeric">
+        </dt> -->
+        <!-- <dd class="govuk-summary-list__value govuk-table__cell--numeric">
           £<span id="case-payment-total-amount">0.00</span>
-        </dd>
+        </dd> -->
       </div>
     </dl>
     <a href="#" class="govuk-link">View your payment plan</a>
+    <br />
+    <br />
+    <div class="summary-card-container">
+      <div class="summary-card">
+        <h4 class="govuk-heading-s govuk-!-margin-bottom-2 govuk-!-width-two-thirds">Total amount you <span id="case-payment-collect-total-amount">should </span>have <span class="paid-received">received</span> since <span
+          id="case-payment-past-review">{00 Month 0000}</span> </h4>
+        <div class="amount-freq">
+          <h2 class="govuk-heading-l">£<span id="case-payment-total-amount">0.00</span></h2>
+        </div>
+      </div>
+</div>
     <div class="govuk-!-margin-top-5"></div>
     <div id="case-payments-recent-payments-div"">
       <h2 class=" govuk-heading-m">Recent payments</h2>
@@ -172,15 +183,15 @@ My Child Maintenance Case
       <p>To confirm you have received a payment, check your bank or building society account. It may take up to 5
         working days for a payment to reach your account.</p>
       <p>If you have not received a full payment after 5 working days, you may be able to <a href="#">report a missed
-          payment.</a></p>
+          payment</a>.</p>
       </p>
     </div>
     <p>Find out <a class="govuk-link" href="#">what the Child Maintenance Service can do to enforce unpaid child
-        maintenance.</a>
+        maintenance (opens in a new tab)</a>.
       <br />
       <br />
     </p>
-    <div id="case-payments-arrears-div">
+    <!-- <div id="case-payments-arrears-div">
       <h2 class="govuk-heading-l">Arrears</h2>
       <p><strong>Enforcement type:</strong> Liability order</p>
       <div class="summary-card-container arrears">
@@ -189,26 +200,27 @@ My Child Maintenance Case
             deductions</h4>
           <div class="amount-freq">
             <h2 id="case-payment-arrears-owed" class="govuk-heading-l">£1400.00</h2>
-            <!-- <h3 class="govuk-heading-m">per month</h3> -->
+            <h3 class="govuk-heading-m">per month</h3> -->
           </div>
         </div>
-        <div class="summary-card">
+        <!-- <div class="summary-card">
           <h4 class="govuk-heading-s govuk-!-margin-bottom-2">Arrears paid to date</h4>
           <div class="amount-freq">
             <h2 id="case-payment-arrears-paid" class="govuk-heading-l">£600.00</h2>
-            <!-- <h3 class="govuk-heading-m">per month</h3> -->
+             <h3 class="govuk-heading-m">per month</h3> -->
           </div>
           <!-- <a class="govuk-link--no-visited-state govuk-!-font-size-16" href="#">Make an online payment</a> -->
         </div>
-        <div id="case-payment-enforcement-div" class="summary-card">
+        <!-- <div id="case-payment-enforcement-div" class="summary-card">
           <h4 class="govuk-heading-s">Enforcement charges</h4>
           <div class="amount-freq">
-            <h2 id="case-payment-enforcement-charge" class="govuk-heading-l">£300.00</h2>
+            <h2 id="case-payment-enforcement-charge" class="govuk-heading-l">£300.00</h2> --> 
             <!-- <h3 class="govuk-heading-m">per month</h3> -->
           </div>
         </div>
       </div>
-    </div>
+    </div> 
+
 
   </div>
   <!-- <table class="govuk-table">
