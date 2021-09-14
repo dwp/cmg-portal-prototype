@@ -1070,7 +1070,6 @@ if (window.location.href.includes("/payments/case-payment")) {
         casePaymentDirectRPDiv.show();
       }
     }
-    // update with new Payment Plan structure
     else {
       let RecentPaymentsTableHTML = paymentsData[
         caseNum
@@ -1079,11 +1078,10 @@ if (window.location.href.includes("/payments/case-payment")) {
           return;
         } else {
           return `<tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">${payment.date}</th>
-        <td class="govuk-table__cell govuk-table__cell--numeric">£${payment.amount.toFixed(
-          2
-        )}</td>
-      </tr>`;
+            <th scope="row" class="govuk-table__header">${payment.date}</th>
+            <td class="govuk-table__cell">£${payment.amount.toFixed(2)}</td>
+            <td class="govuk-table__cell">${paymentsData[caseNum].paymentPlan.paymentMethod}</td>
+             </tr>`;
         }
       });
 
