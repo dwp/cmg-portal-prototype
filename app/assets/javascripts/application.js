@@ -422,7 +422,7 @@ const paymentsData = [
     serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
-    previousPayment: { date: "24 Aug 2021", amount: 125.23 },
+    previousPayment: { date: "24 Aug 2021", amount: 154.02 },
     paymentPlan: {
       startDate: "14 Mar 2021",
       endDate: "13 Mar 2022",
