@@ -1112,15 +1112,18 @@ if (window.location.href.includes("/payments/all-payments")){
   const allPaymentsDateFrom = $("#all-payments-date-from")[0];
   const allPaymentsDateTo = $("#all-payments-date-to")[0];
   const allPaymentsSwitcherLink = $("#all-payments-switcher-link")[0];
+  const breadcrumbCasePayments = $("#all-payments-breadcrumb-payments")[0];
 
   //Get the current case from the url parameter
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case"); //Set the caseNum variable to URL case parameter
     let annualRev = urlParams.get("annualReview");
+
     allPaymentsSwitcherLink.href = `/payments/payment-period?case=${caseNum}&annualReview=${annualRev}`;
+    breadcrumbCasePayments.href = `/payments/case-payment?case=${caseNum}`;
 
     allPaymentCaseName.innerText = paymentsData[caseNum].name;
-    
+
     if(Array.isArray(paymentsData[caseNum].name)){
       allPaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`;
     }
@@ -1150,13 +1153,18 @@ if (window.location.href.includes("/payments/all-payments")){
   }
 }
 
+//Payment period selection
 if (window.location.href.includes("/payments/payment-period")){
   const paymentPeriodContinue = $("#payment-period-continue")[0];
+  const breadcrumbCasePayments = $("#payment-period-breadcrumb-payments")[0];
+  const breadcrumbAllPayments = $("#payment-period-breadcrumb-all-payments")[0];
 
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case"); //Set the caseNum variable to URL case parameter
     let annualRev = urlParams.get("annualReview");
     paymentPeriodContinue.href = `all-payments?case=${caseNum}&annualReview=${annualRev}`;
+    breadcrumbCasePayments.href = `/payments/case-payment?case=${caseNum}`;
+    breadcrumbAllPayments.href = `/payments/all-payments?case=${caseNum}&annualReview=${annualRev}`;
 
     const paymentPeriodDateRadio = $("#payment-period-date-radio")[0];
     let paymentPeriodDateRadioHTML = paymentsData[caseNum].annualReviews.map((payment, i) => {
