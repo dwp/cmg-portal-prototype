@@ -11,9 +11,9 @@ $(document).ready(function () {
   window.GOVUKFrontend.initAll();
 });
 
-// PROTOTYPE
-// GLOBAL
-// DATA
+// USER
+// TYPE
+// THANGS
 
 let urlParams = new URLSearchParams(window.location.search);
 
@@ -53,166 +53,169 @@ $("#user-type-container")[0].addEventListener("click", changeUserType);
 
 let userType = sessionStorage.getItem("userType");
 
-const newCasesData = [
+// PROTOTYPE
+// GLOBAL
+// DATA
+
+const casesData = [
   { name: "Jane", children: ["Jane"] },
   { name: "Edward", children: ["Edward"] },
   { name: "Adam and 1 more", children: ["Adam", "Emma"] },
 ];
 
-const sentMessagesData = {
-  0: {
+const sentMessagesData = [
+  {
     title: "Responding to a request from the Child Maintenance Service",
     date: "03 Jun 2021",
-    case: "c-jones",
+    case: casesData[0].name,
   },
-  1: {
+  {
     title: "Payment schedule query",
     date: "13 May 2021",
-    case: "j-smith",
+    case: "no-case",
     link: "sent-message",
   },
-  2: {
+  {
     title: "General query",
     date: "15 Apr 2021",
     case: "no-case",
   },
-  3: {
+  {
     title: "Missed payment",
     date: "29 Mar 2021",
-    case: "j-smith",
+    case: casesData[1].name,
   },
-  4: {
+  {
     title: "General query",
     date: "26 Mar 2021",
-    case: "c-smith",
+    case: casesData[2].name,
   },
-  5: {
+  {
     title: "Other change",
     date: "11 Mar 2021",
     case: "no-case",
   },
-};
+];
 
-// this should be converted to an array at some point
-const receivedMessagesData = {
-  0: {
+const receivedMessagesData = [
+  {
     title: "Your child maintenance enquiry",
     date: "21 May 2021",
-    case: newCasesData[0].name,
+    case: casesData[0].name,
     link: "week-received-message",
   },
-  1: {
+  {
     title: "We need some information from you",
     date: "01 Mar 2021",
     case: "no-case",
   },
-  2: {
+  {
     title: "We need to check some information with you",
     date: "25 Jan 2021",
     case: "no-case",
   },
-  3: {
+  {
     title: "Your child maintenance enquiry",
     date: "18 Dec 2020",
-    case: newCasesData[0].name,
+    case: casesData[0].name,
   },
-  4: {
+  {
     title: "Your child maintenance payments will not change",
     date: "15 Oct 2020",
-    case: newCasesData[1].name,
+    case: casesData[1].name,
   },
-  5: {
+  {
     title:
       "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
     date: "24 Aug 2020",
     case: "no-case",
   },
-  6: {
+  {
     title: "Your child maintenance enquiry",
     date: "20 Jul 2020",
     case: "no-case",
   },
-  7: {
+  {
     title: "We need some information from you",
     date: "28 May 2020",
     case: "no-case",
   },
-  8: {
+  {
     title: "We've made a decision about a variation application",
     date: "28 Apr 2020",
     case: "no-case",
   },
-  9: {
+  {
     title:
       "Your payment plan for effective date of payment schedule to last payment date of schedule",
     date: "24 Mar 2020",
     case: "no-case",
   },
-  10: {
+  {
     title: "Issue reminder request",
     date: "19 Feb 2020",
     case: "no-case",
   },
-  11: {
+  {
     title: "Your service type has changed",
     date: "21 Jan 2020",
-    case: newCasesData[2].name,
+    case: casesData[2].name,
     link: "received-message",
   },
-  12: {
+  {
     title: "We need to check some information with you",
     date: "17 Dec 2019",
     case: "no-case",
   },
-  13: {
+  {
     title: "We need to check other information with you",
     date: "01 Dec 2019",
     case: "no-case",
   },
-  14: {
+  {
     title: "Your child maintenance enquiry",
     date: "11 Nov 2019",
     case: "no-case",
   },
-  15: {
+  {
     title:
       "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
     date: "24 Aug 2019",
     case: "no-case",
   },
-  16: {
+  {
     title: "Your child maintenance payments will not change",
     date: "17 Jul 2019",
-    case: newCasesData[1].name,
+    case: casesData[1].name,
   },
-  17: {
+  {
     title: "We need some information from you",
     date: "07 Jun 2019",
     case: "no-case",
   },
-  18: {
+  {
     title:
       "A variation application has been made that could affect your payments - please respond ",
     date: "08 Apr 2019",
     case: "no-case",
   },
-  19: {
+  {
     title: "Issue reminder request",
     date: "07 Feb 2019",
     case: "no-case",
   },
-  20: {
+  {
     title:
       "Part A: Your Annual Review - we’ve worked out your child maintenance payments",
     date: "24 Aug 2018",
     case: "no-case",
   },
-};
+];
 
 const paymentsData = [
   // This is case 0
   {
-    name: newCasesData[0].name,
+    name: casesData[0].name,
     serviceType: "Direct Pay",
     role: "PP",
     nextPayment: { date: "14 Oct 2021", amount: 75.03 },
@@ -257,7 +260,7 @@ const paymentsData = [
     ],
   },
   {
-    name: newCasesData[1].name,
+    name: casesData[1].name,
     combined: true,
     serviceType: "Collect and Pay",
     role: "PP",
@@ -335,7 +338,7 @@ const paymentsData = [
     ],
   },
   {
-    name: newCasesData[2].name,
+    name: casesData[2].name,
     combined: true,
     serviceType: "Collect and Pay",
     role: "PP",
@@ -418,7 +421,7 @@ const paymentsData = [
     },
   },
   {
-    name: [newCasesData[1].name, newCasesData[2].name],
+    name: [casesData[1].name, casesData[2].name],
     serviceType: "Collect and Pay",
     role: "PP",
     nextPayment: { date: "20 Sep 2021", amount: 154.02 },
@@ -501,18 +504,17 @@ const paymentsData = [
   },
 ];
 
-// this should be converted to an array at some point
-const changesData = {
-  change0: {
+const changesData = [
+  {
     changeType: "Change bank details",
     status: "received",
     colour: "blue",
     submitted: "10 Jun 2021",
     updated: "10 Jun 2021",
     complete: "09 Jul 2021",
-    case: newCasesData[0].name,
+    case: casesData[0].name,
   },
-  change1: {
+  {
     changeType: "Change to service type",
     status: "in-progress",
     colour: "yellow",
@@ -520,16 +522,16 @@ const changesData = {
     updated: "05 June 2021",
     complete: "24 June 2021",
   },
-  change2: {
+  {
     changeType: "Additional income",
     status: "completed",
     colour: "green",
     submitted: "06 Feb 2021",
     updated: "08 May 2021",
     complete: "03 Jun 2021",
-    case: newCasesData[1].name,
+    case: casesData[1].name,
   },
-  change3: {
+  {
     changeType: "Shared care",
     status: "evidence-requested",
     colour: "purple",
@@ -537,7 +539,7 @@ const changesData = {
     updated: "12 Apr 2021",
     complete: "19 June 2021",
   },
-  change4: {
+  {
     changeType: "Full time education",
     status: "completed",
     colour: "green",
@@ -545,7 +547,7 @@ const changesData = {
     updated: "19 Oct 2020",
     complete: "19 Oct 2020",
   },
-  change5: {
+  {
     changeType: "Special expenses",
     status: "rejected",
     colour: "red",
@@ -553,7 +555,7 @@ const changesData = {
     updated: "29 Aug 2020",
     complete: "20 Sep 2020",
   },
-  change6: {
+  {
     changeType: "Change of income",
     status: "completed",
     colour: "green",
@@ -561,7 +563,7 @@ const changesData = {
     updated: "06 Apr 2020",
     complete: "06 Apr 2020",
   },
-};
+];
 
 const days = [
   "Sunday",
@@ -578,7 +580,7 @@ if (sessionStorage.getItem("education")) {
   let newCompletedDate = new Date(
     new Date().setMonth(new Date().getMonth() + 2)
   );
-  changesData[`change${Object.keys(changesData).length}`] = {
+  changesData.push({
     changeType: "Education",
     status: "received",
     colour: "blue",
@@ -597,7 +599,7 @@ if (sessionStorage.getItem("education")) {
       month: "short",
       year: "numeric",
     }),
-  };
+  });
 }
 
 // HOME
@@ -622,7 +624,7 @@ if (window.location.href.includes("/home")) {
   }
 
   // populate the case selector
-  let caseSelectorHTML = newCasesData.map((caseName, i) => {
+  let caseSelectorHTML = casesData.map((caseName, i) => {
     return `
     <option value="${caseName.name}">${caseName.name}</option>
     `;
@@ -632,10 +634,15 @@ if (window.location.href.includes("/home")) {
   homeCaseSelector.innerHTML = caseSelectorHTML.join("");
 
   // populate payment cards with payments
-  const populatePayments = () => {
-    let paymentsHTML = paymentsData.map((payment, i) => {
+  const populatePayments = (data) => {
+    let payments = data;
+    if (!data) {
+      payments = paymentsData;
+    }
+    let paymentsHTML = payments.map((payment, i) => {
       // don't show combined cases for RPs
       if (userType == "RP") {
+        // as long as the case name isn't an array (like in a combined case)
         if (!Array.isArray(payment.name)) {
           return `
         <div class="home-card payments-card" id="payment-${i}">
@@ -670,7 +677,7 @@ if (window.location.href.includes("/home")) {
           `;
         }
       }
-      //
+      // If they're not a RP
       else {
         if (Array.isArray(payment.name)) {
           return `
@@ -704,7 +711,10 @@ if (window.location.href.includes("/home")) {
               </div>
             </div>
             `;
-        } else if (payment.combined) {
+        }
+        // don't show anything if we've marked the payment as combined
+        // this will only affect the duplicates which combined: true
+        else if (payment.combined) {
           return;
         } else {
           return `
@@ -749,19 +759,21 @@ if (window.location.href.includes("/home")) {
 
   // change payment card links
   if (userType != "RP") {
-    let paymentCardLinks = $(".payment-card-link")
-    paymentCardLinks.each( index => {
-      paymentCardLinks[index].innerText = "Update income"
-    })
+    let paymentCardLinks = $(".payment-card-link");
+    paymentCardLinks.each((index) => {
+      paymentCardLinks[index].innerText = "Update income";
+    });
   }
 
   // populate messages
-  const populateMessages = () => {
-    let messagesHTML = Object.keys(receivedMessagesData).map(
-      (receivedIndex) => {
-        if (receivedIndex < 3) {
-          let message = receivedMessagesData[receivedIndex];
-          return `
+  const populateMessages = (data) => {
+    let messages = data;
+    if (!data) {
+      messages = receivedMessagesData;
+    }
+    let messagesHTML = messages.map((message, i) => {
+      if (i < 3) {
+        return `
       <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">${
                   message.title
@@ -771,32 +783,30 @@ if (window.location.href.includes("/home")) {
                 ).toLocaleDateString("en-GB")}</td>
               </tr>
       `;
-        }
       }
-    );
+    });
     messagesTableBody.innerHTML = messagesHTML.join("");
   };
 
   populateMessages();
 
   // populate track changes
-  const populateTrackChanges = () => {
+  const populateTrackChanges = (data) => {
+    let changes = data;
+    if (!data) {
+      changes = changesData;
+    }
     // sort data
-    let ordered = Object.keys(changesData).sort((a, b) =>
-      new Date(changesData[a].updated) < new Date(changesData[b].updated)
-        ? 1
-        : -1
+    let ordered = changes.sort((a, b) =>
+      new Date(a.updated) < new Date(b.updated) ? 1 : -1
     );
 
     // populate based on the sort
-    let changesHTML = ordered.map((changeIndex, i) => {
+    let changesHTML = ordered.map((change, i) => {
       if (i < 3) {
-        let change =
-          changesData[`change${changeIndex[changeIndex.length - 1]}`];
-        // console.log(change)
         return `
       <tr class="govuk-table__row">
-        <td scope="row" class="govuk-table__cell" ><a href="/track-changes/change-details?change=${changeIndex}" class="butblack">${
+        <td scope="row" class="govuk-table__cell" ><a href="/track-changes/change-details?change=${i}" class="butblack">${
           change.changeType
         }</a></td>
         <td class="govuk-table__cell">
@@ -816,44 +826,51 @@ if (window.location.href.includes("/home")) {
 
   populateTrackChanges();
 
-  // const showCase = (e) => {
-  //   console.log(e.target.value);
-  //   if (e.target.value == "all") {
-  //     populateMessages();
-  //     populateTrackChanges();
-  //     populatePayments();
-  //   }
-  //   else {
-  //     // filter messages
-  //     let filteredMessages = []
-  //     Object.keys(receivedMessagesData).filter( index => {
-  //       if (receivedMessagesData[index].case == e.target.value) {
-  //           filteredMessages.unshift(receivedMessagesData[index])
-  //         }
-  //     } )
-  //     console.log(filteredMessages)
-  //     // show filtered messages
-  //     // filter changes
-  //     // show filtered changes
-  //     // show filtered payments
-  //     paymentsGrid.innerHTML = paymentsData.filter( payment => {
-  //       if (payment.name == e.target.value) {
-  //         return
-  //       }
-  //     } ) .join("");
-  //   }
-  // };
+  // CASE SELECTOR
 
-  // homeCaseSelector.addEventListener("change", showCase);
+  const showCase = (e) => {
+    // console.log(e.target.value);
+    if (e.target.value == "all") {
+      populateMessages();
+      populateTrackChanges();
+      populatePayments();
+    } else {
+      // filter messages
+      let filteredMessages = receivedMessagesData.filter((message) => {
+        return message.case == e.target.value;
+      });
+      // show filtered messages
+      populateMessages(filteredMessages);
+      // filter changes
+      let filteredChanges = changesData.filter((change) => {
+        return change.case == e.target.value;
+      });
+      // show filtered changes
+      populateTrackChanges(filteredChanges);
+      // filter payments
+      let filteredPayments = paymentsData.filter((payment) => {
+        return (
+          payment.name == e.target.value ||
+          payment.name.includes(e.target.value)
+        );
+      });
+      // show filtered payments
+      populatePayments(filteredPayments);
+    }
+  };
+
+  homeCaseSelector.addEventListener("change", showCase);
 }
 
 // PAYMENT
 // SCREEN
 // THANGS
 
+// Payments landing page
 if (window.location.href.includes("/payments/landing")) {
   const paymentsCasesTable = $("#payments-cases-table")[0];
 
+  // Map payment data into HTML
   let paymentTableHTML = paymentsData.map((payment, i) => {
     // if it is a combined case
     if (Array.isArray(payment.name)) {
@@ -862,26 +879,20 @@ if (window.location.href.includes("/payments/landing")) {
       }
       if (userType == "PP") {
         return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-          payment.name.length
-        } cases</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${payment.name.length} cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           </td>`;
       }
       if (userType == "DUAL") {
         if (payment.role == "PP") {
           return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-            payment.name.length
-          } cases</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${payment.name.length} cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           </td>`;
         }
         if (payment.role == "RP") {
           return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-            payment.name.length
-          } cases</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${payment.name.length} cases</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           </td>`;
         }
@@ -890,31 +901,27 @@ if (window.location.href.includes("/payments/landing")) {
       if (userType == "PP" || (userType == "DUAL" && payment.role == "PP")) {
         if (!payment.combined) {
           return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${
-            payment.name
-          }</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Pay maintenance for ${payment.name}</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           </td>`;
         }
       } else {
         return `<tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${
-          payment.name
-        }</a></td>
+          <td class="govuk-table__cell"><a href="case-payment?case=${i}" class="govuk-!-font-size-16">Receive maintenance for ${payment.name}</a></td>
           <td class="govuk-table__cell">${payment.serviceType}</td>
           </td>`;
       }
     }
   });
 
+  // Insert payment data HTML into the payment table
   paymentsCasesTable.innerHTML = paymentTableHTML.join("");
 }
 
-
+// Payments page for a case
 if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentCaseName = $("#case-payment-case-name")[0];
   const casePaymentServiceType = $("#case-payment-service-type")[0];
-  // const casePaymentFrequency = $("#case-payment-frequency")[0];
   const casePaymentReviewDate = $("#case-payment-review-date")[0];
   const casePaymentReviewMultipleDate = $(
     "#case-payment-review-multiple-date"
@@ -935,10 +942,6 @@ if (window.location.href.includes("/payments/case-payment")) {
   )[0];
   const paidReceived = $(".paid-received");
   const madeReceived = $("#made-received")[0];
-  const casePaymentEnforcementDiv = $("#case-payment-enforcement-div");
-  const casePaymentArrearsOwed = $("#case-payment-arrears-owed")[0];
-  const casePaymentArrearsPaid = $("#case-payment-arrears-paid")[0];
-  const casePaymentEnforcementCharge = $("#case-payment-enforcement-charge")[0];
   const casePaymentIntroDiv = $("#case-payment-intro-div");
   const casePaymentIntroMultipleDiv = $("#case-payment-intro-multiple-div");
   const casePaymentNamesUl = $("#case-payment-names-ul")[0];
@@ -947,7 +950,7 @@ if (window.location.href.includes("/payments/case-payment")) {
   const casePaymentRPCollectMethod = $("#case-payment-RP-collect-method")[0];
   const casePaymentCollectTotalAmount = $("#case-payment-collect-total-amount");
 
-
+  // this page only works if we get a case number from the url params e.g. "payments/case-payment?case=1"
   if (urlParams.get("case")) {
     let caseNum = urlParams.get("case");
 
@@ -960,7 +963,8 @@ if (window.location.href.includes("/payments/case-payment")) {
       let casePaymentNamesHTML = paymentsData[caseNum].name.map((name) => {
         return `<li>${name}</li>`;
       });
-      casePaymentReviewMultipleDate.innerText = paymentsData[caseNum].annualReviews[0].endDate
+      casePaymentReviewMultipleDate.innerText =
+        paymentsData[caseNum].annualReviews[0].endDate;
       casePaymentNamesUl.innerHTML = casePaymentNamesHTML.join("");
     } else {
       casePaymentCaseName.innerText = paymentsData[caseNum].name;
@@ -980,7 +984,8 @@ if (window.location.href.includes("/payments/case-payment")) {
     if (paymentsData[caseNum].serviceType == "Direct Pay") {
       casePaymentFeeSpans.hide();
       casePaymentMethodDiv.hide();
-      if (userType == "RP") casePaymentExpectedAmount.innerText = "Expected amount"
+      if (userType == "RP")
+        casePaymentExpectedAmount.innerText = "Expected amount";
     }
 
     if (
@@ -1023,15 +1028,16 @@ if (window.location.href.includes("/payments/case-payment")) {
     if (paymentsData[caseNum].serviceType == "Collect and Pay") {
       casePaymentMethod.innerText =
         paymentsData[caseNum].paymentPlan.paymentMethod;
-        casePaymentDate.innerText = `${new Date(
-          paymentsData[caseNum].nextPayment.date
-        ).toLocaleDateString("en-UK", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        })}`
-        casePaymentCollectTotalAmount.hide();
-      if (userType == "RP") casePaymentRPCollectMethod.innerText = "Collection method"
+      casePaymentDate.innerText = `${new Date(
+        paymentsData[caseNum].nextPayment.date
+      ).toLocaleDateString("en-UK", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      })}`;
+      casePaymentCollectTotalAmount.hide();
+      if (userType == "RP")
+        casePaymentRPCollectMethod.innerText = "Collection method";
     }
 
     casePaymentPastReview.innerText = new Date(
@@ -1057,8 +1063,7 @@ if (window.location.href.includes("/payments/case-payment")) {
       if (userType == "RP") {
         casePaymentDirectRPDiv.show();
       }
-    }
-    else {
+    } else {
       let RecentPaymentsTableHTML = paymentsData[
         caseNum
       ].annualReviews[0].receivedPayments.map((payment, i) => {
@@ -1068,7 +1073,9 @@ if (window.location.href.includes("/payments/case-payment")) {
           return `<tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">${payment.date}</th>
             <td class="govuk-table__cell">£${payment.amount.toFixed(2)}</td>
-            <td class="govuk-table__cell">${paymentsData[caseNum].paymentPlan.paymentMethod}</td>
+            <td class="govuk-table__cell">${
+              paymentsData[caseNum].paymentPlan.paymentMethod
+            }</td>
              </tr>`;
         }
       });
@@ -1108,7 +1115,7 @@ if (window.location.href.includes("/payments/case-payment")) {
 }
 
 //All payments
-if (window.location.href.includes("/payments/all-payments")){
+if (window.location.href.includes("/payments/all-payments")) {
   const allPaymentCaseName = $("#all-payment-case-name")[0];
   const allPaymentsDateFrom = $("#all-payments-date-from")[0];
   const allPaymentsDateTo = $("#all-payments-date-to")[0];
@@ -1125,17 +1132,21 @@ if (window.location.href.includes("/payments/all-payments")){
 
     allPaymentCaseName.innerText = paymentsData[caseNum].name;
 
-    if(Array.isArray(paymentsData[caseNum].name)){
+    if (Array.isArray(paymentsData[caseNum].name)) {
       allPaymentCaseName.innerText = `${paymentsData[caseNum].name.length} cases`;
     }
 
     //Payment period dates
-    allPaymentsDateFrom.innerText = new Date(paymentsData[caseNum].annualReviews[annualRev].startDate).toLocaleDateString("en-UK", {
+    allPaymentsDateFrom.innerText = new Date(
+      paymentsData[caseNum].annualReviews[annualRev].startDate
+    ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
       year: "numeric",
     });
-    allPaymentsDateTo.innerText = new Date(paymentsData[caseNum].annualReviews[annualRev].endDate).toLocaleDateString("en-UK", {
+    allPaymentsDateTo.innerText = new Date(
+      paymentsData[caseNum].annualReviews[annualRev].endDate
+    ).toLocaleDateString("en-UK", {
       day: "2-digit",
       month: "long",
       year: "numeric",
@@ -1143,10 +1154,21 @@ if (window.location.href.includes("/payments/all-payments")){
 
     //Payments table
     const allPaymentsTable = $("#all-payments-table")[0];
-    let allPaymentsTableHTML = paymentsData[caseNum].annualReviews[annualRev].receivedPayments.map((payment, i) => {
-        return `<tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">${new Date(payment.date).toLocaleDateString("en-UK", {day:"2-digit", month:"long", year:"numeric"})}</th>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">${new Intl.NumberFormat("en-UK", {style: "currency", currency: "GBP"}).format(payment.amount)}</td>
+    let allPaymentsTableHTML = paymentsData[caseNum].annualReviews[
+      annualRev
+    ].receivedPayments.map((payment, i) => {
+      return `<tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">${new Date(
+                    payment.date
+                  ).toLocaleDateString("en-UK", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">${new Intl.NumberFormat(
+                    "en-UK",
+                    { style: "currency", currency: "GBP" }
+                  ).format(payment.amount)}</td>
                   <td class="govuk-table__cell govuk-table__cell">Ongoing child maintenance</td>
                 </tr>`;
     });
@@ -1155,7 +1177,7 @@ if (window.location.href.includes("/payments/all-payments")){
 }
 
 //Payment period selection
-if (window.location.href.includes("/payments/payment-period")){
+if (window.location.href.includes("/payments/payment-period")) {
   const paymentPeriodContinue = $("#payment-period-continue")[0];
   const breadcrumbCasePayments = $("#payment-period-breadcrumb-payments")[0];
   const breadcrumbAllPayments = $("#payment-period-breadcrumb-all-payments")[0];
@@ -1168,21 +1190,30 @@ if (window.location.href.includes("/payments/payment-period")){
     breadcrumbAllPayments.href = `/payments/all-payments?case=${caseNum}&annualReview=${annualRev}`;
 
     const paymentPeriodDateRadio = $("#payment-period-date-radio")[0];
-    let paymentPeriodDateRadioHTML = paymentsData[caseNum].annualReviews.map((payment, i) => {
+    let paymentPeriodDateRadioHTML = paymentsData[caseNum].annualReviews.map(
+      (payment, i) => {
         return `<div class="govuk-radios__item">
                   <input class="govuk-radios__input" id="date-range-${i}" name="date-range" type="radio" value="${i}">
                   <label class="govuk-label govuk-radios__label" for="date-range-${i}">
-                    ${new Date(payment.startDate).toLocaleDateString("en-UK", {day:"2-digit", month:"long", year:"numeric"})} to ${new Date(payment.endDate).toLocaleDateString("en-UK", {day:"2-digit", month:"long", year:"numeric"})}
+                    ${new Date(payment.startDate).toLocaleDateString("en-UK", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })} to ${new Date(payment.endDate).toLocaleDateString(
+          "en-UK",
+          { day: "2-digit", month: "long", year: "numeric" }
+        )}
                   </label>
                 </div>`;
-    });
+      }
+    );
     paymentPeriodDateRadio.innerHTML = paymentPeriodDateRadioHTML.join("");
     const radioList = $(".govuk-radios__input");
-    radioList.each(index => {
+    radioList.each((index) => {
       radioList[index].addEventListener("change", (e) => {
         paymentPeriodContinue.href = `all-payments?case=${caseNum}&annualReview=${e.target.value}`;
       });
-    })
+    });
   }
 }
 
@@ -1314,7 +1345,6 @@ if (window.location.href.includes("/track-changes/track-changes")) {
   const changeCheckboxes = $(".govuk-checkboxes__input").toArray();
   const submittedBefore = $("#submitted-before")[0];
   const submittedAfter = $("#submitted-after")[0];
-  const changesTable = $("#changes-table")[0];
   const changesTableBody = $("#changes-table-body")[0];
   const resultCount = $("#result-count")[0];
   const statusFacets = $("#status-facet-container");
@@ -1326,16 +1356,15 @@ if (window.location.href.includes("/track-changes/track-changes")) {
   const applyFilterButton = $(".govuk-button--secondary")[0];
 
   // set an empty result
-  let changesKeys = Object.keys(changesData);
   let filteredChangeData = {};
   let statusFilters = [];
   let isSubmittedAfter = false;
   let isSubmittedBefore = false;
-  let submittedAfterDate = {};
-  let submittedBeforeDate = {};
+  let submittedAfterDate = "";
+  let submittedBeforeDate = "";
 
   if (sessionStorage.getItem("newMessage")) {
-    changesData[`change${Object.keys(changesData).length}`] = {
+    changesData.push({
       changeType: sessionStorage.getItem("newMessageTitle"),
       status: "received",
       colour: "blue",
@@ -1349,9 +1378,7 @@ if (window.location.href.includes("/track-changes/track-changes")) {
         month: "short",
         year: "numeric",
       }),
-    };
-    changesKeys = Object.keys(changesData);
-    console.log(changesData);
+    });
   }
 
   try {
@@ -1370,12 +1397,6 @@ if (window.location.href.includes("/track-changes/track-changes")) {
         submittedAfterDate instanceof Date && !isNaN(submittedAfterDate);
       if (isDate) {
         isSubmittedAfter = true;
-        // submittedFacets.show();
-        // submittedAfterFacet[0].innerHTML = `<p id="submitted-after-date" class="govuk-!-margin-bottom-0">${submittedAfterDate.toLocaleDateString(
-        //   "en-UK",
-        //   { day: "numeric", month: "long", year: "numeric" }
-        // )}</p>`;
-        // submittedAfterFacet.show();
       } else {
         console.log("aint a date");
         isSubmittedAfter = false;
@@ -1418,22 +1439,6 @@ if (window.location.href.includes("/track-changes/track-changes")) {
       } else {
         isSubmittedBefore = false;
       }
-
-      // if (Object.keys(filteredChangeData).length == 0) {
-      //   filteredChangeData = {...changesData}
-      // }
-
-      // changesKeys.forEach((key) => {
-      //   let changeSubmittedDate = new Date(changesData[key].submitted);
-      //   // if data item is after the input date
-      //   if (changeSubmittedDate > submittedBeforeDate) {
-      //     // remove it
-      //     console.log("removing", key);
-      //     delete filteredChangeData[`${key}`];
-      //   }
-      // });
-
-      // applyFilter();
     });
 
     // when clicking the date facet, remove the filter
@@ -1448,40 +1453,31 @@ if (window.location.href.includes("/track-changes/track-changes")) {
 
   // put data on screen
   const populateTrackChanges = (data) => {
-    let newDataKeys = Object.keys(data);
+    let newData = [...data];
     let newHTML = [];
 
-    // console.log(
-    //   "after",
-    //   isSubmittedAfter,
-    //   "before",
-    //   isSubmittedBefore,
-    //   "status",
-    //   statusFilters
-    // );
     // if data is empty
-    if (newDataKeys.length == 0) {
+    if (data.length == 0) {
       // if filters are applied, show no matches
       if (isSubmittedBefore || isSubmittedAfter || statusFilters.length > 0) {
         $("#no-results").show();
       }
       // if no filters, show all data
       else {
-        newDataKeys = Object.keys(changesData);
+        newData = [...changesData];
         statusFacets.hide();
         submittedFacets.hide();
       }
     }
 
-    newDataKeys.sort((a, b) =>
-      new Date(changesData[a].updated) < new Date(changesData[b].updated)
-        ? 1
-        : -1
+    console.log(newData);
+
+    newData.sort((a, b) =>
+      new Date(a.updated) < new Date(b.updated) ? 1 : -1
     );
 
     // add that to the screen
-    newHTML = newDataKeys.map((key) => {
-      let change = changesData[key];
+    newHTML = newData.map((change, i) => {
       if (change.link && change.case) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
@@ -1509,7 +1505,7 @@ if (window.location.href.includes("/track-changes/track-changes")) {
       } else if (change.case) {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${
+    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${i}">${
           change.changeType
         }</a>
     						<div class="changes-date-container govuk-!-margin-bottom-3">
@@ -1557,7 +1553,7 @@ if (window.location.href.includes("/track-changes/track-changes")) {
       } else {
         return `<tr class="govuk-table__row">
     					<th scope="row" class="govuk-table__header"><a
-    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${key}">${
+    							class="table-row-subject govuk-link--no-visited-state" href="change-details?change=${i}">${
           change.changeType
         }</a>
     						<div class="changes-date-container">
@@ -1601,61 +1597,14 @@ if (window.location.href.includes("/track-changes/track-changes")) {
   };
 
   const removeStatus = (e) => {
-    // $(`#status-${e.target.value}`)[0].checked = false;
-
-    // remove facet tag
-    // $(`#facet-${e.target.value}`).remove();
-
     // remove from status filters
     const index = statusFilters.indexOf(e.target.value);
     statusFilters.splice(index, 1);
-
-    // if (statusFilters.length == 0) {
-    //   statusFacets.hide();
-    // }
-
-    // applyFilter();
   };
 
   const addStatus = (e) => {
-    // // show status container
-    // statusFacets.show();
-    // // add facet tag
-    // statusFacets.append(
-    //   `<div id="facet-${e.target.value}" class="facet-tag status-facet-tag"
-    // }>
-    // 				<p class="govuk-!-margin-bottom-0">
-    //         ${
-    //           e.target.value.charAt(0).toUpperCase() +
-    //           e.target.value.slice(1).replace("-", " ")
-    //         }
-    //         </p>
-    // 			</div>`
-    // );
-    // // add event listener to new facet
-
-    // $(`#facet-${e.target.value}`)[0].addEventListener("click", function () {
-    //   // uncheck checkbox
-    //   $(`#status-${e.target.value}`)[0].checked = false;
-
-    //   // remove facet tag
-    //   $(`#facet-${e.target.value}`).remove();
-
-    //   // remove from status filters
-    //   const index = statusFilters.indexOf(e.target.value);
-    //   statusFilters.splice(index, 1);
-
-    //   if (statusFilters.length == 0) {
-    //     statusFacets.hide();
-    //   }
-
-    //   applyFilter();
-    // });
-
     // add to status filters
     statusFilters.push(e.target.value);
-
-    // applyFilter();
   };
 
   const filterStatus = (e) => {
@@ -1679,7 +1628,7 @@ if (window.location.href.includes("/track-changes/track-changes")) {
     // if status filter is applied
     if (statusFilters.length) {
       console.log("we have ", statusFilters.length, " status filters applied");
-      filteredChangeData = {};
+      filteredChangeData = [];
 
       statusFilters.forEach((status) => {
         // add facet tag
@@ -1717,17 +1666,17 @@ if (window.location.href.includes("/track-changes/track-changes")) {
         });
 
         // filter data
-        changesKeys.forEach((key) => {
+        changesData.forEach((change, i) => {
           // if selection value matches changesData status
-          if (changesData[key].status == status) {
+          if (change.status == status) {
             // if selected add it
-            filteredChangeData[`${key}`] = changesData[key];
+            filteredChangeData.push(change);
           }
         });
       });
     } else {
       // console.log("no status filters applied");
-      filteredChangeData = { ...changesData };
+      filteredChangeData = [...changesData];
     }
 
     // go through all status and all data, if match, add to filteredData
@@ -1749,14 +1698,8 @@ if (window.location.href.includes("/track-changes/track-changes")) {
       )}</p>`;
       submittedAfterFacet.show();
       // filter data
-      changesKeys.forEach((key) => {
-        let changeSubmittedDate = new Date(changesData[key].submitted);
-        // if data item is after the input date
-        if (changeSubmittedDate < submittedAfterDate) {
-          // remove it
-          // console.log("removing", key);
-          delete filteredChangeData[`${key}`];
-        }
+      filteredChangeData = filteredChangeData.filter((change) => {
+        return new Date(change.submitted) > new Date(submittedAfterDate);
       });
     }
 
@@ -1769,14 +1712,9 @@ if (window.location.href.includes("/track-changes/track-changes")) {
       )}</p>`;
       submittedBeforeFacet.show();
       // filter data
-      changesKeys.forEach((key) => {
-        let changeSubmittedDate = new Date(changesData[key].submitted);
-        // if data item is after the input date
-        if (changeSubmittedDate > submittedBeforeDate) {
-          // remove it
-          // console.log("removing", key);
-          delete filteredChangeData[`${key}`];
-        }
+      // if data item is after the input date
+      filteredChangeData = filteredChangeData.filter((change) => {
+        return new Date(change.submitted) < new Date(submittedBeforeDate);
       });
     }
 
@@ -1970,7 +1908,7 @@ if (window.location.href.includes("change-details")) {
   };
 
   // Insert correct values on the change details page
-  changeDetailsTitle.innerText = `${changesData[changeNum].changeType}`;
+  changeDetailsTitle.innerText = changesData[changeNum].changeType;
   changeDetailsTag.classList = `govuk-tag govuk-tag--${changesData[changeNum].colour} govuk-!-margin-bottom-5`;
   changeDetailsTag.innerText = `${changesData[changeNum].status.replace(
     "-",
@@ -2034,9 +1972,7 @@ if (window.location.href.includes("/messages/messages")) {
 
   const receivedBefore = $("#received-before")[0];
   const receivedAfter = $("#received-after")[0];
-  const receivedTable = $("#received")[0];
   const receivedTableBody = $("#received-table-body")[0];
-  const sentTable = $("#sent")[0];
   const sentTableBody = $("#sent-table-body")[0];
   const caseFacets = $("#case-facet-container");
   const receivedFacets = $("#received-facet-container");
@@ -2048,7 +1984,7 @@ if (window.location.href.includes("/messages/messages")) {
   const applyFilterButton = $(".govuk-button--secondary")[0];
   const checkboxes = $(".govuk-checkboxes--small")[0];
 
-  checkboxes.innerHTML = newCasesData
+  checkboxes.innerHTML = casesData
     .map((caseName) => {
       let replacement = caseName.name.replace(/ /g, "-");
       return `<div class="govuk-checkboxes__item">
@@ -2060,8 +1996,6 @@ if (window.location.href.includes("/messages/messages")) {
 
   const messagesCheckboxes = $(".govuk-checkboxes__input").toArray();
 
-  let sentMessagesKeys = Object.keys(sentMessagesData);
-  let receivedMessagesKeys = Object.keys(receivedMessagesData);
   let filteredMessageData = {};
   let caseFilters = [];
   let isReceivedAfter = false;
@@ -2075,12 +2009,12 @@ if (window.location.href.includes("/messages/messages")) {
     newMessageTitle = $("#new-message-subject")[0].innerText;
     sessionStorage.setItem("newMessage", true);
     sessionStorage.setItem("newMessageTitle", newMessageTitle);
-    sentMessagesData[2] = {
+    sentMessagesData.push({
       title: newMessageTitle,
       date: new Date(),
       case: "no-case",
       new: true,
-    };
+    });
   } else {
     console.log("nah that message it ain't in there");
   }
@@ -2131,19 +2065,11 @@ if (window.location.href.includes("/messages/messages")) {
     let isDate = receivedAfterDate instanceof Date && !isNaN(receivedAfterDate);
     if (isDate) {
       isReceivedAfter = true;
-      // receivedFacets.show();
-      // receivedAfterFacet[0].innerHTML = `<p id="received-after-date" class="govuk-!-margin-bottom-0">${receivedAfterDate.toLocaleDateString(
-      //   "en-UK",
-      //   { day: "numeric", month: "long", year: "numeric" }
-      // )}</p>`;
-      // receivedAfterFacet.show();
     } else {
       console.log("aint a date");
       isReceivedAfter = false;
       receivedAfterFacet.hide();
     }
-
-    // applyFilter();
   });
 
   // when clicking on the date facet, remove the filter
@@ -2171,17 +2097,9 @@ if (window.location.href.includes("/messages/messages")) {
       receivedBeforeDate instanceof Date && !isNaN(receivedBeforeDate);
     if (isDate) {
       isReceivedBefore = true;
-      // receivedFacets.show();
-      // receivedBeforeFacet[0].innerHTML = `<p class="govuk-!-margin-bottom-0">${receivedBeforeDate.toLocaleDateString(
-      //   "en-UK",
-      //   { day: "numeric", month: "long", year: "numeric" }
-      // )}</p>`;
-      // receivedBeforeFacet.show();
     } else {
       isReceivedBefore = false;
     }
-
-    // applyFilter();
   });
 
   // when clicking the date facet, remove the filter
@@ -2195,30 +2113,15 @@ if (window.location.href.includes("/messages/messages")) {
 
   // put data on screen
   const populateMessages = (data) => {
-    let newSentDataKeys = [];
     let newReceivedDataKeys = [];
     let newSentHTML = [];
     let newReceivedHTML = [];
 
-    try {
-      newSentDataKeys = Object.keys(data.sent);
-      newReceivedDataKeys = Object.keys(data.received);
-    } catch (err) {}
-
-    // console.log(
-    //   "after",
-    //   isReceivedAfter,
-    //   "before",
-    //   isReceivedBefore,
-    //   "status",
-    //   caseFilters
-    // );
-
     $("#no-sent-results").hide();
     $("#no-received-results").hide();
 
-    // if sentdata is empty
-    if (newSentDataKeys.length == 0) {
+    // if sent data is empty
+    if (!data.sent || data.sent.length == 0) {
       // if filters are applied, show no matches
       if (isReceivedBefore || isReceivedAfter || caseFilters.length > 0) {
         console.log("no sent results");
@@ -2249,15 +2152,13 @@ if (window.location.href.includes("/messages/messages")) {
       }
     }
 
-    newSentDataKeys = Object.keys(data.sent);
     newReceivedDataKeys = Object.keys(data.received);
 
     // add that to the screen
 
     // add that to the sent array
 
-    newSentHTML = newSentDataKeys.map((key) => {
-      let message = sentMessagesData[key];
+    newSentHTML = data.sent.map((message) => {
       if (message.new) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="dynamic-sent-message.html">${
@@ -2317,8 +2218,7 @@ if (window.location.href.includes("/messages/messages")) {
 
     // add that to the received array
 
-    newReceivedHTML = newReceivedDataKeys.map((key) => {
-      let message = receivedMessagesData[key];
+    newReceivedHTML = data.received.map((message) => {
       if (message.case != "no-case" && message.link) {
         return `<tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header table-row-subject"><a class="table-row-subject govuk-link--no-visited-state" href="${
@@ -2408,75 +2308,14 @@ if (window.location.href.includes("/messages/messages")) {
   };
 
   const removeCase = (e) => {
-    // $(`#case-${e.target.value}`)[0].checked = false;
-
-    // // remove facet tag
-    // $(`#facet-${e.target.value}`).remove();
-
     // remove from case filters
     const index = caseFilters.indexOf(e.target.value);
     caseFilters.splice(index, 1);
-
-    // if (caseFilters.length == 0) {
-    //   caseFacets.hide();
-    // }
-
-    // applyFilter();
   };
 
   const addCase = (e) => {
-    // // show status container
-    // caseFacets.show();
-    // // add facet tag
-    // if (e.target.value == "no-case") {
-    //   caseFacets.append(
-    //     `<div id="facet-${e.target.value}" class="facet-tag case-facet-tag"
-    //   }>
-    //           <p class="govuk-!-margin-bottom-0">
-    //           No case
-    //           </p>
-    //         </div>`
-    //   );
-    // }
-    // else {
-    //   caseFacets.append(
-    //     `<div id="facet-${e.target.value}" class="facet-tag case-facet-tag"
-    //   }>
-    //           <p class="govuk-!-margin-bottom-0">
-    //           ${
-    //             e.target.value.charAt(0).toUpperCase() +
-    //             " " +
-    //             e.target.value[2].toUpperCase() +
-    //             e.target.value.slice(3)
-    //           }
-    //           </p>
-    //         </div>`
-    //   );
-    // }
-    // // add event listener to new facet
-
-    // $(`#facet-${e.target.value}`)[0].addEventListener("click", function () {
-    //   // uncheck checkbox
-    //   $(`#case-${e.target.value}`)[0].checked = false;
-
-    //   // remove facet tag
-    //   $(`#facet-${e.target.value}`).remove();
-
-    //   // remove from status filters
-    //   const index = caseFilters.indexOf(e.target.value);
-    //   caseFilters.splice(index, 1);
-
-    //   if (caseFilters.length == 0) {
-    //     caseFacets.hide();
-    //   }
-
-    //   applyFilter();
-    // });
-
     // add to status filters
     caseFilters.push(e.target.value);
-
-    // applyFilter();
   };
 
   const filterCase = (e) => {
@@ -2501,8 +2340,8 @@ if (window.location.href.includes("/messages/messages")) {
     if (caseFilters.length) {
       console.log("we have ", caseFilters.length, " case filters applied");
       filteredMessageData = {};
-      let filteredReceivedMessageData = {};
-      let filteredSentMessageData = {};
+      let filteredReceivedMessageData = [];
+      let filteredSentMessageData = [];
 
       // add facet tags
       caseFilters.forEach((casee) => {
@@ -2549,37 +2388,31 @@ if (window.location.href.includes("/messages/messages")) {
 
       // filter received messaged
       caseFilters.forEach((casee) => {
-        receivedMessagesKeys.forEach((key) => {
+        receivedMessagesData.forEach((message) => {
           // if selection value matches changesData status
-          if (receivedMessagesData[key].case == casee.replace(/-/g, " ")) {
+          if (message.case == casee.replace(/-/g, " ")) {
             // if selected add it
-            filteredReceivedMessageData[`${key}`] = receivedMessagesData[key];
+            filteredReceivedMessageData.push(message);
           }
         });
       });
 
       // filter sent messages
       caseFilters.forEach((casee) => {
-        sentMessagesKeys.forEach((key) => {
+        sentMessagesData.forEach((message) => {
           // if selection value matches changesData status
-          if (sentMessagesData[key].case == casee.replace(/-/g, " ")) {
+          if (message.case == casee.replace(/-/g, " ")) {
             // if selected add it
-            filteredSentMessageData[`${key}`] = sentMessagesData[key];
+            filteredSentMessageData.push(message);
           }
         });
       });
 
-      // put it together
-      filteredMessageData = {
-        received: { ...filteredReceivedMessageData },
-        sent: { ...filteredSentMessageData },
-      };
+      // otherwise if no case filter
     } else {
       // console.log("no status filters applied");
-      filteredMessageData = {
-        received: { ...receivedMessagesData },
-        sent: { ...sentMessagesData },
-      };
+      filteredSentMessageData = [...sentMessagesData];
+      filteredReceivedMessageData = [...receivedMessagesData];
     }
 
     if (caseFilters.length == 0) {
@@ -2603,30 +2436,14 @@ if (window.location.href.includes("/messages/messages")) {
       )}</p>`;
       receivedAfterFacet.show();
       // filter received data
-      receivedMessagesKeys.forEach((key) => {
-        // console.log(receivedMessagesData[key]);
-        let receivedMessageReceivedDate = new Date(
-          receivedMessagesData[key].date
-        );
-        // if data item is after the input date
-        // console.log(receivedMessageReceivedDate, receivedAfterDate);
-        if (receivedMessageReceivedDate < receivedAfterDate) {
-          // remove it
-          // console.log("removing", key);
-          delete filteredMessageData.received[`${key}`];
+      filteredReceivedMessageData = filteredReceivedMessageData.filter(
+        (message) => {
+          return new Date(message.date) > new Date(receivedAfterDate);
         }
-      });
+      );
       // filter sent data
-      sentMessagesKeys.forEach((key) => {
-        // console.log(receivedMessagesData[key]);
-        let sentMessageReceivedDate = new Date(sentMessagesData[key].date);
-        // if data item is after the input date
-        // console.log(sentMessageReceivedDate, receivedAfterDate);
-        if (sentMessageReceivedDate < receivedAfterDate) {
-          // remove it
-          // console.log("removing", key);
-          delete filteredMessageData.sent[`${key}`];
-        }
+      filteredSentMessageData = filteredSentMessageData.filter((message) => {
+        return new Date(message.date) > new Date(receivedAfterDate);
       });
     }
 
@@ -2639,32 +2456,24 @@ if (window.location.href.includes("/messages/messages")) {
       )}</p>`;
       receivedBeforeFacet.show();
       // filter received data
-      receivedMessagesKeys.forEach((key) => {
-        // console.log(receivedMessagesData[key]);
-        let receivedMessageReceivedDate = new Date(
-          receivedMessagesData[key].date
-        );
-        // if data item is after the input date
-        if (receivedMessageReceivedDate > receivedBeforeDate) {
-          // remove it
-          // console.log("removing", key);
-          delete filteredMessageData.received[`${key}`];
+      filteredReceivedMessageData = filteredReceivedMessageData.filter(
+        (message) => {
+          return new Date(message.date) < new Date(receivedBeforeDate);
         }
-      });
+      );
       // filter sent data
-      sentMessagesKeys.forEach((key) => {
-        // console.log(receivedMessagesData[key]);
-        let sentMessageReceivedDate = new Date(sentMessagesData[key].date);
-        // if data item is after the input date
-        if (sentMessageReceivedDate > receivedBeforeDate) {
-          // remove it
-          // console.log("removing", key);
-          delete filteredMessageData.sent[`${key}`];
-        }
+      filteredSentMessageData = filteredSentMessageData.filter((message) => {
+        return new Date(message.date) < new Date(receivedBeforeDate);
       });
     }
 
-    // console.log("after date filtering: ", filteredMessageData);
+    // put it together
+    filteredMessageData = {
+      received: [...filteredReceivedMessageData],
+      sent: [...filteredSentMessageData],
+    };
+
+    console.log("after date filtering: ", filteredMessageData);
 
     // sort by received date
 
@@ -2718,6 +2527,7 @@ if (window.location.href.includes("/messages/messages")) {
 // A
 // CHANGE
 
+//
 if (window.location.href.includes("/report-a-change")) {
   if (window.location.href.includes("/report-a-change/landing")) {
     if (userType == "RP") {
@@ -2751,6 +2561,10 @@ if (window.location.href.includes("/report-a-change")) {
     });
   }
 }
+
+// CASE
+// DETAILS
+// THANGS
 
 if (window.location.href.includes("/case-details/landing")) {
   if (userType == "RP") {
