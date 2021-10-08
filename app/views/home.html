@@ -63,38 +63,41 @@ My Child Maintenance Case
           </a>
         </div>
         <div class="card-body">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Subject</th>
-                <th scope="col" class="govuk-table__header">Date</th>
-              </tr>
-            </thead>
-            <tbody id="messages-table-body" class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack" id="message0">We need to check
-                    some information
-                    with you</a></td>
-                <td class="govuk-table__cell" id="date0">01/02/2021</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack" id="message1">Your child
-                    maintenance payments
-                    will not change</a></td>
-                <td class="govuk-table__cell" id="date1">15/01/2021</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack" id="message2">We've worked out
-                    your child
-                    maintenance payments</a></td>
-                <td class="govuk-table__cell" id="date2">31/12/2020</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="card-bottom">
-            <a href="#" class="govuk-link--no-visited-state"></a>
-            <a href="messages/messages.html" class="govuk-link--no-visited-state">View all</a>
+          <div id="populated-messages">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Subject</th>
+                  <th scope="col" class="govuk-table__header">Date</th>
+                </tr>
+              </thead>
+              <tbody id="messages-table-body" class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell"><a href="#" class="butblack" id="message0">We need to check
+                      some information
+                      with you</a></td>
+                  <td class="govuk-table__cell" id="date0">01/02/2021</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell"><a href="#" class="butblack" id="message1">Your child
+                      maintenance payments
+                      will not change</a></td>
+                  <td class="govuk-table__cell" id="date1">15/01/2021</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell"><a href="#" class="butblack" id="message2">We've worked out
+                      your child
+                      maintenance payments</a></td>
+                  <td class="govuk-table__cell" id="date2">31/12/2020</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card-bottom">
+              <a href="#" class="govuk-link--no-visited-state"></a>
+              <a href="messages/messages.html" class="govuk-link--no-visited-state">View all</a>
+            </div>
           </div>
+          <p id="empty-messages-p" class="small govuk-!-margin-bottom-0" hidden>No previous messages</p>
         </div>
       </div>
       <div class="home-card" id="track-changes-card">
@@ -147,7 +150,7 @@ My Child Maintenance Case
               <a href="track-changes/track-changes.html" class="govuk-link--no-visited-state">View all</a>
             </div>
           </div>
-          <p id="empty-changes-div" class="small govuk-!-margin-bottom-0" hidden>No changes reported</p>
+          <p id="empty-changes-p" class="small govuk-!-margin-bottom-0" hidden>No changes reported</p>
         </div>
       </div>
     </div>

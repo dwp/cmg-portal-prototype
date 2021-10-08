@@ -156,12 +156,12 @@ const receivedMessagesData = [
     date: "19 Feb 2020",
     case: "no-case",
   },
-  {
-    title: "Your service type has changed",
-    date: "21 Jan 2020",
-    case: casesData[2].name,
-    link: "received-message",
-  },
+  // {
+  //   title: "Your service type has changed",
+  //   date: "21 Jan 2020",
+  //   case: casesData[2].name,
+  //   link: "received-message",
+  // },
   {
     title: "We need to check some information with you",
     date: "17 Dec 2019",
@@ -771,21 +771,29 @@ if (window.location.href.includes("/home")) {
     if (!data) {
       messages = receivedMessagesData;
     }
-    let messagesHTML = messages.map((message, i) => {
-      if (i < 3) {
-        return `
-      <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">${
-                  message.title
-                }</a></td>
-                <td class="govuk-table__cell" id="date0">${new Date(
-                  message.date
-                ).toLocaleDateString("en-GB")}</td>
-              </tr>
-      `;
-      }
-    });
-    messagesTableBody.innerHTML = messagesHTML.join("");
+
+    if (messages.length == 0) {
+      $("#empty-messages-p").show();
+      $("#populated-messages").hide();
+    } else {
+      let messagesHTML = messages.map((message, i) => {
+        if (i < 3) {
+          return `
+        <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell"><a href="#" class="butblack">${
+                    message.title
+                  }</a></td>
+                  <td class="govuk-table__cell" id="date0">${new Date(
+                    message.date
+                  ).toLocaleDateString("en-GB")}</td>
+                </tr>
+        `;
+        }
+      });
+      messagesTableBody.innerHTML = messagesHTML.join("");
+      $("#empty-messages-p").hide();
+      $("#populated-messages").show();
+    }
   };
 
   populateMessages();
@@ -804,7 +812,7 @@ if (window.location.href.includes("/home")) {
     // populate based on the sort
     // if there are no results
     if (changes.length == 0) {
-      $("#empty-changes-div").show();
+      $("#empty-changes-p").show();
       $("#populated-track-changes").hide();
     } else {
       let changesHTML = ordered.map((change, i) => {
@@ -827,7 +835,7 @@ if (window.location.href.includes("/home")) {
         }
       });
       changesTableBody.innerHTML = changesHTML.join("");
-      $("#empty-changes-div").hide();
+      $("#empty-changes-p").hide();
       $("#populated-track-changes").show();
     }
   };
