@@ -104,47 +104,50 @@ My Child Maintenance Case
           </a>
         </div>
         <div class="card-body" id="track-changes-card-body">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack"></a></th>
-                <th scope="col" class="govuk-table__header"><a href="#" class="butblack"></a></th>
-              </tr>
-            </thead>
-            <tbody id="changes-table-body" class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell" id="change0"><a href="change-details?type=received"
-                    class="butblack">Change phone number</a></td>
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag govuk-tag--blue" id="tag0">
-                    Received
-                  </strong>
-                </td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell" id="change1"><a href="change-details?type=received"
-                    class="butblack">Change address</a></td>
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag govuk-tag--blue" id="tag1">
-                    Received
-                  </strong>
-                </td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__cell" id="change2"><a href="change-details?type=in-progress"
-                    class="butblack">Change to Direct Pay or Collect and Pay</a></td>
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag govuk-tag--yellow" id="tag2">
-                    In progress
-                  </strong>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="card-bottom">
-            <a href="#" class="govuk-link--no-visited-state"></a>
-            <a href="track-changes/track-changes.html" class="govuk-link--no-visited-state">View all</a>
+          <div id="populated-track-changes">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header"></th>
+                  <th scope="col" class="govuk-table__header"></th>
+                </tr>
+              </thead>
+              <tbody id="changes-table-body" class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell" id="change0"><a href="change-details?type=received"
+                      class="butblack">Change phone number</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--blue" id="tag0">
+                      Received
+                    </strong>
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell" id="change1"><a href="change-details?type=received"
+                      class="butblack">Change address</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--blue" id="tag1">
+                      Received
+                    </strong>
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td scope="row" class="govuk-table__cell" id="change2"><a href="change-details?type=in-progress"
+                      class="butblack">Change to Direct Pay or Collect and Pay</a></td>
+                  <td class="govuk-table__cell">
+                    <strong class="govuk-tag govuk-tag--yellow" id="tag2">
+                      In progress
+                    </strong>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="card-bottom">
+              <a href="#" class="govuk-link--no-visited-state"></a>
+              <a href="track-changes/track-changes.html" class="govuk-link--no-visited-state">View all</a>
+            </div>
           </div>
+          <p id="empty-changes-div" class="small govuk-!-margin-bottom-0" hidden>No changes reported</p>
         </div>
       </div>
     </div>

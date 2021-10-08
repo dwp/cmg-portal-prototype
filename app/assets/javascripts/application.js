@@ -802,13 +802,18 @@ if (window.location.href.includes("/home")) {
     );
 
     // populate based on the sort
-    let changesHTML = ordered.map((change, i) => {
-      if (i < 3) {
-        return `
+    // if there are no results
+    if (changes.length == 0) {
+      $("#empty-changes-div").show();
+      $("#populated-track-changes").hide();
+    } else {
+      let changesHTML = ordered.map((change, i) => {
+        if (i < 3) {
+          return `
       <tr class="govuk-table__row">
         <td scope="row" class="govuk-table__cell" ><a href="/track-changes/change-details?change=${i}" class="butblack">${
-          change.changeType
-        }</a></td>
+            change.changeType
+          }</a></td>
         <td class="govuk-table__cell">
           <strong class="govuk-tag govuk-tag--${change.colour}">
             ${
@@ -819,9 +824,12 @@ if (window.location.href.includes("/home")) {
         </td>
       </tr>
       `;
-      }
-    });
-    changesTableBody.innerHTML = changesHTML.join("");
+        }
+      });
+      changesTableBody.innerHTML = changesHTML.join("");
+      $("#empty-changes-div").hide();
+      $("#populated-track-changes").show();
+    }
   };
 
   populateTrackChanges();
